@@ -84,4 +84,5 @@ api=/client-config/index    //外部系统的接口路由，数据库的菜单�
 
 ## 前台样式示例
 
-[前台layuiadmin](http://192.168.150.37:8027/layoutui/start/index.html)
+[layui的demo](http://www.layui.com/demo/table-element.html)
+[layuiadmin](http://192.168.150.37:8027/layoutui/start/index.html)
