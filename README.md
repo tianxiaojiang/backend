@@ -15,9 +15,13 @@ base_backend是一套前后台完全分离的CMS管理基础程序。后台基�
 
 ### 修改配置
 
+后台接口的入口文件位于/public/index.php
+前台入口在/public/views/start/index.html。也可以将整个view抽出去，跟后台程序分开。
+
+创建对应的mysql数据库，导入/sql/init.sql
+
 配置文件位置：
 /business/config/
-
 ```
 修改添加业务模块        config.php的module参数
 日志存放路径            config.php的runtimePath参数
@@ -25,8 +29,6 @@ base_backend是一套前后台完全分离的CMS管理基础程序。后台基�
 外部系统配置地址        params.php的modules参数
 ```
 
-后台接口的入口文件位于/public/index.php
-前台入口在/public/views/start/index.html。也可以将整个view抽出去，跟后台程序分开。
 
 ### 创建业务的菜单、以及权限
 
