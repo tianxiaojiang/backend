@@ -75,3 +75,8 @@ INSERT INTO `system_group_priv` VALUES ('15', '1', '15', '1510544394', '15105443
 module=gamm3    //外部系统模块，与配置文件里的params的modules一致。
 api=/client-config/index    //外部系统的接口路由，数据库的菜单要对应上
 ```
+
+
+## 前台样式示例
+
+[前台layuiadmin](http://192.168.150.37:8027/layoutui/start/index.html)
