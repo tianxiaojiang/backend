@@ -1,0 +1,448 @@
+2018-04-08 17:01:24 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(504): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(140): yii\db\ActiveRecord->insert(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): Backend\modules\admin\models\Admin->insert(true, NULL)
+#6 E:\project\backend\backend\actions\CreateAction.php(52): yii\db\BaseActiveRecord->save()
+#7 [internal function]: Backend\actions\CreateAction->run()
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('create', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:08:34 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(504): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(140): yii\db\ActiveRecord->insert(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): Backend\modules\admin\models\Admin->insert(true, NULL)
+#6 E:\project\backend\backend\actions\CreateAction.php(52): yii\db\BaseActiveRecord->save()
+#7 [internal function]: Backend\actions\CreateAction->run()
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('create', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:08:44 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(504): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(140): yii\db\ActiveRecord->insert(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): Backend\modules\admin\models\Admin->insert(true, NULL)
+#6 E:\project\backend\backend\actions\CreateAction.php(52): yii\db\BaseActiveRecord->save()
+#7 [internal function]: Backend\actions\CreateAction->run()
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('create', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:09:22 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(504): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(140): yii\db\ActiveRecord->insert(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): Backend\modules\admin\models\Admin->insert(true, NULL)
+#6 E:\project\backend\backend\actions\CreateAction.php(52): yii\db\BaseActiveRecord->save()
+#7 [internal function]: Backend\actions\CreateAction->run()
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('create', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:09:46 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(504): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(140): yii\db\ActiveRecord->insert(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): Backend\modules\admin\models\Admin->insert(true, NULL)
+#6 E:\project\backend\backend\actions\CreateAction.php(52): yii\db\BaseActiveRecord->save()
+#7 [internal function]: Backend\actions\CreateAction->run()
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('create', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:09:47 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(504): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(140): yii\db\ActiveRecord->insert(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): Backend\modules\admin\models\Admin->insert(true, NULL)
+#6 E:\project\backend\backend\actions\CreateAction.php(52): yii\db\BaseActiveRecord->save()
+#7 [internal function]: Backend\actions\CreateAction->run()
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('create', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:10:15 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(170): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:10:37 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(170): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:10:39 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(170): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:10:48 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(170): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:11:15 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(170): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:14:01 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(170): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:15:46 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-08 17:15:48 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-08 17:16:03 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(170): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:22:30 yii\web\ServerErrorHttpException: Failed to update the object for unknown reason. in E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php:49
+Stack trace:
+#0 [internal function]: yii\rest\UpdateAction->run('2')
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#7 {main}
+2018-04-08 17:22:46 yii\web\ServerErrorHttpException: Failed to update the object for unknown reason. in E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php:49
+Stack trace:
+#0 [internal function]: yii\rest\UpdateAction->run('2')
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#7 {main}
+2018-04-08 17:24:09 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(169): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:24:52 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(169): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 17:26:40 yii\web\ServerErrorHttpException: Failed to update the object for unknown reason. in E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php:49
+Stack trace:
+#0 [internal function]: yii\rest\UpdateAction->run('2')
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#7 {main}
+2018-04-08 17:36:13 yii\base\ErrorException: Class 'Backend\actions\Action' not found in E:\project\backend\backend\actions\UpdateAction.php:23
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2018-04-08 17:36:36 yii\web\ServerErrorHttpException: Failed to update the object for unknown reason. in E:\project\backend\backend\actions\UpdateAction.php:50
+Stack trace:
+#0 [internal function]: Backend\actions\UpdateAction->run('2')
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#7 {main}
+2018-04-08 17:44:33 yii\base\ErrorException: Allowed memory size of 268435456 bytes exhausted (tried to allocate 4096 bytes) in E:\project\backend\vendor\yiisoft\yii2\helpers\BaseArrayHelper.php:65
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2018-04-08 17:45:22 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-08 17:45:31 yii\base\InvalidArgumentException: Unknown scenario: update in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:357
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(NULL)
+#1 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): yii\db\ActiveRecord->update(true, NULL)
+#2 E:\project\backend\backend\actions\UpdateAction.php(50): yii\db\BaseActiveRecord->save()
+#3 [internal function]: Backend\actions\UpdateAction->run('6')
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#7 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/system-gr...', Array)
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#9 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#10 {main}
+2018-04-08 17:46:50 yii\web\ServerErrorHttpException: Failed to create the object for unknown reason. in E:\project\backend\backend\actions\CreateAction.php:58
+Stack trace:
+#0 [internal function]: Backend\actions\CreateAction->run()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('create', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#7 {main}
+2018-04-08 17:50:09 yii\web\UnauthorizedHttpException: Your request was made with invalid credentials. in E:\project\backend\vendor\yiisoft\yii2\filters\auth\AuthMethod.php:93
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\filters\auth\HttpHeaderAuth.php(65): yii\filters\auth\AuthMethod->handleFailure(Object(yii\web\Response))
+#1 E:\project\backend\vendor\yiisoft\yii2\filters\auth\AuthMethod.php(60): yii\filters\auth\HttpHeaderAuth->authenticate(Object(yii\web\User), Object(yii\web\Request), Object(yii\web\Response))
+#2 E:\project\backend\vendor\yiisoft\yii2\base\ActionFilter.php(77): yii\filters\auth\AuthMethod->beforeAction(Object(yii\base\InlineAction))
+#3 [internal function]: yii\base\ActionFilter->beforeFilter(Object(yii\base\ActionEvent))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(627): call_user_func(Array, Object(yii\base\ActionEvent))
+#5 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(274): yii\base\Component->trigger('beforeAction', Object(yii\base\ActionEvent))
+#6 E:\project\backend\vendor\yiisoft\yii2\web\Controller.php(164): yii\base\Controller->beforeAction(Object(yii\base\InlineAction))
+#7 E:\project\backend\backend\modules\common\controllers\CommonController.php(33): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\CommonController->beforeAction(Object(yii\base\InlineAction))
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('admin-stats', Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/common/ad...', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#13 {main}
+2018-04-08 17:55:40 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-08 17:55:40 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-08 17:55:41 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-08 17:55:48 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-08 17:59:31 yii\web\ServerErrorHttpException: Failed to create the object for unknown reason. in E:\project\backend\backend\actions\CreateAction.php:63
+Stack trace:
+#0 [internal function]: Backend\actions\CreateAction->run()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('create', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#7 {main}
+2018-04-08 17:59:37 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}

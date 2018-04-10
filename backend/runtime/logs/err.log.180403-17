@@ -1,0 +1,276 @@
+2018-04-03 17:01:25 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:01:39 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:07:18 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:07:56 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:08:24 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:09:28 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:10:00 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:22:17 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:29:19 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:29:22 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:39:04 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:43:54 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:44:06 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:52:24 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:52:57 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:57:00 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:57:21 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:57:29 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:58:35 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:58:48 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:58:50 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:58:58 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-03 17:59:09 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}

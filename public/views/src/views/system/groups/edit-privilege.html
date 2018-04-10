@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>layer iframe 示例</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../../start/layui/css/layui.css" media="all">
+</head>
+
+<body>
+ <script id="demo" type="text/html" lay-url="/admin/system-group/group-privilege-list?group_id=1" template lay-done="console.log(d.data);">
+    <div class="layui-fluid" id="temp-edit-privileges">
+        <form class="layui-form layui-form-pane" action="" lay-filter="edit-privileges">
+            {{#  layui.each(d.data, function(index, item){ }}
+            <div class="layui-form-item layui-form-text">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>{{ item.sm_label }}</legend>
+                </fieldset>
+                <div class="layui-input-block">
+                    {{#  layui.each(item.privileges, function(index1, labels){ }}
+                    <input type="checkbox" name="privileges[]" lay-skin="primary" title="{{ labels.sp_label }}">
+                    {{#  }); }}
+                </div>
+            </div>
+            {{#  }); }}
+        </form>
+    </div>
+</script>
+    <div id="view"></div>
+    <script src="../../../../start/layui/layui.js"></script>
+    <script>
+        layui.use(['layer', 'form', 'laytpl'], function () {
+            // var $ = layui.jquery, layer = layui.layer, laytpl = layui.laytpl, form = layui.form;
+            // var getTpl = demo.innerHTML, view = document.getElementById('view');
+            // var data = '';
+            // $.getJSON('/admin/system-group/group-privilege-list', function (res) {
+            //     data = res;
+            //     console.log(data);
+            // });
+            // console.log(data);
+            // laytpl(getTpl).render(data, function (html) {
+            //     console.log(html);
+            //     view.innerHTML = html;
+            // });
+            // form.render();
+        })
+    </script>
+</body>
+
+</html>

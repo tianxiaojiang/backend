@@ -1,0 +1,927 @@
+2018-04-08 11:02:32 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:02:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:02:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:02:32 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:02:32 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:02:32 Loading module: admin
+2018-04-08 11:02:32 Route to run: admin/system-menu/show-menus
+2018-04-08 11:02:32 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:02:32 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:02:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:02:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:02:32 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:02:32 Route requested: 'admin/admin-user/index'
+2018-04-08 11:02:32 Loading module: admin
+2018-04-08 11:02:32 Route to run: admin/admin-user/index
+2018-04-08 11:02:32 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:02:44 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:02:44 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:02:44 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:02:44 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:02:44 Route requested: 'admin/admin-user/update'
+2018-04-08 11:02:44 Loading module: admin
+2018-04-08 11:02:44 Route to run: admin/admin-user/update
+2018-04-08 11:02:44 Running action: yii\rest\UpdateAction::run()
+2018-04-08 11:02:44 Failed to set unsafe attribute 'uid' in 'Backend\modules\admin\models\Admin'.
+2018-04-08 11:02:44 Failed to set unsafe attribute 'password' in 'Backend\modules\admin\models\Admin'.
+2018-04-08 11:02:44 Failed to set unsafe attribute 'role' in 'Backend\modules\admin\models\Admin'.
+2018-04-08 11:02:44 Failed to set unsafe attribute 'status' in 'Backend\modules\admin\models\Admin'.
+2018-04-08 11:02:44 Failed to set unsafe attribute 'username' in 'Backend\modules\admin\models\Admin'.
+2018-04-08 11:02:44 Failed to set unsafe attribute 'id' in 'Backend\modules\admin\models\Admin'.
+2018-04-08 11:02:44 Failed to set unsafe attribute 'time' in 'Backend\modules\admin\models\Admin'.
+2018-04-08 11:02:44 Failed to set unsafe attribute 'sign' in 'Backend\modules\admin\models\Admin'.
+2018-04-08 11:07:34 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:07:34 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:07:34 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:07:34 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:07:34 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:07:34 Loading module: admin
+2018-04-08 11:07:34 Route to run: admin/system-menu/show-menus
+2018-04-08 11:07:34 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:07:34 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:07:34 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:07:34 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:07:34 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:07:34 Route requested: 'admin/admin-user/index'
+2018-04-08 11:07:34 Loading module: admin
+2018-04-08 11:07:34 Route to run: admin/admin-user/index
+2018-04-08 11:07:34 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:09:46 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:09:46 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:09:46 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:09:46 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:09:46 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:09:46 Loading module: admin
+2018-04-08 11:09:46 Route to run: admin/system-menu/show-menus
+2018-04-08 11:09:46 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:09:46 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:09:46 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:09:46 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:09:46 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:09:46 Route requested: 'admin/admin-user/index'
+2018-04-08 11:09:46 Loading module: admin
+2018-04-08 11:09:46 Route to run: admin/admin-user/index
+2018-04-08 11:09:46 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:10:15 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:10:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:10:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:10:15 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:10:15 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:10:15 Loading module: admin
+2018-04-08 11:10:15 Route to run: admin/system-menu/show-menus
+2018-04-08 11:10:15 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:10:16 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:10:16 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:10:16 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:10:16 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:10:16 Route requested: 'admin/admin-user/index'
+2018-04-08 11:10:16 Loading module: admin
+2018-04-08 11:10:16 Route to run: admin/admin-user/index
+2018-04-08 11:10:16 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:10:27 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:10:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:10:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:10:27 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:10:27 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:10:27 Loading module: admin
+2018-04-08 11:10:27 Route to run: admin/system-menu/show-menus
+2018-04-08 11:10:27 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:10:27 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:10:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:10:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:10:27 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:10:27 Route requested: 'admin/admin-user/index'
+2018-04-08 11:10:27 Loading module: admin
+2018-04-08 11:10:27 Route to run: admin/admin-user/index
+2018-04-08 11:10:27 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:17:47 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:17:47 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:17:47 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:17:47 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:17:47 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:17:47 Loading module: admin
+2018-04-08 11:17:47 Route to run: admin/system-menu/show-menus
+2018-04-08 11:17:47 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:17:48 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:17:48 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:17:48 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:17:48 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:17:48 Route requested: 'admin/admin-user/index'
+2018-04-08 11:17:48 Loading module: admin
+2018-04-08 11:17:48 Route to run: admin/admin-user/index
+2018-04-08 11:17:48 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:20:09 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:20:09 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:20:09 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:20:09 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:20:09 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:20:09 Loading module: admin
+2018-04-08 11:20:09 Route to run: admin/system-menu/show-menus
+2018-04-08 11:20:09 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:20:09 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:20:09 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:20:09 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:20:09 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:20:09 Route requested: 'admin/admin-user/index'
+2018-04-08 11:20:09 Loading module: admin
+2018-04-08 11:20:09 Route to run: admin/admin-user/index
+2018-04-08 11:20:09 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:21:22 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:21:22 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:21:22 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:21:22 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:21:22 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:21:22 Loading module: admin
+2018-04-08 11:21:22 Route to run: admin/system-menu/show-menus
+2018-04-08 11:21:22 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:21:22 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:21:22 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:21:22 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:21:22 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:21:22 Route requested: 'admin/admin-user/index'
+2018-04-08 11:21:22 Loading module: admin
+2018-04-08 11:21:22 Route to run: admin/admin-user/index
+2018-04-08 11:21:22 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:21:26 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:21:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:21:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:21:26 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:21:26 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:21:26 Loading module: admin
+2018-04-08 11:21:26 Route to run: admin/system-menu/show-menus
+2018-04-08 11:21:26 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:21:27 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:21:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:21:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:21:27 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:21:27 Route requested: 'admin/admin-user/index'
+2018-04-08 11:21:27 Loading module: admin
+2018-04-08 11:21:27 Route to run: admin/admin-user/index
+2018-04-08 11:21:27 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:21:27 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:21:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:21:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:21:27 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:21:27 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:21:27 Loading module: admin
+2018-04-08 11:21:27 Route to run: admin/system-menu/show-menus
+2018-04-08 11:21:27 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:21:28 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:21:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:21:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:21:28 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:21:28 Route requested: 'admin/admin-user/index'
+2018-04-08 11:21:28 Loading module: admin
+2018-04-08 11:21:28 Route to run: admin/admin-user/index
+2018-04-08 11:21:28 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:22:31 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:22:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:22:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:22:31 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:22:31 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:22:31 Loading module: admin
+2018-04-08 11:22:31 Route to run: admin/system-menu/show-menus
+2018-04-08 11:22:31 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:22:31 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:22:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:22:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:22:31 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:22:31 Route requested: 'admin/admin-user/index'
+2018-04-08 11:22:31 Loading module: admin
+2018-04-08 11:22:31 Route to run: admin/admin-user/index
+2018-04-08 11:22:31 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:23:41 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:23:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:23:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:23:41 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:23:41 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:23:41 Loading module: admin
+2018-04-08 11:23:41 Route to run: admin/system-menu/show-menus
+2018-04-08 11:23:41 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:23:41 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:23:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:23:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:23:41 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:23:41 Route requested: 'admin/admin-user/index'
+2018-04-08 11:23:41 Loading module: admin
+2018-04-08 11:23:41 Route to run: admin/admin-user/index
+2018-04-08 11:23:41 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:23:46 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:23:46 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:23:46 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:23:46 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:23:46 Route requested: 'views/src/style/close.png'
+2018-04-08 11:30:09 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:30:09 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:09 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:09 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:30:09 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:30:09 Loading module: admin
+2018-04-08 11:30:09 Route to run: admin/system-menu/show-menus
+2018-04-08 11:30:09 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:30:09 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:30:09 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:09 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:09 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:30:09 Route requested: 'admin/admin-user/index'
+2018-04-08 11:30:09 Loading module: admin
+2018-04-08 11:30:09 Route to run: admin/admin-user/index
+2018-04-08 11:30:09 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:30:14 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:30:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:14 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:30:14 Route requested: 'views/src/style/close.png'
+2018-04-08 11:30:28 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:30:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:28 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:30:28 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:30:28 Loading module: admin
+2018-04-08 11:30:28 Route to run: admin/system-menu/show-menus
+2018-04-08 11:30:28 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:30:28 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:30:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:28 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:30:28 Route requested: 'admin/admin-user/index'
+2018-04-08 11:30:28 Loading module: admin
+2018-04-08 11:30:28 Route to run: admin/admin-user/index
+2018-04-08 11:30:28 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:30:31 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:31 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:30:31 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:30:31 Loading module: admin
+2018-04-08 11:30:31 Route to run: admin/system-menu/show-menus
+2018-04-08 11:30:31 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:30:31 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:31 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:30:31 Route requested: 'admin/admin-user/index'
+2018-04-08 11:30:31 Loading module: admin
+2018-04-08 11:30:31 Route to run: admin/admin-user/index
+2018-04-08 11:30:31 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:30:50 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:30:50 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:50 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:30:50 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:30:50 Route requested: 'views/src/style/close.png'
+2018-04-08 11:31:46 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:31:46 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:31:46 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:31:46 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:31:46 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:31:46 Loading module: admin
+2018-04-08 11:31:46 Route to run: admin/system-menu/show-menus
+2018-04-08 11:31:46 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:31:46 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:31:46 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:31:46 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:31:46 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:31:46 Route requested: 'admin/admin-user/index'
+2018-04-08 11:31:46 Loading module: admin
+2018-04-08 11:31:46 Route to run: admin/admin-user/index
+2018-04-08 11:31:46 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:34:01 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:34:01 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:34:01 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:34:01 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:34:01 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:34:01 Loading module: admin
+2018-04-08 11:34:01 Route to run: admin/system-menu/show-menus
+2018-04-08 11:34:01 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:34:01 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:34:01 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:34:01 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:34:01 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:34:01 Route requested: 'admin/admin-user/index'
+2018-04-08 11:34:01 Loading module: admin
+2018-04-08 11:34:01 Route to run: admin/admin-user/index
+2018-04-08 11:34:01 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:34:27 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:34:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:34:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:34:27 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:34:27 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:34:27 Loading module: admin
+2018-04-08 11:34:27 Route to run: admin/system-menu/show-menus
+2018-04-08 11:34:27 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:34:27 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:34:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:34:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:34:27 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:34:27 Route requested: 'admin/admin-user/index'
+2018-04-08 11:34:27 Loading module: admin
+2018-04-08 11:34:27 Route to run: admin/admin-user/index
+2018-04-08 11:34:27 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:35:15 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:35:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:35:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:35:15 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:35:15 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:35:15 Loading module: admin
+2018-04-08 11:35:15 Route to run: admin/system-menu/show-menus
+2018-04-08 11:35:15 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:35:15 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:35:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:35:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:35:15 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:35:15 Route requested: 'admin/admin-user/index'
+2018-04-08 11:35:15 Loading module: admin
+2018-04-08 11:35:15 Route to run: admin/admin-user/index
+2018-04-08 11:35:15 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:35:29 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:35:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:35:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:35:29 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:35:29 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:35:29 Loading module: admin
+2018-04-08 11:35:29 Route to run: admin/system-menu/show-menus
+2018-04-08 11:35:29 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:35:29 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:35:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:35:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:35:29 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:35:29 Route requested: 'admin/admin-user/index'
+2018-04-08 11:35:29 Loading module: admin
+2018-04-08 11:35:29 Route to run: admin/admin-user/index
+2018-04-08 11:35:29 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:36:57 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:36:57 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:36:57 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:36:57 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:36:57 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:36:57 Loading module: admin
+2018-04-08 11:36:57 Route to run: admin/system-menu/show-menus
+2018-04-08 11:36:57 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:36:57 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:36:57 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:36:57 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:36:57 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:36:57 Route requested: 'admin/admin-user/index'
+2018-04-08 11:36:57 Loading module: admin
+2018-04-08 11:36:57 Route to run: admin/admin-user/index
+2018-04-08 11:36:57 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:40:05 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:40:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:40:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:40:05 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:40:05 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:40:05 Loading module: admin
+2018-04-08 11:40:05 Route to run: admin/system-menu/show-menus
+2018-04-08 11:40:05 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:40:05 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:40:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:40:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:40:05 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:40:05 Route requested: 'admin/admin-user/index'
+2018-04-08 11:40:05 Loading module: admin
+2018-04-08 11:40:05 Route to run: admin/admin-user/index
+2018-04-08 11:40:05 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:47:53 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:47:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:47:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:47:53 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:47:53 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:47:53 Loading module: admin
+2018-04-08 11:47:53 Route to run: admin/system-menu/show-menus
+2018-04-08 11:47:53 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:47:53 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:47:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:47:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:47:53 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:47:53 Route requested: 'admin/admin-user/index'
+2018-04-08 11:47:53 Loading module: admin
+2018-04-08 11:47:53 Route to run: admin/admin-user/index
+2018-04-08 11:47:53 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:50:14 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:50:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:50:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:50:14 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:50:14 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:50:14 Loading module: admin
+2018-04-08 11:50:14 Route to run: admin/system-menu/show-menus
+2018-04-08 11:50:14 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:50:14 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:50:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:50:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:50:14 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:50:14 Route requested: 'admin/admin-user/index'
+2018-04-08 11:50:14 Loading module: admin
+2018-04-08 11:50:14 Route to run: admin/admin-user/index
+2018-04-08 11:50:14 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:51:45 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:51:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:51:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:51:45 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:51:45 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:51:45 Loading module: admin
+2018-04-08 11:51:45 Route to run: admin/system-menu/show-menus
+2018-04-08 11:51:45 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:51:45 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:51:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:51:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:51:45 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:51:45 Route requested: 'admin/admin-user/index'
+2018-04-08 11:51:45 Loading module: admin
+2018-04-08 11:51:45 Route to run: admin/admin-user/index
+2018-04-08 11:51:45 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:56:19 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:56:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:56:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:56:19 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:56:19 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:56:19 Loading module: admin
+2018-04-08 11:56:19 Route to run: admin/system-menu/show-menus
+2018-04-08 11:56:19 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:56:19 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:56:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:56:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:56:19 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:56:19 Route requested: 'admin/admin-user/index'
+2018-04-08 11:56:19 Loading module: admin
+2018-04-08 11:56:19 Route to run: admin/admin-user/index
+2018-04-08 11:56:19 Running action: yii\rest\IndexAction::run()
+2018-04-08 11:58:16 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:58:16 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:58:16 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:58:16 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:58:16 Route requested: 'admin/system-menu/show-menus'
+2018-04-08 11:58:16 Loading module: admin
+2018-04-08 11:58:16 Route to run: admin/system-menu/show-menus
+2018-04-08 11:58:16 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-08 11:58:16 Bootstrap with yii\log\Dispatcher
+2018-04-08 11:58:16 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:58:16 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-08 11:58:16 No matching URL rules. Using default URL parsing logic.
+2018-04-08 11:58:16 Route requested: 'admin/admin-user/index'
+2018-04-08 11:58:16 Loading module: admin
+2018-04-08 11:58:16 Route to run: admin/admin-user/index
+2018-04-08 11:58:16 Running action: yii\rest\IndexAction::run()

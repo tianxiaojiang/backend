@@ -1,0 +1,56 @@
+# yii console command
+/yii
+yii.bat
+
+# phpstorm 项目文件
+.idea
+.vscode
+
+# netbeans 项目文件
+nbproject
+
+# zend studio for eclipse 项目文件
+.buildpath
+.project
+.settings
+
+# windows 缩略图
+Thumbs.db
+
+# composer 供应商目录
+/vendor
+
+# composer 它本身是不需要的（客户端自行升级最新版）
+composer.phar
+
+# Mac DS_Store 文件
+.DS_Store
+
+# phpunit 它本身是不需要的
+phpunit.phar
+# 本地 phpunit 配置文件
+/phpunit.xml
+
+#本地配置文件
+main-test.php
+index-test.php
+main-local.php
+db-local.php
+cache-local.php
+params-local.php
+redis-local.php
+db-back-local.php
+upload-local.php
+db-gamm1-local.php
+db-gamm2-local.php
+
+#index.php 防止线上出现debug信息
+/frontend/web/index.php
+/backend/web/index.php
+
+#本地测试controller
+TestController.php
+
+# 接口加密中间件，用于调用接口
+/frontend/controllers/MiddleController.php
+

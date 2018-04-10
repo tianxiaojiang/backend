@@ -1,0 +1,5 @@
+2018-04-09 09:44:13 request:array (
+  'time' => '1523238253',
+  'sign' => 'ff9b81d5400f9595174d1cc8feb3c5b4',
+  'api_path' => 'admin/system-menu/show-menus',
+)

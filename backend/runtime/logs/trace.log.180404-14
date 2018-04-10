@@ -1,0 +1,472 @@
+2018-04-04 14:15:57 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:15:57 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:15:57 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:15:57 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:15:57 Route requested: 'favicon.ico'
+2018-04-04 14:15:57 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:15:57 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:15:57 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:15:57 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:15:57 Route requested: 'admin/token/captcha'
+2018-04-04 14:15:57 Loading module: admin
+2018-04-04 14:15:57 Route to run: admin/token/captcha
+2018-04-04 14:15:57 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-04 14:18:09 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:18:09 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:18:09 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:18:09 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:18:09 Route requested: 'admin/token/get'
+2018-04-04 14:18:09 Loading module: admin
+2018-04-04 14:18:09 Route to run: admin/token/get
+2018-04-04 14:18:09 Running action: Backend\modules\admin\controllers\TokenController::actionGet()
+2018-04-04 14:18:09 Failed to set unsafe attribute 'time' in 'Backend\modules\admin\models\AccessToken'.
+2018-04-04 14:18:09 Failed to set unsafe attribute 'sign' in 'Backend\modules\admin\models\AccessToken'.
+2018-04-04 14:18:09 Begin transaction
+2018-04-04 14:18:09 Commit transaction
+2018-04-04 14:18:11 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:18:11 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:18:11 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:18:11 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:18:11 Route requested: 'favicon.ico'
+2018-04-04 14:18:11 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:18:11 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:18:11 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:18:11 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:18:11 Route requested: 'admin/system-menu/show-menus'
+2018-04-04 14:18:11 Loading module: admin
+2018-04-04 14:18:11 Route to run: admin/system-menu/show-menus
+2018-04-04 14:18:11 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-04 14:18:37 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:18:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:18:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:18:37 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:18:37 Route requested: 'favicon.ico'
+2018-04-04 14:18:37 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:18:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:18:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:18:37 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:18:37 Route requested: 'admin/token/captcha'
+2018-04-04 14:18:37 Loading module: admin
+2018-04-04 14:18:37 Route to run: admin/token/captcha
+2018-04-04 14:18:37 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-04 14:36:30 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:36:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:36:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:36:30 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:36:30 Route requested: 'favicon.ico'
+2018-04-04 14:36:31 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:36:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:36:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:36:31 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:36:31 Route requested: 'admin/token/captcha'
+2018-04-04 14:36:31 Loading module: admin
+2018-04-04 14:36:31 Route to run: admin/token/captcha
+2018-04-04 14:36:31 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-04 14:36:44 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:36:44 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:36:44 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:36:44 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:36:44 Route requested: 'favicon.ico'
+2018-04-04 14:36:45 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:36:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:36:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:36:45 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:36:45 Route requested: 'admin/token/captcha'
+2018-04-04 14:36:45 Loading module: admin
+2018-04-04 14:36:45 Route to run: admin/token/captcha
+2018-04-04 14:36:45 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-04 14:37:05 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:37:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:37:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:37:05 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:37:05 Route requested: 'favicon.ico'
+2018-04-04 14:37:05 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:37:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:37:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:37:05 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:37:05 Route requested: 'admin/system-menu/show-menus'
+2018-04-04 14:37:05 Loading module: admin
+2018-04-04 14:37:05 Route to run: admin/system-menu/show-menus
+2018-04-04 14:37:05 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:37:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:37:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:37:05 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:37:05 Route requested: 'favicon.ico'
+2018-04-04 14:37:06 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:37:06 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:37:06 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:37:06 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:37:06 Route requested: 'admin/token/captcha'
+2018-04-04 14:37:06 Loading module: admin
+2018-04-04 14:37:06 Route to run: admin/token/captcha
+2018-04-04 14:37:06 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-04 14:38:57 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:38:57 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:38:57 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:38:57 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:38:57 Route requested: 'favicon.ico'
+2018-04-04 14:38:57 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:38:57 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:38:57 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:38:57 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:38:57 Route requested: 'admin/token/captcha'
+2018-04-04 14:38:57 Loading module: admin
+2018-04-04 14:38:57 Route to run: admin/token/captcha
+2018-04-04 14:38:57 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-04 14:39:02 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:39:02 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:02 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:02 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:39:02 Route requested: 'favicon.ico'
+2018-04-04 14:39:03 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:39:03 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:03 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:03 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:39:03 Route requested: 'admin/token/captcha'
+2018-04-04 14:39:03 Loading module: admin
+2018-04-04 14:39:03 Route to run: admin/token/captcha
+2018-04-04 14:39:03 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-04 14:39:17 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:39:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:17 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:39:17 Route requested: 'admin/token/get'
+2018-04-04 14:39:17 Loading module: admin
+2018-04-04 14:39:17 Route to run: admin/token/get
+2018-04-04 14:39:17 Running action: Backend\modules\admin\controllers\TokenController::actionGet()
+2018-04-04 14:39:17 Failed to set unsafe attribute 'time' in 'Backend\modules\admin\models\AccessToken'.
+2018-04-04 14:39:17 Failed to set unsafe attribute 'sign' in 'Backend\modules\admin\models\AccessToken'.
+2018-04-04 14:39:17 Begin transaction
+2018-04-04 14:39:17 Commit transaction
+2018-04-04 14:39:19 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:39:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:19 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:39:19 Route requested: 'favicon.ico'
+2018-04-04 14:39:19 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:39:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:19 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:39:19 Route requested: 'admin/system-menu/show-menus'
+2018-04-04 14:39:19 Loading module: admin
+2018-04-04 14:39:19 Route to run: admin/system-menu/show-menus
+2018-04-04 14:39:19 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-04 14:39:26 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:39:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:26 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:39:26 Route requested: 'favicon.ico'
+2018-04-04 14:39:26 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:39:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:26 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:39:26 Route requested: 'admin/system-group/index'
+2018-04-04 14:39:26 Loading module: admin
+2018-04-04 14:39:26 Route to run: admin/system-group/index
+2018-04-04 14:39:26 Running action: yii\rest\IndexAction::run()
+2018-04-04 14:39:33 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:39:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:33 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:39:33 Route requested: 'admin/system-group/create'
+2018-04-04 14:39:33 Loading module: admin
+2018-04-04 14:39:33 Route to run: admin/system-group/create
+2018-04-04 14:39:33 Running action: Backend\actions\CreateAction::run()
+2018-04-04 14:39:33 Failed to set unsafe attribute 'time' in 'Backend\modules\admin\models\SystemGroup'.
+2018-04-04 14:39:33 Failed to set unsafe attribute 'sign' in 'Backend\modules\admin\models\SystemGroup'.
+2018-04-04 14:39:33 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:39:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:33 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:39:33 Route requested: 'admin/system-group/index'
+2018-04-04 14:39:33 Loading module: admin
+2018-04-04 14:39:33 Route to run: admin/system-group/index
+2018-04-04 14:39:33 Running action: yii\rest\IndexAction::run()
+2018-04-04 14:39:35 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:39:35 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:35 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:35 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:39:35 Route requested: 'admin/system-group/index'
+2018-04-04 14:39:35 Loading module: admin
+2018-04-04 14:39:35 Route to run: admin/system-group/index
+2018-04-04 14:39:35 Running action: yii\rest\IndexAction::run()
+2018-04-04 14:39:41 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:39:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:41 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:39:41 Route requested: 'admin/system-group/delete'
+2018-04-04 14:39:41 Loading module: admin
+2018-04-04 14:39:41 Route to run: admin/system-group/delete
+2018-04-04 14:39:41 Running action: Backend\actions\DeleteAction::run()
+2018-04-04 14:39:41 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:39:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:39:41 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:39:41 Route requested: 'admin/system-group/index'
+2018-04-04 14:39:41 Loading module: admin
+2018-04-04 14:39:41 Route to run: admin/system-group/index
+2018-04-04 14:39:41 Running action: yii\rest\IndexAction::run()
+2018-04-04 14:55:38 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:55:38 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:55:38 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:55:38 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:55:38 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-04 14:55:38 Loading module: admin
+2018-04-04 14:55:38 Route to run: admin/system-group/group-privilege-list
+2018-04-04 14:55:38 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-04 14:57:45 Bootstrap with yii\log\Dispatcher
+2018-04-04 14:57:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:57:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-04 14:57:45 No matching URL rules. Using default URL parsing logic.
+2018-04-04 14:57:45 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-04 14:57:45 Loading module: admin
+2018-04-04 14:57:45 Route to run: admin/system-group/group-privilege-list
+2018-04-04 14:57:45 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()

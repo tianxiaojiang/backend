@@ -1,0 +1,17 @@
+{
+    "name": "tianweimin/base-admin",
+    "description": "admin base functional",
+    "type": "project",
+    "require": {
+        "monolog/monolog": "1.0.*",
+        "yiisoft/yii2": ">=2.0.6@stable",
+        "juliardi/yii2-captcha": "*",
+        "yiisoft/yii2-httpclient": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Backend\\": "backend/",
+            "Business\\": "business"
+        }
+    }
+}

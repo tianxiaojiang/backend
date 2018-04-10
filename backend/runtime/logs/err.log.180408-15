@@ -1,0 +1,206 @@
+2018-04-08 15:16:40 Backend\Exception\CustomException: 签名错误 in E:\project\backend\backend\behavior\VerifySign.php:40
+Stack trace:
+#0 [internal function]: Backend\behavior\VerifySign->verifySignature()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(297): call_user_func_array(Array, Array)
+#2 E:\project\backend\backend\modules\common\controllers\BusinessController.php(77): yii\base\Component->__call('verifySignature', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\BusinessController->beforeAction(Object(yii\rest\UpdateAction))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-08 15:17:40 Backend\Exception\CustomException: 签名错误 in E:\project\backend\backend\behavior\VerifySign.php:40
+Stack trace:
+#0 [internal function]: Backend\behavior\VerifySign->verifySignature()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(297): call_user_func_array(Array, Array)
+#2 E:\project\backend\backend\modules\common\controllers\BusinessController.php(77): yii\base\Component->__call('verifySignature', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\BusinessController->beforeAction(Object(yii\rest\UpdateAction))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-08 15:37:15 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(170): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 15:38:22 yii\web\NotFoundHttpException: Object not found: undefined in E:\project\backend\vendor\yiisoft\yii2\rest\Action.php:104
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(40): yii\rest\Action->findModel('undefined')
+#1 [internal function]: yii\rest\UpdateAction->run('undefined')
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-08 15:42:05 yii\web\NotFoundHttpException: Object not found: undefined in E:\project\backend\vendor\yiisoft\yii2\rest\Action.php:104
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(40): yii\rest\Action->findModel('undefined')
+#1 [internal function]: yii\rest\UpdateAction->run('undefined')
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-08 15:42:29 yii\web\NotFoundHttpException: Object not found: undefined in E:\project\backend\vendor\yiisoft\yii2\rest\Action.php:104
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(40): yii\rest\Action->findModel('undefined')
+#1 [internal function]: yii\rest\UpdateAction->run('undefined')
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-08 15:43:03 yii\web\NotFoundHttpException: Object not found: undefined in E:\project\backend\vendor\yiisoft\yii2\rest\Action.php:104
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(40): yii\rest\Action->findModel('undefined')
+#1 [internal function]: yii\rest\UpdateAction->run('undefined')
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-08 15:43:33 yii\web\NotFoundHttpException: Object not found: undefined in E:\project\backend\vendor\yiisoft\yii2\rest\Action.php:104
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(40): yii\rest\Action->findModel('undefined')
+#1 [internal function]: yii\rest\UpdateAction->run('undefined')
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-08 15:45:08 yii\web\NotFoundHttpException: Object not found: undefined in E:\project\backend\vendor\yiisoft\yii2\rest\Action.php:104
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(40): yii\rest\Action->findModel('undefined')
+#1 [internal function]: yii\rest\UpdateAction->run('undefined')
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-08 15:49:03 yii\web\NotFoundHttpException: Object not found: undefined in E:\project\backend\vendor\yiisoft\yii2\rest\Action.php:104
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(40): yii\rest\Action->findModel('undefined')
+#1 [internal function]: yii\rest\UpdateAction->run('undefined')
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-08 15:50:25 yii\web\NotFoundHttpException: Object not found: undefined in E:\project\backend\vendor\yiisoft\yii2\rest\Action.php:104
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(40): yii\rest\Action->findModel('undefined')
+#1 [internal function]: yii\rest\UpdateAction->run('undefined')
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-08 15:50:47 yii\web\NotFoundHttpException: Object not found: undefined in E:\project\backend\vendor\yiisoft\yii2\rest\Action.php:104
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(40): yii\rest\Action->findModel('undefined')
+#1 [internal function]: yii\rest\UpdateAction->run('undefined')
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-08 15:52:31 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(170): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 15:53:12 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(170): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 15:56:30 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(170): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}
+2018-04-08 15:58:12 yii\base\InvalidConfigException: Invalid validation rule: a rule must specify both attribute names and validator type. in E:\project\backend\vendor\yiisoft\yii2\base\Model.php:461
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(420): yii\base\Model->createValidators()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(436): yii\base\Model->getValidators()
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Model.php(366): yii\base\Model->getActiveValidators()
+#3 E:\project\backend\vendor\yiisoft\yii2\db\ActiveRecord.php(614): yii\base\Model->validate(Array)
+#4 E:\project\backend\backend\modules\admin\models\Admin.php(170): yii\db\ActiveRecord->update(true, NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\db\BaseActiveRecord.php(673): Backend\modules\admin\models\Admin->update(true, NULL)
+#6 E:\project\backend\vendor\yiisoft\yii2\rest\UpdateAction.php(48): yii\db\BaseActiveRecord->save()
+#7 [internal function]: yii\rest\UpdateAction->run('2')
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/admin-use...', Array)
+#12 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#14 {main}

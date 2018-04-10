@@ -1,0 +1,45 @@
+<title>账号管家配置</title>
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">主页</a>
+        <a>
+            <cite>业务管理</cite>
+        </a>
+        <a>
+            <cite>账号管家配置</cite>
+        </a>
+    </div>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div id="gamm_data"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+layui.use('admin', function() {
+    var $ = layui.jquery, admin = layui.admin;
+    // get gamm3
+    var getGamm3 = function () {
+        var options = {
+            url: '/common/system/index',
+            data: {
+                module: 'gamm3',
+                api: '/client-config/index'
+            },
+            done: function (res) {
+                var gammHTML = "";
+                $.each(res.data, function(i, v) {
+                    gammHTML += '<p>' + v.data_collect + '</p><img src="' + v.welcome_page + '" alt="">';
+                    $('#gamm_data').html(gammHTML);
+                });
+            }
+        };
+        admin.req(options);
+    };
+    getGamm3();
+});
+</script>

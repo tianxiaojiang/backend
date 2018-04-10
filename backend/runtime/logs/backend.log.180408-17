@@ -1,0 +1,871 @@
+2018-04-08 17:01:24 request:array (
+  'account' => '234234',
+  'passwd' => '234234',
+  'mobile_phone' => '234234',
+  'username' => '234234',
+  'status' => '1',
+  'sg_id' => '4,2',
+  'time' => '1523178084',
+  'sign' => 'cf09cbbb88f5b4c81ac86c81847f23a6',
+  'api_path' => 'admin/admin-user/create',
+)
+2018-04-08 17:08:06 request:array (
+  'time' => '1523178486',
+  'sign' => '5c84ca0818d437d3951609b217e03e82',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-08 17:08:06 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523178486',
+  'sign' => '5c84ca0818d437d3951609b217e03e82',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:08:08 request:array (
+  'time' => '1523178488',
+  'sign' => '115a987d174c0ddb5b2cf41ea6f55c54',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:08:34 request:array (
+  'account' => '45674567',
+  'passwd' => '456456456',
+  'mobile_phone' => '13333333333',
+  'username' => '',
+  'status' => '0',
+  'sg_id' => '4',
+  'time' => '1523178514',
+  'sign' => 'f0215cb859f002240d0f1e981bd4fb38',
+  'api_path' => 'admin/admin-user/create',
+)
+2018-04-08 17:08:44 request:array (
+  'account' => '45674567',
+  'passwd' => '456456456',
+  'mobile_phone' => '13222222222',
+  'username' => '',
+  'status' => '0',
+  'sg_id' => '4',
+  'time' => '1523178524',
+  'sign' => '9b897ba85a7fb7b6ccc6db99a29946ee',
+  'api_path' => 'admin/admin-user/create',
+)
+2018-04-08 17:09:22 request:array (
+  'account' => '45674567',
+  'passwd' => '456456456',
+  'mobile_phone' => '13222222222',
+  'username' => '',
+  'status' => '0',
+  'sg_id' => '4',
+  'time' => '1523178562',
+  'sign' => '611f15f4d71cb6902cfb7dedd949576a',
+  'api_path' => 'admin/admin-user/create',
+)
+2018-04-08 17:09:46 request:array (
+  'account' => '45674567',
+  'passwd' => '456456456',
+  'mobile_phone' => '13222222222',
+  'username' => '5656',
+  'status' => '0',
+  'sg_id' => '4',
+  'time' => '1523178586',
+  'sign' => '9638bd58fa216c09a1f6c01bae7b817b',
+  'api_path' => 'admin/admin-user/create',
+)
+2018-04-08 17:09:47 request:array (
+  'account' => '45674567',
+  'passwd' => '456456456',
+  'mobile_phone' => '13222222222',
+  'username' => '5656',
+  'status' => '0',
+  'sg_id' => '4',
+  'time' => '1523178584',
+  'sign' => '2d37b98f1e0fdbd988b3c861afe44fd6',
+  'api_path' => 'admin/admin-user/create',
+)
+2018-04-08 17:10:11 request:array (
+  'time' => '1523178611',
+  'sign' => '125b4dc1ba1fdfd2bc2e4496f4cc484a',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:10:15 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame1',
+  'status' => '0',
+  'sg_id' => '1,2,4',
+  'time' => '1523178615',
+  'sign' => '4b554b85b7eefba7bce0311664d0942c',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:10:37 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame1',
+  'status' => '0',
+  'sg_id' => '1,2,4',
+  'time' => '1523178637',
+  'sign' => '40045f59290f80a65e0e4203027b559e',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:10:39 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame1',
+  'status' => '0',
+  'sg_id' => '1,2,4',
+  'time' => '1523178639',
+  'sign' => '3cb1baefd4f93f4ca65a83a38a04ab60',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:10:48 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame1',
+  'status' => '0',
+  'sg_id' => '1,2,4,9',
+  'time' => '1523178648',
+  'sign' => '1d1ac47d57d0aa6639005981fd2f2b0b',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:11:15 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame1',
+  'status' => '0',
+  'sg_id' => '1,2,4,9',
+  'time' => '1523178675',
+  'sign' => '61d446db29653ae847264a023a54a205',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:14:01 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame1',
+  'status' => '0',
+  'sg_id' => '1,2,4,9',
+  'time' => '1523178841',
+  'sign' => '4401ffcb5e1c43e6c93b4f73835bb845',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:15:47 request:array (
+  'time' => '1523178946',
+  'sign' => 'ec12b5c987a31dfe6decfa3cdfc0dcdf',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-08 17:15:48 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523178948',
+  'sign' => '2c6ba0844e9048abe662424bc5ca8866',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:15:50 request:array (
+  'time' => '1523178950',
+  'sign' => '4e560f7c1cb91a16b09da90d1dae5611',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:16:03 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame1',
+  'status' => '0',
+  'sg_id' => '2,4',
+  'time' => '1523178963',
+  'sign' => 'f27f8180022521e417407b99e5474833',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:22:30 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame1',
+  'status' => '0',
+  'sg_id' => '2,4',
+  'time' => '1523179350',
+  'sign' => 'f7a0711cc863b60960a6e3d828975e21',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:22:46 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame1',
+  'status' => '0',
+  'sg_id' => '2,4',
+  'time' => '1523179366',
+  'sign' => '615b971bc3a912be70b7b1cababa88ac',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:24:09 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame1',
+  'status' => '0',
+  'sg_id' => '2,4',
+  'time' => '1523179449',
+  'sign' => '04867d248510077ed89a1bcab85a0b75',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:24:52 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame1',
+  'status' => '0',
+  'sg_id' => '2,4',
+  'time' => '1523179492',
+  'sign' => '3c1881c85c9c2b016255e1914edfab43',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:26:40 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523179600',
+  'sign' => '968cb56be0b0315540f5419e7f3388eb',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:27:26 request:array (
+  'time' => '1523179646',
+  'sign' => '2ccc82d702e98543af42270bbc2f55af',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:27:27 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523179646',
+  'sign' => '3b555411573621f9189d0bb49fd6a86e',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:28:55 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523179735',
+  'sign' => '4cc0b90b14a9b73e1206c6f7bebc7a32',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:28:58 request:array (
+  'page' => '2',
+  'limit' => '10',
+  'time' => '1523179735',
+  'sign' => '4cc0b90b14a9b73e1206c6f7bebc7a32',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:29:00 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523179735',
+  'sign' => '4cc0b90b14a9b73e1206c6f7bebc7a32',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:29:30 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523179770',
+  'sign' => 'fc66f00cd2a72a2f374fed85ad8fb4ca',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:31:19 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523179879',
+  'sign' => '4934928a0dd503e87d762c9ca82e6951',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:32:20 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523179940',
+  'sign' => 'a756b29fb3034a773812ffc81e0d50d6',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:32:40 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523179960',
+  'sign' => 'c8576b71011428fcdf35bf0e2a6aaa40',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:33:06 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523179986',
+  'sign' => '05c0771fd7584bc9db716a2b93657d51',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:33:17 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523179997',
+  'sign' => 'ff1ffc2f304c257d43ad56621f808029',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:35:27 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523180127',
+  'sign' => 'c6093565fc46aa371fd1816b39c8bed1',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:35:28 request:array (
+  'time' => '1523180128',
+  'sign' => '64f377aba61fb6b6e13fe50f551890b1',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:36:21 request:array (
+  'time' => '1523180181',
+  'sign' => 'df449404094a9e0fc09c15716e87b414',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-08 17:36:21 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523180181',
+  'sign' => 'df449404094a9e0fc09c15716e87b414',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:36:25 request:array (
+  'time' => '1523180185',
+  'sign' => '77349bf10d662d8be336fa547cbdeea3',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:36:35 request:array (
+  'time' => '1523180195',
+  'sign' => 'e8ebf311f453a8d325d259b4bdfd1dd4',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-08 17:36:35 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523180195',
+  'sign' => 'e8ebf311f453a8d325d259b4bdfd1dd4',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:36:36 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180196',
+  'sign' => '866b82bddd5d02fc4f9e74d9911c80d9',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:36:36 request:array (
+  'time' => '1523180196',
+  'sign' => '108ae85aa2fb6de5e81031c5fc06ddee',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:37:02 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180222',
+  'sign' => '269a94f8d3c1c90a65add468b1c03953',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:37:32 request:array (
+  'time' => '1523180252',
+  'sign' => 'd20d615f8051b01fb36d2d7443eb34c3',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-08 17:37:32 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523180252',
+  'sign' => 'd20d615f8051b01fb36d2d7443eb34c3',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:37:33 request:array (
+  'time' => '1523180253',
+  'sign' => '2e5f00f67659b45a510be917c45fd2ec',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:37:40 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180260',
+  'sign' => '06d2993cb73667e89ac862daceacee2c',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:38:37 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180317',
+  'sign' => '294c777e7f19e9ffcc9e5700611bff79',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:38:44 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180323',
+  'sign' => '8d701c4847d63fff50a03e3d2bc0336d',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:39:02 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180342',
+  'sign' => '5e0608b1d0ec4f8ffdeb375c9e5ae4a5',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:40:10 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180410',
+  'sign' => '63b7c76630e9d1ba8e1fee31baed3651',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:40:22 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180422',
+  'sign' => 'f329422d2a2e2065e4b24f58dbec6f8c',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:40:40 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180440',
+  'sign' => 'df6f739e597b54ce05891a0a20413a81',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:40:52 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180452',
+  'sign' => '12ae976b5e5a2b86fae3cf164a61f386',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:42:01 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180521',
+  'sign' => '7d0b7f7f571af05f799a3aa00284cd18',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:42:57 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180577',
+  'sign' => 'affa3971030deb1efd0453f008b7d2d2',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:44:10 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180650',
+  'sign' => 'a60dbc0af19e1004096f6c0d2a63837a',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:44:33 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180673',
+  'sign' => '4c0d16ba3b7870bcf94708ab727a17d0',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:45:08 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '1',
+  'sg_id' => '1,2',
+  'time' => '1523180707',
+  'sign' => '1d140892dab59a12f11eafb64b511496',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:45:08 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523178948',
+  'sign' => '2c6ba0844e9048abe662424bc5ca8866',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:45:23 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523180722',
+  'sign' => '1211e60bc7c866bd9e9c2ec1e185c02b',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:45:25 request:array (
+  'group_id' => '6',
+  'time' => '1523180725',
+  'sign' => 'd482ed83851eff6387017498498a024e',
+  'api_path' => 'admin/system-group/group-privilege-list',
+)
+2018-04-08 17:45:31 request:array (
+  'id' => '6',
+  'sg_name' => '345345对的',
+  'sg_desc' => '345345345345',
+  'time' => '1523180731',
+  'sign' => 'bce305361e8768825394904d0db15337',
+  'api_path' => 'admin/system-group/update',
+)
+2018-04-08 17:45:55 request:array (
+  'id' => '6',
+  'sg_name' => '345345对的',
+  'sg_desc' => '345345345345',
+  'time' => '1523180755',
+  'sign' => '963572cc2f12cc909448a12bcad9bcf4',
+  'api_path' => 'admin/system-group/update',
+)
+2018-04-08 17:45:55 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523180722',
+  'sign' => '1211e60bc7c866bd9e9c2ec1e185c02b',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:46:02 request:array (
+  'time' => '1523180762',
+  'sign' => '80245c9b9e783a0e288811b2a2a106ed',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-08 17:46:02 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523180762',
+  'sign' => '80245c9b9e783a0e288811b2a2a106ed',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:46:03 request:array (
+  'time' => '1523180763',
+  'sign' => '5caf0338beedbeda5d8f83493de215e4',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:46:06 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '0',
+  'sg_id' => '4,2',
+  'time' => '1523180766',
+  'sign' => '4f48f11dea87d18e9a2ad1cbf3064177',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:46:06 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523180762',
+  'sign' => '80245c9b9e783a0e288811b2a2a106ed',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:46:11 request:array (
+  'time' => '1523180771',
+  'sign' => 'e2b3cb5f900c372ab5f4eb25171bd848',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:46:15 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '0',
+  'sg_id' => '7,6',
+  'time' => '1523180775',
+  'sign' => 'e936c927e9d8eabee5234ec39cdfb786',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:46:15 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523180762',
+  'sign' => '80245c9b9e783a0e288811b2a2a106ed',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:46:20 request:array (
+  'time' => '1523180780',
+  'sign' => '1c24b4f5411054edf764518e899293bf',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:46:27 request:array (
+  'id' => '2',
+  'account' => 'tianweimin',
+  'mobile_phone' => '17717563803',
+  'passwd' => '',
+  'username' => 'BigWame',
+  'status' => '0',
+  'sg_id' => '1,2,4',
+  'time' => '1523180787',
+  'sign' => '641a662a831409c8276f7305a395bf4b',
+  'api_path' => 'admin/admin-user/update',
+)
+2018-04-08 17:46:28 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523180762',
+  'sign' => '80245c9b9e783a0e288811b2a2a106ed',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:46:35 request:array (
+  'time' => '1523180795',
+  'sign' => 'c4766a13af2394bbdd26a48c9191ca91',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:46:50 request:array (
+  'account' => '5345',
+  'passwd' => '123456',
+  'mobile_phone' => '13333333333',
+  'username' => '',
+  'status' => '0',
+  'sg_id' => '4,2',
+  'time' => '1523180809',
+  'sign' => '3ab8acffeef18f35cc239b06a5d12d56',
+  'api_path' => 'admin/admin-user/create',
+)
+2018-04-08 17:47:10 request:array (
+  'time' => '1523180830',
+  'sign' => '080983df26052395c5e773e1987eb9be',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:50:34 request:array (
+  'time' => '1522123173',
+  'sign' => 'dc60cc863c29b3d6fd8b7d7a928bca61',
+  'id' => '33',
+  'api_path' => 'admin/common/admin-stats',
+)
+2018-04-08 17:52:42 request:array (
+  'time' => '1523181161',
+  'sign' => '476b681928cd3af6fc4edcbe0acf9421',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-08 17:52:42 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523181162',
+  'sign' => 'd872492b2480417132b8bf7acb5c36f8',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:52:45 request:array (
+  'time' => '1523181165',
+  'sign' => 'b8ef881eebd10dec495b0f0863401cd8',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:53:01 request:array (
+  'time' => '1523181181',
+  'sign' => '2e654f8f25506919bf1611393267cdd5',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-08 17:53:01 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523181181',
+  'sign' => '2e654f8f25506919bf1611393267cdd5',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:53:01 request:array (
+  'time' => '1523181181',
+  'sign' => '2e654f8f25506919bf1611393267cdd5',
+  'api_path' => 'admin/common/admin-stats',
+)
+2018-04-08 17:55:40 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523181340',
+  'sign' => 'ca6e072df9256366f79cdd6c52d10a7a',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:55:40 request:array (
+  'time' => '1523181340',
+  'sign' => 'ca6e072df9256366f79cdd6c52d10a7a',
+  'api_path' => 'admin/common/admin-stats',
+)
+2018-04-08 17:55:41 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523181340',
+  'sign' => 'ca6e072df9256366f79cdd6c52d10a7a',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:55:41 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523181341',
+  'sign' => '4eac8246c8f4302c13e378562c3ffb66',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:55:41 request:array (
+  'time' => '1523181341',
+  'sign' => '4eac8246c8f4302c13e378562c3ffb66',
+  'api_path' => 'admin/common/admin-stats',
+)
+2018-04-08 17:55:48 request:array (
+  'time' => '1523181348',
+  'sign' => '13a19fffce842501a207822c01424920',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-08 17:55:48 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523181348',
+  'sign' => '13a19fffce842501a207822c01424920',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:55:48 request:array (
+  'time' => '1523181348',
+  'sign' => '13a19fffce842501a207822c01424920',
+  'api_path' => 'admin/common/admin-stats',
+)
+2018-04-08 17:59:05 request:array (
+  'time' => '1523181545',
+  'sign' => '9ecae1c2d410113ef75721808e153797',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-08 17:59:31 request:array (
+  'account' => 'haha',
+  'passwd' => '123456',
+  'mobile_phone' => '18121291722',
+  'username' => '老高',
+  'status' => '0',
+  'sg_id' => '1,2',
+  'time' => '1523181571',
+  'sign' => 'bd78e51d53459bde0292f6378d666ce6',
+  'api_path' => 'admin/admin-user/create',
+)
+2018-04-08 17:59:37 request:array (
+  'time' => '1523181577',
+  'sign' => 'bfaa75fc456411fafee2934d92128355',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-08 17:59:37 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523181577',
+  'sign' => 'bfaa75fc456411fafee2934d92128355',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-08 17:59:37 request:array (
+  'time' => '1523181577',
+  'sign' => 'bfaa75fc456411fafee2934d92128355',
+  'api_path' => 'admin/common/admin-stats',
+)

@@ -1,0 +1,280 @@
+2018-04-09 19:19:05 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523272744',
+  'sign' => '6656941332e57b7304b455bef9414bf1',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-09 19:19:05 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523272744',
+  'sign' => '6656941332e57b7304b455bef9414bf1',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-09 19:19:09 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523272748',
+  'sign' => 'd71585220322966fe475bc9da2d54696',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:19:09 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523272748',
+  'sign' => 'd71585220322966fe475bc9da2d54696',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:57:38 request:array (
+  'time' => '1523275058',
+  'sign' => '61d4c2b50cdc704f5c1f923646b29de3',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-09 19:57:38 request:array (
+  'time' => '1523275058',
+  'sign' => '61d4c2b50cdc704f5c1f923646b29de3',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-09 19:57:38 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275058',
+  'sign' => '61d4c2b50cdc704f5c1f923646b29de3',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:57:38 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275058',
+  'sign' => '61d4c2b50cdc704f5c1f923646b29de3',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:57:43 request:array (
+  'time' => '1523275063',
+  'sign' => '64ea6db6f8954ef1ea19d6bc90b5d389',
+  'api_path' => 'admin/common/admin-stats',
+)
+2018-04-09 19:57:43 request:array (
+  'time' => '1523275063',
+  'sign' => '64ea6db6f8954ef1ea19d6bc90b5d389',
+  'api_path' => 'admin/common/admin-stats',
+)
+2018-04-09 19:57:43 request:array (
+  'time' => '1523275063',
+  'sign' => '64ea6db6f8954ef1ea19d6bc90b5d389',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-09 19:57:43 request:array (
+  'time' => '1523275063',
+  'sign' => '64ea6db6f8954ef1ea19d6bc90b5d389',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-09 19:57:48 request:array (
+  'time' => '1523275068',
+  'sign' => 'd97101f49bef4fecb9a4719a79e289b1',
+  'api_path' => 'admin/common/admin-stats',
+)
+2018-04-09 19:57:48 request:array (
+  'time' => '1523275068',
+  'sign' => 'd97101f49bef4fecb9a4719a79e289b1',
+  'api_path' => 'admin/common/admin-stats',
+)
+2018-04-09 19:57:48 request:array (
+  'time' => '1523275068',
+  'sign' => 'd97101f49bef4fecb9a4719a79e289b1',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-09 19:57:48 request:array (
+  'time' => '1523275068',
+  'sign' => 'd97101f49bef4fecb9a4719a79e289b1',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-09 19:58:01 request:array (
+  'id' => '7',
+  'time' => '1523275081',
+  'sign' => '39d78849f871173de30f0f28d6a7c50c',
+  'api_path' => 'admin/admin-user/delete',
+)
+2018-04-09 19:58:01 request:array (
+  'id' => '7',
+  'time' => '1523275081',
+  'sign' => '39d78849f871173de30f0f28d6a7c50c',
+  'api_path' => 'admin/admin-user/delete',
+)
+2018-04-09 19:58:01 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275058',
+  'sign' => '61d4c2b50cdc704f5c1f923646b29de3',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:58:01 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275058',
+  'sign' => '61d4c2b50cdc704f5c1f923646b29de3',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:58:08 request:array (
+  'id' => '3',
+  'time' => '1523275088',
+  'sign' => 'a689c825675c7b4870695d0d475baad3',
+  'api_path' => 'admin/admin-user/delete',
+)
+2018-04-09 19:58:08 request:array (
+  'id' => '3',
+  'time' => '1523275088',
+  'sign' => 'a689c825675c7b4870695d0d475baad3',
+  'api_path' => 'admin/admin-user/delete',
+)
+2018-04-09 19:58:08 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275058',
+  'sign' => '61d4c2b50cdc704f5c1f923646b29de3',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:58:08 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275058',
+  'sign' => '61d4c2b50cdc704f5c1f923646b29de3',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:58:10 request:array (
+  'time' => '1523275090',
+  'sign' => '306fdcaca4d9fe07d7cd9293d34b90f4',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-09 19:58:10 request:array (
+  'time' => '1523275090',
+  'sign' => '306fdcaca4d9fe07d7cd9293d34b90f4',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-09 19:58:10 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275090',
+  'sign' => '306fdcaca4d9fe07d7cd9293d34b90f4',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:58:10 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275090',
+  'sign' => '306fdcaca4d9fe07d7cd9293d34b90f4',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:58:21 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275101',
+  'sign' => '5053f4b1ec7be01e877207f982c998f3',
+  'api_path' => 'test/user/index',
+)
+2018-04-09 19:58:21 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275101',
+  'sign' => '5053f4b1ec7be01e877207f982c998f3',
+  'api_path' => 'test/user/index',
+)
+2018-04-09 19:58:23 request:array (
+  'module' => 'gamm3',
+  'api' => '/client-config/index',
+  'time' => '1523275103',
+  'sign' => '7bbb2f25b56c64c623e6e932789d4ce5',
+  'api_path' => 'common/system/index',
+)
+2018-04-09 19:58:23 transmission request failed, code:200
+2018-04-09 19:58:23 request:array (
+  'module' => 'gamm3',
+  'api' => '/client-config/index',
+  'time' => '1523275103',
+  'sign' => '7bbb2f25b56c64c623e6e932789d4ce5',
+  'api_path' => 'common/system/index',
+)
+2018-04-09 19:58:23 transmission request failed, code:200
+2018-04-09 19:58:24 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275104',
+  'sign' => 'a5479872ffcf17c2c979794c77e2a55d',
+  'api_path' => 'test/user/index',
+)
+2018-04-09 19:58:24 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275104',
+  'sign' => 'a5479872ffcf17c2c979794c77e2a55d',
+  'api_path' => 'test/user/index',
+)
+2018-04-09 19:58:31 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275111',
+  'sign' => '75afedeb3d5bb40c0f14fa84d05f8c51',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:58:31 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275111',
+  'sign' => '75afedeb3d5bb40c0f14fa84d05f8c51',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:58:32 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275112',
+  'sign' => 'b733a7e3ed10fc03d78c398d1f247f5b',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-09 19:58:32 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275112',
+  'sign' => 'b733a7e3ed10fc03d78c398d1f247f5b',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-09 19:58:39 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275119',
+  'sign' => 'e6ceaf323b9bc16cbe617016f53379eb',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-09 19:58:39 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275119',
+  'sign' => 'e6ceaf323b9bc16cbe617016f53379eb',
+  'api_path' => 'admin/system-group/index',
+)
+2018-04-09 19:58:56 request:array (
+  'id' => '4',
+  'time' => '1523275135',
+  'sign' => '2a206bd836f13f9ec35ce6c4d0656f95',
+  'api_path' => 'admin/admin-user/delete',
+)
+2018-04-09 19:58:56 request:array (
+  'id' => '4',
+  'time' => '1523275135',
+  'sign' => '2a206bd836f13f9ec35ce6c4d0656f95',
+  'api_path' => 'admin/admin-user/delete',
+)
+2018-04-09 19:58:56 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275111',
+  'sign' => '75afedeb3d5bb40c0f14fa84d05f8c51',
+  'api_path' => 'admin/admin-user/index',
+)
+2018-04-09 19:58:56 request:array (
+  'page' => '1',
+  'limit' => '10',
+  'time' => '1523275111',
+  'sign' => '75afedeb3d5bb40c0f14fa84d05f8c51',
+  'api_path' => 'admin/admin-user/index',
+)

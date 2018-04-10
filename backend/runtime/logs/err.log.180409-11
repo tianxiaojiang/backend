@@ -1,0 +1,449 @@
+2018-04-09 11:12:24 yii\base\InvalidRouteException: Unable to resolve the request "admin/common/system/index". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/common/sy...', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:12:40 yii\base\UnknownMethodException: Calling unknown method: Backend\modules\common\controllers\SystemController::verifyModulePrivilege() in E:\project\backend\vendor\yiisoft\yii2\base\Component.php:300
+Stack trace:
+#0 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#5 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#6 {main}
+2018-04-09 11:13:16 yii\base\UnknownMethodException: Calling unknown method: Backend\modules\common\controllers\SystemController::verifyModulePrivilege() in E:\project\backend\vendor\yiisoft\yii2\base\Component.php:300
+Stack trace:
+#0 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#5 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#6 {main}
+2018-04-09 11:15:59 yii\web\MethodNotAllowedHttpException: Method Not Allowed. This URL can only handle the following request methods: GET, HEAD. in E:\project\backend\vendor\yiisoft\yii2\filters\VerbFilter.php:105
+Stack trace:
+#0 [internal function]: yii\filters\VerbFilter->beforeAction(Object(yii\base\ActionEvent))
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(627): call_user_func(Array, Object(yii\base\ActionEvent))
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(274): yii\base\Component->trigger('beforeAction', Object(yii\base\ActionEvent))
+#3 E:\project\backend\vendor\yiisoft\yii2\web\Controller.php(164): yii\base\Controller->beforeAction(Object(yii\rest\IndexAction))
+#4 E:\project\backend\backend\modules\common\controllers\CommonController.php(33): yii\web\Controller->beforeAction(Object(yii\rest\IndexAction))
+#5 E:\project\backend\backend\modules\common\controllers\BusinessController.php(75): Backend\modules\common\controllers\CommonController->beforeAction(Object(yii\rest\IndexAction))
+#6 E:\project\backend\backend\modules\common\controllers\SystemController.php(34): Backend\modules\common\controllers\BusinessController->beforeAction(Object(yii\rest\IndexAction))
+#7 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#11 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#12 {main}
+2018-04-09 11:16:12 yii\base\UnknownMethodException: Calling unknown method: Backend\modules\common\controllers\SystemController::verifyModulePrivilege() in E:\project\backend\vendor\yiisoft\yii2\base\Component.php:300
+Stack trace:
+#0 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#5 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#6 {main}
+2018-04-09 11:27:36 yii\base\UnknownMethodException: Calling unknown method: Backend\modules\common\controllers\SystemController::verifyModulePrivilege() in E:\project\backend\vendor\yiisoft\yii2\base\Component.php:300
+Stack trace:
+#0 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#5 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#6 {main}
+2018-04-09 11:27:51 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:27:51 yii\base\UnknownMethodException: Calling unknown method: Backend\modules\common\controllers\SystemController::verifyModulePrivilege() in E:\project\backend\vendor\yiisoft\yii2\base\Component.php:300
+Stack trace:
+#0 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#5 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#6 {main}
+2018-04-09 11:28:05 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:28:06 yii\base\UnknownMethodException: Calling unknown method: Backend\modules\common\controllers\SystemController::verifyModulePrivilege() in E:\project\backend\vendor\yiisoft\yii2\base\Component.php:300
+Stack trace:
+#0 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#5 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#6 {main}
+2018-04-09 11:29:18 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:29:18 yii\base\UnknownMethodException: Calling unknown method: Backend\modules\common\controllers\SystemController::verifyModulePrivilege() in E:\project\backend\vendor\yiisoft\yii2\base\Component.php:300
+Stack trace:
+#0 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#5 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#6 {main}
+2018-04-09 11:30:19 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:30:19 Backend\Exception\CustomException: 无权限访问 in E:\project\backend\backend\behavior\ModulePrivileges.php:39
+Stack trace:
+#0 [internal function]: Backend\behavior\ModulePrivileges->verifyModulePrivilege()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(297): call_user_func_array(Array, Array)
+#2 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-09 11:30:23 Backend\Exception\CustomException: 无权限访问 in E:\project\backend\backend\behavior\ModulePrivileges.php:39
+Stack trace:
+#0 [internal function]: Backend\behavior\ModulePrivileges->verifyModulePrivilege()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(297): call_user_func_array(Array, Array)
+#2 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2018-04-09 11:31:08 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:31:08 Backend\Exception\CustomException: 无权限访问 in E:\project\backend\backend\behavior\ModulePrivileges.php:39
+Stack trace:
+#0 [internal function]: Backend\behavior\ModulePrivileges->verifyModulePrivilege()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(297): call_user_func_array(Array, Array)
+#2 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+
+
+2018-04-09 11:39:38 Backend\Exception\CustomException: 无权限访问 in E:\project\backend\backend\behavior\ModulePrivileges.php:39
+Stack trace:
+#0 [internal function]: Backend\behavior\ModulePrivileges->verifyModulePrivilege()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(297): call_user_func_array(Array, Array)
+#2 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-09 11:50:44 Backend\Exception\CustomException: 无权限访问 in E:\project\backend\backend\behavior\ModulePrivileges.php:39
+Stack trace:
+#0 [internal function]: Backend\behavior\ModulePrivileges->verifyModulePrivilege()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(297): call_user_func_array(Array, Array)
+#2 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-09 11:50:50 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:50:50 Backend\Exception\CustomException: 无权限访问 in E:\project\backend\backend\behavior\ModulePrivileges.php:39
+Stack trace:
+#0 [internal function]: Backend\behavior\ModulePrivileges->verifyModulePrivilege()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(297): call_user_func_array(Array, Array)
+#2 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-09 11:52:51 Backend\Exception\CustomException: 无权限访问 in E:\project\backend\backend\behavior\ModulePrivileges.php:39
+Stack trace:
+#0 [internal function]: Backend\behavior\ModulePrivileges->verifyModulePrivilege()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(297): call_user_func_array(Array, Array)
+#2 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-09 11:53:02 Backend\Exception\CustomException: 无权限访问 in E:\project\backend\backend\behavior\ModulePrivileges.php:39
+Stack trace:
+#0 [internal function]: Backend\behavior\ModulePrivileges->verifyModulePrivilege()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(297): call_user_func_array(Array, Array)
+#2 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-09 11:53:06 Backend\Exception\CustomException: 无权限访问 in E:\project\backend\backend\behavior\ModulePrivileges.php:39
+Stack trace:
+#0 [internal function]: Backend\behavior\ModulePrivileges->verifyModulePrivilege()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(297): call_user_func_array(Array, Array)
+#2 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-09 11:54:40 Backend\Exception\CustomException: 无权限访问 in E:\project\backend\backend\behavior\ModulePrivileges.php:39
+Stack trace:
+#0 [internal function]: Backend\behavior\ModulePrivileges->verifyModulePrivilege()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(297): call_user_func_array(Array, Array)
+#2 E:\project\backend\backend\modules\common\controllers\SystemController.php(35): yii\base\Component->__call('verifyModulePri...', Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\SystemController->beforeAction(Object(yii\rest\IndexAction))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#6 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#8 {main}
+2018-04-09 11:55:01 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:56:29 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:56:35 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:56:36 yii\base\InvalidConfigException: The "query" property must be an instance of a class that implements the QueryInterface e.g. yii\db\Query or its subclasses. in E:\project\backend\vendor\yiisoft\yii2\data\ActiveDataProvider.php:102
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\data\BaseDataProvider.php(101): yii\data\ActiveDataProvider->prepareModels()
+#1 E:\project\backend\vendor\yiisoft\yii2\data\BaseDataProvider.php(114): yii\data\BaseDataProvider->prepare()
+#2 E:\project\backend\backend\modules\common\controllers\BusinessController.php(50): yii\data\BaseDataProvider->getModels()
+#3 [internal function]: Backend\modules\common\controllers\BusinessController->prepareDataProvider(Object(yii\rest\IndexAction), NULL)
+#4 E:\project\backend\vendor\yiisoft\yii2\rest\IndexAction.php(108): call_user_func(Array, Object(yii\rest\IndexAction), NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\rest\IndexAction.php(82): yii\rest\IndexAction->prepareDataProvider()
+#6 [internal function]: yii\rest\IndexAction->run()
+#7 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#13 {main}
+2018-04-09 11:56:58 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:56:58 yii\base\InvalidConfigException: The "query" property must be an instance of a class that implements the QueryInterface e.g. yii\db\Query or its subclasses. in E:\project\backend\vendor\yiisoft\yii2\data\ActiveDataProvider.php:102
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\data\BaseDataProvider.php(101): yii\data\ActiveDataProvider->prepareModels()
+#1 E:\project\backend\vendor\yiisoft\yii2\data\BaseDataProvider.php(114): yii\data\BaseDataProvider->prepare()
+#2 E:\project\backend\backend\modules\common\controllers\BusinessController.php(50): yii\data\BaseDataProvider->getModels()
+#3 [internal function]: Backend\modules\common\controllers\BusinessController->prepareDataProvider(Object(yii\rest\IndexAction), NULL)
+#4 E:\project\backend\vendor\yiisoft\yii2\rest\IndexAction.php(108): call_user_func(Array, Object(yii\rest\IndexAction), NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\rest\IndexAction.php(82): yii\rest\IndexAction->prepareDataProvider()
+#6 [internal function]: yii\rest\IndexAction->run()
+#7 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#13 {main}
+2018-04-09 11:58:09 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:58:09 yii\base\InvalidConfigException: The "query" property must be an instance of a class that implements the QueryInterface e.g. yii\db\Query or its subclasses. in E:\project\backend\vendor\yiisoft\yii2\data\ActiveDataProvider.php:102
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\data\BaseDataProvider.php(101): yii\data\ActiveDataProvider->prepareModels()
+#1 E:\project\backend\vendor\yiisoft\yii2\data\BaseDataProvider.php(114): yii\data\BaseDataProvider->prepare()
+#2 E:\project\backend\backend\modules\common\controllers\BusinessController.php(50): yii\data\BaseDataProvider->getModels()
+#3 [internal function]: Backend\modules\common\controllers\BusinessController->prepareDataProvider(Object(yii\rest\IndexAction), NULL)
+#4 E:\project\backend\vendor\yiisoft\yii2\rest\IndexAction.php(108): call_user_func(Array, Object(yii\rest\IndexAction), NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\rest\IndexAction.php(82): yii\rest\IndexAction->prepareDataProvider()
+#6 [internal function]: yii\rest\IndexAction->run()
+#7 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#13 {main}
+2018-04-09 11:59:12 yii\base\InvalidConfigException: The "query" property must be an instance of a class that implements the QueryInterface e.g. yii\db\Query or its subclasses. in E:\project\backend\vendor\yiisoft\yii2\data\ActiveDataProvider.php:102
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\data\BaseDataProvider.php(101): yii\data\ActiveDataProvider->prepareModels()
+#1 E:\project\backend\vendor\yiisoft\yii2\data\BaseDataProvider.php(114): yii\data\BaseDataProvider->prepare()
+#2 E:\project\backend\backend\modules\common\controllers\BusinessController.php(50): yii\data\BaseDataProvider->getModels()
+#3 [internal function]: Backend\modules\common\controllers\BusinessController->prepareDataProvider(Object(yii\rest\IndexAction), NULL)
+#4 E:\project\backend\vendor\yiisoft\yii2\rest\IndexAction.php(108): call_user_func(Array, Object(yii\rest\IndexAction), NULL)
+#5 E:\project\backend\vendor\yiisoft\yii2\rest\IndexAction.php(82): yii\rest\IndexAction->prepareDataProvider()
+#6 [internal function]: yii\rest\IndexAction->run()
+#7 E:\project\backend\vendor\yiisoft\yii2\base\Action.php(94): call_user_func_array(Array, Array)
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\Action->runWithParams(Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#11 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#13 {main}
+2018-04-09 11:59:32 yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in E:\project\backend\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: 页面未找到。 in E:\project\backend\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#2 {main}
+2018-04-09 11:59:32 Backend\Exception\CustomException: 网关错误 in E:\project\backend\backend\modules\common\controllers\SystemController.php:52
+Stack trace:
+#0 [internal function]: Backend\modules\common\controllers\SystemController->actionIndex()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#2 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#4 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('common/system/i...', Array)
+#5 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 E:\project\backend\public\index.php(20): yii\base\Application->run()
+#7 {main}

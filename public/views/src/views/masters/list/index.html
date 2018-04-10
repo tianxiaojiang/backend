@@ -1,0 +1,85 @@
+<title>管理员列表</title>
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">主页</a>
+        <a>
+            <cite>系统管理</cite>
+        </a>
+        <a>
+            <cite>管理员列表</cite>
+        </a>
+    </div>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-btn-container">
+                    <button class="layui-btn">添加</button>
+                </div>
+                <table class="layui-table" id="masters-list" lay-size="lg" lay-filter="list"></table>
+                <script type="text/html" id="list-option">
+                    <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" data-type="t" lay-event="del">删除</a>
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+layui.use(['table'], function() {
+    var $ = layui.jquery, table = layui.table;
+    table.render({
+        elem: '#masters-list',
+        url:'./json/masters/list.js',
+        where: {
+            appID: '123'
+        },
+        headers: {
+            abc1223: 'fasdfasdf'
+        },
+        cols: [[
+            {type: 'checkbox'},
+            {field:'account', title:'账号', sort: true},
+            {field:'username', title:'姓名', sort: true},
+            {field:'roleName', title:'角色', sort: true},
+            {field:'status', title: '状态', sort: true},
+            {field:'mobile_phone', title:'绑定手机'},
+            {field:'updated_at', title:'Lastupdtime'},
+            {fixed: 'right', title:'操作', toolbar: '#list-option'}
+        ]],
+        page: true,
+        limit: 2
+    });
+
+    // 监听工具条
+    table.on('tool(list)', function(obj) {
+        var data = obj.data;
+        if (obj.event === 'detail') {
+            layer.msg('角色：' + data.roleName + ' 的查看操作');
+        } else if (obj.event === 'del') {
+            layer.confirm('是否要删除：<strong>' + data.roleName + '</strong> 的角色？', {
+                // 在页面顶部弹出
+                // offset: 't'
+            }, function(index) {
+                obj.del();
+                layer.close(index);
+            });
+        } else if (obj.event === 'edit') {
+            // layer.alert('编辑行：<br>'+ JSON.stringify(data));
+            layer.open({
+                area: ['600px', '400px'],
+                type: 2,
+                // 禁止拖动
+                move: false,
+                // 开启最大化最小化
+                maxmin: true,
+                title: '编辑管理员信息',
+                // 'no' 不显示滚动条
+                content: ['http://www.sogo.com/', 'no']
+            });
+        }
+    });
+});
+</script>
