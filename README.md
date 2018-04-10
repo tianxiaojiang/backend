@@ -2,7 +2,7 @@
 
 base_backend是一套前后台完全分离的CMS管理基础程序。后台基于PHP框架 Yii2，前台基于 layui。
 
-实现的基本功能目前由：管理员、登录、角色以及权限功能。
+实现的基本功能目前有：管理员、登录、角色以及权限功能。
 
 使用它有两种方式：
 
@@ -24,6 +24,9 @@ base_backend是一套前后台完全分离的CMS管理基础程序。后台基�
 数据路连接地址          db.php
 外部系统配置地址        params.php的modules参数
 ```
+
+后台接口的入口文件位于/public/index.php
+前台入口在/public/views/start/index.html。也可以将整个view抽出去，跟后台程序分开。
 
 ### 创建业务的菜单、以及权限
 
