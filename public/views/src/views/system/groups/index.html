@@ -87,6 +87,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin'], function() {
                 view.empty();
                 laytpl(getTpl).render(gdata, function(html){               
                     view.html(html);
+                    // 记录当前行的数据 id
                     view.attr('group-id', groupID);
                     if (callback !== undefined) callback();
                 });

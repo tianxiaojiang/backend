@@ -8,12 +8,10 @@
 
 return [
     'id' => 'base-backend',
-    'homeUrl' => defined('YII_ENV') && YII_ENV == 'dev' ? 'https://dev.backend.com' : 'https://backend.com',
     'basePath' => dirname(__DIR__),
     'vendorPath' => dirname(__DIR__) . DIRECTORY_SEPARATOR .'vendor',
     'timeZone' => 'Asia/Shanghai',
     'language' => 'zh-CN',
-    'runtimePath' => defined('YII_ENV') && YII_ENV == 'dev' ? 'E:\\project\\backend\\backend\\runtime' : '/tmp/backend/',
     'bootstrap' => ['log'],
     'modules' => [
         'common' => [
@@ -85,7 +83,7 @@ return [
                 $response->statusCode = 200;
             },
         ],
-        'db' => require(__DIR__ . '/db.php'),
+        //'db' => require(__DIR__ . '/db.php'),
         //'cache' => require(__DIR__ . '/cache.php'),
         //'redis' => require(__DIR__ . '/redis.php'),
     ],

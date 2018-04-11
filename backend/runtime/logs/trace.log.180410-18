@@ -1,0 +1,3419 @@
+2018-04-10 18:00:00 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:00:00 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:00 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:00 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:00 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:00 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:00 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:00:00 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:00:00 Loading module: admin
+2018-04-10 18:00:00 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:00:00 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:00:21 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:00:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:21 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:00:21 Route requested: 'favicon.ico'
+2018-04-10 18:00:21 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:00:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:21 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:00:21 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:00:21 Loading module: admin
+2018-04-10 18:00:21 Route to run: admin/system-menu/show-menus
+2018-04-10 18:00:21 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:00:22 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:00:22 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:22 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:22 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:22 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:22 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:22 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:00:22 Route requested: 'admin/system-group/index'
+2018-04-10 18:00:22 Loading module: admin
+2018-04-10 18:00:22 Route to run: admin/system-group/index
+2018-04-10 18:00:22 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:00:23 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:00:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:00:23 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:00:23 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:00:23 Loading module: admin
+2018-04-10 18:00:23 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:00:23 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:01:35 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:01:35 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:35 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:35 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:35 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:35 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:35 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:01:35 Route requested: 'favicon.ico'
+2018-04-10 18:01:35 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:01:35 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:35 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:35 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:35 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:35 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:35 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:01:35 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:01:35 Loading module: admin
+2018-04-10 18:01:35 Route to run: admin/system-menu/show-menus
+2018-04-10 18:01:35 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:01:36 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:01:36 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:36 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:36 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:36 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:36 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:36 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:01:36 Route requested: 'admin/system-group/index'
+2018-04-10 18:01:36 Loading module: admin
+2018-04-10 18:01:36 Route to run: admin/system-group/index
+2018-04-10 18:01:36 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:01:43 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:01:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:01:43 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:01:43 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:01:43 Loading module: admin
+2018-04-10 18:01:43 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:01:43 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:03:10 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:03:10 Route requested: 'favicon.ico'
+2018-04-10 18:03:10 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:03:10 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:03:10 Loading module: admin
+2018-04-10 18:03:10 Route to run: admin/system-menu/show-menus
+2018-04-10 18:03:10 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:03:10 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:10 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:03:10 Route requested: 'admin/system-group/index'
+2018-04-10 18:03:10 Loading module: admin
+2018-04-10 18:03:10 Route to run: admin/system-group/index
+2018-04-10 18:03:10 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:03:12 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:03:12 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:12 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:12 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:12 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:12 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:12 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:03:12 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:03:12 Loading module: admin
+2018-04-10 18:03:12 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:03:12 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:03:50 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:03:50 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:50 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:50 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:50 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:50 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:50 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:03:50 Route requested: 'favicon.ico'
+2018-04-10 18:03:53 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:03:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:53 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:03:53 Route requested: 'favicon.ico'
+2018-04-10 18:03:53 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:03:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:53 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:53 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:03:53 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:03:53 Loading module: admin
+2018-04-10 18:03:53 Route to run: admin/system-menu/show-menus
+2018-04-10 18:03:53 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:03:54 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:03:54 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:54 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:54 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:54 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:54 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:54 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:03:54 Route requested: 'admin/system-group/index'
+2018-04-10 18:03:54 Loading module: admin
+2018-04-10 18:03:54 Route to run: admin/system-group/index
+2018-04-10 18:03:54 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:03:56 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:03:56 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:56 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:56 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:56 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:56 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:03:56 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:03:56 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:03:56 Loading module: admin
+2018-04-10 18:03:56 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:03:56 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:04:37 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:04:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:37 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:04:37 Route requested: 'favicon.ico'
+2018-04-10 18:04:38 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:04:38 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:38 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:38 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:38 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:38 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:38 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:04:38 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:04:38 Loading module: admin
+2018-04-10 18:04:38 Route to run: admin/system-menu/show-menus
+2018-04-10 18:04:38 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:04:38 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:04:38 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:38 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:38 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:38 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:38 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:38 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:04:38 Route requested: 'admin/system-group/index'
+2018-04-10 18:04:38 Loading module: admin
+2018-04-10 18:04:38 Route to run: admin/system-group/index
+2018-04-10 18:04:38 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:04:39 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:04:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:04:39 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:04:39 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:04:39 Loading module: admin
+2018-04-10 18:04:39 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:04:39 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:16:40 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:16:40 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:40 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:40 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:40 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:40 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:40 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:16:40 Route requested: 'favicon.ico'
+2018-04-10 18:16:41 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:16:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:41 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:16:41 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:16:41 Loading module: admin
+2018-04-10 18:16:41 Route to run: admin/system-menu/show-menus
+2018-04-10 18:16:41 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:16:41 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:16:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:41 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:41 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:16:41 Route requested: 'admin/system-group/index'
+2018-04-10 18:16:41 Loading module: admin
+2018-04-10 18:16:41 Route to run: admin/system-group/index
+2018-04-10 18:16:41 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:16:42 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:16:42 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:42 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:42 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:42 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:42 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:16:42 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:16:42 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:16:42 Loading module: admin
+2018-04-10 18:16:42 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:16:42 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:17:20 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:17:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:20 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:17:20 Route requested: 'favicon.ico'
+2018-04-10 18:17:20 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:17:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:20 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:17:20 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:17:20 Loading module: admin
+2018-04-10 18:17:20 Route to run: admin/system-menu/show-menus
+2018-04-10 18:17:20 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:17:21 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:17:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:21 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:17:21 Route requested: 'admin/system-group/index'
+2018-04-10 18:17:21 Loading module: admin
+2018-04-10 18:17:21 Route to run: admin/system-group/index
+2018-04-10 18:17:21 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:17:23 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:17:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:17:23 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:17:23 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:17:23 Loading module: admin
+2018-04-10 18:17:23 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:17:23 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:18:05 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:18:05 Route requested: 'favicon.ico'
+2018-04-10 18:18:05 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:18:05 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:18:05 Loading module: admin
+2018-04-10 18:18:05 Route to run: admin/system-menu/show-menus
+2018-04-10 18:18:05 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:18:05 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:05 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:18:05 Route requested: 'admin/system-group/index'
+2018-04-10 18:18:05 Loading module: admin
+2018-04-10 18:18:05 Route to run: admin/system-group/index
+2018-04-10 18:18:05 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:18:07 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:18:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:07 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:18:07 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:18:07 Loading module: admin
+2018-04-10 18:18:07 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:18:07 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:18:31 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:18:31 Route requested: 'favicon.ico'
+2018-04-10 18:18:31 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:18:31 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:18:31 Loading module: admin
+2018-04-10 18:18:31 Route to run: admin/system-menu/show-menus
+2018-04-10 18:18:31 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:18:31 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:31 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:18:31 Route requested: 'admin/system-group/index'
+2018-04-10 18:18:31 Loading module: admin
+2018-04-10 18:18:31 Route to run: admin/system-group/index
+2018-04-10 18:18:31 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:18:32 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:18:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:18:32 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:18:32 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:18:32 Loading module: admin
+2018-04-10 18:18:32 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:18:32 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:19:30 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:19:30 Route requested: 'favicon.ico'
+2018-04-10 18:19:30 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:19:30 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:19:30 Loading module: admin
+2018-04-10 18:19:30 Route to run: admin/system-menu/show-menus
+2018-04-10 18:19:30 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:19:30 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:30 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:19:30 Route requested: 'admin/system-group/index'
+2018-04-10 18:19:30 Loading module: admin
+2018-04-10 18:19:30 Route to run: admin/system-group/index
+2018-04-10 18:19:30 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:19:32 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:19:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:19:32 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:19:32 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:19:32 Loading module: admin
+2018-04-10 18:19:32 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:19:32 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:21:08 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:21:08 Route requested: 'favicon.ico'
+2018-04-10 18:21:08 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:21:08 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:21:08 Loading module: admin
+2018-04-10 18:21:08 Route to run: admin/system-menu/show-menus
+2018-04-10 18:21:08 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:21:08 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:08 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:21:08 Route requested: 'admin/system-group/index'
+2018-04-10 18:21:08 Loading module: admin
+2018-04-10 18:21:08 Route to run: admin/system-group/index
+2018-04-10 18:21:08 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:21:10 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:21:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:21:10 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:21:10 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:21:10 Loading module: admin
+2018-04-10 18:21:10 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:21:10 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:22:24 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:22:24 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:24 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:24 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:24 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:24 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:24 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:22:24 Route requested: 'favicon.ico'
+2018-04-10 18:22:25 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:22:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:25 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:22:25 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:22:25 Loading module: admin
+2018-04-10 18:22:25 Route to run: admin/system-menu/show-menus
+2018-04-10 18:22:25 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:22:25 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:22:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:25 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:22:25 Route requested: 'admin/system-group/index'
+2018-04-10 18:22:25 Loading module: admin
+2018-04-10 18:22:25 Route to run: admin/system-group/index
+2018-04-10 18:22:25 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:22:37 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:22:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:22:37 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:22:37 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:22:37 Loading module: admin
+2018-04-10 18:22:37 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:22:37 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:23:43 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:23:43 Route requested: 'favicon.ico'
+2018-04-10 18:23:43 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:23:43 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:23:43 Loading module: admin
+2018-04-10 18:23:43 Route to run: admin/system-menu/show-menus
+2018-04-10 18:23:43 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:23:43 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:43 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:23:43 Route requested: 'admin/system-group/index'
+2018-04-10 18:23:43 Loading module: admin
+2018-04-10 18:23:43 Route to run: admin/system-group/index
+2018-04-10 18:23:43 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:23:45 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:23:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:45 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:23:45 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:23:45 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:23:45 Loading module: admin
+2018-04-10 18:23:45 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:23:45 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:24:16 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:24:16 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:16 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:16 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:16 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:16 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:16 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:24:16 Route requested: 'favicon.ico'
+2018-04-10 18:24:17 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:24:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:17 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:24:17 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:24:17 Loading module: admin
+2018-04-10 18:24:17 Route to run: admin/system-menu/show-menus
+2018-04-10 18:24:17 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:24:17 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:24:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:17 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:24:17 Route requested: 'admin/system-group/index'
+2018-04-10 18:24:17 Loading module: admin
+2018-04-10 18:24:17 Route to run: admin/system-group/index
+2018-04-10 18:24:17 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:24:19 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:24:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:19 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:24:19 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:24:19 Loading module: admin
+2018-04-10 18:24:19 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:24:19 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:24:29 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:24:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:29 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:24:29 Route requested: 'favicon.ico'
+2018-04-10 18:24:30 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:24:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:30 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:24:30 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:24:30 Loading module: admin
+2018-04-10 18:24:30 Route to run: admin/system-menu/show-menus
+2018-04-10 18:24:30 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:24:30 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:24:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:30 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:24:30 Route requested: 'admin/system-group/index'
+2018-04-10 18:24:30 Loading module: admin
+2018-04-10 18:24:30 Route to run: admin/system-group/index
+2018-04-10 18:24:30 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:24:37 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:24:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:24:37 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:24:37 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:24:37 Loading module: admin
+2018-04-10 18:24:37 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:24:37 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:25:07 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:25:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:07 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:25:07 Route requested: 'favicon.ico'
+2018-04-10 18:25:07 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:25:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:07 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:07 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:25:07 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:25:07 Loading module: admin
+2018-04-10 18:25:07 Route to run: admin/system-menu/show-menus
+2018-04-10 18:25:07 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:25:08 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:25:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:08 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:08 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:25:08 Route requested: 'admin/system-group/index'
+2018-04-10 18:25:08 Loading module: admin
+2018-04-10 18:25:08 Route to run: admin/system-group/index
+2018-04-10 18:25:08 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:25:10 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:25:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:10 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:25:10 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:25:10 Loading module: admin
+2018-04-10 18:25:10 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:25:10 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:25:30 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:25:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:30 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:30 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:25:30 Route requested: 'favicon.ico'
+2018-04-10 18:25:31 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:25:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:31 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:25:31 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:25:31 Loading module: admin
+2018-04-10 18:25:31 Route to run: admin/system-menu/show-menus
+2018-04-10 18:25:31 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:25:31 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:25:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:31 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:25:31 Route requested: 'admin/system-group/index'
+2018-04-10 18:25:31 Loading module: admin
+2018-04-10 18:25:31 Route to run: admin/system-group/index
+2018-04-10 18:25:31 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:25:32 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:25:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:32 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:32 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:25:32 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:25:32 Loading module: admin
+2018-04-10 18:25:32 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:25:32 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:25:47 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:25:47 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:47 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:47 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:47 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:47 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:47 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:25:47 Route requested: 'favicon.ico'
+2018-04-10 18:25:47 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:25:47 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:47 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:47 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:47 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:47 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:47 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:25:47 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:25:47 Loading module: admin
+2018-04-10 18:25:47 Route to run: admin/system-menu/show-menus
+2018-04-10 18:25:47 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:25:48 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:25:48 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:48 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:48 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:48 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:48 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:48 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:25:48 Route requested: 'admin/system-group/index'
+2018-04-10 18:25:48 Loading module: admin
+2018-04-10 18:25:48 Route to run: admin/system-group/index
+2018-04-10 18:25:48 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:25:50 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:25:50 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:50 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:50 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:50 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:50 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:25:50 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:25:50 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:25:50 Loading module: admin
+2018-04-10 18:25:50 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:25:50 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:29:14 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:29:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:14 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:29:14 Route requested: 'favicon.ico'
+2018-04-10 18:29:15 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:29:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:15 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:29:15 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:29:15 Loading module: admin
+2018-04-10 18:29:15 Route to run: admin/system-menu/show-menus
+2018-04-10 18:29:15 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:29:15 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:29:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:15 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:15 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:29:15 Route requested: 'admin/system-group/index'
+2018-04-10 18:29:15 Loading module: admin
+2018-04-10 18:29:15 Route to run: admin/system-group/index
+2018-04-10 18:29:15 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:29:17 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:29:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:29:17 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:29:17 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:29:17 Loading module: admin
+2018-04-10 18:29:17 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:29:17 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:30:18 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:30:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:18 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:30:18 Route requested: 'favicon.ico'
+2018-04-10 18:30:19 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:30:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:19 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:30:19 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:30:19 Loading module: admin
+2018-04-10 18:30:19 Route to run: admin/system-menu/show-menus
+2018-04-10 18:30:19 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:30:19 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:30:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:19 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:19 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:30:19 Route requested: 'admin/system-group/index'
+2018-04-10 18:30:19 Loading module: admin
+2018-04-10 18:30:19 Route to run: admin/system-group/index
+2018-04-10 18:30:19 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:30:20 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:30:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:20 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:20 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:30:20 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:30:20 Loading module: admin
+2018-04-10 18:30:20 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:30:20 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:30:31 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:30:31 Route requested: 'favicon.ico'
+2018-04-10 18:30:31 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:30:31 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:30:31 Loading module: admin
+2018-04-10 18:30:31 Route to run: admin/system-menu/show-menus
+2018-04-10 18:30:31 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:30:31 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:31 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:30:31 Route requested: 'admin/system-group/index'
+2018-04-10 18:30:31 Loading module: admin
+2018-04-10 18:30:31 Route to run: admin/system-group/index
+2018-04-10 18:30:31 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:30:33 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:30:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:30:33 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:30:33 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:30:33 Loading module: admin
+2018-04-10 18:30:33 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:30:33 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:35:49 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:35:49 Route requested: 'favicon.ico'
+2018-04-10 18:35:49 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:35:49 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:35:49 Loading module: admin
+2018-04-10 18:35:49 Route to run: admin/system-menu/show-menus
+2018-04-10 18:35:49 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:35:49 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:49 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:35:49 Route requested: 'admin/system-group/index'
+2018-04-10 18:35:49 Loading module: admin
+2018-04-10 18:35:49 Route to run: admin/system-group/index
+2018-04-10 18:35:49 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:35:52 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:35:52 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:52 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:52 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:52 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:52 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:35:52 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:35:52 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:35:52 Loading module: admin
+2018-04-10 18:35:52 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:35:52 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:36:23 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:36:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:23 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:36:23 Route requested: 'favicon.ico'
+2018-04-10 18:36:23 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:36:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:23 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:36:23 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:36:23 Loading module: admin
+2018-04-10 18:36:23 Route to run: admin/system-menu/show-menus
+2018-04-10 18:36:23 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:36:24 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:36:24 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:24 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:24 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:24 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:24 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:24 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:36:24 Route requested: 'admin/system-group/index'
+2018-04-10 18:36:24 Loading module: admin
+2018-04-10 18:36:24 Route to run: admin/system-group/index
+2018-04-10 18:36:24 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:36:26 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:36:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:36:26 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:36:26 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:36:26 Loading module: admin
+2018-04-10 18:36:26 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:36:26 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:38:23 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:38:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:23 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:23 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:38:23 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:38:23 Loading module: admin
+2018-04-10 18:38:23 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:38:23 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:38:25 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:38:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:25 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:38:25 Route requested: 'admin/system-group/group-privilege-update'
+2018-04-10 18:38:25 Loading module: admin
+2018-04-10 18:38:25 Route to run: admin/system-group/group-privilege-update
+2018-04-10 18:38:25 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeUpdate()
+2018-04-10 18:38:25 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:38:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:25 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:38:25 Route requested: 'admin/system-group/index'
+2018-04-10 18:38:25 Loading module: admin
+2018-04-10 18:38:25 Route to run: admin/system-group/index
+2018-04-10 18:38:25 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:38:33 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:38:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:33 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:33 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:38:33 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:38:33 Loading module: admin
+2018-04-10 18:38:33 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:38:33 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:38:37 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:38:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:37 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:38:37 Route requested: 'admin/system-group/group-privilege-update'
+2018-04-10 18:38:37 Loading module: admin
+2018-04-10 18:38:37 Route to run: admin/system-group/group-privilege-update
+2018-04-10 18:38:37 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeUpdate()
+2018-04-10 18:38:37 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:38:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:38:37 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:38:37 Route requested: 'admin/system-group/index'
+2018-04-10 18:38:37 Loading module: admin
+2018-04-10 18:38:37 Route to run: admin/system-group/index
+2018-04-10 18:38:37 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:40:17 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:17 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:17 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:17 Route requested: 'favicon.ico'
+2018-04-10 18:40:18 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:18 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:18 Route requested: 'admin/system-menu/show-menus'
+2018-04-10 18:40:18 Loading module: admin
+2018-04-10 18:40:18 Route to run: admin/system-menu/show-menus
+2018-04-10 18:40:18 Running action: Backend\modules\admin\controllers\SystemMenuController::actionShowMenus()
+2018-04-10 18:40:18 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:18 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:18 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:18 Route requested: 'admin/system-group/index'
+2018-04-10 18:40:18 Loading module: admin
+2018-04-10 18:40:18 Route to run: admin/system-group/index
+2018-04-10 18:40:18 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:40:21 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:21 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:21 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:21 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:40:21 Loading module: admin
+2018-04-10 18:40:21 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:40:21 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:40:25 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:25 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:25 Route requested: 'admin/system-group/group-privilege-update'
+2018-04-10 18:40:25 Loading module: admin
+2018-04-10 18:40:25 Route to run: admin/system-group/group-privilege-update
+2018-04-10 18:40:25 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeUpdate()
+2018-04-10 18:40:26 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:26 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:26 Route requested: 'admin/system-group/index'
+2018-04-10 18:40:26 Loading module: admin
+2018-04-10 18:40:26 Route to run: admin/system-group/index
+2018-04-10 18:40:26 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:40:28 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:28 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:28 Route requested: 'favicon.ico'
+2018-04-10 18:40:28 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:28 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:28 Route requested: 'admin/admin-user/index'
+2018-04-10 18:40:28 Loading module: admin
+2018-04-10 18:40:28 Route to run: admin/admin-user/index
+2018-04-10 18:40:28 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:40:39 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:39 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:39 Route requested: 'favicon.ico'
+2018-04-10 18:40:39 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:39 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:39 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:39 Route requested: 'admin/system-group/index'
+2018-04-10 18:40:39 Loading module: admin
+2018-04-10 18:40:39 Route to run: admin/system-group/index
+2018-04-10 18:40:39 Running action: yii\rest\IndexAction::run()
+2018-04-10 18:40:43 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:43 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:43 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:43 Route requested: 'admin/system-group/group-privilege-list'
+2018-04-10 18:40:43 Loading module: admin
+2018-04-10 18:40:43 Route to run: admin/system-group/group-privilege-list
+2018-04-10 18:40:43 Running action: Backend\modules\admin\controllers\SystemGroupController::actionGroupPrivilegeList()
+2018-04-10 18:40:49 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:49 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:49 Route requested: 'favicon.ico'
+2018-04-10 18:40:49 Bootstrap with yii\log\Dispatcher
+2018-04-10 18:40:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:49 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-10 18:40:49 No matching URL rules. Using default URL parsing logic.
+2018-04-10 18:40:49 Route requested: 'admin/admin-user/index'
+2018-04-10 18:40:49 Loading module: admin
+2018-04-10 18:40:49 Route to run: admin/admin-user/index
+2018-04-10 18:40:49 Running action: yii\rest\IndexAction::run()

@@ -13,15 +13,15 @@ layui.define('admin', function(exports) {
             return {
                 params: (function() {
                     var ret = {};
-                    var seg = a.search.replace(/^\?/, '').split('&').filter(function(v,i){
-                        if (v!==''&&v.indexOf('=')) {
+                    var seg = a.search.replace(/^\?/, '').split('&').filter(function(v, i){
+                        if (v !== '' && v.indexOf('=')) {
                             return true;
                         }
                     });
                     seg.forEach( function(element, index) {
                         var idx = element.indexOf('=');
                         var key = element.substring(0, idx);
-                        var val = element.substring(idx+1);
+                        var val = element.substring(idx + 1);
                         ret[key] = val;
                     });
                     return ret;
@@ -38,7 +38,7 @@ layui.define('admin', function(exports) {
         },
         // sort Object
         objSort: function(arys) {
-            var newkey = Object.keys(arys).sort();　　
+            var newkey = Object.keys(arys).sort();
             var newObj = {};
             for (var i = 0; i < newkey.length; i++) {
                 newObj[newkey[i]] = arys[newkey[i]];
@@ -61,18 +61,17 @@ layui.define('admin', function(exports) {
             var time = obj.getTimestamp();
             param.time = time;
             param = obj.objSort(param);
-
             var str = '';
             for (var i in param) {
                 if (str === '') {
                     str += (i + '=' + param[i]);
+                    str == '';
                 } else {
                     str += ('&' + i + '=' + param[i]);
                 }
             }
 
             str += ('&access_token=' + obj.getToken());
-
             param.sign = obj.MD5(str);
             param.time = time;
             return  param;

@@ -97,7 +97,7 @@ CREATE TABLE `system_menu` (
 -- ----------------------------
 -- Records of system_menu
 -- ----------------------------
-INSERT INTO `system_menu` VALUES ('1', '系统管理', '', 'system', '', '0', '1', '0', '0', '1510544394', '1510544394');
+INSERT INTO `system_menu` VALUES ('1', '系统管理', '/main/main/main', 'system', '', '0', '1', '0', '0', '1510544394', '1510544394');
 INSERT INTO `system_menu` VALUES ('2', '管理员列表', '/admin/admin-user/index', 'admins', '', '0', '1', '0', '1', '1510544394', '1510544394');
 INSERT INTO `system_menu` VALUES ('3', '角色列表', '/admin/system-group/index', 'groups', '', '0', '1', '0', '1', '1510544394', '1510544394');
 

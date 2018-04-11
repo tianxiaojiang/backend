@@ -34,7 +34,7 @@
                 <a lay-href="/user/forget" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>
             </div>
             <div class="layui-form-item">
-                <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
+                <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 录</button>
             </div>
             <!-- <div class="layui-trans layui-form-item layadmin-user-login-other">
                 <label>社交账号登入</label>
@@ -57,34 +57,38 @@
 <script>
 
 layui.use(['admin', 'form', 'user'], function() {
-    var $ = layui.$,
-        setter = layui.setter,
-        admin = layui.admin,
-        form = layui.form,
-        router = layui.router(),
-        search = router.search;
-        form.render();
+    var $ = layui.$, setter = layui.setter, admin = layui.admin, form = layui.form, router = layui.router(), search = router.search;
 
+    // form.render();
     $('#LAY-user-get-vercode').trigger('click');
-    //提交
+    // 用户名提示信息
+    $('#LAY-user-login-username').on('focus', function() {
+        var tipsTxt = '一般为您姓名的全拼，如张三的域帐号为 zhangsan';
+        layer.tips(tipsTxt, this, {
+            tips: [2, '#009688']
+        });
+    });
+    // 登录按钮提交
     form.on('submit(LAY-user-login-submit)', function(obj) {
-        //请求登入接口
+        // 请求登入接口
         admin.req({
-            //实际使用请改成服务端真实接口
             url: '/admin/token/get',
             method: 'post',
             data: obj.field,
             done: function(res) {
-                //请求成功后，写入 access_token
+                // 请求成功后，写入 access_token
                 layui.data(setter.tableName, {
                     key: setter.request.tokenName,
                     value: 'Bearer ' + res.data.access_token
                 });
+                // 请求成功后，写入 username
                 layui.data(setter.tableName, {
                     key: 'username',
                     value: res.data.username
                 });
-                layer.msg('登入成功', {
+                // 页面中弹出登录成功提示，并跳转页面
+                var tipsTxt = '登入成功！';
+                layer.msg(tipsTxt, {
                     offset: '15px',
                     icon: 1,
                     time: 1000
@@ -93,13 +97,6 @@ layui.use(['admin', 'form', 'user'], function() {
                 });
             }
         });
-
     });
-    //实际使用时记得删除该代码
-    layer.msg('为了方便演示，用户名密码可随意输入', {
-        offset: '15px',
-        icon: 1
-    });
-
 });
 </script>

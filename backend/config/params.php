@@ -10,9 +10,6 @@ use yii\helpers\ArrayHelper;
 
 $params = [
     'modules' => [
-        'gamm3' => [
-            'gateWay' => 'http://gamm3.dev.ztgame.com'
-        ]
     ],
 ];
 

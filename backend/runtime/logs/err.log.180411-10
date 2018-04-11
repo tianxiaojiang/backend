@@ -1,0 +1,21 @@
+2018-04-11 10:25:28 yii\web\UnauthorizedHttpException: Your request was made with invalid credentials. in E:\project\backend\vendor\yiisoft\yii2\filters\auth\AuthMethod.php:93
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\filters\auth\AuthMethod.php(76): yii\filters\auth\AuthMethod->handleFailure(Object(yii\web\Response))
+#1 E:\project\backend\vendor\yiisoft\yii2\base\ActionFilter.php(77): yii\filters\auth\AuthMethod->beforeAction(Object(yii\base\InlineAction))
+#2 [internal function]: yii\base\ActionFilter->beforeFilter(Object(yii\base\ActionEvent))
+#3 E:\project\backend\vendor\yiisoft\yii2\base\Component.php(627): call_user_func(Array, Object(yii\base\ActionEvent))
+#4 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(274): yii\base\Component->trigger('beforeAction', Object(yii\base\ActionEvent))
+#5 E:\project\backend\vendor\yiisoft\yii2\web\Controller.php(164): yii\base\Controller->beforeAction(Object(yii\base\InlineAction))
+#6 E:\project\backend\backend\modules\common\controllers\CommonController.php(33): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#7 E:\project\backend\vendor\yiisoft\yii2\base\Controller.php(155): Backend\modules\common\controllers\CommonController->beforeAction(Object(yii\base\InlineAction))
+#8 E:\project\backend\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('show-menus', Array)
+#9 E:\project\backend\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/system-me...', Array)
+#10 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#11 E:\project\backend\public\index.php(19): yii\base\Application->run()
+#12 {main}
+2018-04-11 10:36:27 yii\web\HeadersAlreadySentException: Headers already sent in E:\project\backend\vendor\gregwar\captcha\src\Gregwar\Captcha\CaptchaBuilder.php on line 565. in E:\project\backend\vendor\yiisoft\yii2\web\Response.php:366
+Stack trace:
+#0 E:\project\backend\vendor\yiisoft\yii2\web\Response.php(339): yii\web\Response->sendHeaders()
+#1 E:\project\backend\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Response->send()
+#2 E:\project\backend\public\index.php(19): yii\base\Application->run()
+#3 {main}

@@ -1,0 +1,371 @@
+2018-04-11 10:25:28 Bootstrap with yii\log\Dispatcher
+2018-04-11 10:25:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:25:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:25:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:25:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:25:28 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:25:28 No matching URL rules. Using default URL parsing logic.
+2018-04-11 10:25:28 Route requested: 'admin/system-menu/show-menus'
+2018-04-11 10:25:28 Loading module: admin
+2018-04-11 10:25:28 Route to run: admin/system-menu/show-menus
+2018-04-11 10:25:29 Bootstrap with yii\log\Dispatcher
+2018-04-11 10:25:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:25:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:25:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:25:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:25:29 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:25:29 No matching URL rules. Using default URL parsing logic.
+2018-04-11 10:25:29 Route requested: 'admin/token/captcha'
+2018-04-11 10:25:29 Loading module: admin
+2018-04-11 10:25:29 Route to run: admin/token/captcha
+2018-04-11 10:25:29 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-11 10:31:27 Bootstrap with yii\log\Dispatcher
+2018-04-11 10:31:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:31:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:31:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:31:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:31:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:31:27 No matching URL rules. Using default URL parsing logic.
+2018-04-11 10:31:27 Route requested: 'admin/token/captcha'
+2018-04-11 10:31:27 Loading module: admin
+2018-04-11 10:31:27 Route to run: admin/token/captcha
+2018-04-11 10:31:27 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-11 10:36:27 Bootstrap with yii\log\Dispatcher
+2018-04-11 10:36:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:36:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:36:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:36:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:36:27 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:36:27 No matching URL rules. Using default URL parsing logic.
+2018-04-11 10:36:27 Route requested: 'admin/token/captcha'
+2018-04-11 10:36:27 Loading module: admin
+2018-04-11 10:36:27 Route to run: admin/token/captcha
+2018-04-11 10:36:27 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-11 10:37:10 Bootstrap with yii\log\Dispatcher
+2018-04-11 10:37:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:10 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:10 No matching URL rules. Using default URL parsing logic.
+2018-04-11 10:37:10 Route requested: 'admin/token/captcha'
+2018-04-11 10:37:10 Loading module: admin
+2018-04-11 10:37:10 Route to run: admin/token/captcha
+2018-04-11 10:37:10 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-11 10:37:26 Bootstrap with yii\log\Dispatcher
+2018-04-11 10:37:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:26 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:26 No matching URL rules. Using default URL parsing logic.
+2018-04-11 10:37:26 Route requested: 'admin/token/captcha'
+2018-04-11 10:37:26 Loading module: admin
+2018-04-11 10:37:26 Route to run: admin/token/captcha
+2018-04-11 10:37:26 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-11 10:37:40 Bootstrap with yii\log\Dispatcher
+2018-04-11 10:37:40 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:40 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:40 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:40 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:40 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:37:40 No matching URL rules. Using default URL parsing logic.
+2018-04-11 10:37:40 Route requested: 'admin/token/captcha'
+2018-04-11 10:37:40 Loading module: admin
+2018-04-11 10:37:40 Route to run: admin/token/captcha
+2018-04-11 10:37:40 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-11 10:40:55 Bootstrap with yii\log\Dispatcher
+2018-04-11 10:40:55 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:40:55 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:40:55 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:40:55 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:40:55 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:40:55 No matching URL rules. Using default URL parsing logic.
+2018-04-11 10:40:55 Route requested: 'admin/token/captcha'
+2018-04-11 10:40:55 Loading module: admin
+2018-04-11 10:40:55 Route to run: admin/token/captcha
+2018-04-11 10:40:55 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-11 10:41:14 Bootstrap with yii\log\Dispatcher
+2018-04-11 10:41:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:41:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:41:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:41:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:41:14 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:41:14 No matching URL rules. Using default URL parsing logic.
+2018-04-11 10:41:14 Route requested: 'admin/token/captcha'
+2018-04-11 10:41:14 Loading module: admin
+2018-04-11 10:41:14 Route to run: admin/token/captcha
+2018-04-11 10:41:14 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-11 10:43:25 Bootstrap with yii\log\Dispatcher
+2018-04-11 10:43:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:43:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:43:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:43:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:43:25 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:43:25 No matching URL rules. Using default URL parsing logic.
+2018-04-11 10:43:25 Route requested: 'admin/token/captcha'
+2018-04-11 10:43:25 Loading module: admin
+2018-04-11 10:43:25 Route to run: admin/token/captcha
+2018-04-11 10:43:25 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-11 10:58:37 Bootstrap with yii\log\Dispatcher
+2018-04-11 10:58:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:58:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:58:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:58:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:58:37 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:58:37 No matching URL rules. Using default URL parsing logic.
+2018-04-11 10:58:37 Route requested: 'admin/token/captcha'
+2018-04-11 10:58:37 Loading module: admin
+2018-04-11 10:58:37 Route to run: admin/token/captcha
+2018-04-11 10:58:37 Running action: juliardi\captcha\CaptchaAction::run()
+2018-04-11 10:59:48 Bootstrap with yii\log\Dispatcher
+2018-04-11 10:59:48 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:59:48 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:59:48 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:59:48 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:59:48 [
+    'rule' => 'yii\\rest\\UrlRule',
+    'match' => false,
+    'parent' => null,
+]
+2018-04-11 10:59:48 No matching URL rules. Using default URL parsing logic.
+2018-04-11 10:59:48 Route requested: 'admin/token/captcha'
+2018-04-11 10:59:48 Loading module: admin
+2018-04-11 10:59:48 Route to run: admin/token/captcha
+2018-04-11 10:59:48 Running action: juliardi\captcha\CaptchaAction::run()

@@ -1,0 +1,10 @@
+2018-04-10 14:52:26 request:array (
+  'time' => '1523343146',
+  'sign' => '7397bcaa1bb44a4ec07a9a7c06dcbf6b',
+  'api_path' => 'admin/system-menu/show-menus',
+)
+2018-04-10 14:52:26 request:array (
+  'time' => '1523343146',
+  'sign' => '7397bcaa1bb44a4ec07a9a7c06dcbf6b',
+  'api_path' => 'admin/system-menu/show-menus',
+)

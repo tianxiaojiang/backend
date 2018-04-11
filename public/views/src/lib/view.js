@@ -72,15 +72,19 @@ layui.define(['laytpl', 'layer'], function(exports){
     options.data = options.data || {};
     var queryParams = ztutil.parseURL(options.url).params;
     options.data = Object.assign(options.data, queryParams);
-
+    
     var signParmas = ztutil.createSign(options.data);
-      options.data.time = signParmas.time;
-      options.data.sign = signParmas.sign;
+    options.data.time = signParmas.time;
+    options.data.sign = signParmas.sign;
 
+    // options 对象去重
+    for (var keys in queryParams) {
+        if (keys in options.data) {
+        delete options.data[keys];
+      }
+    }
     options.headers = options.headers || {};
     if(request.tokenName){
-      //自动给参数传入默认 token
-
       //自动给 Request Headers 传入 token
       options.headers[request.tokenName] = request.tokenName in options.headers
         ?  options.headers[request.tokenName]
