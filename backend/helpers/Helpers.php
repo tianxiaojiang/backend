@@ -14,6 +14,8 @@ class Helpers
 {
     static public $request_params;
 
+    static public $heanders;
+
     public static function info($content)
     {
         file_put_contents('E:\project\backend\backend\runtime\\' . date('YmdH') . '.log', $content . "\n", FILE_APPEND);
@@ -132,6 +134,20 @@ class Helpers
 
         if (isset($requestParams[$key])) {
             return $requestParams[$key];
+        }
+
+        return null;
+    }
+
+    //获取heander
+    public static function getHeader($key)
+    {
+        if (static::$heanders == null) {
+            static::$heanders = Yii::$app->request->headers;
+        }
+
+        if (static::$heanders->get($key)) {
+            return static::$heanders->get($key);
         }
 
         return null;

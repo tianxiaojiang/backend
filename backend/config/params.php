@@ -11,6 +11,8 @@ use yii\helpers\ArrayHelper;
 $params = [
     'modules' => [
     ],
+    'menus_ext' => [
+    ],
 ];
 
 return file_exists('./params-local.php') ? ArrayHelper::merge($params, require_once('./params-local.php')) : $params;

@@ -24,6 +24,11 @@ class CommonController extends \Backend\modules\common\controllers\CommonControl
         return Admin::$_status;
     }
 
+    public static function actionMenusExt()
+    {
+        return \Yii::$app->params['menus_ext'];
+    }
+
     public function actionTest()
     {
         \Yii::info('aaaaaaa');

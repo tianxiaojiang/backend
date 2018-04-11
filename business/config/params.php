@@ -9,10 +9,14 @@
 use yii\helpers\ArrayHelper;
 
 $params = [
-    'modules' => [
+    'modules' => [//外部接入系统
         'gamm3' => [
             'gateWay' => 'http://gamm3.dev.ztgame.com'
         ]
+    ],
+    'menus_ext' => [//菜单维度扩展
+        1 => '征途',
+        2 => '征途2',
     ],
 ];
 

@@ -9,6 +9,7 @@
 namespace Backend\modules\admin\models;
 
 
+use Backend\helpers\Helpers;
 use Backend\modules\common\models\BaseModel;
 
 class SystemMenu extends BaseModel
@@ -34,7 +35,8 @@ class SystemMenu extends BaseModel
 
     public function getShowMenus()
     {
-        $list = self::find()->where(['sm_status'=> 0, 'is_show_sidebar' => 1])->orderBy('sort_by asc,sm_id asc')->indexBy('sm_id')->with('systemPriv')->asArray()->all();
+        $menus_ext = intval(Helpers::getHeader('ext'));
+        $list = self::find()->where(['sm_status'=> 0, 'is_show_sidebar' => 1, 'ext' => [0, $menus_ext]])->orderBy('sort_by asc,sm_id asc')->indexBy('sm_id')->with('systemPriv')->asArray()->all();
         $list = $this->filterPrivilege($list);
         //var_dump($list);
         foreach ($list as $listKey => $listVal) {
