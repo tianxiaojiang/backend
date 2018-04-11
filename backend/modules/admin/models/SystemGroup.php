@@ -18,6 +18,7 @@ class SystemGroup extends BaseModel
         return [
             'default' => ['sg_id', 'sg_name', 'sg_desc'],
             'update' => ['sg_id', 'sg_name', 'sg_desc'],
+            'create' => ['sg_id', 'sg_name', 'sg_desc'],
         ];
     }
 
