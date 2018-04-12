@@ -23,8 +23,12 @@ class SystemPriv extends \yii\db\ActiveRecord
     public static function getPrivilegesByGroups($menus, $groupPrivilegesIds)
     {
         foreach ($menus as $key => $menu) {
-            $privileges = self::find()->select('sp_id, sp_label')->where(['in', 'sm_id', $menu['children']])->asArray()->all();
+            $privileges = self::find()->select('sp_id, sm_id, sp_label')->where(['in', 'sm_id', $menu['children']])->asArray()->all();
             foreach ($privileges as $privilegeKey => $privilege) {
+                if( $privilege["sm_id"] == $menu["sm_id"]){
+                    $menus[$key]["sm_label"]= $privilege["sp_label"];
+                }
+
                 if (in_array($privilege['sp_id'], $groupPrivilegesIds)) {
                     $privileges[$privilegeKey]['is_checked'] = 1;
                 } else {
