@@ -56,10 +56,10 @@ class SystemMenu extends BaseModel
             unset($list[$listKey]['sm_view']);
             unset($list[$listKey]['sm_icon']);
             unset($list[$listKey]['sm_id']);
+            unset($list[$listKey]['ext']);
 
             $list[$listVal['sm_parent_id']]['list'][] = &$list[$listVal['sm_id']];
         }
-        //print_r($list);
         return isset($list[0]['list']) ? $list[0]['list'] : [];
     }
 
@@ -69,13 +69,12 @@ class SystemMenu extends BaseModel
             $privilege = \Yii::$app->user->identity->getPrivilege();
             $this->_privilege = [];
             foreach ($privilege as $value) {
-                $this->_privilege[$value['sp_module'] . $value['sp_controller'] . $value['sp_action']] = $value;
+                $this->_privilege[$value['sm_id']][] = $value['sp_module'] . $value['sp_controller'] . $value['sp_action'];
             }
         }
         foreach ($list as $listKey => $listKeyval) {
-
             $privilegeKey = str_replace('/', '', $listKeyval['sm_request_url']);
-            if (!isset($this->_privilege[$privilegeKey])) {
+            if (!isset($this->_privilege[$listKeyval['sm_id']]) || !in_array($privilegeKey, $this->_privilege[$listKeyval['sm_id']])) {
                 unset($list[$listKey]);
             }
 
