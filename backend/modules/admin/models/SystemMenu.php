@@ -75,7 +75,7 @@ class SystemMenu extends BaseModel
         foreach ($list as $listKey => $listKeyval) {
 
             $privilegeKey = str_replace('/', '', $listKeyval['sm_request_url']);
-            if (!$this->_privilege[$privilegeKey]) {
+            if (!isset($this->_privilege[$privilegeKey])) {
                 unset($list[$listKey]);
             }
 
