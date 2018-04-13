@@ -52,5 +52,5 @@ db-gamm2-local.php
 TestController.php
 
 # 接口加密中间件，用于调用接口
-/frontend/controllers/MiddleController.php
+runtime
 
