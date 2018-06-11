@@ -12,5 +12,6 @@ return [
     ],
     'params' => [
         // list of parameters
+        'test' => 'aaaaa'
     ],
 ];
