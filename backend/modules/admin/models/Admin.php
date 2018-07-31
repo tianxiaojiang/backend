@@ -173,7 +173,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         if (!parent::update($runValidation, $attributes)) {
             return false;
         }
-        if (isset($this->sg_id)) {
+        if (isset($this->sg_id) && ($this->sg_id != $this->getOldAttribute('sg_id'))) {
             $transaction = \Yii::$app->db->beginTransaction();
             SystemUserGroup::deleteAll(['ad_uid' => $this->ad_uid]);
             $sg_ids = explode(',', $this->sg_id);

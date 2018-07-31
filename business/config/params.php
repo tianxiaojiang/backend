@@ -17,10 +17,6 @@ $params = [
             'gateWay' => 'http://gamm3.dev.ztgame.com/fdsf/fdsf',
         ],
     ],
-    'menus_ext' => [//菜单维度扩展
-        1 => '征途',
-        2 => '征途2',
-    ],
 ];
 
 return file_exists('./params-local.php') ? ArrayHelper::merge($params, require_once('./params-local.php')) : $params;

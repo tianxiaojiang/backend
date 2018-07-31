@@ -89,7 +89,6 @@ CREATE TABLE `system_menu` (
   `is_show_sidebar` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否显示',
   `sm_status` int(1) NOT NULL DEFAULT 0 COMMENT '菜单状态',
   `sm_parent_id` int(11) NOT NULL DEFAULT 0 COMMENT '父菜单id',
-  `ext` tinyint (1) NOT NULL DEFAULT 0 COMMENT '扩展字段，增加一个过滤维度',
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`sm_id`)
@@ -98,9 +97,9 @@ CREATE TABLE `system_menu` (
 -- ----------------------------
 -- Records of system_menu
 -- ----------------------------
-INSERT INTO `system_menu` VALUES ('1', '系统管理', '/main/main/main', 'system', '', '0', '1', '0', '0', '0', '1510544394', '1510544394');
-INSERT INTO `system_menu` VALUES ('2', '管理员列表', '/admin/admin-user/index', 'admins', '', '0', '1', '0', '1', '0', '1510544394', '1510544394');
-INSERT INTO `system_menu` VALUES ('3', '角色列表', '/admin/system-group/index', 'groups', '', '0', '1', '0', '1', '0', '1510544394', '1510544394');
+INSERT INTO `system_menu` VALUES ('1', '系统管理', '/main/main/main', 'system', '', '0', '1', '0', '0', '1510544394', '1510544394');
+INSERT INTO `system_menu` VALUES ('2', '管理员列表', '/admin/admin-user/index', 'admins', '', '0', '1', '0', '1', '1510544394', '1510544394');
+INSERT INTO `system_menu` VALUES ('3', '角色列表', '/admin/system-group/index', 'groups', '', '0', '1', '0', '1', '1510544394', '1510544394');
 
 -- ----------------------------
 -- Table structure for system_priv
@@ -113,7 +112,6 @@ CREATE TABLE `system_priv` (
   `sp_module` varchar(32) NOT NULL DEFAULT '' COMMENT '权限对应模块',
   `sp_controller` varchar(32) NOT NULL DEFAULT '' COMMENT '权限对应控制器',
   `sp_action` varchar(32) NOT NULL DEFAULT '' COMMENT '权限对应方法',
-  `ext` tinyint (1) NOT NULL DEFAULT 0 COMMENT '扩展字段，增加一个过滤维度',
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`sp_id`)
@@ -122,18 +120,18 @@ CREATE TABLE `system_priv` (
 -- ----------------------------
 -- Records of system_priv
 -- ----------------------------
-INSERT INTO `system_priv` VALUES ('1', '1', '系统管理', 'main', 'main', 'main', '0', '1510544394', '1510544394');
-INSERT INTO `system_priv` VALUES ('2', '2', '管理员列表', 'admin', 'admin-user', 'index', '0', '1510544394', '1510544394');
-INSERT INTO `system_priv` VALUES ('3', '2', '添加管理员', 'admin', 'admin-user', 'create', '0', '1510544394', '1510544394');
-INSERT INTO `system_priv` VALUES ('4', '2', '修改管理员', 'admin', 'admin-user', 'update', '0', '1510544394', '1510544394');
-INSERT INTO `system_priv` VALUES ('5', '2', '删除管理员', 'admin', 'admin-user', 'delete', '0', '1510544394', '1510544394');
-INSERT INTO `system_priv` VALUES ('6', '3', '角色列表', 'admin', 'system-group', 'index', '0', '1510544394', '1510544394');
-INSERT INTO `system_priv` VALUES ('7', '3', '添加角色', 'admin', 'system-group', 'create', '0', '1510544394', '1510544394');
-INSERT INTO `system_priv` VALUES ('8', '3', '修改角色', 'admin', 'system-group', 'update', '0', '1510544394', '1510544394');
-INSERT INTO `system_priv` VALUES ('9', '3', '删除角色', 'admin', 'system-group', 'delete', '0', '1510544394', '1510544394');
-INSERT INTO `system_priv` VALUES ('10', '3', '组权限列表', 'admin', 'system-group', 'group-privilege-list', '0', '1510544394', '1510544394');
-INSERT INTO `system_priv` VALUES ('11', '3', '组权限修改', 'admin', 'system-group', 'group-privilege-update', '0', '1510544394', '1510544394');
-INSERT INTO `system_priv` VALUES ('12', '1', '通用接口调用', 'common', 'system', 'index', '0', '1510544394', '1510544394');
+INSERT INTO `system_priv` VALUES ('1', '1', '系统管理', 'main', 'main', 'main', '1510544394', '1510544394');
+INSERT INTO `system_priv` VALUES ('2', '2', '管理员列表', 'admin', 'admin-user', 'index', '1510544394', '1510544394');
+INSERT INTO `system_priv` VALUES ('3', '2', '添加管理员', 'admin', 'admin-user', 'create', '1510544394', '1510544394');
+INSERT INTO `system_priv` VALUES ('4', '2', '修改管理员', 'admin', 'admin-user', 'update', '1510544394', '1510544394');
+INSERT INTO `system_priv` VALUES ('5', '2', '删除管理员', 'admin', 'admin-user', 'delete', '1510544394', '1510544394');
+INSERT INTO `system_priv` VALUES ('6', '3', '角色列表', 'admin', 'system-group', 'index', '1510544394', '1510544394');
+INSERT INTO `system_priv` VALUES ('7', '3', '添加角色', 'admin', 'system-group', 'create', '1510544394', '1510544394');
+INSERT INTO `system_priv` VALUES ('8', '3', '修改角色', 'admin', 'system-group', 'update', '1510544394', '1510544394');
+INSERT INTO `system_priv` VALUES ('9', '3', '删除角色', 'admin', 'system-group', 'delete', '1510544394', '1510544394');
+INSERT INTO `system_priv` VALUES ('10', '3', '组权限列表', 'admin', 'system-group', 'group-privilege-list', '1510544394', '1510544394');
+INSERT INTO `system_priv` VALUES ('11', '3', '组权限修改', 'admin', 'system-group', 'group-privilege-update', '1510544394', '1510544394');
+INSERT INTO `system_priv` VALUES ('12', '1', '通用接口调用', 'common', 'system', 'index', '1510544394', '1510544394');
 
 -- ----------------------------
 -- Table structure for system_user_group

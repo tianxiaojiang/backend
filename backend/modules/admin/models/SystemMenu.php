@@ -35,8 +35,7 @@ class SystemMenu extends BaseModel
 
     public function getShowMenus()
     {
-        $menus_ext = intval(Helpers::getHeader('ext'));
-        $list = self::find()->where(['sm_status'=> 0, 'is_show_sidebar' => 1, 'ext' => [0, $menus_ext]])->orderBy('sort_by asc,sm_id asc')->indexBy('sm_id')->with('systemPriv')->asArray()->all();
+        $list = self::find()->where(['sm_status'=> 0, 'is_show_sidebar' => 1])->orderBy('sort_by asc,sm_id asc')->indexBy('sm_id')->with('systemPriv')->asArray()->all();
         $list = $this->filterPrivilege($list);
         //var_dump($list);
         foreach ($list as $listKey => $listVal) {
@@ -56,7 +55,6 @@ class SystemMenu extends BaseModel
             unset($list[$listKey]['sm_view']);
             unset($list[$listKey]['sm_icon']);
             unset($list[$listKey]['sm_id']);
-            unset($list[$listKey]['ext']);
 
             $list[$listVal['sm_parent_id']]['list'][] = &$list[$listVal['sm_id']];
         }
