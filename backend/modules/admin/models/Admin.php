@@ -160,7 +160,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
 
     public function update($runValidation = true, $attributes = null) {
         if (!empty($this->passwd)) {
-            $newSalt = Helpers::getStrBylength();
+            $newSalt = Helpers::getStrBylength(4);
             $this->salt = $newSalt;
             $this->passwd = md5(md5($this->passwd) . $newSalt);
             //修改了密码更新token

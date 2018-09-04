@@ -28,6 +28,9 @@ return [
             'enableAutoLogin' => false,
             'loginUrl' => null,
         ],
+        'errorHandler' => [
+            'class' => 'Backend\Exception\ErrorHandler',
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,

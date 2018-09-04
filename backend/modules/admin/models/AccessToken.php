@@ -61,7 +61,7 @@ class AccessToken extends Admin
             $this->save();
         } else {
             $error = Helpers::getFirstError($this);
-            throw new CustomException(Lang::FAIL, $error);
+            throw new CustomException($error);
         }
         //var_dump(ArrayHelper::toArray($this));exit;
         return ArrayHelper::toArray($this);

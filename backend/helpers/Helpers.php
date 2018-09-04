@@ -55,7 +55,6 @@ class Helpers
         $str = $ctype_alnum ? $ctypeAlnumALib : $charsLib;
 
         $resultStr = '';
-        $length = strlen($str);
         for ($i = 0; $i < $length; $i++) {
             $key = rand(0, $length - 1);
             $resultStr .= $str[$key];
