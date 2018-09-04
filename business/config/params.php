@@ -15,6 +15,7 @@ $params = [
         ],
         'risk' => [
             'gateWay' => 'http://gamm3.dev.ztgame.com/fdsf/fdsf',
+            'md5Key' => 'LijunDeFengKongXiTong',
         ],
     ],
 ];

@@ -1,0 +1,50 @@
+<script type="text/html" template lay-done="addGroupCallback(d);">
+    <form class="layui-form form-privileges" action="" lay-filter="form-privileges">
+        {{#  layui.each(d, function(index_data, data){ }}
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label"><strong id="privileges-smid">{{ data.sm_label }}</strong></label>
+            <div class="layui-input-block">
+                <ul class="layui-privileges-list">
+                    {{#  layui.each(data.privileges, function(index_labels, labels){ }}
+                    <li>
+                        <input type="checkbox" name="privileges_{{ labels.sp_id }}" value="{{ labels.sp_id }}" lay-skin="primary"  title="{{ labels.sp_label }}" {{ labels.is_checked ? 'checked' : '' }} />
+                    </li>
+                    {{#  }); }}
+                </ul>
+            </div>
+        </div>
+        {{#  }); }}
+        <div class="layui-form-item">
+            <div class="layui-footer">
+                <button class="layui-btn" lay-submit lay-filter="edit-privileges">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</script>
+<script>
+    var addGroupCallback = function (d) {
+        layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+
+            var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+
+            // 监听用户权限提交
+            form.on('submit(edit-privileges)', function (data) {
+                var groupID = $('#edit-privileges').attr("group-id");
+                var options = {
+                    data: data.field,
+                    url: '/admin/system-group/group-privilege-update?group_id=' + groupID,
+                    method: 'patch',
+                    done: function (res) {
+                        layer.closeAll();
+                        table.reload('system-group');
+                        layer.msg('修改用户权限成功！');
+                    }
+                };
+                admin.req(options);
+                return false;
+            });
+
+        });
+    };
+</script>

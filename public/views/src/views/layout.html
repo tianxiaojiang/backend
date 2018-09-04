@@ -65,7 +65,7 @@
         <div class="layui-side-scroll">
             <script type="text/html" template lay-url="/admin/system-menu/show-menus" lay-done="layui.element.render('nav', 'layadmin-system-side-menu');" id="TPL_layout">
                 <div class="layui-logo" lay-href="">
-                    <span><i class="ztfont ztfont-logo"></i>{{ layui.setter.name || 'layuiAdmin' }}</span>
+                    <span><!-- <i class="ztfont ztfont-logo"></i> -->{{ layui.setter.name || 'layuiAdmin' }}</span>
                 </div>
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
                     {{# var path = layui.router().path ,pathURL = layui.admin.correctRouter(path.join('/')) ,dataName = layui.setter.response.dataName; layui.each(d[dataName], function(index, item){ var hasChildren = typeof item.list === 'object' && item.list.length > 0 ,classSelected = function(){ var match = path[0] == item.name || (index == 0 && !path[0]) || (item.jump && pathURL == layui.admin.correctRouter(item.jump)); if(match){ return hasChildren ? 'layui-nav-itemed' : 'layui-this'; } return ''; } ,url = (item.jump && typeof item.jump === 'string') ? item.jump : item.name; }}

@@ -15,10 +15,15 @@ class CustomException extends \Exception
     /**
      * 反转code和message的顺序
      */
-    public function __construct($message = null, $code = 0, \Exception $previous = null)
+    public function __construct($message = null, $code = -1, \Exception $previous = null)
     {
-        $retCode = $message;
-        $msg = empty($code) ? Lang::getMsg($retCode) : $code;
+        if (key_exists($message, Lang::$errMsg)) {
+            $msg = Lang::getMsg($message);
+            $retCode = $message;
+        } else {
+            $msg = $message;
+            $retCode = $code;
+        }
         parent::__construct($msg, $retCode);
     }
 }

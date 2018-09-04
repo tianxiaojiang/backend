@@ -6,7 +6,7 @@
                 <div class="layui-btn-container">
                     <button class="layui-btn" id="btn-add-admin">添加</button>
                 </div>
-                <table class="layui-table" id="system-admins" lay-size="lg" lay-filter="list"></table>
+                <table class="layui-table" id="system-admins" lay-size="lg" lay-filter="admins-list"></table>
                 <script type="text/html" id="admin-option">
                     <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
                     <a class="layui-btn layui-btn-sm layui-btn-danger" data-type="t" lay-event="del">删除</a>
@@ -16,8 +16,26 @@
     </div>
 </div>
 <script>
-    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin'], function () {
-        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin;
+    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+
+        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+
+        // 点击添加管理员按钮
+        $('#btn-add-admin').on('click', function () {
+            view.popup({
+                type: 1,
+                id: 'LAY-system-admins-add',
+                title: '添加管理员',
+                resize: false,
+                success: function () {
+                    view(this.id).render('/system/admins/add', data).done(function () {
+                        $(window).trigger('resize');
+                    });
+                }
+            });
+        });
+
+        // 渲染管理员列表
         table.render({
             elem: '#system-admins',
             url: '/admin/admin-user/index',
@@ -41,120 +59,23 @@
         });
 
         // 监听工具条
-        table.on('tool(list)', function (obj) {
+        table.on('tool(admins-list)', function (obj) {
             var data = obj.data;
             if (obj.event === 'del') {
-                layer.confirm('是否要删除管理员：<strong>' + data.account + '</strong>？', {
+                layer.confirm('是否要删除管理员：<strong>' + data.account + '</strong> ？', {
                 }, function (index) {
                     deleteAdmin(data.ad_uid, obj);
                 });
             } else if (obj.event === 'edit') {
-                // 获取角色名列表
-                var getRoles = function () {
-                    var rolesListHTML = '<option value="">请选择角色名</option>';
-                    var rolesCurrent = data.role.split('、');
-                    var options = {
-                        url: '/admin/system-group/index',
-                        page: true,
-                        limit: 1000,
-                        done: function (res) {
-                            $.each(res.data, function (i, v) {
-                                // 当前角色名是否在列表中，即是否为选中状态
-                                var contains = ztutil.inArray(rolesCurrent, v.sg_name);
-                                if (contains) {
-                                    rolesListHTML += '<option value="' + v.sg_id + '" selected>' + v.sg_name + '</option>';
-                                } else {
-                                    rolesListHTML += '<option value="' + v.sg_id + '">' + v.sg_name + '</option>';
-                                }
-                            });
-                            $('#select-roles').html(rolesListHTML);
-                            form.render();
-                        }
-                    };
-                    admin.req(options);
-                };
-
-                // 获取状态列表
-                var getStatus = function () {
-                    var statusHTML = '';
-                    var options = {
-                        url: '/admin/common/admin-stats',
-                        done: function (res) {
-                            $.each(res.data, function (i, v) {
-                                // 当前状态是否为选中状态
-                                if (v == data.status) {
-                                    statusHTML += '<option value="' + i + '" selected>' + v + '</option>';
-                                } else {
-                                    statusHTML += '<option value="' + i + '">' + v + '</option>';
-                                }
-                            });
-                            $('#select-status').html(statusHTML);
-                            form.render();
-                        }
-                    };
-                    admin.req(options);
-                };
-                layer.open({
+                view.popup({
                     type: 1,
-                    area: ['550px'],
+                    id: 'LAY-system-admins-update',
                     title: '修改管理员',
-                    content: '<div class="layui-fluid panel-edit-admin" lay-filter="panel-edit-admin">' +
-                        '<form class="layui-form" action="">' +
-                            '<div class="layui-form-item layui-hide">' +
-                                '<label class="layui-form-label">角色编号</label>' +
-                                '<div class="layui-input-block">' +
-                                    '<input type="text" class="layui-input layui-disabled" disabled name="id" required lay-verify="required" placeholder="角色编号" value="' + data.ad_uid + '" autocomplete="off" class="layui-input">' +
-                                '</div>' +
-                            '</div>' +
-                            '<div class="layui-form-item">' +
-                                '<label class="layui-form-label">账号</label>' +
-                                    '<div class="layui-input-block">' +
-                                        '<input type="text" class="layui-input layui-disabled" disabled name="account" required lay-verify="required" placeholder="账号" value="' + data.account + '" autocomplete="off" class="layui-input">' +
-                                    '</div>' +
-                            '</div>' +
-                            '<div class="layui-form-item">' +
-                                '<label class="layui-form-label">绑定手机</label>' +
-                                '<div class="layui-input-block">' +
-                                    '<input type="text" class="layui-input layui-disabled" disabled name="mobile_phone" required lay-verify="required" placeholder="绑定手机" value="' + data.mobile_phone + '" autocomplete="off" class="layui-input">' +
-                                '</div>' +
-                            '</div>' +
-                            '<div class="layui-form-item">' +
-                                '<label class="layui-form-label">密码</label>' +
-                                '<div class="layui-input-inline">' +
-                                    '<input type="password" name="passwd" placeholder="密码" autocomplete="off" class="layui-input">' +
-                                '</div>' +
-                                '<div class="layui-form-mid layui-word-aux">不修改密码，留空即可。</div>' +
-                            '</div>' +
-                            '<div class="layui-form-item">' +
-                                '<label class="layui-form-label">姓名</label>' +
-                                '<div class="layui-input-block">' +
-                                    '<input type="text" name="username" required lay-verify="required" placeholder="姓名" value="' + data.username + '" autocomplete="off" class="layui-input">' +
-                                '</div>' +
-                            '</div>' +
-                            '<div class="layui-form-item">' +
-                                '<label class="layui-form-label">状态</label>' +
-                                '<div class="layui-input-block">' +
-                                    '<select name="status" required  lay-verify="required" id="select-status"></select>' +
-                                '</div>' +
-                            '</div>' +
-                            '<div class="layui-form-item">' +
-                                '<label class="layui-form-label">角色名</label>' +
-                                '<div class="layui-input-block">' +
-                                    '<input type="hidden" name="sg_id" id="roles_sg_id" required lay-verify="required"></input>' +
-                                    '<select class="layui-select-dropup" id="select-roles" lay-filter="select-roles" required lay-verify="required" multiple lay-omit></select>' +
-                                '</div>' +
-                            '</div>' +
-                            '<div class="layui-form-item">' +
-                                '<div class="layui-input-block">' +
-                                    '<button class="layui-btn" lay-submit="" lay-filter="edit-admin">提交</button>' +
-                                    '<button type="reset" class="layui-btn layui-btn-primary">重置</button>' +
-                                '</div>' +
-                            '</div>' +
-                        '</form>' +
-                    '</div>',
+                    resize: false,
                     success: function () {
-                        getStatus();
-                        getRoles();
+                        view(this.id).render('/system/admins/update', data).done(function() {
+                            $(window).trigger('resize');
+                        });
                     }
                 });
             }
@@ -173,137 +94,6 @@
             };
             admin.req(options);
         };
-
-        // 保存角色名 id 列表值
-        form.on('select(select-roles)', function (data) {
-            $('#roles_sg_id').val(data.value.join());
-        });
-
-        // 编辑管理员按钮
-        form.on('submit(edit-admin)', function (data) {
-            var options = {
-                data: data.field,
-                url: '/admin/admin-user/update?id=' + data.field.id,
-                method: 'patch',
-                done: function () {
-                    layer.closeAll();
-                    table.reload('system-admins');
-                    layer.msg('修改管理员成功！');
-                }
-            };
-            admin.req(options);
-            return false;
-        });
-
-        // 点击添加管理员按钮
-        $('#btn-add-admin').on('click', function () {
-            layer.open({
-                type: 1,
-                area: ['550px'],
-                title: '添加管理员',
-                content: '<div class="layui-fluid" id="add-admin">' +
-                    '<form class="layui-form" action="">' +
-                        '<div class="layui-form-item">' +
-                            '<label class="layui-form-label">账号</label>' +
-                            '<div class="layui-input-block">' +
-                                '<input type="text" name="account" required lay-verify="required" placeholder="账号" autocomplete="off" class="layui-input">' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="layui-form-item">' +
-                            '<label class="layui-form-label">密码</label>' +
-                            '<div class="layui-input-block">' +
-                                '<input type="password" name="passwd" required lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="layui-form-item">' +
-                            '<label class="layui-form-label">绑定手机</label>' +
-                            '<div class="layui-input-block">' +
-                                '<input type="text" name="mobile_phone" placeholder="绑定手机" lay-verify="phone" autocomplete="off" class="layui-input">' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="layui-form-item">' +
-                            '<label class="layui-form-label">姓名</label>' +
-                            '<div class="layui-input-block">' +
-                                '<input type="text" name="username" placeholder="姓名" autocomplete="off" class="layui-input">' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="layui-form-item">' +
-                            '<label class="layui-form-label">状态</label>' +
-                            '<div class="layui-input-block">' +
-                                '<select name="status" required lay-verify="required">' +
-                                    '<option value="0">正常</option>' +
-                                    '<option value="1">禁止</option>' +
-                                '</select>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="layui-form-item">' +
-                            '<label class="layui-form-label">角色名</label>' +
-                            '<div class="layui-input-block">' +
-                                '<input type="hidden" name="sg_id" id="roles_sg_id" required lay-verify="required"></input>' +
-                                '<select class="layui-select-dropup" id="select-roles" lay-filter="select-roles" required lay-verify="required" multiple lay-omit></select>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="layui-form-item">' +
-                            '<div class="layui-input-block">' +
-                                '<button class="layui-btn" lay-submit="" lay-filter="add-admin">提交</button>' +
-                                '<button type="reset" class="layui-btn layui-btn-primary">重置</button>' +
-                            '</div>' +
-                        '</div>' +
-                    '</form>' +
-                '</div>',
-                success: function () {
-                    // 成功后渲染状态列表
-                    var statusHTML = '',
-                        optionStatus = {
-                        url: '/admin/common/admin-stats',
-                        done: function (res) {
-                            $.each(res.data, function (i, v) {
-                                statusHTML += '<option value="' + i + '">' + v + '</option>';
-                            });
-                            $('#select-status').html(statusHTML);
-                            form.render();
-                        }
-                    };
-                    admin.req(optionStatus);
-                    // 成功后渲染角色名列表
-                    var rolesListHTML = '<option value="">请选择角色名</option>',
-                        optionRolesList = {
-                        url: '/admin/system-group/index',
-                        where: {
-                            page: 1,
-                            limit: 100
-                        },
-                        done: function (res) {
-                            console.log(res);
-                            console.log(res.data);
-                            $.each(res.data, function (i, v) {
-                                rolesListHTML += '<option value="' + v.sg_id + '">' + v.sg_name + '</option>';
-                            });
-                            $('#select-roles').html(rolesListHTML);
-                            form.render();
-                        }
-                    };
-                    admin.req(optionRolesList);
-                }
-            });
-        });
-
-        // 提交添加管理员按钮
-        form.on('submit(add-admin)', function (data) {
-            console.log(data.field);
-            var options = {
-                data: data.field,
-                url: '/admin/admin-user/create',
-                method: 'post',
-                done: function () {
-                    layer.closeAll();
-                    table.reload('system-admins');
-                    layer.msg('添加用户成功！');
-                }
-            };
-            admin.req(options);
-            return false;
-        });
 
     });
 </script>

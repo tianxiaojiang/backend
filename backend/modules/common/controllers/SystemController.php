@@ -21,6 +21,7 @@ class SystemController extends BusinessController
 
     public static $httpClient = null;
     const TIME_OUT = 20;
+    protected $module = null;
 
     public function behaviors()
     {
@@ -52,12 +53,15 @@ class SystemController extends BusinessController
             throw new CustomException(Lang::FAIL, '网关错误');
         }
 
-        $gateWay = \Yii::$app->params['modules'][$module]['gateWay'];
+        $this->module = $module;
+        $gateWay = \Yii::$app->params['modules'][$this->module]['gateWay'];
 
         $url = $gateWay . Helpers::getRequestParam('api');
         $params = Helpers::getRequestParams();
         unset($params['api']);
         unset($params['module']);
+
+        $params['sign'] = $this->signData($params);
 
         static::$httpClient = new Client();
         $headers = [];
@@ -84,4 +88,18 @@ class SystemController extends BusinessController
         return $decodeContent['data'];
     }
 
+    protected function signData($params)
+    {
+        $signKey = \Yii::$app->params['modules'][$this->module]['gateWay'];
+
+        ksort($params);
+        $str = '';
+        foreach ($params as $key => $param) {
+            $str = (empty($str)) ? $key . '=' .$params : '&' . $key . '=' . $params;
+        }
+
+        $str .= $signKey;
+
+        return md5($str);
+    }
 }

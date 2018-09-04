@@ -186,7 +186,14 @@ layui.extend({
     }
     ,'layuiAdmin'
   );
-  
+
+  // 加载自定义 CSS 文件
+  layui.link(
+    setter.base + 'style/custom.css?v=' + (admin.v + '-1')
+    , function () {}
+    , 'layuiCustom'
+  );
+
   //监听Hash改变
   window.onhashchange = function(){
     entryPage();
