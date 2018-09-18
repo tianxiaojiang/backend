@@ -71,7 +71,7 @@ layui.define(['laytpl', 'layer'], function(exports){
 
     options.data = options.data || {};
     var queryParams = ztutil.parseURL(options.url).params;
-    options.data = Object.assign(options.data, queryParams);
+    options.data = $.extend(options.data, queryParams);
     
     var signParmas = ztutil.createSign(options.data);
     options.data.time = signParmas.time;
