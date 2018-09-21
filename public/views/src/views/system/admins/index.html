@@ -28,7 +28,7 @@
                 title: '添加管理员',
                 resize: false,
                 success: function () {
-                    view(this.id).render('/system/admins/add', data).done(function () {
+                    view(this.id).render('/system/admins/add').done(function () {
                         $(window).trigger('resize');
                     });
                 }

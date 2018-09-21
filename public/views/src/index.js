@@ -11,7 +11,8 @@ layui.extend({
   setter: 'config' //配置文件
   ,admin: 'lib/admin' //核心模块
   ,view: 'lib/view' //核心模块
-}).define(['setter', 'admin'], function(exports){
+  ,ztutil: 'lib/extend/ztutil'
+}).define(['setter', 'admin', 'ztutil'], function(exports){
   var setter = layui.setter
   ,element = layui.element
   ,admin = layui.admin
@@ -200,7 +201,7 @@ layui.extend({
      //执行 {setter.MOD_NAME}.hash 下的事件
     layui.event.call(this, setter.MOD_NAME, 'hash({*})', layui.router());
   };
-  
+
   //扩展 lib 目录下的其它模块
   layui.each(setter.extend, function(index, item){
     var mods = {};

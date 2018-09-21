@@ -2,8 +2,9 @@
 
 namespace Backend\behavior;
 
+use Backend\Exception\CustomException;
+use Backend\helpers\Lang;
 use yii\base\Behavior;
-use yii\web\ForbiddenHttpException;
 
 /**
  * Created by PhpStorm.
@@ -18,7 +19,7 @@ class TokenExpire extends Behavior
         $identity = \Yii::$app->user->identity;
 
         if (empty($identity->access_token_expire) || $identity->access_token_expire < time()) {
-            throw new ForbiddenHttpException('身份已过期，请重新登录');
+            throw new CustomException(Lang::ERR_TOKEN_INVALID);
         }
     }
 }

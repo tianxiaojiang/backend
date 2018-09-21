@@ -46,7 +46,7 @@ class AdminUserController extends BusinessController
             $item['account'] = $model->account;
             $item['mobile_phone'] = $model->mobile_phone;
             $item['username'] = $model->username;
-            $item['created_at'] = date('Y-m-d H:i:s', $model->created_at);
+            $item['created_at'] = $model->created_at;
             $result[] = $item;
         }
 

@@ -170,10 +170,12 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
             $this->salt = $this->getOldAttribute('salt');
             $this->passwd = $this->getOldAttribute('passwd');
         }
+        $oldSg_id = $this->getOldAttribute('sg_id');
         if (!parent::update($runValidation, $attributes)) {
             return false;
         }
-        if (isset($this->sg_id) && ($this->sg_id != $this->getOldAttribute('sg_id'))) {
+
+        if (isset($this->sg_id) && ($this->sg_id !== $oldSg_id)) {
             $transaction = \Yii::$app->db->beginTransaction();
             SystemUserGroup::deleteAll(['ad_uid' => $this->ad_uid]);
             $sg_ids = explode(',', $this->sg_id);
@@ -239,15 +241,40 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
      */
     public function getPrivilege()
     {
-        if (empty($this->privilege)) {
-            $systemGroupIds = ArrayHelper::getColumn(SystemUserGroup::find()->where(['ad_uid' => $this->getId()])->asArray()->all(), 'sg_id');
+        if (empty($gameId = Helpers::getRequestParam('game_id'))) return [];
 
-            $systemGroupPrivs = SystemGroup::find()->where(['sg_id' => $systemGroupIds])->with('privilege')->asArray()->all();
+        if (empty($this->privilege)) {
+            //管理员拥有的角色
+            $systemGroupIds = ArrayHelper::getColumn(SystemUserGroup::find()->where(['ad_uid' => $this->getId()])->asArray()->all(), 'sg_id');
+            //游戏所对应的角色
+            $systemGroupIdsFilterGameId = ArrayHelper::getColumn(SystemGroupGame::find()->where(['game_id' => $gameId])->asArray()->all(), 'group_id');
+
+            //特殊权限所对应的角色和权限
+            $specialGroupPrivileges = SystemGroupGamePriv::find()->where(['game_id' => $gameId, 'sg_id' => $systemGroupIds])->asArray()->all();
+            //特殊角色的所有权限id
+            $specialPrivilegeIds = array_unique(array_column($specialGroupPrivileges, 'priv_id'));
+            //特殊组的id
+            $specialGroupIds = array_unique(array_column($specialGroupPrivileges, 'sg_id'));
+
+            //过滤游戏对应的角色
+            $commonGroupIds = array_intersect($systemGroupIdsFilterGameId, $systemGroupIds);
+//            var_dump($commonGroupIds);exit;
+            //去除有特殊权限的角色
+            $commonGroupIds = array_diff($commonGroupIds, $specialGroupIds);
+
+            //共同的角色权限
+            $systemGroupPrivs = SystemGroup::find()->where(['sg_id' => $commonGroupIds])->with('privilege')->asArray()->all();
+            //特殊的角色权限
+            $specialPrivileges = SystemPriv::find()->where(['sp_id' => $specialPrivilegeIds])->asArray()->all();
+
             $privilege = [];
             foreach ($systemGroupPrivs as $val)
             {
                 $privilege = array_merge($privilege, $val['privilege']);
             }
+            $privilege = array_merge($privilege, $specialPrivileges);
+//            var_dump($specialPrivileges);
+//            var_dump($privilege);exit;
             $this->privilege = $privilege;
         }
         return $this->privilege;

@@ -26,7 +26,7 @@ class SystemController extends BusinessController
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        $behaviors['systemPrivilege'] = ModulePrivileges::className();
+        $behaviors['systemPrivilege'] = ModulePrivileges::class;
         return $behaviors;
     }
 

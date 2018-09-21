@@ -2,8 +2,11 @@
 
 namespace Backend\modules\admin\controllers;
 
+use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\modules\admin\models\SystemGroup;
+use Backend\modules\admin\models\SystemGroupGame;
+use Backend\modules\admin\models\SystemGroupGamePriv;
 use Backend\modules\admin\models\SystemGroupPriv;
 use Backend\modules\admin\models\SystemMenu;
 use Backend\modules\admin\models\SystemPriv;
@@ -40,15 +43,23 @@ class SystemGroupController extends BusinessController
      */
     public function actionGroupPrivilegeList()
     {
+        $result = [
+            'games' => [],
+            'privileges' => [],
+        ];
         $groupId = intval(Helpers::getRequestParam('group_id'));
         $groupPrivilegesIds = ArrayHelper::getColumn(SystemGroupPriv::getPrivilegesByGroupId($groupId), 'sp_id');
-
         $allMenus = SystemMenu::getAllMenusByGroup();
 
         //获取分组权限
         $allPrivileges = SystemPriv::getPrivilegesByGroups($allMenus, $groupPrivilegesIds);
+        $allGames = SystemGroupGame::getAllGameMarkByGroup($groupId);
+        $result['privileges'] = $allPrivileges;
+        $result['games'] = $allGames;
 
-        return array_values($allPrivileges);
+        $result['special_privileges'] = SystemGroupGamePriv::getPrivilegesByGroupIdAndGameId($groupId, ArrayHelper::getColumn($allGames, 'game_id'));
+
+        return $result;
     }
 
     /**
@@ -59,18 +70,42 @@ class SystemGroupController extends BusinessController
     {
         $groupId = intval(Helpers::getRequestParam('group_id'));
         $params = Helpers::getRequestParams();
-        $newPrivileges = [];
-        foreach ($params as $key => $val) {
-            if (substr($key, 0, 11) == 'privileges_') {
-                array_push($newPrivileges, $val);
+
+        $db = \Yii::$app->getDb()->beginTransaction();
+        try{
+            $newPrivileges = [];
+            $newGames = [];
+            $newGamePrivileges = [];
+            foreach ($params as $key => $val) {
+                substr($key, 0, 11) == 'privileges_' && array_push($newPrivileges, $val);
+                substr($key, 0, 5) == 'game_' && array_push($newGames, $val);
+                if (substr($key, 0, 12) == 'gameSpecial_') {
+                    $gameId = str_replace('gameSpecial_', '', $key);
+                    !empty($params['game_' . $gameId]) && $newGamePrivileges[$gameId] = explode(',', $val);
+                }
             }
+
+            //通用权限修改
+            $oldPrivileges = SystemGroupPriv::getPrivilegesByGroupId($groupId);
+            $diffPrivileges = SystemGroupPriv::diffPrivList($oldPrivileges, $newPrivileges);
+            SystemGroupPriv::deleteDeductPrivileges($groupId, $diffPrivileges['delPrivilegesIds']);
+            SystemGroupPriv::createAddPrivileges($groupId, $diffPrivileges['addPrivilegesIds']);
+
+            //管理游戏修改
+            $oldGames = SystemGroupGame::getGamesByGroupId($groupId);
+            $diffGames = SystemGroupGame::diffGames($oldGames, $newGames);
+            SystemGroupGame::deleteDeductGames($groupId, $diffGames['delGamesIds']);
+            SystemGroupGame::createAddGames($groupId, $diffGames['addGamesIds']);
+
+            //特殊权限修改
+            SystemGroupGamePriv::updateGroupGamePriv($groupId, $newGamePrivileges);
+
+        } catch (\Exception $exception){
+            $db->rollBack();
+            throw new CustomException($exception->getMessage());
         }
-        $oldPrivileges = SystemGroupPriv::getPrivilegesByGroupId($groupId);
 
-        $diffPrivileges = SystemGroupPriv::diffPrivList($oldPrivileges, $newPrivileges);
-
-        SystemGroupPriv::deleteDeductPrivileges($groupId, $diffPrivileges['delPrivilegesIds']);
-        SystemGroupPriv::createAddPrivileges($groupId, $diffPrivileges['addPrivilegesIds']);
+        $db->commit();
 
         return [];
     }

@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 
 $db = [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=127.0.0.1;port=3306;dbname=backend',
+    'dsn' => 'mysql:host=127.0.0.1;port=3306;dbname=backend_2',
     'username' => 'root',
     'password' => 'root',
     'charset' => 'utf8mb4',

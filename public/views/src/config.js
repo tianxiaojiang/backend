@@ -23,6 +23,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports) {
         //自定义请求字段
         request: {
             tokenName: 'Authorization' //自动携带 token 的字段名。可设置 false 不携带。
+            ,game_id: 'game_id'
         },
         //自定义响应字段
         response: {
@@ -46,7 +47,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports) {
         //扩展的第三方模块
         extend: [
                 'echarts', //echarts 核心包
-                'echartsTheme' //echarts 主题
+                'echartsTheme' //echarts
             ],
         //主题配置
         theme: {

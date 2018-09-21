@@ -40,6 +40,6 @@ class SystemGroup extends BaseModel
 
     public function getPrivilege()
     {
-        return $this->hasMany(SystemPriv::className(), ['sp_id' => 'sp_id'])->viaTable(SystemGroupPriv::tableName(), ['sg_id' => 'sg_id']);
+        return $this->hasMany(SystemPriv::class, ['sp_id' => 'sp_id'])->viaTable(SystemGroupPriv::tableName(), ['sg_id' => 'sg_id']);
     }
 }

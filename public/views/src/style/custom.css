@@ -10,19 +10,39 @@ html #layuicss-layuiCustom{width:1989px}
 .ztfont-logo {transition:all 0.3s ease-in-out}
 .layui-logo:hover .ztfont-logo {font-size:24px;opacity:1}
 
+/* 侧边伸缩时，表格右侧出现空白列 */
+.layui-table-view .layui-table {width:100%}
+
+/* 侧边伸缩时 logo 更换 */
+.layadmin-side-shrink .layui-layout-admin .layui-logo {background-image:url(res/logo_giant.png)}
+
+/* 侧边伸缩时图标文字变大 */
+.layadmin-side-shrink .layui-nav * {font-size:22px}
+
+/* 侧边栏游戏类型下拉 */
+.layui-game-type {width: 200px;position: fixed;left: 10px;top:50px;z-index: 1002}
+.layadmin-side-shrink .layui-game-type {position: static;width: 60px;display: none}
+.layui-game-type .layui-input {border-color: #4c4f5d;background-color: #434654;color:#fff}
+.layui-game-type .layui-input:hover, .layui-game-type .layui-input:focus {border-color: #717380!important}
+.layui-game-type .layui-form-select dl {border-color: #4c4f5d;background-color: #434654;color:#fff}
+.layui-game-type .layui-form-select dl dd:hover {background-color: #525665}
+.layui-game-type .layui-form-select dl dd.layui-this {background-color: #009688;}
+
 /* 头部用户下拉 */
 .layui-layout-admin .layui-layout-right {padding:0 20px}
+/* .layui-side-menu .layui-nav {margin-top: 98px} */
+.layadmin-tabs-select.layui-nav .layui-nav-item a {font-family:'Helvetica Neue',Helvetica,'PingFang SC',\5FAE\8F6F\96C5\9ED1,Tahoma,Arial,sans-serif}
 
 /* 用户权限列表弹层 */
 .form-privileges {height:250px}
-.layui-privileges-list li {display: inline-block;width:160px;}
+.layui-privileges-list li {display: inline-block;}
 .form-privileges .layui-footer {text-align: center}
 
 /* 多选下拉框 */
 select[multiple]+.layui-form-select>.layui-select-title>input.layui-input {border-bottom:0}
 select[multiple]+.layui-form-select dd {padding:0}
 select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] {margin:0 !important;display:block;line-height:36px!important;position:relative;padding-left:26px}
-select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] span {line-height:36px !important;float:none}
+select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] span {line-height:36px !important;float:none;padding-left: 8px;}
 select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] i {position:absolute;left:10px;top:0;margin-top:9px}
 .multiSelect {line-height:normal;height:auto;padding:4px 10px;overflow:hidden;min-height:38px;margin-top:-38px;left:0;z-index:99;position:relative;background:none}
 .multiSelect a {padding:2px 5px;background:#908e8e;border-radius:2px;color:#fff;display:block;line-height:20px;height:20px;margin:2px 5px 2px 0;float:left}
@@ -39,5 +59,10 @@ select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] i {po
 /* 输入框禁用状态时添加背景色，修改文字颜色 */
 .panel-edit-admin .layui-disabled {background-color:#ececec;color:#666!important}
 
-/* 首页 gitlab 图标 */
-.layui-svg-icon-gitlab {vertical-align:middle}
+/* 首页补单数据标题 */
+.layadmin-backlog-body h3 {text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+
+/* 产品编码无边框 */
+.layui-product-id {border:0 none}
+
+.layui-btn-smi {height: 38px;line-height: 38px;}

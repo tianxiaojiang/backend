@@ -28,12 +28,12 @@
         <div class="layui-form-item">
             <label class="layui-form-label">角色名</label>
             <div class="layui-input-block">
-                <input type="hidden" name="sg_id" id="roles_sg_id" required lay-verify="required"></input>
-                <select class="layui-select-dropup" id="select-roles" lay-filter="select-roles" required lay-verify="required" multiple lay-omit></select>
+                <select class="layui-select-dropup" name="sg_id" id="select-roles" lay-filter="select-roles" required lay-verify="required" multiple lay-omit></select>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
+                <input type="hidden" id="sg_id_hide_val" value="{{d.params.role}}">
                 <input type="hidden" name="primaryKey" id="primaryKey" value="{{d.params.ad_uid}}">
                 <button class="layui-btn" lay-submit="" lay-filter="edit-admin">提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
@@ -50,7 +50,7 @@
             // 获取角色名列表
             var getRoles = function () {
                 var rolesListHTML = '<option value="">请选择角色名</option>';
-                var rolesCurrent = $('#sg_id_old').text().split('、');
+                var rolesCurrent = $('#sg_id_hide_val').val().split('、');
                 var options = {
                     url: '/admin/system-group/index',
                     page: true,
@@ -62,7 +62,7 @@
                             rolesListHTML += '<option value="' + v.sg_id + '"' + isSelected + '>' + v.sg_name + '</option>';
                         });
                         $('#select-roles').html(rolesListHTML);
-                        form.render();
+                        form.render('select', 'select-roles');
                     }
                 };
                 admin.req(options);
@@ -95,6 +95,7 @@
 
             // 编辑管理员按钮
             form.on('submit(edit-admin)', function (data) {
+                data.field.sg_id = data.field.sg_id.join(',');
                 var options = {
                     data: data.field,
                     url: '/admin/admin-user/update?id=' + data.field.primaryKey,
@@ -109,10 +110,6 @@
                 return false;
             });
 
-            // 保存角色名 id 列表值
-            form.on('select(select-roles)', function (data) {
-                $('#roles_sg_id').val(data.value.join());
-            });
 
         });
     };

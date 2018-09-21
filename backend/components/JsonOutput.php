@@ -104,21 +104,8 @@ class JsonOutput extends Component implements ResponseFormatterInterface
             $res = [
                 'code'      => 0,
                 'msg'   => '成功',
-                'data' => []
+                'data' => $response->data
             ];
-
-            if (isset($response->data['code'])) {
-                $res['code']    = empty($response->data['code']) ? $response->data['status'] : $response->data['code'];
-                if ($res['code'] == 401) {
-                    //将系统的登录错误码，统一为自定义错误码
-                    $res['code'] = Lang::ERR_TOKEN_INVALID;
-                }
-                $res['msg'] = $response->data['message'];
-                //var_dump($response->data);exit;
-                //Helpers::info('== error trace: ' . var_export($response->data['stack-trace'], true));
-            } else {
-                $res['data'] = $response->data;
-            }
 
             //有分页的将分页和数据拆分出来，适应客户端格式
             if (isset($res['data']['count']) && isset($res['data']['lists'])) {

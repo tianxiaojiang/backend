@@ -91,10 +91,11 @@ class SystemMenu extends BaseModel
         $result = [];
         foreach ($menus as $menu) {
             $parentRootId = self::getRootParentId($menus, $menu);
-            isset($result[$parentRootId]) ? : $result[$parentRootId] = [];
-            $result[$parentRootId]['sm_id']         = $menus[$parentRootId]['sm_id'];
-            $result[$parentRootId]['sm_label']      = $menus[$parentRootId]['sm_label'];
-            $result[$parentRootId]['children'][]    = $menu['sm_id'];
+            $menuKey = 'sg_' . $parentRootId;
+            isset($result[$menuKey]) ? : $result[$menuKey] = [];
+            $result[$menuKey]['sm_id']         = $menus[$parentRootId]['sm_id'];
+            $result[$menuKey]['sm_label']      = $menus[$parentRootId]['sm_label'];
+            $result[$menuKey]['children'][]    = $menu['sm_id'];
         }
 
         return $result;

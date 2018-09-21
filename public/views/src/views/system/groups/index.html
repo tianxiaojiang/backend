@@ -16,40 +16,16 @@
         </div>
     </div>
 </div>
-<script type="text/html" id="temp-edit-privileges">
-    <div class="layui-fluid">
-        <form class="layui-form form-privileges" action="" lay-filter="form-privileges">
-            {{#  layui.each(d, function(index_data, data){ }}
-            <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label"><strong id="privileges-smid">{{ data.sm_label }}</strong></label>
-                <div class="layui-input-block">
-                    <ul class="layui-privileges-list">
-                        {{#  layui.each(data.privileges, function(index_labels, labels){ }}
-                        <li>
-                            <input type="checkbox" name="privileges_{{ labels.sp_id }}" value="{{ labels.sp_id }}" lay-skin="primary"  title="{{ labels.sp_label }}" {{ labels.is_checked ? 'checked' : '' }} />
-                        </li>
-                        {{#  }); }}
-                    </ul>
-                </div>
-            </div>
-            {{#  }); }}
-            <div class="layui-form-item">
-                <div class="layui-footer">
-                    <button class="layui-btn" lay-submit lay-filter="btn-privileges">提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
-            </div>
-        </form>
-    </div>   
-</script>
+
 <div id="edit-privileges" class="layui-hide"></div>
 <script>
-layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function() {
+layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element'], function() {
 
-    var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+    var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view, element = layui.element;
 
     // 点击添加用户按钮
     $('#btn-add-group').on('click', function () {
+        var data = {};
         var index = layer.load(1);
         layer.open({
             type: 1,
@@ -84,20 +60,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function() {
         page: true
     });
 
-    // 打开权限弹层
-    var layerOpenPrivileges = function() {
-        layer.open({
-            type: 1,
-            area: ['690px', 'auto'],
-            title: '角色权限',
-            content: $('#edit-privileges').html(),
-            success: function (){
-                form.render(null, 'form-privileges');
-            }
-        });
-    };
-
-    // 获取权限列表请求
+    // 获取权限列表以及管理产品、以及附加权限
     var getPrivileges = function (groupID, callback) {
         var gdata = '';
         var options = {
@@ -132,28 +95,24 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function() {
         admin.req(options);
     };
 
-    // 监听用户权限提交
-    form.on('submit(btn-privileges)', function (data) {
-        var groupID = $('#edit-privileges').attr("group-id");
-        var options = {
-            data: data.field,
-            url: '/admin/system-group/group-privilege-update?group_id=' + groupID,
-            method: 'patch',
-            done: function (res) {
-                layer.closeAll();
-                table.reload('system-group');
-                layer.msg('修改用户权限成功！');
-            }
-        };
-        admin.req(options);
-        return false;
-    });
-
     // 监听工具条
     table.on('tool(group)', function(obj) {
         var data = obj.data;
         if (obj.event === 'permission') {
-            getPrivileges(data.sg_id, layerOpenPrivileges);
+            //getPrivileges(data.sg_id, layerOpenPrivileges);
+            layer.open({
+                type: 1,
+                id: 'LAY-system-groups-update-privileges',
+                title: '修改权限',
+                resize: false,
+                area: ['690px', '700px'],
+                success: function () {
+                    view(this.id).render('/system/groups/privileges', data).done(function () {
+                        layer.close(index);
+                        $(window).trigger('resize');
+                    });
+                }
+            });
         } else if (obj.event === 'del') {
             layer.confirm('是否要删除角色：<strong>' + data.sg_name + '</strong> ？', {
             }, function(index) {
@@ -175,6 +134,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function() {
             });
         }
     });
-    
+
+
 });
 </script>

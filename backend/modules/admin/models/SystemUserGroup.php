@@ -8,8 +8,9 @@
 
 namespace Backend\modules\admin\models;
 
+use Backend\modules\common\models\BaseModel;
 
-class SystemUserGroup extends \yii\db\ActiveRecord
+class SystemUserGroup extends BaseModel
 {
     static public function tableName() {
         return 'system_user_group';

@@ -19,42 +19,18 @@
             </li>
         </ul>
         <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
-            <!-- <li class="layui-nav-item" lay-unselect>
-                <a lay-href="app/message/" layadmin-event="message">
-                    <i class="layui-icon layui-icon-notice"></i>
-                    如果有新消息，则显示小圆点
-                    <script type="text/html" template lay-url="./json/message/new.js">
-                    {{# if(d.data.newmsg){ }}
-                    <span class="layui-badge-dot"></span>
-                    {{# } }}
-                    </script>
-                </a>
-            </li>
-            <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                <a href="javascript:;" layadmin-event="theme">
-                    <i class="layui-icon layui-icon-theme"></i>
-                </a>
-            </li>
-            <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                <a href="javascript:;" layadmin-event="note">
-                    <i class="layui-icon layui-icon-note"></i>
-                </a>
-            </li> -->
-            <script type="text/html" id="temp-username">
+            <script type="text/html" id="LAY-temp-username">
                 <a href="javascript:;">
                     <cite>{{ d.username }}</cite>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a lay-href="set/base/website">基本资料</a></dd>
+                    <!--<dd><a lay-href="set/base/website">基本资料</a></dd>
                     <dd><a lay-href="set/security/">安全设置</a></dd>
-                    <hr>
+                    <hr>-->
                     <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
                 </dl>
             </script>
-            <li class="layui-nav-item" lay-unselect id="view-username"></li>
-            <!-- <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                <a href="javascript:;" layadmin-event="about"><i class="layui-icon layui-icon-more-vertical"></i></a>
-            </li> -->
+            <li class="layui-nav-item" lay-unselect id="LAY-view-username"></li>
             <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-unselect>
                 <a href="javascript:;" layadmin-event="more"><i class="layui-icon layui-icon-more-vertical"></i></a>
             </li>
@@ -63,29 +39,33 @@
     <!-- 侧边菜单 -->
     <div class="layui-side layui-side-menu">
         <div class="layui-side-scroll">
-            <script type="text/html" template lay-url="/admin/system-menu/show-menus" lay-done="layui.element.render('nav', 'layadmin-system-side-menu');" id="TPL_layout">
+            <div class="layui-form layui-game-type" id="LAY-view-game-type" lay-filter="layadmin-game-type">
+                <select name="game-type" lay-filter="game-type" id="LAY-game-type-list">
+                </select>
+            </div>
+            <script type="text/html" id="LAY-temp-side-menu">
                 <div class="layui-logo" lay-href="">
                     <span><!-- <i class="ztfont ztfont-logo"></i> -->{{ layui.setter.name || 'layuiAdmin' }}</span>
                 </div>
-                <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+                <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu" style="margin-top:90px">
                     {{# var path = layui.router().path ,pathURL = layui.admin.correctRouter(path.join('/')) ,dataName = layui.setter.response.dataName; layui.each(d[dataName], function(index, item){ var hasChildren = typeof item.list === 'object' && item.list.length > 0 ,classSelected = function(){ var match = path[0] == item.name || (index == 0 && !path[0]) || (item.jump && pathURL == layui.admin.correctRouter(item.jump)); if(match){ return hasChildren ? 'layui-nav-itemed' : 'layui-this'; } return ''; } ,url = (item.jump && typeof item.jump === 'string') ? item.jump : item.name; }}
                     <li data-name="{{ item.name || '' }}" data-jump="{{ item.jump || '' }}" class="layui-nav-item {{ classSelected() }}">
                         <a href="javascript:;" {{ hasChildren ? '' : 'lay-href="'+ url + '"' }} lay-tips="{{ item.title }}" lay-direction="2">
-              <i class="layui-icon {{ item.icon }}"></i>
-              <cite>{{ item.title }}</cite>
-            </a> {{# if(hasChildren){ }}
+                        <i class="layui-icon {{ item.icon }}"></i>
+                        <cite>{{ item.title }}</cite>
+                        </a> {{# if(hasChildren){ }}
                         <dl class="layui-nav-child">
                             {{# layui.each(item.list, function(index2, item2){ var hasChildren2 = typeof item2.list == 'object' && item2.list.length > 0 ,classSelected2 = function(){ var match = (path[0] == item.name && path[1] == item2.name) || (item2.jump && pathURL == layui.admin.correctRouter(item2.jump)); if(match){ return hasChildren2 ? 'layui-nav-itemed' : 'layui-this'; } return ''; } ,url2 = (item2.jump && typeof item2.jump === 'string') ? item2.jump : [item.name, item2.name, ''].join('/'); }}
                             <dd data-name="{{ item2.name || '' }}" data-jump="{{ item2.jump || '' }}" {{ classSelected2() ? ( 'class="'+ classSelected2() + '"') : '' }}>
-                                <a href="javascript:;" {{ hasChildren2 ? '' : 'lay-href="'+ url2 + '"' }}>{{ item2.title }}</a> {{# if(hasChildren2){ }}
-                                <dl class="layui-nav-child">
-                                    {{# layui.each(item2.list, function(index3, item3){ var match = (path[0] == item.name && path[1] == item2.name && path[2] == item3.name) || (item3.jump && pathURL == layui.admin.correctRouter(item3.jump)) ,url3 = (item3.jump && typeof item3.jump === 'string') ? item3.jump : [item.name, item2.name, item3.name].join('/') }}
-                                    <dd data-name="{{ item3.name || '' }}" data-jump="{{ item3.jump || '' }}" {{ match ? 'class="layui-this"' : '' }}>
-                                        <a href="javascript:;" lay-href="{{ url3 }}" {{ item3.iframe ? 'lay-iframe="true"' : '' }}>{{ item3.title }}</a>
-                                    </dd>
-                                    {{# }); }}
-                                </dl>
-                                {{# } }}
+                            <a href="javascript:;" {{ hasChildren2 ? '' : 'lay-href="'+ url2 + '"' }}>{{ item2.title }}</a> {{# if(hasChildren2){ }}
+                            <dl class="layui-nav-child">
+                                {{# layui.each(item2.list, function(index3, item3){ var match = (path[0] == item.name && path[1] == item2.name && path[2] == item3.name) || (item3.jump && pathURL == layui.admin.correctRouter(item3.jump)) ,url3 = (item3.jump && typeof item3.jump === 'string') ? item3.jump : [item.name, item2.name, item3.name].join('/') }}
+                                <dd data-name="{{ item3.name || '' }}" data-jump="{{ item3.jump || '' }}" {{ match ? 'class="layui-this"' : '' }}>
+                                <a href="javascript:;" lay-href="{{ url3 }}" {{ item3.iframe ? 'lay-iframe="true"' : '' }}>{{ item3.title }}</a>
+                                </dd>
+                                {{# }); }}
+                            </dl>
+                            {{# } }}
                             </dd>
                             {{# }); }}
                         </dl>
@@ -93,7 +73,16 @@
                     </li>
                     {{# }); }}
                 </ul>
+                <ul class="layui-nav layui-nav-tree layui-hide" lay-shrink="all">
+                    <li data-dame="icons" data-jump="icons/list" class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;" lay-href="icons/list" lay-tips="图标列表">
+                            <i class="layui-icon layui-icon-list"></i>
+                            <cite>图标列表</cite>
+                        </a>
+                    </li>
+                </ul>
             </script>
+            <div id="LAY-view-side-menu" lay-filter="layadmin-side-menu"></div>
         </div>
     </div>
     <!-- 页面标签 -->
@@ -129,17 +118,3 @@
     <!-- 辅助元素，一般用于移动设备下遮罩 -->
     <div class="layadmin-body-shade" layadmin-event="shade"></div>
 </div>
-
-<script>
-    // 获取用户名
-    layui.use('laytpl', function(){
-        var laytpl = layui.laytpl;
-            data = {username: layui.data('layuiAdmin').username},
-            tplUsername = document.getElementById('temp-username'),
-            view = document.getElementById('view-username');
-        getTpl = tplUsername.innerHTML;
-        laytpl(getTpl).render(data, function(html){
-            view.innerHTML = html;
-        });
-    });
-</script>

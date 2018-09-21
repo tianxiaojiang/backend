@@ -26,7 +26,12 @@ class Privilege extends Behavior
 
         $user = \Yii::$app->user->identity;
 
-        //获取用户所有的权限菜单
+        //去除对admin的权限控制和通用接口的控制
+        if ($user->getId() == 1 || $path === '/common/system/index' || $path === '/admin/game/index'){
+            return true;
+        }
+
+        //获取用户所有的权限列表
         $systemPrivileges = $user->getPrivilege();
 
         $systemPrivilegesPaths = array_map(function ($col) {

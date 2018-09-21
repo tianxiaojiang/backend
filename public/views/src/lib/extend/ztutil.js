@@ -53,13 +53,19 @@ layui.define('admin', function(exports) {
             }
             return false;
         },
+        getGameId: function () {
+            return layui.data('layuiAdmin').game_id;
+        },
         // create sign
         createSign: function(param) {
             if (param === undefined || param === '' || param === 0) {
                 param = {};
             }
             var time = obj.getTimestamp();
+            var game_id = obj.getGameId();
             param.time = time;
+            (game_id) && (param.game_id = game_id);
+
             param = obj.objSort(param);
             var str = '';
             for (var i in param) {
@@ -74,7 +80,8 @@ layui.define('admin', function(exports) {
             str += ('&access_token=' + obj.getToken());
             param.sign = obj.MD5(str);
             param.time = time;
-            return  param;
+
+            return param;
         }
     };
 

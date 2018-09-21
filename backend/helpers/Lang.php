@@ -16,6 +16,7 @@ class Lang
     const ERR_TIME                  = 0x1004;
     const ERR_SIGN                  = 0x1005;
     const ERR_NO_ACCESS             = 0x1006;
+    const ERR_STATUS_FORBIDDEN      = 0x1007;
 
     static $errMsg = [
         self::SUCCESS               => '操作成功',
@@ -25,6 +26,7 @@ class Lang
         self::ERR_TIME              => '操作过期',
         self::ERR_SIGN              => '签名错误',
         self::ERR_NO_ACCESS         => '无权限访问',
+        self::ERR_STATUS_FORBIDDEN  => '账号被禁止，请联系管理员！',
     ];
 
 

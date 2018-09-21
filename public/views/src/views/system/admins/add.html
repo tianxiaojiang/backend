@@ -1,4 +1,4 @@
-<script type="text/html" template lay-done="addAdminCallback(d);">
+<script type="text/html" template>
     <form class="layui-form" action="">
         <div class="layui-form-item">
             <label class="layui-form-label">账号</label>
@@ -28,8 +28,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">角色名</label>
             <div class="layui-input-block">
-                <input type="hidden" name="sg_id" id="roles_sg_id" required lay-verify="required"></input>
-                <select class="layui-select-dropup" id="select-roles" lay-filter="select-roles" required lay-verify="required" multiple lay-omit></select>
+                <select name="sg_id" class="layui-select-dropup" id="select-roles" lay-filter="select-roles" required lay-verify="required" multiple lay-omit></select>
             </div>
         </div>
         <div class="layui-form-item">
@@ -41,66 +40,65 @@
     </form>
 </script>
 <script>
-    var addAdminCallback = function (d) {
-        layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
 
-            var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
 
-            // 渲染管理员状态列表
-            var renderStatus = function () {
-                var statusHTML = '',
-                    optionStatus = {
-                        url: '/admin/common/admin-stats',
-                        done: function (res) {
-                            $.each(res.data, function (i, v) {
-                                statusHTML += '<option value="' + i + '">' + v + '</option>';
-                            });
-                            $('#select-status').html(statusHTML);
-                            form.render();
-                        }
-                    };
-                admin.req(optionStatus);
-            };
-
-            // 渲染管理员角色名列表
-            var renderRoleList = function () {
-                var rolesListHTML = '<option value="">请选择角色名</option>',
-                    optionRolesList = {
-                        url: '/admin/system-group/index',
-                        where: {
-                            page: 1,
-                            limit: 100
-                        },
-                        done: function (res) {
-                            $.each(res.data, function (i, v) {
-                                rolesListHTML += '<option value="' + v.sg_id + '">' + v.sg_name + '</option>';
-                            });
-                            $('#select-roles').html(rolesListHTML);
-                            form.render();
-                        }
-                    };
-                admin.req(optionRolesList);
-            };
-
-            renderStatus();
-            renderRoleList();
-
-            // 提交添加管理员按钮
-            form.on('submit(add-admin)', function (data) {
-                var options = {
-                    data: data.field,
-                    url: '/admin/admin-user/create',
-                    method: 'post',
-                    done: function () {
-                        layer.closeAll();
-                        table.reload('system-admins');
-                        layer.msg('添加用户成功！');
+        // 渲染管理员状态列表
+        var renderStatus = function () {
+            var statusHTML = '',
+                optionStatus = {
+                    url: '/admin/common/admin-stats',
+                    done: function (res) {
+                        $.each(res.data, function (i, v) {
+                            statusHTML += '<option value="' + i + '">' + v + '</option>';
+                        });
+                        $('#select-status').html(statusHTML);
+                        form.render();
                     }
                 };
-                admin.req(options);
-                return false;
-            });
+            admin.req(optionStatus);
+        };
 
+        // 渲染管理员角色名列表
+        var renderRoleList = function () {
+            var rolesListHTML = '<option value="">请选择角色名</option>',
+                optionRolesList = {
+                    url: '/admin/system-group/index',
+                    where: {
+                        page: 1,
+                        limit: 100
+                    },
+                    done: function (res) {
+                        $.each(res.data, function (i, v) {
+                            rolesListHTML += '<option value="' + v.sg_id + '">' + v.sg_name + '</option>';
+                        });
+                        $('#select-roles').html(rolesListHTML);
+                        form.render();
+                    }
+                };
+            admin.req(optionRolesList);
+        };
+
+        renderStatus();
+        renderRoleList();
+
+        // 提交添加管理员按钮
+        form.on('submit(add-admin)', function (data) {
+            data.field.sg_id = data.field.sg_id.join(',');
+            var options = {
+                data: data.field,
+                url: '/admin/admin-user/create',
+                method: 'post',
+                done: function () {
+                    layer.closeAll();
+                    table.reload('system-admins');
+                    layer.msg('添加用户成功！');
+                }
+            };
+            admin.req(options);
+            return false;
         });
-    };
+
+    });
 </script>
