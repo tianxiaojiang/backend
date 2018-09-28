@@ -135,7 +135,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     }
 
     public function insert($runValidation = true, $attributes = null) {
-        $newSalt = Helpers::getStrBylength();
+        $newSalt = Helpers::getStrBylength(4);
         $this->salt = $newSalt;
         $this->passwd = md5(md5($this->passwd) . $newSalt);
         $ad_uid = parent::insert($runValidation, $attributes);

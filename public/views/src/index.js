@@ -25,7 +25,7 @@ layui.extend({
     ,path = router.path
     ,pathURL = admin.correctRouter(router.path.join('/'))
 
-    
+
     
     //默认读取主页
     if(!path.length) path = [''];
@@ -123,7 +123,7 @@ layui.extend({
     
     reset();
   }
-  
+
   //入口页面
   ,entryPage = function(fn){
     var router = layui.router()
@@ -149,7 +149,7 @@ layui.extend({
         admin.pageType = 'alone';
       });
     } else { //后台框架页面
-      
+
       //强制拦截未登入
       if(setter.interceptor){
         var local = layui.data(setter.tableName);
@@ -178,7 +178,7 @@ layui.extend({
   
   ,APP_BODY = '#LAY_app_body', FILTER_TAB_TBAS = 'layadmin-layout-tabs'
   ,$ = layui.$, $win = $(window);
-  
+
   //初始主体结构
   layui.link(
     setter.base + 'style/admin.css?v='+ (admin.v + '-1')
