@@ -12,6 +12,13 @@ use \Backend\modules\common\models\BaseModel;
 
 class Game extends BaseModel
 {
+    const GAME_STAT_NORMAL = 0;//启用中
+    const GAME_STAT_FORBIDDEN = 1;//已禁用
+
+    public static $_status = [
+        self::GAME_STAT_NORMAL => '正常',
+        self::GAME_STAT_FORBIDDEN => '禁用中',
+    ];
 
     public function scenarios()
     {
@@ -39,8 +46,8 @@ class Game extends BaseModel
         return ['game_id', 'name', 'alias', 'status', 'order_by', 'updated_at', 'created_at'];
     }
 
-    public static function getAllGames()
+    public static function getAllGames($where = [], $fields = '*')
     {
-        return self::find()->asArray()->all();
+        return self::find()->select($fields)->where($where)->indexBy('game_id')->asArray()->all();
     }
 }

@@ -1,0 +1,80 @@
+<script type="text/html" template>
+    <form class="layui-form" action="">
+        <div class="layui-form-item layui-hide">
+            <label class="layui-form-label">系统编号</label>
+            <div class="layui-input-block"><input type="text" class="layui-input" name="id" required lay-verify="required" placeholder="角色编号" value="{{ d.params.systems_id }}" autocomplete="off" class="layui-input" /></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">系统名</label>
+            <div class="layui-input-block"><input type="text" class="layui-input" name="name" required lay-verify="required" placeholder="系统名" value="{{d.params.name}}" autocomplete="off" class="layui-input" /></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">URL</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="url" required lay-verify="url" placeholder="URL" value="{{d.params.url}}" autocomplete="off" class="layui-input" /></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-block">
+                <textarea class="layui-input" name="description" placeholder="系统简要描述">{{d.params.description}}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-block">
+                <select name="status" required lay-verify="required" id="system-select-status"></select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="hidden" id="system_old_status" value="{{d.params.status}}">
+                <button class="layui-btn" lay-submit="" lay-filter="edit-system">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</script>
+<script>
+    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+
+        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+
+        // 获取状态列表
+        var getStatus = function () {
+            var statusHTML = '';
+            var options = {
+                url: '/admin/common/system-stats',
+                done: function (res) {
+                    var old_status = $('#system_old_status').val();
+                    $.each(res.data.stats, function (i, v) {
+                        // 当前状态是否为选中状态
+                        var selectedSource = parseInt(i) === parseInt(old_status) ? ' selected' : '';
+                        statusHTML += '<option value="' + i + '"' + selectedSource + '>' + v + '</option>';
+                    });
+                    $('#system-select-status').html(statusHTML);
+                    form.render();
+                }
+            };
+            admin.req(options);
+        };
+        $(document).ready(function (e) {
+            getStatus();
+        });
+
+        // 编辑管理员按钮
+        form.on('submit(edit-system)', function (data) {
+            var options = {
+                data: data.field,
+                url: '/admin/system/update?id=' + data.field.id,
+                method: 'patch',
+                done: function () {
+                    layer.closeAll();
+                    table.reload('systems-list-id');
+                    layer.msg('修改成功！');
+                }
+            };
+            admin.req(options);
+            return false;
+        });
+    });
+</script>

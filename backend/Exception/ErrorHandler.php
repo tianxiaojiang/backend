@@ -33,10 +33,11 @@ class ErrorHandler extends \yii\base\ErrorHandler
 
         } else {
             $info = $exception->getTraceAsString();
-            \Yii::info("______php error code: " . $code);
-            \Yii::info("______php error msg: " . $msg);
-            \Yii::info('______php error info: ' . $info);
-            echo json_encode(array('code' => 500, 'msg'  => '服务异常'));
+            \Yii::info("unknown error code: " . $code);
+            \Yii::info("unknown error msg: " . $msg);
+            \Yii::info('unknown error info: ' . $info);
+
+            echo json_encode(array('code' => 500, 'msg'  => $msg));
         }
 
         exit;

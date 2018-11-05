@@ -43,11 +43,19 @@ layui.define(['laytpl', 'layer'], function(exports){
 
   //清除 token，并跳转到登入页
   view.exit = function(){
-    //清空本地记录的 token
+    //清空本地记录的 token及所有数据
     layui.data(setter.tableName, {
       key: setter.request.tokenName
       ,remove: true
     });
+      layui.data(setter.tableName, {
+          key: 'username'
+          ,remove: true
+      });
+      layui.data(setter.tableName, {
+          key: 'sid'
+          ,remove: true
+      });
 
     //跳转到登入页
     location.hash = '/user/login';

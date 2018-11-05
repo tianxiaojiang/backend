@@ -11,4 +11,4 @@ use yii\helpers\ArrayHelper;
 $db = [
 ];
 
-return file_exists('./db-local.php') ? ArrayHelper::merge($db, require_once('./db-local.php')) : $db;
+return file_exists(__DIR__ . '/db-local.php') ? ArrayHelper::merge($db, require_once(__DIR__ . '/db-local.php')) : $db;

@@ -3,9 +3,7 @@
 namespace Backend\modules\admin\controllers;
 
 use Backend\modules\admin\models\Game;
-use Backend\modules\admin\models\SystemGroupGame;
 use Backend\modules\common\controllers\BusinessController;
-use yii\helpers\ArrayHelper;
 
 /**
  * Created by PhpStorm.
@@ -17,13 +15,20 @@ class GameController extends BusinessController
 {
     public $modelClass = 'Backend\modules\admin\models\Game';
 
-    //过滤当前用户的所有角色下的游戏id
-    public function prepareDataProvider()
+    public function formatModel($models)
     {
-        $groups = \Yii::$app->user->identity->systemGroup;
-        $gameIds = SystemGroupGame::find()->where(['group_id' => ArrayHelper::getColumn($groups, 'sg_id')])->asArray()->all();
-        $this->query = Game::find()->where(['game_id' => ArrayHelper::getColumn($gameIds, 'game_id')]);
+        $result = [];
+        foreach ($models as $model) {
+            $result[] = [
+                'game_id' => $model->game_id,
+                'name' => $model->name,
+                'status' => Game::$_status[$model->status],
+                'alias' => $model->alias,
+                'updated_at' => $model->updated_at,
+                'created_at' => $model->created_at,
+            ];
+        }
 
-        return parent::prepareDataProvider();
+        return $result;
     }
 }

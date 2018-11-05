@@ -18,7 +18,7 @@ class AdminUserController extends BusinessController
 
     public function prepareDataProvider()
     {
-        $this->query = Admin::find()->select(['ad_uid', 'sg_id', 'account', 'mobile_phone', 'username', 'status', 'created_at']);
+        $this->query = Admin::find()->select(['ad_uid', 'account', 'mobile_phone', 'username', 'status', 'created_at']);
         $status = Helpers::getRequestParam('status');
         $account = Helpers::getRequestParam('account');
 

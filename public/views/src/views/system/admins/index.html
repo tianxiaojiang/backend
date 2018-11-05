@@ -6,9 +6,9 @@
                 <div class="layui-btn-container">
                     <button class="layui-btn" id="btn-add-admin">添加</button>
                 </div>
-                <table class="layui-table" id="system-admins" lay-size="lg" lay-filter="admins-list"></table>
+                <table class="layui-table" id="system-admins-id" lay-size="lg" lay-filter="admins-list-filter"></table>
                 <script type="text/html" id="admin-option">
-                    <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-sm" lay-event="edit-admin-event">编辑</a>
                     <a class="layui-btn layui-btn-sm layui-btn-danger" data-type="t" lay-event="del">删除</a>
                 </script>
             </div>
@@ -28,7 +28,7 @@
                 title: '添加管理员',
                 resize: false,
                 success: function () {
-                    view(this.id).render('/system/admins/add').done(function () {
+                    view(this.id).render('system/admins/add').done(function () {
                         $(window).trigger('resize');
                     });
                 }
@@ -37,7 +37,7 @@
 
         // 渲染管理员列表
         table.render({
-            elem: '#system-admins',
+            elem: '#system-admins-id',
             url: '/admin/admin-user/index',
             where: ztutil.createSign(),
             size: 'lg',
@@ -59,21 +59,21 @@
         });
 
         // 监听工具条
-        table.on('tool(admins-list)', function (obj) {
+        table.on('tool(admins-list-filter)', function (obj) {
             var data = obj.data;
             if (obj.event === 'del') {
                 layer.confirm('是否要删除管理员：<strong>' + data.account + '</strong> ？', {
                 }, function (index) {
                     deleteAdmin(data.ad_uid, obj);
                 });
-            } else if (obj.event === 'edit') {
+            } else if (obj.event === 'edit-admin-event') {
                 view.popup({
                     type: 1,
                     id: 'LAY-system-admins-update',
                     title: '修改管理员',
                     resize: false,
                     success: function () {
-                        view(this.id).render('/system/admins/update', data).done(function() {
+                        view(this.id).render('system/admins/update', data).done(function() {
                             $(window).trigger('resize');
                         });
                     }

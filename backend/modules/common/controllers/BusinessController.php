@@ -69,10 +69,8 @@ class BusinessController extends CommonController
         $behaviors = parent::behaviors();
 
         //验证时间的行为
-        $behaviors['validateTime']  = ValidateTime::className();
-        $behaviors['TokenExpire']   = TokenExpire::className();
-        $behaviors['VerifySign']    = VerifySign::className();
-        $behaviors['Privilege']    = Privilege::className();
+        $behaviors['validateTime']  = ValidateTime::class;
+        $behaviors['Privilege']    = Privilege::class;
 
         return $behaviors;
     }
@@ -82,8 +80,8 @@ class BusinessController extends CommonController
         parent::beforeAction($action);
 
         $this->validateTime();//验证请求时间戳
-        $this->validateTokenExpire();//验证请求token有效期
-        $this->verifySignature();//验证签名
+        //$this->validateTokenExpire();//验证请求token有效期
+        //$this->verifySignature();//验证签名
         $this->canAccess();//验证访问权限
 
         return true;

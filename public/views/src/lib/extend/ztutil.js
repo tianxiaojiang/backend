@@ -56,6 +56,9 @@ layui.define('admin', function(exports) {
         getGameId: function () {
             return layui.data('layuiAdmin').game_id;
         },
+        getSid: function () {
+            return layui.data('layuiAdmin').sid;
+        },
         // create sign
         createSign: function(param) {
             if (param === undefined || param === '' || param === 0) {
@@ -63,10 +66,12 @@ layui.define('admin', function(exports) {
             }
             var time = obj.getTimestamp();
             var game_id = obj.getGameId();
+            var sid = obj.getSid();
             param.time = time;
             (game_id) && (param.game_id = game_id);
-
+            (sid) && (param.sid = sid);
             param = obj.objSort(param);
+            // console.log(param);
             var str = '';
             for (var i in param) {
                 if (str === '') {

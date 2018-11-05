@@ -2,11 +2,6 @@
 
 namespace Backend\modules\admin\controllers;
 
-use Backend\Exception\CustomException;
-use Backend\helpers\Helpers;
-use Backend\helpers\Lang;
-use Backend\modules\admin\models\AccessToken;
-use Backend\modules\admin\models\Admin;
 use Backend\modules\common\controllers\BaseController;
 
 /**
@@ -17,7 +12,7 @@ use Backend\modules\common\controllers\BaseController;
  */
 class TokenController extends BaseController
 {
-    public $modelClass = 'Backend\modules\admin\models\AccessToken';
+    public $modelClass = 'Backend\modules\admin\models\Admin';
 
     public function actions()
     {
@@ -26,23 +21,5 @@ class TokenController extends BaseController
                 'class' => 'juliardi\captcha\CaptchaAction'
             ],
         ];
-    }
-
-    /**
-     * 获取token
-     */
-    public function actionGet()
-    {
-        $model = AccessToken::findOne(['account' => Helpers::getRequestParam('account')]);
-
-        if (empty($model)) {
-            throw new CustomException(Lang::ERR_LOGIN_FAIL);
-        }
-
-        if ($model->status != Admin::STATUS_NORMAL) {
-            throw new CustomException(Lang::ERR_STATUS_FORBIDDEN);
-        }
-
-        return $model->generateToken();
     }
 }

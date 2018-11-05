@@ -1,0 +1,76 @@
+<script type="text/html" template lay-url="/admin/common/game-stats" lay-done="editGameCallback(d);">
+    <div class="layui-fluid">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">游戏ID</label>
+                <div class="layui-input-block">
+                    <input type="text" name="game_id" required  lay-verify="required" placeholder="游戏ID" value="{{ d.params.game_id }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">游戏名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" required  lay-verify="required" placeholder="游戏名" value="{{ d.params.name }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">英文代号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="alias" placeholder="英文代号" value="{{ d.params.alias }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-block">
+                    <select name="status" id="update-game-status" required lay-verify="required">
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="hidden" id="statValue" name="showStat" value="{{ d.params.status }}">
+                    <button class="layui-btn" lay-submit="" lay-filter="edit-game">提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+<script>
+    var editGameCallback = function (d) {
+        layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+
+            var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+
+            var renderStat = function(){
+                console.log(d);
+                var statSelectHtml = '';
+                var oldValue = $('#statValue').val();
+                $.each(d.data.stats, function (k, v) {
+                    var selectedHtml = (oldValue == v) ? ' selected' : '';
+                    statSelectHtml += '<option value="'+ k +'"' + selectedHtml + '>'+ v +'</option>';
+                });
+                $('#update-game-status').html(statSelectHtml);
+                form.render();
+            }
+            renderStat();
+
+            // 监听角色修改提交
+            form.on('submit(edit-game)', function (data) {
+                var options = {
+                    data: data.field,
+                    url: '/admin/game/update?id=' + data.field.game_id,
+                    method: 'patch',
+                    done: function () {
+                        layer.closeAll();
+                        table.reload('system-game');
+                        layer.msg('修改游戏成功！');
+                    }
+                };
+                admin.req(options);
+                return false;
+            });
+
+        });
+    };
+</script>

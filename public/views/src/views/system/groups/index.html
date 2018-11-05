@@ -17,7 +17,6 @@
     </div>
 </div>
 
-<div id="edit-privileges" class="layui-hide"></div>
 <script>
 layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element'], function() {
 
@@ -99,15 +98,14 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element'], fun
     table.on('tool(group)', function(obj) {
         var data = obj.data;
         if (obj.event === 'permission') {
-            //getPrivileges(data.sg_id, layerOpenPrivileges);
             layer.open({
                 type: 1,
                 id: 'LAY-system-groups-update-privileges',
                 title: '修改权限',
-                resize: false,
+                resize: true,
                 area: ['690px', '700px'],
                 success: function () {
-                    view(this.id).render('/system/groups/privileges', data).done(function () {
+                    view(this.id).render('system/groups/privileges', data).done(function () {
                         layer.close(index);
                         $(window).trigger('resize');
                     });

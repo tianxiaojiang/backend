@@ -1,0 +1,262 @@
+<title>权限管理</title>
+<script>
+    //加载css
+    layui.link('/css/bootstrapStyle.css');
+</script>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-row">
+                    <div class="layui-col-sm4 ztree">
+                        <h3 class="layui-code-h3">权限结构</h3>
+                        <div id="privilegeTreeBox"></div>
+                    </div>
+                    <div class="layui-col-sm3">
+                        <h3>权限详情</h3>
+                        <div class="layui-fluid">
+                            <form class="layui-form" action="">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">权限名</label>
+                                    <div class="layui-input-block"><input type="text" name="sp_label" required  lay-verify="required" placeholder="权限名" autocomplete="off" class="layui-input" /></div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">关联菜单</label>
+                                    <div class="layui-input-block">
+                                        <select name="sm_id" id="privilege-sm-id" required lay-verify="required"></select>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">对应module</label>
+                                    <div class="layui-input-block"><input type="text" name="sp_module" required  lay-verify="required" placeholder="对应module" autocomplete="off" class="layui-input" /></div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">对应controller</label>
+                                    <div class="layui-input-block"><input type="text" name="sp_controller" required  lay-verify="required" placeholder="对应controller" autocomplete="off" class="layui-input" /></div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">对应action</label>
+                                    <div class="layui-input-block"><input type="text" name="sp_action" required  lay-verify="required" placeholder="对应action" autocomplete="off" class="layui-input" /></div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block">
+                                        <input type="hidden" name="sp_id"/>
+                                        <input type="hidden" name="sp_parent_id"/>
+                                        <button class="layui-btn" lay-submit="" lay-filter="save-privilege">修改</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqueryZtreeExedit'], function() {
+
+    var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view, element = layui.element, jqueryZtreeCore = layui.jqueryZtreeCore;
+
+    //新加节点的临时id
+    var newTmpId = -1;
+
+    //获取菜单下拉列表
+    var getMenuSelected = function () {
+        var options = {
+            url: '/admin/common/menu-select',
+            method: 'get',
+            done: function (res) {
+                var menuList = res.data;
+                var menuSelectHtml = '';
+                $.each(menuList, function (k, v) {
+                    menuSelectHtml += '<option value="'+ v.sm_id +'">'+ v.sm_label +'</option>';
+                });
+                $('#privilege-sm-id').html(menuSelectHtml);
+                form.render();
+            }
+        };
+        admin.req(options);
+    }
+    getMenuSelected();
+
+    //监听保存
+    form.on('submit(save-privilege)', function (data) {
+        var action = (data.field.sp_id && parseInt(data.field.sp_id) !== newTmpId) ? 'update?id=' + data.field.sp_id : 'create';
+        var tips = (action === 'create') ? '添加成功' : '修改成功';
+        if (parseInt(data.field.sp_id) === newTmpId) {
+            delete data.field.sp_id;
+        }
+        var options = {
+            data: data.field,
+            url: '/admin/privilege/' + action,
+            method: (action === 'create' ? 'post' : 'patch'),
+            done: function (res) {
+                if (action === 'create') {//如果是添加，将返回的id同步到表单
+                    $('input[name="sp_id"]').val(res.data.sp_id);
+                }
+                //同步表单数据到节点中
+                synchronizationForm2TreeNode();
+                layer.msg(tips);
+            }
+        };
+        admin.req(options);
+        return false;
+    });
+
+    var setting = {
+        view: {
+            addHoverDom: addHoverDom,
+            removeHoverDom: removeHoverDom,
+            selectedMulti: false
+        },
+        check: {
+            enable: false
+        },
+        data: {
+            key: {
+                name: "sp_label"
+            },
+            simpleData: {
+                enable: true,
+                idKey: "sp_id",
+                pIdKey: "sp_parent_id"
+            }
+        },
+        edit: {
+            enable: true
+        },
+        callback: {
+            beforeEditName: zTreeBeforeEditName,
+            beforeRemove: zTreeBeforeRemove,
+            onClick: zTreeOnClick
+        }
+    };
+ 
+    var zNodes = function(){
+        var options = {
+            url: '/admin/privilege/index',
+            method: 'get',
+            done: function (res) {
+                jqueryZtreeCore.init($("#privilegeTreeBox"), setting, res.data);
+            }
+        }
+        admin.req(options);
+    }
+    zNodes(); 
+
+    //鼠标监听
+    function addHoverDom(treeId, treeNode) {
+        if (!checkAllNodeHasSaved) {
+            view.error('有新节点未保存，请保存或删除后再添加！');
+        }
+        var btn = $("#addBtn_" + treeNode.tId);
+        //添加样式
+        var sObj = $("#" + treeNode.tId + "_span");
+        if (treeNode.editNameFlag || btn.length>0) return;
+        var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+            + "' title='新建菜单' onfocus='this.blur();'></span>";
+        sObj.after(addStr);
+        //添加临时节点后，渲染新节点到表单中
+        if (btn) btn.bind("click", function(){
+            var zTree = jqueryZtreeCore.getZTreeObj("privilegeTreeBox");
+            zTree.addNodes(treeNode, {sp_id: newTmpId, sp_parent_id: treeNode.sp_id, sp_label:"新建权限"});
+            var newNode = zTree.getNodesByParam('sp_id', newTmpId);
+            zTree.selectNode(newNode[0]);
+            synchronizationTreeNode2Form(newNode[0]);
+            return false;
+        });
+    }
+
+    //删除监听
+    function removeHoverDom(treeId, treeNode) {
+        $("#addBtn_"+treeNode.tId).unbind().remove();
+    }
+
+    //监听编辑节点时，同步数据到表单
+    function zTreeBeforeEditName(treeId, treeNode) {
+        synchronizationTreeNode2Form(treeNode);
+        return false;
+    }
+
+    //监听点击事件，同步数据到表单
+    function zTreeOnClick(event, treeId, treeNode) {
+        synchronizationTreeNode2Form(treeNode);
+        return false;
+    }
+
+    //监听删除操作，先请求服务器删除，在删除页面数据
+    function zTreeBeforeRemove(treeId, treeNode) {
+        if (treeNode.isParent) {view.error('不能直接删除父菜单！');return false;}
+        if (parseInt(treeNode.sp_id) === newTmpId) return true;
+
+        var parentNode = treeNode.getParentNode();
+
+        var options = {
+            url: '/admin/privilege/delete?id=' + treeNode.sp_id,
+            method: 'delete',
+            done: function (res) {
+                if (res.code === 0) {
+                    layer.msg('删除成功！');
+                    return true;
+                } else {
+                    view.error(res.msg);
+                    jqueryZtreeCore.getZTreeObj("privilegeTreeBox").addNodes(parentNode, treeNode);
+                    return false;
+                }
+            },
+            error: function (e, code) {
+                var error = [
+                    '请求异常，请重试<br><cite>错误信息：</cite>'+ code
+                    ,debug()
+                ].join('');
+                view.error(error);
+
+                jqueryZtreeCore.getZTreeObj("privilegeTreeBox").addNodes(parentNode, treeNode);
+                return false;
+            }
+        };
+        admin.req(options);
+        return true;
+    }
+
+    //同步节点数据到表单
+    function synchronizationTreeNode2Form(treeNode) {
+        $('input[name="sp_action"]').val(treeNode.sp_action);
+        $('input[name="sp_parent_id"]').val(treeNode.sp_parent_id);
+        $('input[name="sp_controller"]').val(treeNode.sp_controller);
+        $('input[name="sp_module"]').val(treeNode.sp_module);
+        $('input[name="sp_label"]').val(treeNode.sp_label);
+        $('select[name="sm_id"]').val(treeNode.sm_id);
+        $('input[name="sp_id"]').val(treeNode.sp_id);
+        form.render();
+    }
+
+    //同步表单数据到对应id的节点
+    function synchronizationForm2TreeNode() {
+        var sp_id_from_input = $('input[name="sp_id"]').val();
+        //如果节点中没有sp_id的节点，则添加
+        var synchronizingNode = jqueryZtreeCore.getZTreeObj("privilegeTreeBox").getNodeByParam('sp_id', sp_id_from_input);
+        if (!synchronizingNode) {//如果未找到当前id的节点，则取临时节点
+            synchronizingNode = jqueryZtreeCore.getZTreeObj("privilegeTreeBox").getNodeByParam('sp_id', newTmpId);
+        }
+
+        synchronizingNode.sp_action = $('input[name="sp_action"]').val();
+        synchronizingNode.sp_parent_id = $('input[name="sp_parent_id"]').val();
+        synchronizingNode.sp_controller = $('input[name="sp_controller"]').val();
+        synchronizingNode.sp_module = $('input[name="sp_module"]').val();
+        synchronizingNode.sp_label = $('input[name="sp_label"]').val();
+        synchronizingNode.sm_id = $('select[name="sm_id"]').val();
+        synchronizingNode.sp_id = sp_id_from_input;
+
+        jqueryZtreeCore.getZTreeObj("privilegeTreeBox").updateNode(synchronizingNode);
+    }
+
+    //检查节点是否全部保存
+    function checkAllNodeHasSaved() {
+        return !jqueryZtreeCore.getZTreeObj("privilegeTreeBox").getNodeByParam('sp_id', newTmpId);
+    }
+});
+
+</script>

@@ -35,11 +35,11 @@ layui.extend({
       path[path.length - 1] = setter.entry;
     }
     
-    /*
+
     layui.config({
       base: setter.base + 'controller/'
     });
-    */
+
     
     //重置状态
     var reset = function(type){

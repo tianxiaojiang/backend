@@ -10,7 +10,7 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">绑定手机</label>
-            <div class="layui-input-block"><input type="text" class="layui-input layui-disabled" disabled name="mobile_phone" required lay-verify="required" placeholder="绑定手机" value="{{d.params.mobile_phone}}" autocomplete="off" class="layui-input" /></div>
+            <div class="layui-input-block"><input type="text" class="layui-input" name="mobile_phone" required lay-verify="required" placeholder="绑定手机" value="{{d.params.mobile_phone}}" autocomplete="off" class="layui-input" /></div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">密码</label>
@@ -27,14 +27,15 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">角色名</label>
-            <div class="layui-input-block">
-                <select class="layui-select-dropup" name="sg_id" id="select-roles" lay-filter="select-roles" required lay-verify="required" multiple lay-omit></select>
+            <div class="layui-input-block layui-form" lay-filter="select-roles">
+                <select class="layui-select-dropup" name="sg_id" id="update-select-roles" required lay-verify="required" multiple>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <input type="hidden" id="sg_id_hide_val" value="{{d.params.role}}">
-                <input type="hidden" name="primaryKey" id="primaryKey" value="{{d.params.ad_uid}}">
+                <input type="hidden" name="primaryKey" id="admin_status_old" value="{{d.params.status}}">
                 <button class="layui-btn" lay-submit="" lay-filter="edit-admin">提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
@@ -49,20 +50,20 @@
 
             // 获取角色名列表
             var getRoles = function () {
-                var rolesListHTML = '<option value="">请选择角色名</option>';
                 var rolesCurrent = $('#sg_id_hide_val').val().split('、');
                 var options = {
                     url: '/admin/system-group/index',
                     page: true,
                     limit: 1000,
                     done: function (res) {
+                        var rolesListHTML = '<option value="">请选择角色名</option>';
                         $.each(res.data, function (i, v) {
                             // 当前角色名是否在列表中，即是否为选中状态
                             var isSelected = ztutil.inArray(rolesCurrent, v.sg_name) ? ' selected' : '';
-                            rolesListHTML += '<option value="' + v.sg_id + '"' + isSelected + '>' + v.sg_name + '</option>';
+                            rolesListHTML += '\n<option value="' + v.sg_id + '"' + isSelected + '>' + v.sg_name + '</option>';
                         });
-                        $('#select-roles').html(rolesListHTML);
-                        form.render('select', 'select-roles');
+                        $('#update-select-roles').html(rolesListHTML);
+                        form.render();
                     }
                 };
                 admin.req(options);
@@ -74,14 +75,11 @@
                 var options = {
                     url: '/admin/common/admin-stats',
                     done: function (res) {
-                        var old_status = $('#status_old').text();
-                        $.each(res.data, function (i, v) {
+                        var old_status = $('#admin_status_old').text();
+                        $.each(res.data.stats, function (i, v) {
                             // 当前状态是否为选中状态
-                            if (v == old_status) {
-                                statusHTML += '<option value="' + i + '" selected>' + v + '</option>';
-                            } else {
-                                statusHTML += '<option value="' + i + '">' + v + '</option>';
-                            }
+                            var selectedSource = parseInt(i) === parseInt(old_status) ? ' selected' : '';
+                            statusHTML += '<option value="' + i + '"' + selectedSource + '>' + v + '</option>';
                         });
                         $('#select-status').html(statusHTML);
                         form.render();
@@ -98,11 +96,11 @@
                 data.field.sg_id = data.field.sg_id.join(',');
                 var options = {
                     data: data.field,
-                    url: '/admin/admin-user/update?id=' + data.field.primaryKey,
+                    url: '/admin/admin-user/update?id=' + data.field.id,
                     method: 'patch',
                     done: function () {
                         layer.closeAll();
-                        table.reload('system-admins');
+                        table.reload('system-admins-id');
                         layer.msg('修改管理员成功！');
                     }
                 };

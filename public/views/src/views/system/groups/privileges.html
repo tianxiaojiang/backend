@@ -1,3 +1,7 @@
+<script>
+    //加载css
+    layui.link('/css/bootstrapStyle.css');
+</script>
 <script type="text/html" id="temp-edit-privileges" template lay-url="/admin/system-group/group-privilege-list?group_id={{d.params.sg_id}}" lay-done="layerCallback(d);">
     <form class="layui-form form-privileges" action="" lay-filter="form-privileges">
         <div class="layui-fluid">
@@ -7,22 +11,44 @@
                     <li class="">管理游戏</li>
                 </ul>
                 <div class="layui-tab-content">
-                    <div class="layui-tab-item layui-show layui-form" id="common-privileges-box" lay-filter="common-privilege-item">
-
+                    <div class="layui-tab-item layui-show layui-form ztree" lay-filter="common-privilege-item">
+                        <div id="common-privileges-box"></div>
                     </div>
-                    <div class="layui-tab-item">
-                        <div class="layui-col-xs4">
-                            <ul class="privileges-game-list" id="game-manage-box">
-
-                            </ul>
-                        </div>
-                        <div class="layui-col-xs8" id="game-privileges-box">
+                    <div class="layui-tab-item" id="subdivideGame">
+                        <div class="layui-col-xs12">
                             <fieldset class="layui-elem-field">
-                                <legend>特殊权限</legend>
-                                <div class="layui-field-box layui-form" lay-filter="special-privilege-item">
-                                    点击选中游戏右边的设置按钮，进行行特殊化权限设置
+                                <legend>是否细分游戏</legend>
+                                <div class="layui-field-box layui-form">
+                                    <select name="subdivide_game" lay-filter="subdivide-game" id="subdivide-game">
+                                        <option value="0">不细分游戏</option>
+                                        <option value="1">细分到游戏</option>
+                                    </select>
                                 </div>
                             </fieldset>
+                        </div>
+                        <div id="game-box" class="layui-hide">
+                            <div class="layui-col-xs12">
+                                <fieldset class="layui-elem-field">
+                                    <legend>细分游戏管理</legend>
+                                    <ul class="layui-field-box layui-form" id="game-form-box">
+                                    </ul>
+                                </fieldset>
+                            </div>
+                            <div class="layui-col-xs12 layui-hide" id="game-privileges-box">
+                                <fieldset class="layui-elem-field">
+                                    <legend><span id="special-privilege-game-name" game-id="0"></span>特殊权限</legend>
+                                        <div class="layui-field-box layui-form" lay-filter="proprietary-switch">
+                                            <select name="proprietary_game" lay-filter="proprietary-switch-select" id="proprietary-switch">
+                                                <option value="0">通用权限</option>
+                                                <option value="1">特殊权限</option>
+                                            </select>
+                                        </div>
+                                        <div class="layui-field-box">
+                                            <div class="ztree" id="game-privileges-item-box">
+                                            </div>
+                                        </div>
+                                </fieldset>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -30,7 +56,7 @@
             <div class="layui-form-item">
                 <div class="layui-footer">
                     <input type="hidden" name="edit-privileges" id="privileges-primary-key" value="{{d.params.sg_id}}">
-                    <button class="layui-btn" lay-submit lay-filter="btn-privileges">提交</button>
+                    <button class="layui-btn" lay-submit lay-filter="btn-group-privileges">提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
@@ -39,173 +65,249 @@
 </script>
 <script>
     var layerCallback = function (d) {
-        layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+        layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'jqueryZtreeCore', 'jqueryZtreeExcheck'], function () {
 
-            var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+            var $ = layui.jquery, form = layui.form, admin = layui.admin, jqueryZtreeCore = layui.jqueryZtreeCore;
+            var privileges = d.data.privileges;
+            var games = d.data.games;
 
-            //普通权限与特殊权限
-            var commonPrivileges = {};
-            var special_privileges_arr = {};
-            var special_data_Key = 'gameSpecial_{{%d}}';
-
-            //渲染筛选前缀
-            var common_privilege_render_filter_prefix = 'common-privilege-item';
-            var special_privilege_render_filter_prefix = 'special-privilege-item';
-            //监听筛选前缀
-            var common_privilege_listen_filter_prefix = 'common-privilege-item';
-            var special_privilege_listen_filter_prefix = 'special-privilege-item';
-            //checkbox的name前缀
-            var common_privilege_name_prefix = 'privileges_';
-            var special_privilege_name_prefix = 'privileges-special-{{%d}}-';
-
-            var specialRenderBox = $('#game-privileges-box').find('.layui-field-box');
-            var commonRenderBox = $('#common-privileges-box');
-
-            /**
-             * 根据权限数据渲染样式
-             * box object 渲染目标容器
-             * data object 渲染使用的数据
-             * inputNamePrefix string checkbox权限的name属性前缀
-             * itemFilter string checkbox监听的筛选前缀
-             */
-            var renderPrivilegesItem = function (box, data, inputNamePrefix, itemFilter) {
-                var privilegesHtml = '';
-                $.each(data, function (k, v) {
-                    privilegesHtml += '<div class="layui-form-item layui-form-text">'
-                        + '<label class="layui-form-label"><strong">'+ v.sm_label +'</strong></label>'
-                        + '<div class="layui-input-block">'
-                        + '<ul class="layui-privileges-list">';
-
-                    $.each(v.privileges, function (index_labels, labels) {
-                        privilegesHtml += '<li>'
-                            + '<input type="checkbox" lay-filter="'+itemFilter+'" sg_id="'+ v.sm_id +'" sp_id="'+labels.sp_id+'" name="' + inputNamePrefix + labels.sp_id +'" value="'+ labels.sp_id +'" lay-skin="primary"  title="'+ labels.sp_label +'"'+ (labels.is_checked ? 'checked' : '' ) +' />'
-                            + '</li>';
-                    });
-                    privilegesHtml += '</ul>';
-                    privilegesHtml += '</div>';
-                    privilegesHtml += '</div>';
-                    box.html(privilegesHtml);
-
-                });
-            }
-
-            //初始化渲染
-            function init_render(callback) {
-                var gameManageBox = $('#game-manage-box');
-                var gameManageHtml = '';
-
-                //赋值全局权限，并渲染
-                commonPrivileges = d.data.privileges;
-                renderPrivilegesItem(commonRenderBox, d.data.privileges, common_privilege_name_prefix, common_privilege_listen_filter_prefix);
-                //特殊权限赋值
-                if (d.data.special_privileges) {
-                    $.each(d.data.special_privileges, function (k, v) {
-                        console.log(v);
-                        //先赋值一份全量权限数据给某个特殊游戏
-                        var specialDataKey = special_data_Key.replace('{{%d}}', k);
-                        special_privileges_arr[specialDataKey] = JSON.parse(JSON.stringify(commonPrivileges));
-                        //遍历权限，修改它的值
-                        $.each(special_privileges_arr[specialDataKey], function (k1, v1) {
-                            $.each(v1.privileges, function (k2, v2) {
-                                v2.is_checked = (v.indexOf(v2.sp_id) >= 0) ? 1 : 0;
-                            });
-                        });
-                    })
-                }
-                console.log(special_privileges_arr);
-
-                $.each(d.data.games, function (index_labels, game) {
-                    gameManageHtml += '<li><div class="layui-form-item game-item">'
-                        + '<input type="checkbox" lay-filter="game-manage-checkbox" name="game_'+ game.game_id +'" value="' + game.game_id + '" lay-skin="primary"  title="'+ game.name +'"' + (game.is_checked ? 'checked' : '')+' />'
-                    + (game.is_checked ? '<i class="layui-icon layui-setting-icon" style="margin-top: 10px;cursor: pointer;">&#xe716;</i>' : '') +'</div></li>';
-                });
-                gameManageBox.append(gameManageHtml);
-
-                form.render();
-
-                if (callback && (typeof callback) === 'function') callback();
-            }
-
-            //初始化后添加监听事件
-            //监听游戏选中
-            form.on('checkbox(game-manage-checkbox)', function (a) {
-                if (a.elem.checked) {
-                    $(a.elem).parents('.game-item').append('<i class="layui-icon layui-setting-icon" style="margin-top: 10px;cursor: pointer;">&#xe716;</i>')
-                } else {
-                    //游戏关闭时，有特殊权限数据的，也清掉
-                    $(a.elem).parents('.game-item').find('.layui-setting-icon').remove();
-                    var specialDataKey = special_data_Key.replace('{{%d}}', $(a.elem).val());
-                    delete special_privileges_arr[specialDataKey];
-                    //清掉页面显示的数据
-                    if ($('#game-privileges-box').find('legend').attr('game_id') === $(a.elem).val()) {
-                        specialRenderBox.html('点击选中游戏右边的设置按钮，进行行特殊化权限设置');
-                        specialRenderBox.prev('legend').html('特殊权限');
-                    }
-                }
-            });
-
-            //监听权限选中
-            form.on('checkbox('+common_privilege_listen_filter_prefix+')', function (a) {
-                var groupId = $(a.elem).attr('sg_id');
-                var privilegeId = $(a.elem).attr('sp_id');
-                commonPrivileges['sg_' + groupId].privileges[privilegeId].is_checked = a.elem.checked;
-            });
-
-            //监听特殊权限的选中
-            form.on('checkbox('+special_privilege_listen_filter_prefix+')', function (a) {
-                var groupId = $(a.elem).attr('sg_id');
-                var privilegeId = $(a.elem).attr('sp_id');
-                var gameName = $(a.elem).attr('name').split('-');
-//                    console.log(special_privileges_arr);
-                special_privileges_arr[special_data_Key.replace('{{%d}}', gameName[2])]['sg_' + groupId].privileges[privilegeId].is_checked = a.elem.checked;
-                console.log(special_privileges_arr);
-            });
-
-            //监听特殊权限设置
-            $('#game-manage-box').on('click', '.layui-setting-icon', function (e) {
-
-                var gameName = $(e.currentTarget).siblings('input').attr('title');
-                var gameId = $(e.currentTarget).siblings('input').val();
-                var specialDataKey = special_data_Key.replace('{{%d}}', gameId);
-                //特殊权限没有，则复制一份通用权限
-                if (!special_privileges_arr[specialDataKey]) special_privileges_arr[specialDataKey] = JSON.parse(JSON.stringify(commonPrivileges));
-
-                //渲染特殊权限
-                renderPrivilegesItem(specialRenderBox, special_privileges_arr[specialDataKey], special_privilege_name_prefix.replace('{{%d}}', gameId), special_privilege_listen_filter_prefix.replace('{{%d}}', gameId));
-                //修改标题
-                specialRenderBox.prev('legend').text(gameName + '特殊权限').attr('game_id', gameId);
-                form.render('checkbox', special_privilege_render_filter_prefix);
-            });
-
-            init_render();
-
-            // 监听用户权限提交
-            form.on('submit(btn-privileges)', function (data) {
-                var groupID = $("#privileges-primary-key").val();
-
-                $.each(special_privileges_arr, function (k, v) {
-                    var privilegeIdStr = '';
-                    $.each(v, function (k1, v1) {
-                        $.each(v1.privileges, function (k2, v2) {
-                            if (v2.is_checked) privilegeIdStr += ((privilegeIdStr) ? (',' + v2.sp_id) : v2.sp_id);
-                        });
-                    });
-                    data.field[k] = privilegeIdStr;
-                });
-
+            //监听保存
+            form.on('submit(btn-group-privileges)', function (data) {
+                var datas = collectUploadData();
+                console.log(datas);
                 var options = {
-                    data: data.field,
-                    url: '/admin/system-group/group-privilege-update?group_id=' + groupID,
-                    method: 'patch',
+                    data: datas,
+                    url: '/admin/system-group/group-privilege-update',
+                    method: 'post',
                     done: function (res) {
-                        layer.closeAll();
-                        table.reload('system-group');
-                        layer.msg('修改角色权限成功！');
+                        if (res.code === 0) {
+                            layer.msg('操作成功！');
+                        } else {
+                            view.error(res.msg);
+                        }
                     }
                 };
                 admin.req(options);
                 return false;
             });
+
+            var collectUploadData = function () {
+                //通用数据
+                var commonPrivileges = jqueryZtreeCore.getZTreeObj("common-privileges-box").getNodesByParam('is_checked', true);
+                var params = {};
+                params['group_id'] = $('#privileges-primary-key').val();
+                $.each(commonPrivileges, function (k, v) {
+                    params['privileges_' + v.sp_id] = v.sp_id;
+                });
+                // //是否细分游戏的标志，无需区分游戏，直接返回上传参数
+                params['subdivide_game'] = parseInt($('#subdivide-game').val());
+                if (params['subdivide_game'] <= 0) {
+                    return params;
+                }
+
+                //区分游戏时，遍历所有游戏的选中情况
+                $.each(games, function (k, game) {
+                    //将选中的游戏提交上去
+                    if (parseInt(game.ischecked) > 0) {
+                        params['game_' + game.game_id] = (game.is_proprietary_priv) ? 1 : 0;//存在的游戏，值为特有权限
+                        //将特权游戏的新权限提交上去
+                        if (parseInt(game.is_proprietary_priv) > 0) {
+                            var ztreeBox = getGameSpecialSelectorLocation(game.game_id);
+                            console.log('ztreeBox');
+                            console.log(ztreeBox);
+                            var gameSpecialPrivileges = jqueryZtreeCore.getZTreeObj(ztreeBox).getNodesByParam('is_checked', true);
+                            console.log('gameSpecialPrivileges');
+                            console.log(gameSpecialPrivileges);
+                            var gameSpecialStr = '';
+                            $.each(gameSpecialPrivileges, function (gspk, gspv) {
+                                gameSpecialStr += (gameSpecialStr) ? ',' + gspv.sp_id : gspv.sp_id.toString();
+                            });
+                            console.log('gameSpecialStr');
+                            console.log(gameSpecialStr);
+
+                            params['gameSpecial_' + game.game_id] = gameSpecialStr;
+                        }
+                    }
+                });
+                return params;
+            }
+
+            //tree配置
+            var setting = {
+                view: {
+                    selectedMulti: false
+                },
+                check: {
+                    enable: true
+                },
+                data: {
+                    key: {
+                        name: "sp_label",
+                        checked: "is_checked"
+                    },
+                    simpleData: {
+                        enable: true,
+                        idKey: "sp_id",
+                        pIdKey: "sp_parent_id"
+                    }
+                },
+                edit: {
+                    enable: false
+                }
+            };
+
+            //渲染通用权限
+            $(document).ready(function (e) {
+                jqueryZtreeCore.init($("#common-privileges-box"), setting, privileges);
+            });
+
+            //监听区分游戏
+            var gameBox = $('#game-box');
+            var gameSpecialBox = $('#game-privileges-box');//特权box
+            var game_privilege_label = $('#special-privilege-game-name');//设置特权的游戏
+            var game_privilege_switch = $('#proprietary-switch');//特权开关
+
+            var renderGameManageBox = function () {
+                $('#subdivide-game').val(d.data.subdivide_game);
+
+                var gameManageBox = $('#game-form-box');
+                var gameManageHtml = '';
+                $.each(games, function (index_labels, game) {
+                    gameManageHtml += ('<li><div class="layui-form-item game-item">'
+                        + '<input type="checkbox" lay-filter="game-manage-checkbox" name="game_'+ game.game_id +'" value="' + game.game_id + '" lay-skin="primary"  title="'+ game.name +'"' + (game.is_checked ? 'checked' : '')+' />'
+                        + (game.is_checked ? '<i class="layui-icon layui-setting-icon" style="margin-top: 10px;cursor: pointer;">&#xe716;</i>' : '') +'</div></li>');
+                });
+                gameManageBox.append(gameManageHtml);
+                if (d.data.subdivide_game === 1) {
+                    gameBox.removeClass('layui-hide').show();
+                }
+            }
+            renderGameManageBox();
+
+            form.on('select(subdivide-game)', function(data){
+                var Val = data.value;
+                if (parseInt(Val) === 1) {
+                    gameBox.removeClass('layui-hide').show();
+                } else {
+                    gameBox.hide();
+                }
+            });
+
+            //监听游戏选中与取消选中
+            form.on('checkbox(game-manage-checkbox)', function (data) {
+                console.log(data);
+                var gameId = data.value;
+                //选中时，设置游戏对象里的为选中
+                if (data.elem.checked) {
+                    //增加设置按钮
+                    $(data.elem).parents('.game-item').append('<i class="layui-icon layui-setting-icon" style="margin-top: 10px;cursor: pointer;">&#xe716;</i>');
+                    games[gameId].ischecked = 1;
+                } else {
+                    $(data.elem).parents('.game-item').find('.layui-setting-icon').remove();
+                    games[gameId].ischecked = 0;
+                }
+            });
+
+            //监听游戏的特权设置
+            $('#game-form-box').on('click', '.layui-setting-icon', function (e) {
+                var gameId = $(this).siblings('input').val();
+                gameSpecialBox.removeClass('layui-hide').show();
+
+                game_privilege_label.html(games[gameId].name);
+                game_privilege_label.attr('game-id', gameId);
+
+                var game_proprietary_val = parseInt(games[gameId].is_proprietary_priv) ? parseInt(games[gameId].is_proprietary_priv) : 0;
+                game_privilege_switch.val(game_proprietary_val);
+
+                console.log('game_proprietary_val');
+                console.log(game_proprietary_val);
+                console.log('game_privilege_switch');
+                console.log(game_privilege_switch.val());
+                console.log(gameId);
+                form.render('select', 'proprietary-switch');
+
+                //如果本身有特权，则渲染特权展示
+                if (game_proprietary_val > 0) {
+                    renderSpecialPrivilege();
+                } else {
+                    //隐藏掉所有的特权区
+                    hiddenAllSpecialPrivileges();
+                }
+            });
+
+            //监听特权开关
+            form.on('select(proprietary-switch-select)', function (data) {
+                var gameId = getCurrentOperateGameId();
+                var specialSwitchVal = data.value;
+                console.log('specialSwitchVal:' + specialSwitchVal);
+                if (parseInt(specialSwitchVal) === 0) {
+                    //关闭特权时，1、修改games对象里的对应游戏的特权属性；2、隐藏当前特权区html。
+                    games[gameId].is_proprietary_priv = 0;
+                    hiddenSpecialPrivilege();
+                } else {
+                    console.log('222222222');
+                    //开启特权时，1、修改games对象里的对应游戏的特权属性；2、渲染特权区html。
+                    games[gameId].is_proprietary_priv = 1;
+                    renderSpecialPrivilege();
+                }
+            });
+
+            //渲染特权树
+            var gameSpecialTpl = '<div class="layui-field-box game-special-privilege-item" id="__GAME_SPECIAL__"></div>';
+            var gameSpecialItemBox = $('#game-privileges-item-box');
+
+            //渲染某个游戏的特权区
+            var renderSpecialPrivilege = function () {
+                console.log('3333333333333');
+                var specialPrivilegeItem = getGameSpecialItemBox();
+                console.log(specialPrivilegeItem);
+                if (specialPrivilegeItem.length > 0) {
+                    //已存在游戏特权区，隐藏其他，显示即可
+                    $('.game-special-privilege-item').hide();
+                    specialPrivilegeItem.show();
+                } else {
+                    //不存在游戏特权区，增加一个特权去
+                    var tpl = gameSpecialTpl.replace('__GAME_SPECIAL__', getGameSpecialSelectorLocation());
+                    gameSpecialItemBox.append(tpl);
+                    var game_proprietary;
+                    var gameResNode = games[getCurrentOperateGameId()];
+                    if (parseInt(gameResNode.is_proprietary_priv) > 0 && gameResNode.proprietary) {
+                        game_proprietary = gameResNode.proprietary;
+                    } else {
+                        var commonPrivileges = jqueryZtreeCore.getZTreeObj('common-privileges-box').getNodes();
+                        game_proprietary = JSON.parse(JSON.stringify(commonPrivileges));
+                    }
+                    console.log('game_proprietary:');
+                    console.log(game_proprietary);
+                    specialPrivilegeItem  = getGameSpecialItemBox();
+                    console.log('specialPrivilegeItem:');
+                    console.log(specialPrivilegeItem);
+                    jqueryZtreeCore.init(specialPrivilegeItem, setting, game_proprietary);
+                }
+            }
+            //隐藏所有游戏特权区
+            var hiddenAllSpecialPrivileges = function () {
+                $('.game-special-privilege-item').hide();
+            }
+            //隐藏当前操作游戏的特权区
+            var hiddenSpecialPrivilege = function () {
+                getGameSpecialItemBox().hide();
+            }
+            //获取当前操作游戏的特权区jquery对象
+            var getGameSpecialItemBox = function() {
+                return $('#' + getGameSpecialSelectorLocation());
+            }
+            //获取当前操作游戏特权区的selectorL|ocation
+            var getGameSpecialSelectorLocation = function (gameId) {
+                if (!gameId) gameId = getCurrentOperateGameId();
+                return 'special-privilege-item-' + gameId;
+            }
+            //获取当前操作游戏的id
+            var getCurrentOperateGameId = function() {
+                return game_privilege_label.attr('game-id');
+            }
+
+            form.render();
         });
-    };
+    }
 </script>

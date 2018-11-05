@@ -36,7 +36,7 @@ class VerifySign extends Behavior
             $queryStr .= (empty($queryStr) ? $key . '=' . $item : '&' . $key . '=' . $item);
         }
 
-        if (strtolower(md5($queryStr . '&access_token=Bearer ' . \Yii::$app->user->identity->access_token)) != strtolower($sign)) {
+        if (strtolower(md5($queryStr . '&access_token=' . Helpers::getHeader('Authorization'))) != strtolower($sign)) {
             throw new CustomException(Lang::ERR_SIGN);
         }
     }

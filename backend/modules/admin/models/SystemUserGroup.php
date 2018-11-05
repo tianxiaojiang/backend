@@ -9,12 +9,11 @@
 namespace Backend\modules\admin\models;
 
 use Backend\modules\common\models\BaseModel;
+use Backend\helpers\Helpers;
 
 class SystemUserGroup extends BaseModel
 {
     static public function tableName() {
-        return 'system_user_group';
+        return 's' . Helpers::getRequestParam('sid') . '_system_user_group';
     }
-
-
 }

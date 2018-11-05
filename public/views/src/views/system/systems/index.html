@@ -1,0 +1,101 @@
+<title>系统维护</title>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-btn-container">
+                    <button class="layui-btn" id="btn-add-system">添加</button>
+                </div>
+                <table class="layui-table" id="systems-list-id" lay-size="lg" lay-filter="systems-list-filter"></table>
+                <script type="text/html" id="system-option">
+                    <a class="layui-btn layui-btn-sm" lay-event="edit-system-event">编辑</a>
+                    <a class="layui-btn layui-btn-sm layui-btn-danger" data-type="t" lay-event="del-system-event">删除</a>
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+
+        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+
+        // 点击添加管理员按钮
+        $('#btn-add-system').on('click', function () {
+            view.popup({
+                type: 1,
+                id: 'LAY-system-systems-add',
+                title: '添加管理员',
+                resize: false,
+                success: function () {
+                    view(this.id).render('system/systems/add').done(function () {
+                        $(window).trigger('resize');
+                    });
+                }
+            });
+        });
+
+        // 渲染管理员列表
+        table.render({
+            elem: '#systems-list-id',
+            url: '/admin/system/index',
+            where: ztutil.createSign(),
+            size: 'lg',
+            headers: {
+                Authorization: ztutil.getToken()
+            },
+            cols: [[
+                { type: 'checkbox' },
+                { field: 'systems_id', title: '系统编号', sort: true },
+                { field: 'name', title: '系统名', sort: true },
+                { field: 'url', title: '系统url', sort: true },
+                { field: 'description', title: '描述', sort: true },
+                { field: 'statusName', title: '状态', sort: true },
+                { field: 'created_at', title: '创建时间', sort: true },
+                { fixed: 'right', title: '操作', toolbar: '#system-option' }
+            ]],
+            page: true
+        });
+
+        // 监听工具条
+        table.on('tool(systems-list-filter)', function (obj) {
+            console.log('obj.event');
+            console.log(obj.event);
+            var data = obj.data;
+            if (obj.event === 'del-system-event') {
+                layer.confirm('是否要删除系统：<strong>' + data.name + '</strong> ？', {
+                }, function (index) {
+                    deleteSystem(data.systems_id, obj);
+                });
+            } else if (obj.event === 'edit-system-event') {
+                console.log('edit-system-event');
+                view.popup({
+                    type: 1,
+                    id: 'LAY-system-systems-update',
+                    title: '修改系统信息',
+                    resize: false,
+                    success: function () {
+                        view(this.id).render('system/systems/update', data).done(function() {
+                            $(window).trigger('resize');
+                        });
+                    }
+                });
+            }
+        });
+
+        // 删除系统请求，操作比较敏感，删除一律做逻辑状态删除
+        var deleteSystem = function (id, obj) {
+            var options = {
+                url: '/admin/system/delete?id=' + id,
+                method: 'delete',
+                done: function () {
+                    obj.del();
+                    table.reload('system-systems');
+                    layer.msg('删除系统成功！');
+                }
+            };
+            admin.req(options);
+        };
+
+    });
+</script>

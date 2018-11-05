@@ -7,9 +7,10 @@
  */
 
 return [
-    'id' => 'base-backend',
+    'id' => 'integration-backend',
     'basePath' => dirname(__DIR__),
-    'vendorPath' => dirname(__DIR__) . DIRECTORY_SEPARATOR .'vendor',
+    //'runtimePath' => defined('YII_ENV') && YII_ENV == 'dev' ? dirname(__DIR__) : '/tmp/backend/',
+    'vendorPath' => dirname(dirname(__DIR__) . DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR .  'vendor',
     'timeZone' => 'Asia/Shanghai',
     'language' => 'zh-CN',
     'bootstrap' => ['log'],
@@ -20,10 +21,13 @@ return [
         'admin' => [
             'class' => 'Backend\modules\admin\Module',
         ],
+        'authentication' => [
+            'class' => 'Api\modules\authentication\Module'
+        ],
     ],
     'components' => [
         'user' => [
-            'identityClass' => 'Backend\modules\admin\models\Admin',
+            'identityClass' => 'Api\modules\authentication\models\AccessToken',
             'enableSession' => false,
             'enableAutoLogin' => false,
             'loginUrl' => null,
@@ -38,16 +42,20 @@ return [
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'admin/system-group'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'admin/admin-user'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'admin/game'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'admin/system-menu'],
             ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
+            'flushInterval' => 1,
             'targets' => [
                 [
                     'class'		=> 'Backend\log\FileTarget',
                     'categories'=> ['application'],
                     'levels'	=> ['info'],
                     'logFile'	=> '@runtime/logs/backend.log',
+                    'exportInterval' => 1,
                     'maxFileSize'	=>	1024*100,//100M
                     'logVars'	=> [],
                 ],
@@ -56,6 +64,7 @@ return [
                     'levels'	=> ['error', 'warning'],
                     'logFile'	=> '@runtime/logs/err.log',
                     'maxFileSize'	=>	1024*100,//100M
+                    'exportInterval' => 1,
                     'maxLogFiles'	=>	5,
                     'logVars'	=> [],
                 ],
@@ -64,6 +73,7 @@ return [
                     'levels'	=> ['trace'],
                     'logFile'	=> '@runtime/logs/trace.log',
                     'maxFileSize'	=>	1024*100,//100M
+                    'exportInterval' => 1,
                     'maxLogFiles'	=>	5,
                     'logVars'	=> [],
                 ],
@@ -86,7 +96,7 @@ return [
                 $response->statusCode = 200;
             },
         ],
-        //'db' => require(__DIR__ . '/db.php'),
+        'db' => require(__DIR__ . '/db.php'),
         //'cache' => require(__DIR__ . '/cache.php'),
         //'redis' => require(__DIR__ . '/redis.php'),
     ],

@@ -11,22 +11,27 @@ namespace Backend\modules\admin\models;
 
 use Backend\modules\common\models\BaseModel;
 use yii\helpers\ArrayHelper;
+use Backend\helpers\Helpers;
 
 class SystemGroupGamePriv extends BaseModel
 {
     static public function tableName() {
-        return 'system_group_game_priv';
+        return 's' . Helpers::getRequestParam('sid') . '_system_group_game_priv';
     }
 
     //返回角色、游戏id对应的所有特殊权限
-    public static function getPrivilegesByGroupIdAndGameId($groupId, $gameIds)
+    public static function getPrivilegesByGroupIdAndGameId($groupId, $gameId)
     {
-        $res = [];
-        $sourceDdData = self::find()->select('game_id,priv_id')->where(['sg_id' => $groupId, 'game_id' => $gameIds])->asArray()->all();
-        foreach ($sourceDdData as $item) {
-            @$res[$item['game_id']][] = $item['priv_id'];
+        $sourceDdData = self::find()->select('game_id, priv_id')->where(['sg_id' => $groupId, 'game_id' => $gameId])->all();
+
+        $allPrivileges = SystemPriv::getAll();
+
+        $groupGamePrivileges = ArrayHelper::getColumn($sourceDdData, 'privilege');
+        foreach ($groupGamePrivileges as $groupGamePrivilege) {
+            $allPrivileges[$groupGamePrivilege->sp_id]['is_checked'] = 1;
         }
-        return $res;
+
+        return $allPrivileges;
     }
 
     //更新角色的一组权限
@@ -118,5 +123,10 @@ class SystemGroupGamePriv extends BaseModel
 
         return ['addPrivilegesIds' => $addPrivilegesIds, 'delPrivilegesIds' => $delPrivilegesIds];
 
+    }
+
+    public function getPrivilege()
+    {
+        return $this->hasOne(SystemPriv::class, ['sp_id' => 'priv_id']);
     }
 }

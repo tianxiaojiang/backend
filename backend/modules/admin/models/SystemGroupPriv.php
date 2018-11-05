@@ -8,16 +8,17 @@
 
 namespace Backend\modules\admin\models;
 
+use Backend\helpers\Helpers;
 
 class SystemGroupPriv extends \yii\db\ActiveRecord
 {
     static public function tableName() {
-        return 'system_group_priv';
+        return 's' . Helpers::getRequestParam('sid') . '_system_group_priv';
     }
 
-    public static function getPrivilegesByGroupId($groupId)
+    public static function getPrivilegesIdsByGroupId($groupId)
     {
-        return SystemGroupPriv::find()->where(['sg_id' => $groupId])->asArray()->all();
+        return self::find()->where(['sg_id' => $groupId])->all();
     }
 
     //删除去掉的权限
@@ -62,5 +63,10 @@ class SystemGroupPriv extends \yii\db\ActiveRecord
 
         return ['addPrivilegesIds' => $addPrivilegesIds, 'delPrivilegesIds' => $delPrivilegesIds];
 
+    }
+
+    public function getPrivilege()
+    {
+        return $this->hasOne(SystemPriv::class, ['sp_id' => 'sp_id']);
     }
 }

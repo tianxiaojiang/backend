@@ -2,6 +2,7 @@
 
 namespace Backend\modules\admin\models;
 
+use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use yii\helpers\ArrayHelper;
 use Backend\modules\common\models\BaseModel;
@@ -26,12 +27,15 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     static public $users = [];
 
     public $privilege;
+    public $sg_id;
 
     public $_user;
 
+    public static $tableIndex = 0;
+
     static public function tableName()
     {
-        return 'admin_user';
+        return 's' . Helpers::getRequestParam('sid') . '_admin_user';
     }
 
     public function scenarios()
@@ -170,15 +174,14 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
             $this->salt = $this->getOldAttribute('salt');
             $this->passwd = $this->getOldAttribute('passwd');
         }
-        $oldSg_id = $this->getOldAttribute('sg_id');
         if (!parent::update($runValidation, $attributes)) {
             return false;
         }
-
-        if (isset($this->sg_id) && ($this->sg_id !== $oldSg_id)) {
+        $sg_ids = explode(',', $this->sg_id);
+        $oldSg_id = ArrayHelper::getColumn($this->systemGroup, 'sg_id');
+        if (!array_diff($sg_ids, $oldSg_id) || !array_diff($oldSg_id, $sg_ids)) {
             $transaction = \Yii::$app->db->beginTransaction();
             SystemUserGroup::deleteAll(['ad_uid' => $this->ad_uid]);
-            $sg_ids = explode(',', $this->sg_id);
             $systemUserGroup = new SystemUserGroup();
             foreach ($sg_ids as $sg_id) {
                 $systemUserGroupClone = clone $systemUserGroup;
@@ -239,45 +242,54 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     /**
      * get privilege
      */
-    public function getPrivilege()
+    public function getPrivilege($priv_type = SystemPriv::PRIVILEGE_TYPE_BUSINESS)
     {
-        if (empty($gameId = Helpers::getRequestParam('game_id'))) return [];
+        $gameId = intval(Helpers::getRequestParam('game_id'));
 
+        \Yii::info('user Payload is:' . var_export(\Yii::$app->user->identity->jwt->Payload, true));
         if (empty($this->privilege)) {
-            //管理员拥有的角色
-            $systemGroupIds = ArrayHelper::getColumn(SystemUserGroup::find()->where(['ad_uid' => $this->getId()])->asArray()->all(), 'sg_id');
-            //游戏所对应的角色
-            $systemGroupIdsFilterGameId = ArrayHelper::getColumn(SystemGroupGame::find()->where(['game_id' => $gameId])->asArray()->all(), 'group_id');
+            // 权限拉取
+            $roleInfo = json_decode(\Yii::$app->user->identity->jwt->Payload['role_info']->getValue(), true);
+            // 1. 首先过滤出游戏对应的所有角色，如果没有对应角色游戏或角色游戏对应的是普通权限就是获取通用权限，否则取专有权限
+            $privilegeIds = [];
+            \Yii::info('user roleInfo is:' . var_export($roleInfo, true));
+            foreach ($roleInfo as $roleId => $gameIds) {
+                //如果对应角色权限里没有管理gameId且角色限制了游戏，continue
+                if (!in_array('*', $gameIds) and !in_array($gameId, $gameIds)) {
+                    continue;
+                }
 
-            //特殊权限所对应的角色和权限
-            $specialGroupPrivileges = SystemGroupGamePriv::find()->where(['game_id' => $gameId, 'sg_id' => $systemGroupIds])->asArray()->all();
-            //特殊角色的所有权限id
-            $specialPrivilegeIds = array_unique(array_column($specialGroupPrivileges, 'priv_id'));
-            //特殊组的id
-            $specialGroupIds = array_unique(array_column($specialGroupPrivileges, 'sg_id'));
+                $systemGroupGame = SystemGroupGame::getOneByRoleAndGame($roleId, $gameId);
 
-            //过滤游戏对应的角色
-            $commonGroupIds = array_intersect($systemGroupIdsFilterGameId, $systemGroupIds);
-//            var_dump($commonGroupIds);exit;
-            //去除有特殊权限的角色
-            $commonGroupIds = array_diff($commonGroupIds, $specialGroupIds);
+                if(in_array('*', $gameIds) or $systemGroupGame->is_proprietary_priv == SystemGroupGame::GAME_TYPE_PRVI_COMMON) {
+                    //角色通用权限
+                    $groupGamePrivileges = SystemGroupPriv::find()->select('sp_id')->where(['sg_id' => $roleId])->asArray()->all();
+                } elseif ($systemGroupGame->is_proprietary_priv == SystemGroupGame::GAME_TYPE_PRVI_PROPRIETARY) {
+                    //游戏专有权限
+                    $groupGamePrivileges = SystemGroupGamePriv::find()->select('sp_id')->where([
+                        'game_id' => $gameId,
+                        'sg_id' => $roleId])->asArray()->all();
+                }
+                $groupGamePrivileges = ArrayHelper::getColumn($groupGamePrivileges, 'sp_id');
 
-            //共同的角色权限
-            $systemGroupPrivs = SystemGroup::find()->where(['sg_id' => $commonGroupIds])->with('privilege')->asArray()->all();
-            //特殊的角色权限
-            $specialPrivileges = SystemPriv::find()->where(['sp_id' => $specialPrivilegeIds])->asArray()->all();
-
-            $privilege = [];
-            foreach ($systemGroupPrivs as $val)
-            {
-                $privilege = array_merge($privilege, $val['privilege']);
+                //合并所有的权限id
+                $privilegeIds = array_merge($privilegeIds, $groupGamePrivileges);
             }
-            $privilege = array_merge($privilege, $specialPrivileges);
-//            var_dump($specialPrivileges);
-//            var_dump($privilege);exit;
-            $this->privilege = $privilege;
+
+            // 2. 获取所有权限
+            $privileges = SystemPriv::find()->where(['sp_id' => $privilegeIds, 'sp_set_or_business' => $priv_type])->asArray()->all();
+
+            $this->privilege = $privileges;
         }
         return $this->privilege;
+    }
+
+    public function validateGame($gameId, $gameIds)
+    {
+        \Yii::info('gameId:' . $gameId);
+        \Yii::info(var_export($gameIds, true));
+        if (!in_array('*', $gameIds) and !in_array($gameId, $gameIds))
+            throw new CustomException('你没有此游戏的管理权限,请联系管理员');
     }
 
     /**
@@ -293,6 +305,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
      * get groups
      */
     public function getSystemGroup() {
-        return $this->hasMany(SystemGroup::className(), ['sg_id' => 'sg_id'])->viaTable('system_user_group', ['ad_uid' => 'ad_uid']);
+        $s = Helpers::getRequestParam('sid');
+        return $this->hasMany(SystemGroup::class, ['sg_id' => 'sg_id'])->viaTable('s'. $s .'_system_user_group', ['ad_uid' => 'ad_uid']);
     }
 }

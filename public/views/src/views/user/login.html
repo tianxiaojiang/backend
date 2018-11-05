@@ -4,10 +4,16 @@
 <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
     <div class="layadmin-user-login-main">
         <div class="layadmin-user-login-box layadmin-user-login-header">
-            <h2>通用后台管理系统</h2>
+            <h2>后台登录统一入口</h2>
             <p>巨人网络通用后台管理系统</p>
         </div>
         <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+            <div class="layui-form-item">
+                <div class="layui-block layui-form" lay-filter="login-select-filter">
+                    <select name="sid" id="login-systems-select">
+                    </select>
+                </div>
+            </div>
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
                 <input type="text" name="account" id="LAY-user-login-username" lay-verify="required" autocomplete="off" placeholder="域用户名" class="layui-input">
@@ -59,6 +65,24 @@
 layui.use(['admin', 'form', 'user'], function() {
     var $ = layui.$, setter = layui.setter, admin = layui.admin, form = layui.form, router = layui.router(), search = router.search;
 
+    var selectBox = $('#login-systems-select');
+    var renderSystemSelect = function() {
+        // 请求登入接口
+        admin.req({
+            url: '/admin/common/systems',
+            method: 'get',
+            done: function(res) {
+                var systemOptions = '<option value="">选择系统</option>';
+                $.each(res.data.systems, function (k, v) {
+                    systemOptions += '<option value="' + v.systems_id + '">' + v.name + '</option>';
+                });
+                selectBox.html(systemOptions);
+                form.render('select', 'login-select-filter');
+            }
+        });
+    }
+    renderSystemSelect();
+
     // form.render();
     $('#LAY-user-get-vercode').trigger('click');
     // 用户名提示信息
@@ -71,21 +95,30 @@ layui.use(['admin', 'form', 'user'], function() {
     // 登录按钮提交
     form.on('submit(LAY-user-login-submit)', function(obj) {
         // 请求登入接口
+        console.log(obj.field);
         admin.req({
-            url: '/admin/token/get',
+            url: '/authentication/token/get',
             method: 'post',
             data: obj.field,
             done: function(res) {
+                var jwtObj = res.data.tokenString.split('.');
+                var payload = JSON.parse(atob(jwtObj[1]));
+                console.log(payload);
                 // 请求成功后，写入 access_token
                 layui.data(setter.tableName, {
                     key: setter.request.tokenName,
-                    value: 'Bearer ' + res.data.access_token
+                    value: res.data.tokenString
                 });
                 // 请求成功后，写入 username
                 layui.data(setter.tableName, {
                     key: 'username',
-                    value: res.data.username
+                    value: payload.name
                 });
+                layui.data(setter.tableName, {
+                    key: 'sid',
+                    value: payload.sid
+                });
+
                 // 页面中弹出登录成功提示，并跳转页面
                 var tipsTxt = '登入成功！';
                 layer.msg(tipsTxt, {

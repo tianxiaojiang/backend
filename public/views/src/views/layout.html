@@ -156,7 +156,7 @@
         var getGameList = function (callback) {
             var elGamelist = $('#LAY-game-type-list') ,
                 options = {
-                    url: '/admin/game/index?r=' + Math.random(),
+                    url: '/authentication/game/list?r=' + Math.random() + '&sid=' + layui.data('layuiAdmin').sid,
                     done: function (res) {
                         var storedGameId = getGameId();
                         var HTML  = '';
@@ -189,7 +189,7 @@
             var tplHTML = $('#LAY-temp-side-menu')[0].innerHTML,
                 elSideMenu = $('#LAY-view-side-menu'),
                 options = {
-                    url: '/admin/system-menu/show-menus',
+                    url: '/authentication/system-menu/show-menus?sid=' + layui.data('layuiAdmin').sid + '&menu_type=1',
                     done: function (res) {
                         laytpl(tplHTML).render(res, function (html) {
                             elSideMenu.html(html);

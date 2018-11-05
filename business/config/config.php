@@ -7,8 +7,8 @@
  */
 
 $config = [
-    'homeUrl' => defined('YII_ENV') && YII_ENV == 'dev' ? 'https://dev.backend.com' : 'https://backend.com',
-    'runtimePath' => defined('YII_ENV') && YII_ENV == 'dev' ? 'E:\\project\\backend\\backend\\runtime' : '/tmp/backend/',
+    'homeUrl' => 'http://integration.background.com',
+    //'runtimePath' => defined('YII_ENV') && YII_ENV == 'dev' ? '/tmp/backend/runtime/' : '/tmp/backend/',
     'modules' => [
         'test' => [
             'class' => 'Business\modules\test\Module',
@@ -25,7 +25,7 @@ $config = [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'test/user'],
             ],
         ],
-        'db' => require(__DIR__ . DIRECTORY_SEPARATOR . 'db.php'),
+        //'db' => require(__DIR__ . DIRECTORY_SEPARATOR . 'db.php'),
         'gamm3_db' => require_once(__DIR__ . DIRECTORY_SEPARATOR . 'gamm3-db.php'),
         //'cache' => require(__DIR__ . '/cache.php'),
         //'redis' => require(__DIR__ . '/redis.php'),
