@@ -45,6 +45,12 @@ layui.define('admin', function(exports) {
             }
             return newObj;
         },
+        getGameId: function () {
+            return layui.data('layuiAdmin').game_id;
+        },
+        getSid: function () {
+            return layui.data('layuiAdmin').sid;
+        },
         // detect an item is contained within array
         inArray: function(arr, item) {
             var i = arr.length;
@@ -59,6 +65,9 @@ layui.define('admin', function(exports) {
                 param = {};
             }
             var time = obj.getTimestamp();
+            var sid = obj.getSid();
+            (game_id) && (param.game_id = game_id);
+            (sid) && (param.sid = sid);
             param.time = time;
             param = obj.objSort(param);
             var str = '';

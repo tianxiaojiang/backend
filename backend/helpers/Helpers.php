@@ -8,6 +8,7 @@
 
 namespace Backend\helpers;
 
+use Backend\Exception\CustomException;
 use yii;
 
 class Helpers
@@ -151,4 +152,12 @@ class Helpers
 
         return null;
     }
+
+    //验证参数不能为空
+    public static function validateEmpty($value, $tip)
+    {
+        if (empty($value))
+            throw new CustomException(sprintf("参数%s不能为空！", $tip));
+    }
+
 }

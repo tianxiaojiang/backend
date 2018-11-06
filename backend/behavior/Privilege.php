@@ -8,8 +8,9 @@
 namespace Backend\behavior;
 
 use Backend\Exception\CustomException;
-use Backend\helpers\Lang;
+use Backend\helpers\Helpers;
 use yii\base\Behavior;
+use yii\httpclient\Client;
 
 /**
  * 权限判断
@@ -22,21 +23,31 @@ class Privilege extends Behavior
     public function canAccess()
     {
         $controller = \Yii::$app->controller;
-        $path = '/' . $controller->module->id . '/' . $controller->id . '/' . $controller->action->id;
+        $c = $controller->id;
+        $m = $controller->module->id;
+        $a = $controller->action->id;
+        $sid = Helpers::getRequestParam('sid');
+        $authorization = Helpers::getHeader('Authorization');
 
-        $user = \Yii::$app->user->identity;
+        Helpers::validateEmpty($authorization, 'token');
 
-        //获取用户所有的权限菜单
-        $systemPrivileges = $user->getPrivilege();
+        $params = ['m' => $m, 'c' => $c, 'a' => $a, 'sid' => $sid];
+        \Yii::info('鉴权头：'. var_export($authorization, true));
+        \Yii::info('鉴权参数：'. var_export($params, true));
+        $httpClient = new Client();
+        $authenticationUrl = \Yii::$app->params['authentication_url'];
+        $response = $httpClient->get(
+                $authenticationUrl,
+                $params,
+                ['Authorization' => $authorization]
+        )->send();
 
-        $systemPrivilegesPaths = array_map(function ($col) {
-            $col['path'] = '/' . $col['sp_module'] . '/' . $col['sp_controller'] . '/' . $col['sp_action'];
-            return $col['path'];
-        }, $systemPrivileges);
+        if (!$response->getIsOk())
+            throw new CustomException('鉴权系统发生错误');
 
-        if (empty($systemPrivileges) || !in_array($path, $systemPrivilegesPaths)) {
-            throw new CustomException(Lang::ERR_NO_ACCESS);
-        }
+        $data = $response->getData();
+        \Yii::info('鉴权结果：'. var_export($data));
+        if ($data->code != 0)
+            throw new CustomException($data->msg);
     }
-
 }

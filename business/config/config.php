@@ -11,7 +11,7 @@ $config = [
     'runtimePath' => defined('YII_ENV') && YII_ENV == 'dev' ? 'E:\\project\\backend\\backend\\runtime' : '/tmp/backend/',
     'modules' => [
         'test' => [
-            'class' => 'Business\modules\test\Module',
+            'class' => 'Business\modules\index\Module',
         ],
     ],
     'components' => [

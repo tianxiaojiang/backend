@@ -132,14 +132,55 @@
 
 <script>
     // 获取用户名
-    layui.use('laytpl', function(){
-        var laytpl = layui.laytpl;
-            data = {username: layui.data('layuiAdmin').username},
-            tplUsername = document.getElementById('temp-username'),
-            view = document.getElementById('view-username');
-        getTpl = tplUsername.innerHTML;
-        laytpl(getTpl).render(data, function(html){
-            view.innerHTML = html;
-        });
+    // layui.use('laytpl', function(){
+    //     var laytpl = layui.laytpl;
+    //         data = {username: layui.data('layuiAdmin').username},
+    //         tplUsername = document.getElementById('temp-username'),
+    //         view = document.getElementById('view-username');
+    //     getTpl = tplUsername.innerHTML;
+    //     laytpl(getTpl).render(data, function(html){
+    //         view.innerHTML = html;
+    //     });
+    // });
+    layui.use(['form', 'element'], function () {
+        var $ = layui.$,
+            laytpl = layui.laytpl,
+            setter = layui.setter,
+            admin = layui.admin,
+            form = layui.form;
+
+
+        // 首页登录成功，读取并显示用户名
+        var getUsername = function () {
+            var tplHTML = $('#LAY-temp-username')[0].innerHTML,
+                elUsername = $('#LAY-view-username'),
+                dataLocal = {
+                    username: layui.data('layuiAdmin').username
+                };
+            laytpl(tplHTML).render(dataLocal, function (html) {
+                elUsername.html(html);
+            });
+        };
+        getUsername();
+
+        // 获取侧边栏菜单
+        var getSideMenu = function () {
+            var tplHTML = $('#LAY-temp-side-menu')[0].innerHTML,
+                elSideMenu = $('#LAY-view-side-menu'),
+                options = {
+                    url: layui.setter.integration_url + '/authentication/system-menu/show-menus?sid=' + layui.data('layuiAdmin').sid + '&menu_type=1',
+                    done: function (res) {
+                        laytpl(tplHTML).render(res, function (html) {
+                            elSideMenu.html(html);
+                        });
+                        layui.element.render('nav', 'layadmin-system-side-menu');
+                    }
+                };
+            admin.req(options);
+        };
+
+        //先拉取游戏列表，再拉取菜单
+        getSideMenu();
     });
+
 </script>

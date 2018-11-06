@@ -1,6 +1,6 @@
 <?php
 
-namespace Business\modules\test;
+namespace Business\modules\index;
 
 class Module extends \yii\base\Module
 {
