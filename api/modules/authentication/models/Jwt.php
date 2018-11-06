@@ -11,6 +11,7 @@ namespace Api\modules\authentication\models;
 use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\modules\admin\models\Admin;
+use Backend\modules\admin\models\System;
 use Backend\modules\admin\models\SystemGroupGame;
 use yii\helpers\ArrayHelper;
 
@@ -56,7 +57,7 @@ class Jwt
         return $this;
     }
 
-    public function supplementPayloadByAdmin()
+    public function supplementPayloadByAdmin(System $system)
     {
         if (empty($this->admin)) {
             throw new CustomException('jwt未关联管理员');
@@ -70,7 +71,8 @@ class Jwt
         $this->Payload['uid'] = $this->admin->ad_uid;
         $this->Payload['name'] = $this->admin->username;
         $this->Payload['role_info'] = json_encode($roles);
-        $this->Payload['sid'] = Helpers::getRequestParam('sid');
+        $this->Payload['sid'] = $system->systems_id;
+        $this->Payload['system_name'] = $system->name;
 
         return $this;
     }

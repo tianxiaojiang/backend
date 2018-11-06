@@ -8,7 +8,8 @@
         "juliardi/yii2-captcha": "*",
         "yiisoft/yii2-httpclient": "^2.0",
         "phpoffice/phpspreadsheet": "^1.2",
-        "lcobucci/jwt": "^3.2"
+        "lcobucci/jwt": "^3.2",
+        "yiisoft/yii2-redis": "~2.0.0"
     },
     "autoload": {
         "psr-4": {

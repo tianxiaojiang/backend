@@ -9,7 +9,7 @@
 use yii\helpers\ArrayHelper;
 
 $redis = [
-    
+
 ];
 
-return file_exists('./params-local.php') ? ArrayHelper::merge($redis, require_once('./params-local.php')) : $redis;
+return file_exists(__DIR__ . '/redis-local.php') ? ArrayHelper::merge($redis, require_once(__DIR__ . '/redis-local.php')) : $redis;

@@ -7,6 +7,7 @@ use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\helpers\Lang;
 use Backend\modules\admin\models\Admin;
+use Backend\modules\admin\models\System;
 use Backend\modules\admin\models\SystemPriv;
 use Backend\modules\admin\models\SystemUserGroup;
 use yii\helpers\ArrayHelper;
@@ -53,21 +54,26 @@ class AccessToken extends Admin
         ];
     }
 
-    public function generateToken()
+    public function loginByAccount()
     {
         $this->setScenario('login');
         $this->setAttributes(\Yii::$app->request->post());
 
         if ($this->validate()) {
-            //生成JWT
-            $jwt = new Jwt($this);
-            $jwt->supplementPayloadByAdmin();
-            $jwtService = new JwtService($jwt);
-            return $jwtService->generateTokenString();
+            return $this;
         } else {
             $error = Helpers::getFirstError($this);
             throw new CustomException($error);
         }
+    }
+
+    public function generateAccessToken(System $system)
+    {
+        //生成JWT
+        $jwt = new Jwt($this);
+        $jwt->supplementPayloadByAdmin($system);
+        $jwtService = new JwtService($jwt);
+        return $jwtService->generateTokenString();
     }
 
     //校验密码

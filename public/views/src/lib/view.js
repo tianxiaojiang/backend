@@ -37,26 +37,14 @@ layui.define(['laytpl', 'layer'], function(exports){
   };
 
   //移除加载
-  view.removeLoad = function(){
+  view.removeLoad = function() {
     this.elemLoad && this.elemLoad.remove();
   };
 
   //清除 token，并跳转到登入页
   view.exit = function(){
     //清空本地记录的 token及所有数据
-    layui.data(setter.tableName, {
-      key: setter.request.tokenName
-      ,remove: true
-    });
-      layui.data(setter.tableName, {
-          key: 'username'
-          ,remove: true
-      });
-      layui.data(setter.tableName, {
-          key: 'sid'
-          ,remove: true
-      });
-
+      localStorage.removeItem(setter.tableName);
     //跳转到登入页
     location.hash = '/user/login';
   };

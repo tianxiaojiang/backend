@@ -9,12 +9,13 @@
 namespace Backend\modules\admin\controllers;
 
 
+use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\modules\admin\models\Admin;
 use Backend\modules\admin\models\Game;
 use Backend\modules\admin\models\System;
 use Backend\modules\admin\models\SystemMenu;
-use Backend\modules\admin\services\SystemService;
+use yii\httpclient\Client;
 
 class CommonController extends \Backend\modules\common\controllers\BaseController
 {
@@ -90,6 +91,32 @@ class CommonController extends \Backend\modules\common\controllers\BaseControlle
         $systems = System::findAll(['status' => System::SYSTEM_STAT_NORMAL]);
 
         return ['systems' => $systems];
+    }
+
+    public function actionGetToken()
+    {
+        $code = Helpers::getRequestParam('code');
+        $sid = Helpers::getRequestParam('sid');
+
+        if (!preg_match("/^\d{8}$/", $code)) {
+            throw new CustomException('code码不合法');
+        }
+
+        $client = new Client();
+        $url = \Yii::$app->params['integration_backend']['url'] . \Yii::$app->params['integration_backend']['gain_token'];
+        $response = $client->get($url, ['code' => $code, 'sid' => $sid])->send();
+
+//        var_dump($url . '?code=' . $code . '&sid='. $sid);exit;
+
+        if (!$response->getIsOk())
+            throw new CustomException('授权失败，请联系中心后台管理人员');
+
+        $data = $response->getData();
+        \Yii::info('get token data:' . var_export($data, true));
+        if ($data['code'] != 0)
+            throw new CustomException($data['msg']);
+
+        return $data['data'];
     }
 
     protected function formatMenu($treeMenu, $loopDepth)

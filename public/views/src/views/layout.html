@@ -39,13 +39,13 @@
     <!-- 侧边菜单 -->
     <div class="layui-side layui-side-menu">
         <div class="layui-side-scroll">
-            <div class="layui-form layui-game-type" id="LAY-view-game-type" lay-filter="layadmin-game-type">
-                <select name="game-type" lay-filter="game-type" id="LAY-game-type-list">
-                </select>
-            </div>
+            <!--<div class="layui-form layui-game-type" id="LAY-view-game-type" lay-filter="layadmin-game-type">-->
+                <!--<select name="game-type" lay-filter="game-type" id="LAY-game-type-list">-->
+                <!--</select>-->
+            <!--</div>-->
             <script type="text/html" id="LAY-temp-side-menu">
                 <div class="layui-logo" lay-href="">
-                    <span><!-- <i class="ztfont ztfont-logo"></i> -->{{ layui.setter.name || 'layuiAdmin' }}</span>
+                    <span><!-- <i class="ztfont ztfont-logo"></i> -->{{ layui.data(layui.setter.tableName).system_name || 'layuiAdmin' }}</span>
                 </div>
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu" style="margin-top:90px">
                     {{# var path = layui.router().path ,pathURL = layui.admin.correctRouter(path.join('/')) ,dataName = layui.setter.response.dataName; layui.each(d[dataName], function(index, item){ var hasChildren = typeof item.list === 'object' && item.list.length > 0 ,classSelected = function(){ var match = path[0] == item.name || (index == 0 && !path[0]) || (item.jump && pathURL == layui.admin.correctRouter(item.jump)); if(match){ return hasChildren ? 'layui-nav-itemed' : 'layui-this'; } return ''; } ,url = (item.jump && typeof item.jump === 'string') ? item.jump : item.name; }}

@@ -71,7 +71,7 @@ layui.define('admin', function(exports) {
             (game_id) && (param.game_id = game_id);
             (sid) && (param.sid = sid);
             param = obj.objSort(param);
-            // console.log(param);
+
             var str = '';
             for (var i in param) {
                 if (str === '') {

@@ -7,7 +7,6 @@ use Api\modules\authentication\services\JwtService;
 use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\helpers\Lang;
-use yii\helpers\ArrayHelper;
 
 /**
  * 校验token有效性
@@ -24,6 +23,10 @@ class JwtController extends BaseController
         //解析并校验token
         if (!$jwtService->parseToken()->validateToken()) {
             throw new CustomException(Lang::ERR_TOKEN_INVALID);
+        }
+        //校验sid一致性
+        if(intval(Helpers::getRequestParam('sid')) !== intval($jwtService->jwtObj->Payload['sid']->getValue())) {
+            throw new CustomException('系统校验错误');
         }
 
         //设置登录账号
