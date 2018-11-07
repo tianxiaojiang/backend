@@ -29,7 +29,7 @@ class AccessToken extends Admin
 
     static public function tableName()
     {
-        return 's' . Helpers::getRequestParam('sid') . '_admin_user';
+        return 'admin_user';
     }
 
     public function fields()
@@ -90,34 +90,6 @@ class AccessToken extends Admin
     public function getSgIds()
     {
         return $this->hasMany(SystemUserGroup::class, ['ad_uid' => 'ad_uid']);
-    }
-
-    /**
-     * 验证要登录的账号是否存在
-     * @param $model
-     * @return bool
-     * @throws CustomException
-     */
-    public static function validateModelEmpty($model)
-    {
-        if (empty($model) or !$model instanceof AccessToken)
-            throw new CustomException(Lang::ERR_LOGIN_FAIL);
-        else
-            return true;
-    }
-
-    /**
-     * 验证管理员的状态
-     * @param $model
-     * @return bool
-     * @throws CustomException
-     */
-    public static function validateLoginAdminStatus($model)
-    {
-        if ($model->status != AccessToken::STATUS_NORMAL)
-            throw new CustomException(Lang::ERR_STATUS_FORBIDDEN);
-        else
-            return true;
     }
 
     /**

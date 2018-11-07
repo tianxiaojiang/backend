@@ -6,8 +6,10 @@ use Api\modules\authentication\models\AccessToken;
 use Api\modules\open\services\Auth2Service;
 use Backend\helpers\Helpers;
 use Backend\modules\admin\models\System;
+use Backend\modules\admin\services\AdminService;
 use Backend\modules\admin\services\SystemService;
 use Backend\modules\common\controllers\JwtController;
+use yii\helpers\ArrayHelper;
 
 /**
  * Created by PhpStorm.
@@ -33,8 +35,9 @@ class AuthController extends JwtController
 
         //验证登录用户
         $model = \Yii::$app->user->identity;
-        AccessToken::validateModelEmpty($model);
-        AccessToken::validateLoginAdminStatus($model);
+        AdminService::validateModelEmpty($model);
+        AdminService::validateLoginAdminStatus($model);
+        AdminService::validateHasSystemPermission($system->systems_id, ArrayHelper::getColumn($model->systems, 'systems_id'));
 
         $access_token = $model->generateAccessToken($system);//生成token
 
@@ -47,6 +50,6 @@ class AuthController extends JwtController
         );
 
         //返回跳转的子系统地址
-        return ['redirect_url' => $system->url . '/user/auth?code=' . $code . '&sid=' . $goSid];
+        return ['redirect_url' => $system->url . '/views/start/index.html#user/auth?code=' . $code . '&sid=' . $goSid];
     }
 }

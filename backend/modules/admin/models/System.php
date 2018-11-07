@@ -26,9 +26,9 @@ class System extends BaseModel
     public function scenarios()
     {
         return [
-            'default' => ['systems_id', 'name', 'url', 'status', 'description', 'updated_at', 'created_at'],
-            'update' => ['systems_id', 'name', 'url', 'status', 'description', 'updated_at', 'created_at'],
-            'create' => ['systems_id', 'name', 'url', 'status', 'description', 'updated_at', 'created_at'],
+            'default' => ['systems_id', 'name', 'url', 'dev_account', 'status', 'description', 'updated_at', 'created_at'],
+            'update' => ['systems_id', 'name', 'url', 'dev_account', 'status', 'description', 'updated_at', 'created_at'],
+            'create' => ['systems_id', 'name', 'url', 'dev_account', 'status', 'description', 'updated_at', 'created_at'],
         ];
     }
 
@@ -37,6 +37,7 @@ class System extends BaseModel
         return [
             ['name', 'required', 'message' => '系统名不能为空', 'on' => ['create', 'update']],
             ['url', 'required', 'message' => '系统url不能为空', 'on' => ['create', 'update']],
+            ['dev_account', 'required', 'message' => '开发者账号不能为空', 'on' => ['create', 'update']],
         ];
     }
 
@@ -46,7 +47,7 @@ class System extends BaseModel
 
     public function fields()
     {
-        return ['systems_id', 'name', 'url', 'status', 'description', 'updated_at', 'created_at'];
+        return ['systems_id', 'name', 'url', 'dev_account', 'status', 'description', 'updated_at', 'created_at'];
     }
 
     public function getStatusName()
@@ -66,14 +67,21 @@ class System extends BaseModel
     }
 
     public function insert($runValidation = true, $attributes = null) {
-
+        //系统数据入库
         $systems_id = parent::insert($runValidation, $attributes);
-
         if (!$systems_id)
             throw new CustomException('数据库操作添加系统失败');
 
+        //生成管理员账号
+        $adminUser = Admin::findOne(['account' => $this->dev_account]);
+        if (empty($adminUser)) {
+            $adminUser = new Admin();
+            $adminUser->account = $this->dev_account;
+            $adminUser->save();
+        }
+
         //生成系统的数据库表格
-        ImportSystemSqlService::importSystemSql($this->systems_id);
+        ImportSystemSqlService::importSystemSql($this->systems_id, $adminUser->ad_uid);
 
         return true;
     }

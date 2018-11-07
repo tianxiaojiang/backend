@@ -10,6 +10,7 @@ CREATE TABLE `systems` (
   `name` char (20) NOT NULL COMMENT '后台名称',
   `icon` char (64) NOT NULL DEFAULT '' COMMENT '图标',
   `url` char (128) NOT NULL DEFAULT '' COMMENT '链接地址',
+  `dev_account` varchar (32) NOT NULL DEFAULT '' COMMENT '系统开发者账号',
   `description` varchar (128) NOT NULL DEFAULT '' COMMENT '描述',
   `status` tinyint (1) NOT NULL DEFAULT 0 COMMENT '状态 0、正常；1、关闭中',
   `created_at` datetime,
@@ -17,7 +18,7 @@ CREATE TABLE `systems` (
   PRIMARY KEY (`systems_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `systems` values (1, '中心后台', '', 'http://admin-center.ztgame.com', '管理所有接入后台的角色、权限、菜单、账号等', '0', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
+INSERT INTO `systems` values (1, '中心后台', '', 'http://integration.background.com', 'admin', '管理所有接入后台的角色、权限、菜单、账号等', '0', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
 
 
 -- ----------------------------
@@ -37,6 +38,51 @@ CREATE TABLE `game` (
 
 INSERT INTO `game` VALUES (5012, '测试应用', 'test', 0, 99, '2018-09-12 12:09:00', '2018-09-12 12:09:00');
 INSERT INTO `game` VALUES (5051, '街头篮球', 'streetBasketball', 0, 99, '2018-09-12 12:09:00', '2018-09-12 12:09:00');
+
+
+-- ----------------------------
+-- Table structure for admin_user
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_user`;
+CREATE TABLE `admin_user` (
+  `ad_uid` int(11) NOT NULL AUTO_INCREMENT,
+  `account` varchar(32) NOT NULL DEFAULT '' COMMENT '账号',
+  `passwd` varchar(32) NOT NULL DEFAULT '' COMMENT '密码',
+  `salt` char(4) NOT NULL DEFAULT '' COMMENT '加密混淆',
+  `mobile_phone` char(16) NOT NULL DEFAULT '' COMMENT '手机号',
+  `username` varchar(16) NOT NULL DEFAULT '' COMMENT '用户名称',
+  `access_token` CHAR (64) NOT NULL DEFAULT '' COMMENT '访问token',
+  `access_token_expire` int (11) NOT NULL DEFAULT 0 COMMENT 'token过期时间',
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '管理员状态 1、正常 2、禁用',
+  `created_at` datetime,
+  `updated_at` datetime,
+  PRIMARY KEY (`ad_uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of admin_user
+-- ----------------------------
+INSERT INTO `admin_user` VALUES ('1', 'admin', 'dd02677c714da6a5becbfe9a36aeb8c1', 'ufob', '17717563803', 'wame', '', 0, '0', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
+
+
+-- ----------------------------
+-- Table structure for system_admin
+-- ----------------------------
+DROP TABLE IF EXISTS `system_admin`;
+CREATE TABLE `system_admin` (
+  `sa_id` int(11) NOT NULL AUTO_INCREMENT,
+  `systems_id` int (11) NOT NULL DEFAULT 0 COMMENT '系统id',
+  `ad_uid` int (11) NOT NULL DEFAULT 0 COMMENT '用户id',
+  `created_at` datetime,
+  `updated_at` datetime,
+  PRIMARY KEY (`sa_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of admin_user
+-- ----------------------------
+INSERT INTO `system_admin` VALUES ('1', '1', '1', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
+
 
 -- ----------------------------
 -- Table structure for s1_system_menu
@@ -122,31 +168,6 @@ INSERT INTO `s1_system_priv` VALUES ('30', '7', '模块列表', 'admin', 'system
 INSERT INTO `s1_system_priv` VALUES ('31', '7', '添加模块', 'admin', 'system', 'create', '29', '1', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
 INSERT INTO `s1_system_priv` VALUES ('32', '7', '修改模块', 'admin', 'system', 'update', '29', '1', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
 INSERT INTO `s1_system_priv` VALUES ('33', '7', '删除模块', 'admin', 'system', 'delete', '29', '1', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
-
-
--- ----------------------------
--- Table structure for admin_user
--- ----------------------------
-DROP TABLE IF EXISTS `s1_admin_user`;
-CREATE TABLE `s1_admin_user` (
-  `ad_uid` int(11) NOT NULL AUTO_INCREMENT,
-  `account` varchar(32) NOT NULL DEFAULT '' COMMENT '账号',
-  `passwd` varchar(32) NOT NULL DEFAULT '' COMMENT '密码',
-  `salt` char(4) NOT NULL DEFAULT '' COMMENT '加密混淆',
-  `mobile_phone` char(16) NOT NULL DEFAULT '' COMMENT '手机号',
-  `username` varchar(16) NOT NULL DEFAULT '' COMMENT '用户名称',
-  `access_token` CHAR (64) NOT NULL DEFAULT '' COMMENT '访问token',
-  `access_token_expire` int (11) NOT NULL DEFAULT 0 COMMENT 'token过期时间',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '管理员状态 1、正常 2、禁用',
-  `created_at` datetime,
-  `updated_at` datetime,
-  PRIMARY KEY (`ad_uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of admin_user
--- ----------------------------
-INSERT INTO `s1_admin_user` VALUES ('1', 'admin', 'dd02677c714da6a5becbfe9a36aeb8c1', 'ufob', '17717563803', 'wame', '', 0, '0', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
 
 -- ----------------------------
 -- Table structure for system_group

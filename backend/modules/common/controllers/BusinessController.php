@@ -5,6 +5,8 @@ namespace Backend\modules\common\controllers;
 use Backend\actions\CreateAction;
 use Backend\actions\DeleteAction;
 use Backend\actions\UpdateAction;
+use Backend\behavior\ValidateGame;
+use Backend\behavior\ValidateSystem;
 use Backend\behavior\ValidateTime;
 use Backend\behavior\TokenExpire;
 use Backend\behavior\VerifySign;
@@ -69,8 +71,10 @@ class BusinessController extends CommonController
         $behaviors = parent::behaviors();
 
         //验证时间的行为
-        $behaviors['validateTime']  = ValidateTime::class;
-        $behaviors['Privilege']    = Privilege::class;
+        $behaviors['validateTime'] = ValidateTime::class;
+        $behaviors['ValidateSystem'] = ValidateSystem::class;
+        $behaviors['ValidateGame'] = ValidateGame::class;
+        $behaviors['Privilege'] = Privilege::class;
 
         return $behaviors;
     }
@@ -80,8 +84,8 @@ class BusinessController extends CommonController
         parent::beforeAction($action);
 
         $this->validateTime();//验证请求时间戳
-        //$this->validateTokenExpire();//验证请求token有效期
-        //$this->verifySignature();//验证签名
+        $this->validateSystem();//验证账号有没有对应访问系统的权限
+        $this->validateGame();//验证账号有没有对应系统的游戏权限
         $this->canAccess();//验证访问权限
 
         return true;

@@ -14,6 +14,11 @@
                 <input type="text" class="layui-input" name="url" required lay-verify="url" placeholder="URL" value="{{d.params.url}}" autocomplete="off" class="layui-input" /></div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">开发者账号</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="dev_account" required placeholder="开发者账号" value="{{d.params.dev_account}}" autocomplete="off" class="layui-input" /></div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">描述</label>
             <div class="layui-input-block">
                 <textarea class="layui-input" name="description" placeholder="系统简要描述">{{d.params.description}}</textarea>

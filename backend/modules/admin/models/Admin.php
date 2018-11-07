@@ -31,11 +31,9 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
 
     public $_user;
 
-    public static $tableIndex = 0;
-
     static public function tableName()
     {
-        return 's' . Helpers::getRequestParam('sid') . '_admin_user';
+        return 'admin_user';
     }
 
     public function scenarios()
@@ -307,5 +305,10 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     public function getSystemGroup() {
         $s = Helpers::getRequestParam('sid');
         return $this->hasMany(SystemGroup::class, ['sg_id' => 'sg_id'])->viaTable('s'. $s .'_system_user_group', ['ad_uid' => 'ad_uid']);
+    }
+
+    public function getSystems()
+    {
+        return $this->hasMany(System::class, ['systems_id' => 'systems_id'])->viaTable(SystemUser::tableName(), ['ad_uid' => 'ad_uid']);
     }
 }

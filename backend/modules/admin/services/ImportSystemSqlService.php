@@ -17,10 +17,13 @@ namespace Backend\modules\admin\services;
 class ImportSystemSqlService
 {
     public static $systemId = 0;
+    public static $accountId = 0;
 
-    public static function importSystemSql($systemId) {
+    public static function importSystemSql($systemId, $accountId) {
         self::$systemId = $systemId;
-        \Yii::info('SYstem generate id:' . self::$systemId);
+        self::$accountId = $accountId;
+        \Yii::info('System generate id:' . self::$systemId);
+        \Yii::info('System admin id:' . self::$accountId);
         $db = \Yii::$app->db;
         $transaction = $db->beginTransaction();
 
@@ -68,6 +71,9 @@ class ImportSystemSqlService
                 $tableSqlFile = $insertDir . $sqlFile;
                 $createSql = file_get_contents($tableSqlFile);
                 $sqlReplaceedPlaceholder = str_replace('{{SID}}', self::$systemId, $createSql);
+                $sqlReplaceedPlaceholder = str_replace('{{ACCOUNT_ID}}', self::$accountId, $sqlReplaceedPlaceholder);
+                $sqlReplaceedPlaceholder = str_replace('{{CREATED_AT}}', date('Y-m-d H:i:s'), $sqlReplaceedPlaceholder);
+                $sqlReplaceedPlaceholder = str_replace('{{UPDATED_AT}}', date('Y-m-d H:i:s'), $sqlReplaceedPlaceholder);
                 \Yii::info('insert replaced Placeholder sql:' . var_export($sqlReplaceedPlaceholder, true));
                 $db->createCommand($sqlReplaceedPlaceholder)->execute();
             }

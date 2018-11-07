@@ -1,19 +1,29 @@
 <script type="text/html" template>
     <link rel="stylesheet" href="{{ layui.setter.base }}style/login.css?v={{ layui.admin.v }}-1" media="all">
 </script>
-<div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
-    <div class="layadmin-user-login-main">
-        <div class="layadmin-user-login-box layadmin-user-login-header">
-            <h2>后台登录统一入口</h2>
-            <p>巨人网络通用后台管理系统</p>
+
+<div class="layui-box twm_login_box">
+    <div class="layui-box layui-row twm-header">
+        <div class="layui-col-xs2">
+            &nbsp;
         </div>
-        <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
-            <div class="layui-form-item">
-                <div class="layui-block layui-form" lay-filter="login-select-filter">
-                    <select name="sid" id="login-systems-select">
-                    </select>
-                </div>
+        <div class="layui-col-xs8 login-title"><h3 class="layui-col-xs1 layui-col-xs-offset4">统一后台</h3></div>
+        <div class="layui-col-xs2">
+            <div id="login-btn-or-username">
+                <a href="javascript:void(0);" id="login-btn">登录</a>
             </div>
+        </div>
+    </div>
+    <div class="layui-row twm-body">
+        <div class="layui-col-xs8 layui-col-xs-offset2" id="systems-box">
+
+        </div>
+    </div>
+</div>
+
+<div class="layadmin-user-login" id="LAY-user-login" style="display: none;">
+    <div class="layadmin-user-login-main">
+        <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
                 <input type="text" name="account" id="LAY-user-login-username" lay-verify="required" autocomplete="off" placeholder="域用户名" class="layui-input">
@@ -36,50 +46,88 @@
                 </div>
             </div>
             <div class="layui-form-item" style="margin-bottom: 20px;">
-                <input type="checkbox" name="is_maintain" lay-skin="primary" title="维护后台">
+                <!--<input type="checkbox" name="is_maintain" lay-skin="primary" title="维护后台">-->
                 <!--<a lay-href="/user/forget" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>-->
             </div>
             <div class="layui-form-item">
+                <input type="hidden" name="sid" value="1">
                 <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 录</button>
             </div>
         </div>
-    </div>
-    <div class="layui-trans layadmin-user-login-footer">
-        <p>© 2018 <a href="http://www.ztgame.com/" target="_blank">ztgame.com</a></p>
     </div>
 </div>
 <script>
 
 layui.use(['admin', 'form', 'user'], function() {
-    var $ = layui.$, setter = layui.setter, admin = layui.admin, form = layui.form, router = layui.router(), search = router.search;
+    var $ = layui.$, setter = layui.setter, layer = layui.layer, admin = layui.admin, form = layui.form, router = layui.router(), search = router.search;
 
-    var selectBox = $('#login-systems-select');
+    var systemsBox = $('#systems-box'),
+        loginBtnBox = $('#login-btn-or-username')
+    ;
+    //拉取系统列表
     var renderSystemSelect = function() {
         // 拉取所有系统接口
         admin.req({
             url: '/admin/common/systems',
             method: 'get',
             done: function(res) {
-                var systemOptions = '<option value="">选择系统</option>';
+                var systemOptions = '';
                 $.each(res.data.systems, function (k, v) {
-                    systemOptions += '<option value="' + v.systems_id + '">' + v.name + '</option>';
+                    systemOptions += '<div class="systems-item layui-col-xs1" attr-value="' + v.systems_id + '">' + v.name + '</div>';
                 });
-                selectBox.html(systemOptions);
+                systemsBox.html(systemOptions);
                 form.render('select', 'login-select-filter');
             }
         });
     }
-    renderSystemSelect();
 
-    // form.render();
+    //触发验证码
     $('#LAY-user-get-vercode').trigger('click');
-    // 用户名提示信息
-    $('#LAY-user-login-username').on('focus', function() {
-        var tipsTxt = '一般为您姓名的全拼，如张三的域帐号为 zhangsan';
-        layer.tips(tipsTxt, this, {
-            tips: [2, '#009688']
+
+    //触发登录
+    var showLogin = function () {
+        layer.open({
+            title: '统一登录',
+            area: ['500px', '400px'],
+            type: 1,
+            content: $('#LAY-user-login') //这里content是一个普通的String
         });
-    });
+    }
+
+    //判断是否登录成功
+    var isLogged = function () {
+        return layui.data(setter.tableName)[setter.request.tokenName] && layui.data(setter.tableName)['sid'];
+    }
+
+    //登录成功回调
+    var loginSuccessCallback = function() {
+        var username = layui.data(setter.tableName)['username'];
+        var loginHtml = '<div id="loggedIn"><span>__USERNAME__</span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" id="log-out">退出</a></div>';
+        loginHtml = loginHtml.replace('__USERNAME__', username);
+        loginBtnBox.html(loginHtml);
+        return true;
+    }
+
+    //清楚token退出即可
+    //todo 请求服务端，销毁 token
+    var logOut = function () {
+        localStorage.clear();
+        loginBtnBox.html('<a href="javascript:void(0);" id="login-btn">登录</a>');
+    }
+
+    //初始化执行内容
+    var init = function() {
+        //渲染系统列表
+        renderSystemSelect();
+        //判断是否登录
+        if (isLogged()) {
+            loginSuccessCallback();
+        }
+    }
+    init();
+
+    // ---- 事件监听
+
     // 登录按钮提交
     form.on('submit(LAY-user-login-submit)', function(obj) {
         // 请求登入接口
@@ -88,16 +136,73 @@ layui.use(['admin', 'form', 'user'], function() {
             method: 'post',
             data: obj.field,
             done: function(res) {
-                // 页面中弹出登录成功提示，并跳转页面
-                var tipsTxt = '登入成功！';
-                layer.msg(tipsTxt, {
-                    offset: '15px',
-                    icon: 1,
-                    time: 1000
-                }, function() {
-                    window.location.href = res.data.redirect_url;
-                    // location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
+                if (res.code !== 0) {
+                    view.error(res.msg);
+                    return;
+                }
+                //获取到token显示姓名和存储数据
+                var jwtObj = res.data.access_token.split('.');
+                var payload = JSON.parse(atob(jwtObj[1]));
+                console.log(payload);
+                // 请求成功后，写入 access_token
+                layui.data(setter.tableName, {
+                    key: setter.request.tokenName,
+                    value: res.data.access_token
                 });
+                // 请求成功后，写入 username
+                layui.data(setter.tableName, {
+                    key: 'username',
+                    value: payload.name
+                });
+                // 请求成功后，写入 sid
+                layui.data(setter.tableName, {
+                    key: 'sid',
+                    value: payload.sid
+                });
+
+                loginSuccessCallback();
+                layer.closeAll();
+            }
+        });
+    });
+
+    //监听登录按钮
+    loginBtnBox.on('click', '#login-btn', function (e) {
+        showLogin();
+    });
+
+    //监听退出
+    loginBtnBox.on('click', '#log-out', function (e){
+        logOut();
+    });
+
+    //监听系统点击
+    systemsBox.on('click', '.systems-item', function (e) {
+        //检测是否登录
+        if (!isLogged()) {
+            showLogin();
+            return false;
+        }
+
+        //请求授权
+        var go_sid = $(this).attr('attr-value');
+        if (!go_sid) {
+            view.error('系统Id异常，刷新页面重试！');
+        }
+
+        var data = {"go_sid": go_sid};
+        // 请求系统授权
+        admin.req({
+            url: '/authentication/auth/get-token-by-token',
+            method: 'get',
+            data: data,
+            done: function(res) {
+                if (res.code !== 0) {
+                    view.error(res.msg);
+                    return false;
+                }
+
+                location.href = res.data.redirect_url;
             }
         });
     });
