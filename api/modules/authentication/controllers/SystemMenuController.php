@@ -22,6 +22,11 @@ class SystemMenuController extends JwtController
 
         $systemMenu = new SystemMenu();
         $menus = $systemMenu->getShowMenus($menuType);
+        $sid = intval(Helpers::getRequestParam('sid'));
+        if($sid > 1) {
+            $callback = Helpers::getRequestParam('callback');
+            echo $callback . '(' . json_encode(['code' => 0, 'msg' => '', 'data' => $menus]) . ')';exit;
+        }
 
         return $menus;
     }
