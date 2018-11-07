@@ -20,6 +20,9 @@ class JwtController extends BaseController
     public function beforeAction($action)
     {
         $tokenString = Helpers::getHeader('Authorization');
+        if (empty($tokenString)) {
+            $tokenString = Helpers::getRequestParam('Authorization');
+        }
         $jwtService = new JwtService(new Jwt(), $tokenString);
         //解析并校验token
         if (!$jwtService->parseToken()->validateToken()) {
