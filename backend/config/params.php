@@ -11,9 +11,9 @@ use yii\helpers\ArrayHelper;
 $params = [
     'integration_backend' => [
         'url' => 'http://integration.background.com',
-        'authentication' => '/public/privilege/check',
-        'gain_token' => '/public/token/gain',
+        'authentication' => '/open/privilege/check',
+        'gain_token' => '/open/token/gain',
     ]
 ];
 
-return file_exists('./params-local.php') ? ArrayHelper::merge($params, require_once('./params-local.php')) : $params;
+return file_exists(__DIR__ . '/params-local.php') ? ArrayHelper::merge($params, require_once(__DIR__ . '/params-local.php')) : $params;

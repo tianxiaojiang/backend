@@ -39,6 +39,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports) {
         //独立页面路由，可随意添加（无需写参数）
         indPage: [
                 '/user/login', //登入页
+                '/user/auth', //登入页
                 '/user/reg', //注册页
                 '/user/forget', //找回密码
                 '/template/tips/test' //独立页的一个测试 demo

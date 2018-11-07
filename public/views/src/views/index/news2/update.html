@@ -1,0 +1,55 @@
+<script type="text/html" template lay-done="editPrivilegeCallback(d);">
+    <div class="layui-fluid">
+        <form class="layui-form" action="">
+            <div class="layui-form-item layui-hide">
+                <label class="layui-form-label">角色编号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="id" required  lay-verify="required" placeholder="角色编号" value="{{ d.params.sg_id }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">角色名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="sg_name" required  lay-verify="required" placeholder="角色名" value="{{ d.params.sg_name }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+                <div class="layui-form-item">
+                <label class="layui-form-label">描述</label>
+                <div class="layui-input-block">
+                    <input type="text" name="sg_desc" required  lay-verify="required" placeholder="描述" value="{{ d.params.sg_desc }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="edit-group">提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+<script>
+    var editPrivilegeCallback = function (d) {
+        layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+
+            var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+
+            // 监听角色修改提交
+            form.on('submit(edit-group)', function (data) {
+                var options = {
+                    data: data.field,
+                    url: '/admin/system-group/update?id=' + data.field.id,
+                    method: 'patch',
+                    done: function () {
+                        layer.closeAll();
+                        table.reload('system-group');
+                        layer.msg('修改角色成功！');
+                    }
+                };
+                admin.req(options);
+                return false;
+            });
+
+        });
+    };
+</script>

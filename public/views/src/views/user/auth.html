@@ -1,0 +1,73 @@
+<script type="text/html" template>
+    <link rel="stylesheet" href="{{ layui.setter.base }}style/login.css?v={{ layui.admin.v }}-1" media="all">
+</script>
+<div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
+    <div class="layadmin-user-login-main" id="inAuthentication">
+        <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+            <h1 class="layui-code-h3">
+                授权中
+            </h1>
+            <div class="layui-"></div>
+        </div>
+    </div>
+    <div class="layui-trans layadmin-user-login-footer">
+        <p>© 2018 <a href="http://www.ztgame.com/" target="_blank">ztgame.com</a></p>
+        <!-- <p>
+            <span><a href="http://www.layui.com/admin/#get" target="_blank">获取授权</a></span>
+            <span><a href="http://www.layui.com/admin/pro/" target="_blank">在线演示</a></span>
+            <span><a href="http://www.layui.com/admin/" target="_blank">前往官网</a></span>
+        </p> -->
+    </div>
+</div>
+<script>
+
+    layui.use(['admin', 'form', 'user', 'ztutil'], function() {
+        var $ = layui.$, setter = layui.setter, admin = layui.admin, router = layui.router(), search = router.search, ztutil = layui.ztutil;
+
+        var queryParams = ztutil.parseURL(window.location.href)['params'];
+        var code = queryParams.code;
+        var sid = queryParams.sid;
+
+        // 根据code请求登录token
+        admin.req({
+            url: '/admin/common/get-token?code=' + code + '&sid=' + sid,
+            method: 'get',
+            done: function(res) {
+                var jwtObj = res.data.access_token.split('.');
+                var payload = JSON.parse(atob(jwtObj[1]));
+                console.log(payload);
+                // 请求成功后，写入 access_token
+                layui.data(setter.tableName, {
+                    key: setter.request.tokenName,
+                    value: res.data.access_token
+                });
+                // 请求成功后，写入 username
+                layui.data(setter.tableName, {
+                    key: 'username',
+                    value: payload.name
+                });
+                // 请求成功后，写入 sid
+                layui.data(setter.tableName, {
+                    key: 'sid',
+                    value: payload.sid
+                });
+                // 请求成功后，写入 system_name
+                layui.data(setter.tableName, {
+                    key: 'system_name',
+                    value: payload.system_name
+                });
+
+                // 页面中弹出登录成功提示，并跳转页面
+                var tipsTxt = '授权成功！';
+                layer.msg(tipsTxt, {
+                    offset: '15px',
+                    icon: 1,
+                    time: 1000
+                }, function() {
+                    location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
+                    location.search = ''
+                });
+            }
+        });
+    });
+</script>

@@ -66,6 +66,7 @@ layui.define('admin', function(exports) {
             }
             var time = obj.getTimestamp();
             var sid = obj.getSid();
+            var game_id = obj.getGameId();
             (game_id) && (param.game_id = game_id);
             (sid) && (param.sid = sid);
             param.time = time;
