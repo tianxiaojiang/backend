@@ -50,6 +50,6 @@ class AuthController extends JwtController
         );
 
         //返回跳转的子系统地址
-        return ['redirect_url' => $system->url . '/views/start/index.html#user/auth?code=' . $code . '&sid=' . $goSid];
+        return ['redirect_url' => $system->url . '/views/start/index.html#/user/auth?code=' . $code . '&sid=' . $goSid];
     }
 }
