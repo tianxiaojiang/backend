@@ -53,7 +53,7 @@ CREATE TABLE `admin_user` (
   `username` varchar(16) NOT NULL DEFAULT '' COMMENT '用户名称',
   `access_token` CHAR (64) NOT NULL DEFAULT '' COMMENT '访问token',
   `access_token_expire` int (11) NOT NULL DEFAULT 0 COMMENT 'token过期时间',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '管理员状态 1、正常 2、禁用',
+  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '管理员状态 1、正常 2、禁用',
   `created_at` datetime,
   `updated_at` datetime,
   PRIMARY KEY (`ad_uid`)
