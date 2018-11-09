@@ -9,7 +9,6 @@
  
 html,body,#LAY_app{height:100%;}
 .layui-layout-body{overflow: auto;}
-
 .layadmin-user-login{position: relative; left: 0; top: 0; padding: 30px 0; box-sizing: border-box;}
 .layadmin-user-login-main{width: 375px; margin: 0 auto; box-sizing: border-box;}
 .layadmin-user-login-box{padding: 20px;}
@@ -52,6 +51,7 @@ html,body,#LAY_app{height:100%;}
 .twm_login_box .twm-header{height: 200px;padding: 10px;}
 .twm_login_box .twm-header .login-title h3{font-weight: bold;}
 
-.twm_login_box .twm-body .systems-item{cursor: pointer;}
+.twm_login_box .twm-body .systems-item h3{cursor: pointer;font-weight: bold;}
+.twm_login_box .twm-body .systems-item .maintain{}
 
 

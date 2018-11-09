@@ -77,6 +77,8 @@ class System extends BaseModel
         if (empty($adminUser)) {
             $adminUser = new Admin();
             $adminUser->account = $this->dev_account;
+            $adminUser->username = $this->dev_account;
+            $adminUser->passwd = '123456';
             $adminUser->save();
         }
 

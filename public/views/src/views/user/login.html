@@ -59,21 +59,34 @@
 <script>
 
 layui.use(['admin', 'form', 'user'], function() {
-    var $ = layui.$, setter = layui.setter, layer = layui.layer, admin = layui.admin, form = layui.form, router = layui.router(), search = router.search;
+    var $ = layui.$, setter = layui.setter, layer = layui.layer, view = layui.view, admin = layui.admin, form = layui.form, router = layui.router(), search = router.search;
 
     var systemsBox = $('#systems-box'),
         loginBtnBox = $('#login-btn-or-username')
     ;
     //拉取系统列表
     var renderSystemSelect = function() {
+        var systemTpl = '<div class="systems-item layui-col-xs1">' +
+            '                <h3>__SYSTEMS_NAME__</h3>' +
+            '                __MAINTAIN__' +
+            '                <input type="hidden" name="systems_id__SYSTEMS_ID__" value="__SYSTEMS_ID__"/>' +
+            '            </div>';
+        var maintainTpl = '<div class="maintain"><a href="javascript:void(0);">维护</a><input type="hidden" name="systems_id__SYSTEMS_ID__" value="__SYSTEMS_ID__"/></div>';
         // 拉取所有系统接口
         admin.req({
             url: '/admin/common/systems',
             method: 'get',
             done: function(res) {
                 var systemOptions = '';
+                var systemItemHtml = '';
                 $.each(res.data.systems, function (k, v) {
-                    systemOptions += '<div class="systems-item layui-col-xs1" attr-value="' + v.systems_id + '">' + v.name + '</div>';
+                    systemItemHtml = systemTpl;
+                    var maintainHtml = (v.systems_id === 1) ? '' : maintainTpl;
+                    maintainHtml = maintainHtml.replace(/__SYSTEMS_ID__/g, v.systems_id);
+                    systemItemHtml = systemItemHtml.replace(/__SYSTEMS_ID__/g, v.systems_id).replace('__SYSTEMS_NAME__', v.name).replace('__MAINTAIN__', maintainHtml);
+                    console.log(systemTpl);
+                    console.log(systemItemHtml);
+                    systemOptions += systemItemHtml;
                 });
                 systemsBox.html(systemOptions);
                 form.render('select', 'login-select-filter');
@@ -113,6 +126,40 @@ layui.use(['admin', 'form', 'user'], function() {
     var logOut = function () {
         localStorage.clear();
         loginBtnBox.html('<a href="javascript:void(0);" id="login-btn">登录</a>');
+    }
+
+    /**
+     * 授权请求
+     * @param go_sid 系统id
+     * @param is_maintain 是否进入维护，维护即进入中心后台
+     */
+    var authorization = function (go_sid, is_maintain) {
+        //检测是否登录
+        if (!isLogged()) {
+            showLogin();
+            return false;
+        }
+
+        //请求授权
+        if (!go_sid) {
+            view.error('系统Id异常，刷新页面重试！');
+        }
+
+        var data = {"go_sid": go_sid, "is_maintain": is_maintain};
+        // 请求系统授权
+        admin.req({
+            url: '/authentication/auth/get-token-by-token',
+            method: 'get',
+            data: data,
+            done: function(res) {
+                if (res.code !== 0) {
+                    view.error(res.msg);
+                    return false;
+                }
+
+                location.href = res.data.redirect_url;
+            }
+        });
     }
 
     //初始化执行内容
@@ -177,34 +224,21 @@ layui.use(['admin', 'form', 'user'], function() {
     });
 
     //监听系统点击
-    systemsBox.on('click', '.systems-item', function (e) {
-        //检测是否登录
-        if (!isLogged()) {
-            showLogin();
-            return false;
-        }
+    systemsBox.on('click', '.systems-item h3', function (e) {
+        console.log($(this));
+        console.log($(this).siblings('input'));
+        console.log($(this).siblings('input'));
+        var go_sid = $(this).siblings('input').val();
+        authorization(go_sid, 0);//授权业务后台
+    });
 
-        //请求授权
-        var go_sid = $(this).attr('attr-value');
-        if (!go_sid) {
-            view.error('系统Id异常，刷新页面重试！');
-        }
-
-        var data = {"go_sid": go_sid};
-        // 请求系统授权
-        admin.req({
-            url: '/authentication/auth/get-token-by-token',
-            method: 'get',
-            data: data,
-            done: function(res) {
-                if (res.code !== 0) {
-                    view.error(res.msg);
-                    return false;
-                }
-
-                location.href = res.data.redirect_url;
-            }
-        });
+    //监听系统点击
+    systemsBox.on('click', '.systems-item .maintain a', function (e) {
+        console.log($(this));
+        console.log($(this).siblings('input'));
+        console.log($(this).siblings('input'));
+        var go_sid = $(this).siblings('input').val();
+        authorization(go_sid, 1);//授权业务后台
     });
 });
 </script>

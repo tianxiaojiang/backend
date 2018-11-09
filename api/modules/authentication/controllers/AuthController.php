@@ -6,6 +6,7 @@ use Api\modules\authentication\models\AccessToken;
 use Api\modules\open\services\Auth2Service;
 use Backend\helpers\Helpers;
 use Backend\modules\admin\models\System;
+use Backend\modules\admin\models\SystemUserGroup;
 use Backend\modules\admin\services\AdminService;
 use Backend\modules\admin\services\SystemService;
 use Backend\modules\common\controllers\JwtController;
@@ -30,8 +31,11 @@ class AuthController extends JwtController
     {
         //先验证要登录的系统
         $goSid = Helpers::getRequestParam('go_sid');
+        $isMaintain = intval(Helpers::getRequestParam('is_maintain'));
         $system = System::findOne(['systems_id' => $goSid]);
         SystemService::validateSystemExist($system);
+
+        Helpers::$request_params['sid'] = $goSid;
 
         //验证登录用户
         $model = \Yii::$app->user->identity;
@@ -48,6 +52,14 @@ class AuthController extends JwtController
             $code,
             $access_token
         );
+
+        /**
+         * 如果是维护系统，则地址跳转到中心后台
+         * sid是业务系统id
+         */
+        if ($isMaintain) {
+            $system = System::findOne(['systems_id' => 1]);
+        }
 
         //返回跳转的子系统地址
         return ['redirect_url' => $system->url . '/views/start/index.html?code=' . $code . '&sid=' . $goSid . '#/user/auth'];

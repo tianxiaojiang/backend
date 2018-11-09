@@ -2,26 +2,6 @@ use integration_background;
 set names utf8;
 
 -- ----------------------------
--- systems 后台系统
--- ----------------------------
-DROP TABLE IF EXISTS `systems`;
-CREATE TABLE `systems` (
-  `systems_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` char (20) NOT NULL COMMENT '后台名称',
-  `icon` char (64) NOT NULL DEFAULT '' COMMENT '图标',
-  `url` char (128) NOT NULL DEFAULT '' COMMENT '链接地址',
-  `dev_account` varchar (32) NOT NULL DEFAULT '' COMMENT '系统开发者账号',
-  `description` varchar (128) NOT NULL DEFAULT '' COMMENT '描述',
-  `status` tinyint (1) NOT NULL DEFAULT 0 COMMENT '状态 0、正常；1、关闭中',
-  `created_at` datetime,
-  `updated_at` datetime,
-  PRIMARY KEY (`systems_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-INSERT INTO `systems` values (1, '中心后台', '', 'http://integration.background.com', 'admin', '管理所有接入后台的角色、权限、菜单、账号等', '0', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
-
-
--- ----------------------------
 -- game 游戏
 -- ----------------------------
 DROP TABLE IF EXISTS `game`;
@@ -39,6 +19,24 @@ CREATE TABLE `game` (
 INSERT INTO `game` VALUES (5012, '测试应用', 'test', 0, 99, '2018-09-12 12:09:00', '2018-09-12 12:09:00');
 INSERT INTO `game` VALUES (5051, '街头篮球', 'streetBasketball', 0, 99, '2018-09-12 12:09:00', '2018-09-12 12:09:00');
 
+-- ----------------------------
+-- systems 后台系统
+-- ----------------------------
+DROP TABLE IF EXISTS `systems`;
+CREATE TABLE `systems` (
+  `systems_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` char (20) NOT NULL COMMENT '后台名称',
+  `icon` char (64) NOT NULL DEFAULT '' COMMENT '图标',
+  `url` char (128) NOT NULL DEFAULT '' COMMENT '链接地址',
+  `dev_account` varchar (32) NOT NULL DEFAULT '' COMMENT '系统开发者账号',
+  `description` varchar (128) NOT NULL DEFAULT '' COMMENT '描述',
+  `status` tinyint (1) NOT NULL DEFAULT 0 COMMENT '状态 0、正常；1、关闭中',
+  `created_at` datetime,
+  `updated_at` datetime,
+  PRIMARY KEY (`systems_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `systems` values (1, '中心后台', '', 'http://integration.background.com', 'admin', '管理所有接入后台的角色、权限、菜单、账号等', '0', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
 
 -- ----------------------------
 -- Table structure for admin_user

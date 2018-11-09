@@ -54,6 +54,8 @@ class Jwt
     public function setAdmin()
     {
         $this->admin = (AccessToken::find()->where(['ad_uid' => $this->Payload['uid']])->one());
+        if (empty($this->admin))
+            throw new CustomException('管理员不存在');
         return $this;
     }
 
@@ -63,7 +65,7 @@ class Jwt
             throw new CustomException('jwt未关联管理员');
         }
 
-        $roles = array_flip(ArrayHelper::getColumn(ArrayHelper::toArray($this->admin->sgIds), 'ad_uid'));
+        $roles = array_flip(ArrayHelper::getColumn(ArrayHelper::toArray($this->admin->sgIds), 'sg_id'));
         foreach ($roles as $key => $role) {
             $roles[$key] = ArrayHelper::getColumn(SystemGroupGame::getGamesByGroupId($key), 'game_id');
         }

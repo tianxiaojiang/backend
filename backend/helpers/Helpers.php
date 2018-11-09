@@ -57,7 +57,7 @@ class Helpers
 
         $resultStr = '';
         for ($i = 0; $i < $length; $i++) {
-            $key = rand(0, $length - 1);
+            $key = rand(0, strlen($str) - 1);
             $resultStr .= $str[$key];
         }
 

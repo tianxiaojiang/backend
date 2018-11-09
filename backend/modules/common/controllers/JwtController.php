@@ -7,6 +7,7 @@ use Api\modules\authentication\services\JwtService;
 use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\helpers\Lang;
+use Backend\modules\admin\models\SystemUserGroup;
 
 /**
  * 校验token有效性
