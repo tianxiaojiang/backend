@@ -1,80 +1,49 @@
-<script type="text/html" template lay-done="editAdminCallback();">
+<script type="text/html" template lay-url="/index/common/news-status" lay-done="editNewsCallback(d);">
     <form class="layui-form" action="">
-        <div class="layui-form-item layui-hide">
-            <label class="layui-form-label">角色编号</label>
-            <div class="layui-input-block"><input type="text" class="layui-input layui-disabled" disabled name="id" required lay-verify="required" placeholder="角色编号" value="{{ d.params.ad_uid }}" autocomplete="off" class="layui-input" /></div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-block"><input type="text" name="title" required lay-verify="required" placeholder="标题" autocomplete="off" class="layui-input"  value="{{ d.params.title }}"/></div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">账号</label>
-            <div class="layui-input-block"><input type="text" class="layui-input layui-disabled" disabled name="account" required lay-verify="required" placeholder="账号" value="{{d.params.account}}" autocomplete="off" class="layui-input" /></div>
+            <label class="layui-form-label">简介</label>
+            <div class="layui-input-block"> <input type="text" name="description" required lay-verify="required" placeholder="简介" autocomplete="off" class="layui-input"  value="{{ d.params.descriptioin }}"/></div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">绑定手机</label>
-            <div class="layui-input-block"><input type="text" class="layui-input layui-disabled" disabled name="mobile_phone" required lay-verify="required" placeholder="绑定手机" value="{{d.params.mobile_phone}}" autocomplete="off" class="layui-input" /></div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">密码</label>
-            <div class="layui-input-inline"><input type="password" name="passwd" placeholder="密码" autocomplete="off" class="layui-input" /></div>
-            <div class="layui-form-mid layui-word-aux">不修改密码，留空即可。</div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">姓名</label>
-            <div class="layui-input-block"><input type="text" name="username" required lay-verify="required" placeholder="姓名" value="{{d.params.username}}" autocomplete="off" class="layui-input" /></div>
+            <label class="layui-form-label">内容</label>
+            <div class="layui-input-block">
+                <textarea name="content" placeholder="内容" autocomplete="off" class="layui-textarea">{{ d.params.content }}</textarea>
+            </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">状态</label>
-            <div class="layui-input-block"><select name="status" required lay-verify="required" id="select-status"></select></div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">角色名</label>
             <div class="layui-input-block">
-                <input type="hidden" name="sg_id" id="roles_sg_id" required lay-verify="required"></input>
-                <select class="layui-select-dropup" id="select-roles" lay-filter="select-roles" required lay-verify="required" multiple lay-omit></select>
+                <select name="status" required lay-verify="required" id="news-select-status">
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <input type="hidden" name="primaryKey" id="primaryKey" value="{{d.params.ad_uid}}">
-                <button class="layui-btn" lay-submit="" lay-filter="edit-admin">提交</button>
+                <input type="hidden" name="id"  value="{{ d.params.news_id }}"/>
+                <input type="hidden" name="old_news_status"  value="{{ d.params.news_id }}"/>
+                <button class="layui-btn" lay-submit="" lay-filter="update-news">提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
     </form>
 </script>
 <script>
-    var editAdminCallback = function (d) {
+    var editNewsCallback = function (d) {
         layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
 
             var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
-
-            // 获取角色名列表
-            var getRoles = function () {
-                var rolesListHTML = '<option value="">请选择角色名</option>';
-                var rolesCurrent = $('#sg_id_old').text().split('、');
-                var options = {
-                    url: '/admin/system-group/index',
-                    page: true,
-                    limit: 1000,
-                    done: function (res) {
-                        $.each(res.data, function (i, v) {
-                            // 当前角色名是否在列表中，即是否为选中状态
-                            var isSelected = ztutil.inArray(rolesCurrent, v.sg_name) ? ' selected' : '';
-                            rolesListHTML += '<option value="' + v.sg_id + '"' + isSelected + '>' + v.sg_name + '</option>';
-                        });
-                        $('#select-roles').html(rolesListHTML);
-                        form.render();
-                    }
-                };
-                admin.req(options);
-            };
 
             // 获取状态列表
             var getStatus = function () {
                 var statusHTML = '';
                 var options = {
-                    url: '/admin/common/admin-stats',
+                    url: '/index/common/news-status',
                     done: function (res) {
-                        var old_status = $('#status_old').text();
+                        var old_status = $('#old_news_status').text();
                         $.each(res.data, function (i, v) {
                             // 当前状态是否为选中状态
                             if (v == old_status) {
@@ -83,35 +52,28 @@
                                 statusHTML += '<option value="' + i + '">' + v + '</option>';
                             }
                         });
-                        $('#select-status').html(statusHTML);
+                        $('#news-select-status').html(statusHTML);
                         form.render();
                     }
                 };
                 admin.req(options);
             };
-
-            getRoles();
             getStatus();
 
             // 编辑管理员按钮
-            form.on('submit(edit-admin)', function (data) {
+            form.on('submit(update-news)', function (data) {
                 var options = {
                     data: data.field,
-                    url: '/admin/admin-user/update?id=' + data.field.primaryKey,
+                    url: '/index/news1/update?id=' + data.field.id,
                     method: 'patch',
                     done: function () {
                         layer.closeAll();
-                        table.reload('system-admins');
-                        layer.msg('修改管理员成功！');
+                        table.reload('system-newses');
+                        layer.msg('修改文章成功！');
                     }
                 };
                 admin.req(options);
                 return false;
-            });
-
-            // 保存角色名 id 列表值
-            form.on('select(select-roles)', function (data) {
-                $('#roles_sg_id').val(data.value.join());
             });
 
         });

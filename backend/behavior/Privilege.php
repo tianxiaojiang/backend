@@ -35,7 +35,7 @@ class Privilege extends Behavior
         \Yii::info('鉴权头：'. var_export($authorization, true));
         \Yii::info('鉴权参数：'. var_export($params, true));
         $httpClient = new Client();
-        $authenticationUrl = \Yii::$app->params['authentication_url'];
+        $authenticationUrl = \Yii::$app->params['integration_backend']['url'] . \Yii::$app->params['integration_backend']['authentication'];
         $response = $httpClient->get(
                 $authenticationUrl,
                 $params,
@@ -46,8 +46,9 @@ class Privilege extends Behavior
             throw new CustomException('鉴权系统发生错误');
 
         $data = $response->getData();
-        \Yii::info('鉴权结果：'. var_export($data));
-        if ($data->code != 0)
+        \Yii::info('鉴权结果：'. var_export($data, true));
+        if ($data['code'] != 0) {
             throw new CustomException($data->msg);
+        }
     }
 }

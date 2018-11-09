@@ -2,7 +2,7 @@
 
 namespace Business\modules\index\models;
 
-use yii\db\ActiveRecord;
+use Backend\modules\common\models\BaseModel;
 
 /**
  * Created by PhpStorm.
@@ -10,7 +10,7 @@ use yii\db\ActiveRecord;
  * Date: 2018/4/9
  * Time: 14:21
  */
-class News extends ActiveRecord
+class News extends BaseModel
 {
     const NEWS_STATUS_NORMAL = 0;
     const NEWS_STATUS_PUBLISHING = 1;
@@ -25,5 +25,28 @@ class News extends ActiveRecord
     public static function tableName()
     {
         return 'news';
+    }
+
+    public function scenarios()
+    {
+        return [
+            'default' => ['news_id', 'title', 'description', 'content', 'status', 'updated_at', 'created_at'],
+            'update' => ['news_id', 'title', 'description', 'content', 'status', 'updated_at', 'created_at'],
+            'create' => ['news_id', 'title', 'description', 'content', 'status', 'updated_at', 'created_at'],
+        ];
+    }
+
+    public function rules()
+    {
+        return [
+            ['title', 'required', 'message' => '标题不能为空', 'on' => ['create', 'update']],
+            ['description', 'required', 'message' => '简介不能为空', 'on' => ['create', 'update']],
+            ['content', 'required', 'message' => '内容不能为空', 'on' => ['create', 'update']],
+        ];
+    }
+
+    public function fields()
+    {
+        return ['news_id', 'title', 'description', 'content', 'status', 'updated_at', 'created_at'];
     }
 }

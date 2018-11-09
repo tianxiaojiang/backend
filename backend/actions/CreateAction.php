@@ -69,7 +69,7 @@ class CreateAction extends Action
         } else {
             $errors = $model->getErrors();
             $error  = array_shift($errors);
-            throw new CustomException(Lang::FAIL, $error[0]);
+            throw new CustomException($error[0]);
         }
 
         return $model;

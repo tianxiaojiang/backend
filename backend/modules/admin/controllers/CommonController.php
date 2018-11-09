@@ -21,7 +21,7 @@ class CommonController extends \Backend\modules\common\controllers\CommonControl
         $code = Helpers::getRequestParam('code');
         $sid = Helpers::getRequestParam('sid');
 
-        if (!preg_match("/^\d{8}$/", $code)) {
+        if (!preg_match("/^\w{8}$/", $code)) {
             throw new CustomException('code码不合法');
         }
 

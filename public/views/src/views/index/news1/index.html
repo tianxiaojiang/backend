@@ -4,10 +4,10 @@
         <div class="layui-card">
             <div class="layui-card-body">
                 <div class="layui-btn-container">
-                    <button class="layui-btn" id="btn-add-admin">添加</button>
+                    <button class="layui-btn" id="btn-add-news">添加</button>
                 </div>
-                <table class="layui-table" id="system-admins" lay-size="lg" lay-filter="admins-list"></table>
-                <script type="text/html" id="admin-option">
+                <table class="layui-table" id="system-newses" lay-size="lg" lay-filter="newses-list"></table>
+                <script type="text/html" id="news-option">
                     <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
                     <a class="layui-btn layui-btn-sm layui-btn-danger" data-type="t" lay-event="del">删除</a>
                 </script>
@@ -21,14 +21,14 @@
         var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
 
         // 点击添加管理员按钮
-        $('#btn-add-admin').on('click', function () {
+        $('#btn-add-news').on('click', function () {
             view.popup({
                 type: 1,
-                id: 'LAY-system-admins-add',
-                title: '添加管理员',
+                id: 'LAY-system-news-add',
+                title: '添加文章',
                 resize: false,
                 success: function () {
-                    view(this.id).render('/system/admins/add', data).done(function () {
+                    view(this.id).render('index/news1/add').done(function () {
                         $(window).trigger('resize');
                     });
                 }
@@ -37,8 +37,8 @@
 
         // 渲染管理员列表
         table.render({
-            elem: '#system-admins',
-            url: '/admin/admin-user/index',
+            elem: '#system-newses',
+            url: '/index/news1/index',
             where: ztutil.createSign(),
             size: 'lg',
             headers: {
@@ -46,34 +46,34 @@
             },
             cols: [[
                 { type: 'checkbox' },
-                { field: 'ad_uid', title: '角色编号', sort: true },
-                { field: 'account', title: '账号', sort: true },
-                { field: 'created_at', title: '创建时间', sort: true },
-                { field: 'mobile_phone', title: '绑定手机', sort: true },
-                { field: 'role', title: '角色名', sort: true },
+                { field: 'news_id', title: '文章编号', sort: true },
+                { field: 'title', title: '标题', sort: true },
+                { field: 'description', title: '简介', sort: true },
+                { field: 'content', title: '内容', sort: true },
                 { field: 'status', title: '状态', sort: true },
-                { field: 'username', title: '姓名', sort: true },
-                { fixed: 'right', title: '操作', toolbar: '#admin-option' }
+                { field: 'created_at', title: '创建时间', sort: true },
+                { field: 'updated_at', title: '最后更新时间', sort: true },
+                { fixed: 'right', title: '操作', toolbar: '#news-option' }
             ]],
             page: true
         });
 
         // 监听工具条
-        table.on('tool(admins-list)', function (obj) {
+        table.on('tool(newses-list)', function (obj) {
             var data = obj.data;
             if (obj.event === 'del') {
-                layer.confirm('是否要删除管理员：<strong>' + data.account + '</strong> ？', {
+                layer.confirm('是否要删除文章：<strong>' + data.title + '</strong> ？', {
                 }, function (index) {
-                    deleteAdmin(data.ad_uid, obj);
+                    deleteNews(data.news_id, obj);
                 });
             } else if (obj.event === 'edit') {
                 view.popup({
                     type: 1,
-                    id: 'LAY-system-admins-update',
+                    id: 'LAY-system-newses-update',
                     title: '修改管理员',
                     resize: false,
                     success: function () {
-                        view(this.id).render('/system/admins/update', data).done(function() {
+                        view(this.id).render('/index/news1/update', data).done(function() {
                             $(window).trigger('resize');
                         });
                     }
@@ -82,14 +82,14 @@
         });
 
         // 删除管理员请求
-        var deleteAdmin = function (id, obj) {
+        var deleteNews = function (id, obj) {
             var options = {
-                url: '/admin/admin-user/delete?id=' + id,
+                url: '/index/news1/delete?id=' + id,
                 method: 'delete',
                 done: function () {
                     obj.del();
-                    table.reload('system-admins');
-                    layer.msg('删除管理员成功！');
+                    table.reload('system-newses');
+                    layer.msg('删除成功！');
                 }
             };
             admin.req(options);
