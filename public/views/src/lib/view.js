@@ -50,7 +50,8 @@ layui.define(['laytpl', 'layer'], function(exports){
     });
 
     //跳转到登入页
-    location.hash = '/user/login';
+    location.href = setter.integration_url + '/views/start/index.html#/user/login'
+    // location.hash = '/user/login';
   };
 
   //Ajax请求

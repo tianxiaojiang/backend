@@ -27,11 +27,18 @@ class Privilege extends Behavior
         $m = $controller->module->id;
         $a = $controller->action->id;
         $sid = Helpers::getRequestParam('sid');
+        $game_id = Helpers::getRequestParam('game_id');
         $authorization = Helpers::getHeader('Authorization');
 
         Helpers::validateEmpty($authorization, 'token');
 
-        $params = ['m' => $m, 'c' => $c, 'a' => $a, 'sid' => $sid];
+        $params = [
+            'm' => $m,
+            'c' => $c,
+            'a' => $a,
+            'sid' => $sid,
+            'game_id' => $game_id,
+            ];
         \Yii::info('鉴权头：'. var_export($authorization, true));
         \Yii::info('鉴权参数：'. var_export($params, true));
         $httpClient = new Client();
@@ -48,7 +55,7 @@ class Privilege extends Behavior
         $data = $response->getData();
         \Yii::info('鉴权结果：'. var_export($data, true));
         if ($data['code'] != 0) {
-            throw new CustomException($data->msg);
+            throw new CustomException($data['msg'], $data['code']);
         }
     }
 }

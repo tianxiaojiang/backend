@@ -41,7 +41,7 @@ layui.extend({
     */
     
     //重置状态
-    var reset = function(type){
+    var reset = function(type) {
       renderPage.haveInit && layer.closeAll();
       renderPage.haveInit = true;
       $(APP_BODY).scrollTop(0);
@@ -50,7 +50,7 @@ layui.extend({
     };
     
     //如果路由来自于 tab 切换，则不重新请求视图
-    if(tabsPage.type === 'tab'){
+    if(tabsPage.type === 'tab') {
       //切换到非主页、或者切换到主页且主页必须有内容。方可阻止请求
       if(pathURL !== '/' || (pathURL === '/' && admin.tabsBody().html())){
         admin.tabsBodyChange(tabsPage.index);
@@ -153,7 +153,8 @@ layui.extend({
       if(setter.interceptor){
         var local = layui.data(setter.tableName);
         if(!local[setter.request.tokenName]){
-          return location.hash = '/user/login/redirect='+ encodeURIComponent(pathURL); //跳转到登入页
+          return location.href = setter.integration_url + '/views/start/index.html#/user/login';
+          // return location.hash = '/user/login/redirect='+ encodeURIComponent(pathURL); //跳转到登入页
         }
       }
       
