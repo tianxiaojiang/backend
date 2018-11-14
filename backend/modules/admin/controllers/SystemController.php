@@ -42,8 +42,11 @@ class SystemController extends BusinessController
                 'name' => $model->name,
                 'status' => $model->status,
                 'statusName' => System::$_status[$model->status],
+                'img_id' => $model->img_id,
+                'show_url' => (empty($model->img) ? '' : \Yii::$app->params['uploadConfig']['imageUrlPrefix'] . $model->img->url_path),
                 'url' => $model->url,
                 'description' => $model->description,
+                'dev_account' => $model->dev_account,
                 'updated_at' => $model->updated_at,
                 'created_at' => $model->created_at,
             ];

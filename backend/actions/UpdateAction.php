@@ -7,6 +7,7 @@
 
 namespace Backend\actions;
 
+use Backend\Exception\CustomException;
 use Yii;
 use yii\base\Model;
 use yii\db\ActiveRecord;
@@ -47,11 +48,21 @@ class UpdateAction extends Action
 
         $model->scenario = 'update';
         $model->load(Yii::$app->getRequest()->getBodyParams(), '');
+
         if (isset($model->updated_at)) {
-            $model->updated_at = time();
+            $model->updated_at = date('Y-m-d H:i:s');
         }
-        if ($model->save() === false && !$model->hasErrors()) {
-            throw new ServerErrorHttpException('Failed to update the object for unknown reason.');
+
+        if ($model->validate()) {
+            if ($model->save()) {
+            } elseif (!$model->hasErrors()) {
+                throw new ServerErrorHttpException('Failed to update the object for unknown reason.');
+            }
+        } else {
+            $errors = $model->getErrors();
+            $error  = array_shift($errors);
+            Yii::error(var_export($error, true));
+            throw new CustomException($error[0]);
         }
 
         return $model;

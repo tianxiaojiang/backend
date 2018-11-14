@@ -22,7 +22,6 @@ class AccessToken extends Admin
 {
     const TOKEN_EXPIRE_DURATION = 60 * 60 * 24 * 7;//7天
 
-    public $password;
     public $captcha;
 
     public $jwt;
@@ -74,17 +73,6 @@ class AccessToken extends Admin
         $jwt->supplementPayloadByAdmin($system);
         $jwtService = new JwtService($jwt);
         return $jwtService->generateTokenString();
-    }
-
-    //校验密码
-    public function validatePassword() {
-        if ($this->hasErrors()) {
-            return false;
-        }
-
-        if ($this->passwd != md5(md5($this->password) . $this->salt)) {
-            $this->addError('password', Lang::getMsg(Lang::ERR_LOGIN_FAIL));
-        }
     }
 
     public function getSgIds()

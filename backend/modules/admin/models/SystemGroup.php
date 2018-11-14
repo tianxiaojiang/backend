@@ -53,4 +53,9 @@ class SystemGroup extends BaseModel
         $systemGroupGame->save();
         return true;
     }
+
+    public function getSystemGame()
+    {
+        return $this->hasMany(SystemGroupGame::class, ['sg_id' => 'sg_id']);
+    }
 }

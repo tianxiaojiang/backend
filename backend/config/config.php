@@ -8,7 +8,7 @@
 
 return [
     'id' => 'integration-backend',
-    'basePath' => dirname(__DIR__),
+    'basePath' => dirname(dirname(__DIR__)),
     //'runtimePath' => defined('YII_ENV') && YII_ENV == 'dev' ? dirname(__DIR__) : '/tmp/backend/',
     'vendorPath' => dirname(dirname(__DIR__) . DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR .  'vendor',
     'timeZone' => 'Asia/Shanghai',
@@ -58,6 +58,15 @@ return [
                     'categories'=> ['application'],
                     'levels'	=> ['info'],
                     'logFile'	=> '@runtime/logs/backend.log',
+                    'exportInterval' => 1,
+                    'maxFileSize'	=>	1024*100,//100M
+                    'logVars'	=> [],
+                ],
+                [
+                    'class'		=> 'Backend\log\FileTarget',
+                    'categories'=> ['application'],
+                    'levels'	=> ['warning'],
+                    'logFile'	=> '@runtime/logs/warning.log',
                     'exportInterval' => 1,
                     'maxFileSize'	=>	1024*100,//100M
                     'logVars'	=> [],

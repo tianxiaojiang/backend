@@ -90,7 +90,17 @@ class CommonController extends \Backend\modules\common\controllers\BaseControlle
     {
         $systems = System::findAll(['status' => System::SYSTEM_STAT_NORMAL]);
 
-        return ['systems' => $systems];
+        $res = [];
+        foreach ($systems as $system) {
+            $res[] = [
+                'description' => $system->description,
+                'name' => $system->name,
+                'systems_id' => $system->systems_id,
+                'show_url' => empty($system->img) ? '' :\Yii::$app->params['uploadConfig']['imageUrlPrefix'] . $system->img->url_path,
+            ];
+        }
+
+        return ['systems' => $res];
     }
 
     public function actionGetToken()
@@ -117,6 +127,17 @@ class CommonController extends \Backend\modules\common\controllers\BaseControlle
             throw new CustomException($data['msg']);
 
         return $data['data'];
+    }
+
+    /**
+     * 拉取所有正常管理用户
+     * @return array
+     */
+    public function actionAdmins()
+    {
+        $admins = Admin::find()->where(['status' => Admin::STATUS_NORMAL])->asArray()->all();
+
+        return ['admins' => $admins];
     }
 
     protected function formatMenu($treeMenu, $loopDepth)

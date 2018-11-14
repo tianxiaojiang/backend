@@ -26,9 +26,9 @@ class System extends BaseModel
     public function scenarios()
     {
         return [
-            'default' => ['systems_id', 'name', 'url', 'dev_account', 'status', 'description', 'updated_at', 'created_at'],
-            'update' => ['systems_id', 'name', 'url', 'dev_account', 'status', 'description', 'updated_at', 'created_at'],
-            'create' => ['systems_id', 'name', 'url', 'dev_account', 'status', 'description', 'updated_at', 'created_at'],
+            'default' => ['systems_id', 'name', 'img_id', 'url', 'dev_account', 'status', 'description', 'updated_at', 'created_at'],
+            'update' => ['systems_id', 'name', 'img_id', 'url', 'dev_account', 'status', 'description', 'updated_at', 'created_at'],
+            'create' => ['systems_id', 'name', 'img_id', 'url', 'dev_account', 'status', 'description', 'updated_at', 'created_at'],
         ];
     }
 
@@ -86,5 +86,14 @@ class System extends BaseModel
         ImportSystemSqlService::importSystemSql($this->systems_id, $adminUser->ad_uid);
 
         return true;
+    }
+
+    /**
+     * 对应图标
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImg()
+    {
+        return $this->hasOne(Img::class, ['img_id' => 'img_id']);
     }
 }

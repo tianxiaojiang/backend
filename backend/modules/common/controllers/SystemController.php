@@ -10,96 +10,34 @@ namespace Backend\modules\common\controllers;
 
 
 use Backend\behavior\ModulePrivileges;
-use Backend\Exception\CustomException;
-use Backend\helpers\Helpers;
-use Backend\helpers\Lang;
-use yii\httpclient\Client;
+use Backend\behavior\ValidateGame;
+use Backend\behavior\ValidateSystem;
 
-class SystemController extends BusinessController
+/**
+ * Class SystemController
+ * @package Backend\modules\common\controllers
+ *
+ * 验证系统和游戏
+ */
+class SystemController extends JwtController
 {
-    public $modelClass = 'Backend\modules\common\models\SystemModel';
-
-    public static $httpClient = null;
-    const TIME_OUT = 20;
-    protected $module = null;
-
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        $behaviors['systemPrivilege'] = ModulePrivileges::class;
-        return $behaviors;
-    }
+        //验证时间的行为
+        $behaviors['ValidateSystem'] = ValidateSystem::class;
+        $behaviors['ValidateGame'] = ValidateGame::class;
 
-    public function actions()
-    {
-        return [];
+        return $behaviors;
     }
 
     public function beforeAction($action)
     {
         parent::beforeAction($action);
-        $this->verifyModulePrivilege();
+
+        $this->validateSystem();//验证账号有没有对应访问系统的权限
+        $this->validateGame();//验证账号有没有对应系统的游戏权限
 
         return true;
-    }
-
-    public function actionIndex() {
-        $module = Helpers::getRequestParam('module');
-        if (empty($module)) {
-            throw new CustomException(Lang::FAIL, '参数错误');
-        }
-
-        if (empty(\Yii::$app->params['modules'][$module]['gateWay'])) {
-            throw new CustomException(Lang::FAIL, '网关错误');
-        }
-
-        $this->module = $module;
-        $gateWay = \Yii::$app->params['modules'][$this->module]['gateWay'];
-
-        $url = $gateWay . Helpers::getRequestParam('api');
-        $params = Helpers::getRequestParams();
-        unset($params['api']);
-        unset($params['module']);
-
-        $params['sign'] = $this->signData($params);
-
-        static::$httpClient = new Client();
-        $headers = [];
-        $resquest = static::$httpClient->createRequest()
-            ->addHeaders($headers)
-            ->setMethod('POST')
-            ->setOptions(['timeout' => self::TIME_OUT])
-            ->setUrl($url)
-            ->setData($params);
-
-        $response = $resquest->send();
-        \Yii::info('transmission request failed, code:'.$response->getStatusCode());
-        if ($response->getStatusCode() != 200) {
-            throw new CustomException(Lang::FAIL, '网关异常');
-        }
-
-        $content = $response->getContent();
-
-        $decodeContent = json_decode($content, true);
-        if ($decodeContent['code'] != 0) {
-            throw new CustomException(Lang::FAIL, $decodeContent['msg']);
-        }
-
-        return $decodeContent['data'];
-    }
-
-    protected function signData($params)
-    {
-        $signKey = \Yii::$app->params['modules'][$this->module]['gateWay'];
-
-        ksort($params);
-        $str = '';
-        foreach ($params as $key => $param) {
-            $str = (empty($str)) ? $key . '=' .$params : '&' . $key . '=' . $params;
-        }
-
-        $str .= $signKey;
-
-        return md5($str);
     }
 }

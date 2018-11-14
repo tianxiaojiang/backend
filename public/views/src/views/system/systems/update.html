@@ -21,7 +21,20 @@
         <div class="layui-form-item">
             <label class="layui-form-label">描述</label>
             <div class="layui-input-block">
-                <textarea class="layui-input" name="description" placeholder="系统简要描述">{{d.params.description}}</textarea>
+                <textarea class="layui-textarea" name="description" placeholder="系统简要描述">{{d.params.description}}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">ICON</label>
+            <div class="layui-input-block">
+                <div class="layui-upload" id="systems-update-img-box">
+                    <input type="hidden" name="img_id" class="img_id_value" value="{{d.params.img_id}}">
+                    <button type="button" class="layui-btn" id="test1" data-scenario="systems_icon">上传图片</button>
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" width="100" id="demo1" src="{{d.params.show_url}}">
+                        <p id="demoText"></p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
@@ -40,9 +53,9 @@
     </form>
 </script>
 <script>
-    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'upload'], function () {
 
-        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view, upload = layui.upload;
 
         // 获取状态列表
         var getStatus = function () {
@@ -65,6 +78,46 @@
         $(document).ready(function (e) {
             getStatus();
         });
+
+        var imgUploadBox = $('#systems-update-img-box');//整体框架
+        var buttonElem = imgUploadBox.find('button');//上传点击框
+        var TipsP = imgUploadBox.find('p');//错误提示框
+        var showImg = imgUploadBox.find('img');
+        var imgIdInput = imgUploadBox.find('.img_id_value');
+        //普通图片上传;
+        var uploadInst = upload.render({
+            elem: buttonElem
+            ,url: '/admin/file/upload'
+            ,data: ztutil.createSign({Authorization: ztutil.getToken(), scenario: buttonElem.attr("data-scenario")})
+            ,before: function(obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    showImg.attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res) {
+                //如果上传失败
+                if(res.code !== 0) {
+                    //演示失败状态，并实现重传
+                    TipsP.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    TipsP.find('.demo-reload').on('click', function() {
+                        uploadInst.upload();
+                    });
+                    return layer.msg(res.msg);
+                }
+                //上传成功
+                imgIdInput.val(res.data.imgId);
+                TipsP.html('<span style="color: #5FB878;">上传成功</span>');
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                TipsP.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                TipsP.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+
 
         // 编辑管理员按钮
         form.on('submit(edit-system)', function (data) {

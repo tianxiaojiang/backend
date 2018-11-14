@@ -26,7 +26,7 @@
                 type: 1,
                 id: 'LAY-system-admins-add',
                 title: '添加管理员',
-                resize: false,
+                resize: true,
                 success: function () {
                     view(this.id).render('system/admins/add').done(function () {
                         $(window).trigger('resize');

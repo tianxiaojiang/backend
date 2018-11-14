@@ -45,6 +45,17 @@ class AdminService
     }
 
     /**
+     * 校验管理员是否重置过密码
+     * @param $model
+     * @throws CustomException
+     */
+    public static function validateResetPassword($model)
+    {
+        if ($model->reset_password == Admin::RESET_PASSWORD_NO)
+            throw new CustomException('初始化密码过于简单，请先重置密码！');
+    }
+
+    /**
      * 验证用户是否有访问某个系统的权限
      * @param array $systemIds
      * @param Admin $admin

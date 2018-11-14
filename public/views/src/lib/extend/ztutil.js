@@ -70,6 +70,7 @@ layui.define('admin', function(exports) {
             param.time = time;
             (game_id) && (param.game_id = game_id);
             (sid) && (param.sid = sid);
+            param.isMaintain = 1;//维护后台
             param = obj.objSort(param);
 
             var str = '';

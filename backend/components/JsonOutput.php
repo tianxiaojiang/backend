@@ -112,8 +112,9 @@ class JsonOutput extends Component implements ResponseFormatterInterface
                 $res['count'] = $res['data']['count'];
                 $res['data'] = $res['data']['lists'];
             }
-
             $response->content = Json::encode($res, $options);
+
+            Yii::info('Api Output:' . var_export($response->content, true));
         }
     }
 

@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `systems`;
 CREATE TABLE `systems` (
   `systems_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` char (20) NOT NULL COMMENT '后台名称',
-  `icon` char (64) NOT NULL DEFAULT '' COMMENT '图标',
+  `img_id` int (11) NOT NULL DEFAULT 0 COMMENT '图标id',
   `url` char (128) NOT NULL DEFAULT '' COMMENT '链接地址',
   `dev_account` varchar (32) NOT NULL DEFAULT '' COMMENT '系统开发者账号',
   `description` varchar (128) NOT NULL DEFAULT '' COMMENT '描述',
@@ -52,6 +52,7 @@ CREATE TABLE `admin_user` (
   `access_token` CHAR (64) NOT NULL DEFAULT '' COMMENT '访问token',
   `access_token_expire` int (11) NOT NULL DEFAULT 0 COMMENT 'token过期时间',
   `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '管理员状态 1、正常 2、禁用',
+  `reset_password` tinyint (1) NOT NULL DEFAULT 0 COMMENT '是否重置过密码，0 没有 1 已重置',
   `created_at` datetime,
   `updated_at` datetime,
   PRIMARY KEY (`ad_uid`)
@@ -280,15 +281,27 @@ CREATE TABLE `s1_system_group_game_priv` (
   `sggp_id` int(11) NOT NULL AUTO_INCREMENT,
   `sg_id` int (11) NOT NULL COMMENT '角色id',
   `game_id` int (11) NOT NULL COMMENT '游戏id',
-  `priv_id` int (11) NOT NULL COMMENT '权限id',
+  `sp_id` int (11) NOT NULL COMMENT '权限id',
   `created_at` datetime,
   `updated_at` datetime,
   PRIMARY KEY (`sggp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
-
-
+-- ----------------------------
+--  img 图片附件
+-- ----------------------------
+DROP TABLE IF EXISTS `img`;
+CREATE TABLE `img` (
+`img_id`  int(11) NOT NULL AUTO_INCREMENT ,
+`url_path`  varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '图片的目录地址，不包含域名' ,
+`width`  mediumint(8) NOT NULL DEFAULT 0 COMMENT '宽度' ,
+`height`  mediumint(8) NOT NULL DEFAULT 0 COMMENT '宽度' ,
+`type`  tinyint(2) NOT NULL DEFAULT 0 COMMENT '图片使用处，1 反馈上传' ,
+`status`  tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '图片使用状态，0 为正常 1 为已弃用' ,
+`created_at`  int(11) NOT NULL ,
+`updated_at`  int(11) NOT NULL ,
+PRIMARY KEY (`img_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 

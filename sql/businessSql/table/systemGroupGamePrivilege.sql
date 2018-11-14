@@ -9,7 +9,7 @@ CREATE TABLE `s{{SID}}_system_group_game_priv` (
   `sggp_id` int(11) NOT NULL AUTO_INCREMENT,
   `sg_id` int (11) NOT NULL COMMENT '角色id',
   `game_id` int (11) NOT NULL COMMENT '游戏id',
-  `priv_id` int (11) NOT NULL COMMENT '权限id',
+  `sp_id` int (11) NOT NULL COMMENT '权限id',
   `created_at` datetime,
   `updated_at` datetime,
   PRIMARY KEY (`sggp_id`)

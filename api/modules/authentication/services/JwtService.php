@@ -2,10 +2,13 @@
 
 namespace Api\modules\authentication\services;
 
+use Backend\Exception\CustomException;
+use Backend\helpers\Lang;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Api\modules\authentication\models\Jwt;
+use Lcobucci\JWT\ValidationData;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -68,7 +71,20 @@ class JwtService
 
     public function validateToken()
     {
+        $data = new ValidationData();
+        $data->setIssuer($this->jwtObj->Payload['iss']);
+        $data->setCurrentTime(time());
+
+        if (!$this->tokenObj->validate($data)) {
+            throw new CustomException(Lang::ERR_TOKEN_INVALID);
+        }
+
         $signer = new Sha256();
-        return $this->tokenObj->verify($signer, $this->jwtObj->admin->salt);
+        if (!$this->tokenObj->verify($signer, $this->jwtObj->admin->salt)) {
+            throw new CustomException(Lang::ERR_TOKEN_INVALID);
+        }
+
+        return true;
     }
+
 }

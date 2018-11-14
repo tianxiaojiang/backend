@@ -67,8 +67,8 @@ class SystemPriv extends \yii\db\ActiveRecord
         return $menus;
     }
 
-    public static function getAll()
+    public static function getAll($where = [])
     {
-        return self::find()->indexBy('sp_id')->orderBy('sp_id asc')->asArray()->all();
+        return self::find()->where($where)->indexBy('sp_id')->orderBy('sp_id asc')->asArray()->all();
     }
 }

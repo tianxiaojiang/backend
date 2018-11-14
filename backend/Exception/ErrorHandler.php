@@ -9,6 +9,7 @@
 
 namespace Backend\Exception;
 
+use Backend\helpers\Helpers;
 use Backend\helpers\Lang;
 use yii\web\UnauthorizedHttpException;
 
@@ -25,7 +26,12 @@ class ErrorHandler extends \yii\base\ErrorHandler
 
         if ($exception instanceof CustomException) {
 
-            echo json_encode(array('code' => $code, 'msg'  => $msg));
+            $res = json_encode(array('code' => $code, 'msg'  => $msg));
+            //如果是跨域请求，则执行回调结果
+            $callback = Helpers::getRequestParam('callback');
+            if (!empty($callback)) $res = $callback . '(' . $res . ')';
+
+            echo $res;
 
         } elseif ($exception instanceof UnauthorizedHttpException) {
 

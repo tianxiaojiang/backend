@@ -11,6 +11,7 @@ namespace Backend\modules\admin\models;
 
 use Backend\modules\common\models\BaseModel;
 use Backend\helpers\Helpers;
+use yii\helpers\ArrayHelper;
 
 class SystemGroupGame extends BaseModel
 {
@@ -22,9 +23,9 @@ class SystemGroupGame extends BaseModel
     }
 
     //获取所有游戏中，标记好角色拥有的游戏
-    public static function getAllGameMarkByGroup($groupGames)
+    public static function getAllGameMarkByGroup($gameId, $groupGames)
     {
-        $allGames = Game::getAllGames();
+        $allGames = Game::getAllGames($gameId > 0 ? ['game_id' => $gameId] : []);
 
         foreach ($groupGames as $groupGame) {
             //复制专有游戏到所有数据结构里
@@ -42,12 +43,13 @@ class SystemGroupGame extends BaseModel
     
     public static function getGamesByGroupId($groupId)
     {
-        return self::find()->where(['group_id' => $groupId])->asArray()->all();
+        return self::find()->where(['group_id' => $groupId])->indexBy('game_id')->all();
     }
 
     //删除去掉的游戏
     public static function deleteDeductGames($sgId, &$delGamesIds)
     {
+        if (empty($delGamesIds)) return true;
         self::deleteAll(['group_id' => $sgId, 'game_id' => $delGamesIds]);
 
         return true;
@@ -56,6 +58,8 @@ class SystemGroupGame extends BaseModel
     //添加新增的游戏
     public static function createAddGames($sgId, &$addGamesIds, &$isProprietaryPrivArr)
     {
+        if (empty($addGamesIds)) return true;
+
         //制作成二维数组
         $addGamesIds = array_map(function ($col) use ($sgId, $isProprietaryPrivArr) {
             return [
@@ -64,7 +68,6 @@ class SystemGroupGame extends BaseModel
                 'is_proprietary_priv' => $isProprietaryPrivArr[$col]
             ];
         }, $addGamesIds);
-
         $connection = \Yii::$app->db;
         //数据批量入库
         $connection->createCommand()->batchInsert(
@@ -73,6 +76,7 @@ class SystemGroupGame extends BaseModel
             $addGamesIds
         )->execute();
 
+        \Yii::info('addGamesIds11:' . var_export($addGamesIds, true));
         return true;
     }
 
@@ -83,8 +87,7 @@ class SystemGroupGame extends BaseModel
      * @return [addPrivList,delPrivList]
      */
     public static function diffGames(&$oldGames, &$newGames) {
-
-        $oldGameListArr = array_column($oldGames, 'game_id');
+        $oldGameListArr = ArrayHelper::getColumn($oldGames, 'game_id');
         $newGamesListArr = $newGames;
         $addGamesIds = array_diff($newGamesListArr, $oldGameListArr);
         $delGamesIds = array_diff($oldGameListArr, $newGamesListArr);
@@ -102,5 +105,26 @@ class SystemGroupGame extends BaseModel
     public static function getOneByRoleAndGame($sgId, $gameId)
     {
         return self::find()->where(['game_id' => $gameId, 'group_id' => $sgId])->one();
+    }
+
+    /**
+     * 遍历更新权限类型变动的角色游戏
+     * @param array $oldGroupGames
+     * @param array $newGameProprietaries
+     * @return bool
+     */
+    public static function iterationUpdateProprietary(array $oldGroupGames, array $newGameProprietaries)
+    {
+
+        if (empty($newGameProprietaries)) return true;
+        foreach ($newGameProprietaries as $gameId => $newProprietary) {
+            if ($gameId == '*' || empty($oldGroupGames[$gameId])) continue;
+            if ($oldGroupGames[$gameId]->is_proprietary_priv != $newProprietary) {
+                $oldGroupGames[$gameId]->is_proprietary_priv = $newProprietary;
+                $oldGroupGames[$gameId]->save();
+            }
+        }
+
+        return true;
     }
 }

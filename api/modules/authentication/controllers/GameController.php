@@ -2,6 +2,7 @@
 
 namespace Api\modules\authentication\controllers;
 
+use Backend\helpers\Helpers;
 use Backend\modules\admin\models\Game;
 use Backend\modules\common\controllers\JwtController;
 
@@ -22,9 +23,20 @@ class GameController extends JwtController
      */
     public function actionList()
     {
+        $isMaintain = intval(Helpers::getRequestParam('isMaintain'));
         $gameIds = \Yii::$app->user->identity->jwt->getGameIdsByToken();
 
-        $games = Game::getAllGames(['game_id' => ['in' => $gameIds]], 'game_id, name');
+        //角色不区分游戏，返回不区分的特殊id
+        if(($isMaintain < 1 && implode('', $gameIds) == '*') || ($isMaintain == 1 && in_array('*', $gameIds))) {
+            $games = [['game_id' => '*', 'name' => '不区分游戏']];
+        } else {
+            $games = Game::getAllGames(['in', 'game_id', $gameIds], 'game_id, name');
+        }
+
+        if($isMaintain < 1) {//业务后台
+            $callback = Helpers::getRequestParam('callback');
+            echo $callback . '(' . json_encode(['code' => 0, 'msg' => '', 'data' => ['games' => $games]]) . ')';exit;
+        }
 
         return ['games' => $games];
     }

@@ -2,10 +2,9 @@
 
 namespace Api\modules\open\controllers;
 
-use Api\modules\authentication\models\AccessToken;
 use Backend\helpers\Helpers;
-use Backend\modules\common\controllers\BaseController;
-use Backend\modules\common\controllers\JwtController;
+use Api\modules\authentication\models\AccessToken;
+use Backend\modules\common\controllers\SystemController;
 
 /**
  * Created by PhpStorm.
@@ -13,7 +12,7 @@ use Backend\modules\common\controllers\JwtController;
  * Date: 2018/4/9
  * Time: 14:21
  */
-class PrivilegeController extends JwtController
+class PrivilegeController extends SystemController
 {
     public $modelClass = 'Backend\modules\admin\models\SystemPriv';
 

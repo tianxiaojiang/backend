@@ -48,6 +48,10 @@
                 { type: 'checkbox' },
                 { field: 'systems_id', title: '系统编号', sort: true },
                 { field: 'name', title: '系统名', sort: true },
+                { field: 'show_url', title: '图标', sort: true, templet: function(d){
+                        return '<img width="60" height="60" src="'+ d.show_url +'"/>';
+                    }
+                },
                 { field: 'url', title: '系统url', sort: true },
                 { field: 'dev_account', title: '开发者账号', sort: true },
                 { field: 'description', title: '描述', sort: true },
@@ -60,8 +64,6 @@
 
         // 监听工具条
         table.on('tool(systems-list-filter)', function (obj) {
-            console.log('obj.event');
-            console.log(obj.event);
             var data = obj.data;
             if (obj.event === 'del-system-event') {
                 layer.confirm('是否要删除系统：<strong>' + data.name + '</strong> ？', {

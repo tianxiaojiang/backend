@@ -22,13 +22,17 @@ class SystemGroupGamePriv extends BaseModel
     //返回角色、游戏id对应的所有特殊权限
     public static function getPrivilegesByGroupIdAndGameId($groupId, $gameId)
     {
-        $sourceDdData = self::find()->select('game_id, priv_id')->where(['sg_id' => $groupId, 'game_id' => $gameId])->all();
-
+        $sourceDdData = self::find()->select('game_id, sp_id')->where(['sg_id' => $groupId, 'game_id' => $gameId])->indexBy('sp_id')->all();
         $allPrivileges = SystemPriv::getAll();
-
         $groupGamePrivileges = ArrayHelper::getColumn($sourceDdData, 'privilege');
-        foreach ($groupGamePrivileges as $groupGamePrivilege) {
-            $allPrivileges[$groupGamePrivilege->sp_id]['is_checked'] = 1;
+        $selfPrivileges = \Yii::$app->user->identity->getPrivilege('*');
+        foreach ($allPrivileges as $sp_id => $allPrivilege) {
+            if (!empty($groupGamePrivileges[$sp_id])) {
+                $allPrivileges[$sp_id]['is_checked'] = 1;
+            }
+            if (empty($selfPrivileges[$sp_id])) {
+                $allPrivileges[$sp_id]['chkDisabled'] = 1;
+            }
         }
 
         return $allPrivileges;
@@ -56,13 +60,13 @@ class SystemGroupGamePriv extends BaseModel
                 $delGroupGamePrivilegesWhere[] = [
                     'sg_id' => $groupId,
                     'game_id' => $gameId,
-                    'priv_id' => array_values($diffGroupGamePrivileges['delPrivilegesIds'])
+                    'sp_id' => array_values($diffGroupGamePrivileges['delPrivilegesIds'])
                 ];
             }
 
             //组装好所有的添加权限数据
             foreach ($diffGroupGamePrivileges['addPrivilegesIds'] as $addPrivilegesId) {
-                $addGroupGamePrivileges[] = [ 'sg_id' => $groupId, 'game_id' => $gameId, 'priv_id' => $addPrivilegesId ];
+                $addGroupGamePrivileges[] = [ 'sg_id' => $groupId, 'game_id' => $gameId, 'sp_id' => $addPrivilegesId ];
             }
         }
         if (count($delGroupGamePrivilegesWhere) >= 2) array_unshift($delGroupGamePrivilegesWhere, 'or');
@@ -79,10 +83,10 @@ class SystemGroupGamePriv extends BaseModel
     //一次性获取所有需要操作的角色游戏对应的权限
     public static function getPrivilegesByGroupIdAndGameIds($groupId)
     {
-        $allOperateingPrivileges = self::find()->select('game_id, priv_id')->where(['sg_id' => $groupId])->asArray()->all();
+        $allOperateingPrivileges = self::find()->select('game_id, sp_id')->where(['sg_id' => $groupId])->asArray()->all();
         $res = [];
         foreach ($allOperateingPrivileges as $allOperateingPrivilege) {
-            @$res[$allOperateingPrivilege['game_id']][] = $allOperateingPrivilege['priv_id'];
+            @$res[$allOperateingPrivilege['game_id']][] = $allOperateingPrivilege['sp_id'];
         }
         return $res;
     }
@@ -103,7 +107,7 @@ class SystemGroupGamePriv extends BaseModel
         //数据批量入库
         $connection->createCommand()->batchInsert(
             self::tableName(),
-            ['sg_id', 'game_id', 'priv_id'],//字段
+            ['sg_id', 'game_id', 'sp_id'],//字段
             $addPrivilegesIds
         )->execute();
 
@@ -127,6 +131,6 @@ class SystemGroupGamePriv extends BaseModel
 
     public function getPrivilege()
     {
-        return $this->hasOne(SystemPriv::class, ['sp_id' => 'priv_id']);
+        return $this->hasOne(SystemPriv::class, ['sp_id' => 'sp_id']);
     }
 }

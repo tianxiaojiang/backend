@@ -1,34 +1,40 @@
+<script>
+    //加载css
+    layui.link('/css/easy-autocomplete.css');
+</script>
 <script type="text/html" template>
     <form class="layui-form" action="">
         <div class="layui-form-item">
             <label class="layui-form-label">账号</label>
-            <div class="layui-input-block"><input type="text" name="account" required lay-verify="required" placeholder="账号" autocomplete="off" class="layui-input" /></div>
+            <div class="layui-input-block"><input type="text" name="account" required lay-verify="required" placeholder="账号" autocomplete="off" class="layui-input" id="admin-add-account"/></div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">密码</label>
-            <div class="layui-input-block"> <input type="password" name="passwd" required lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input" /></div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">绑定手机</label>
-            <div class="layui-input-block"><input type="text" name="mobile_phone" placeholder="绑定手机" lay-verify="phone" autocomplete="off" class="layui-input" /></div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">姓名</label>
-            <div class="layui-input-block"><input type="text" name="username" placeholder="姓名" autocomplete="off" class="layui-input" /></div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">状态</label>
-            <div class="layui-input-block">
-                <select name="status" required lay-verify="required">
-                    <option value="0">正常</option>
-                    <option value="1">禁止</option>
-                </select>
+        <div id="extendFieldBox">
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-block"> <input type="password" name="passwd" required lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input" /></div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">绑定手机</label>
+                <div class="layui-input-block"><input type="text" name="mobile_phone" placeholder="绑定手机" lay-verify="phone" autocomplete="off" class="layui-input" /></div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-block"><input type="text" name="username" placeholder="姓名" autocomplete="off" class="layui-input" /></div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-block">
+                    <select name="status" required lay-verify="required">
+                        <option value="0">正常</option>
+                        <option value="1">禁止</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">角色名</label>
             <div class="layui-input-block">
-                <select name="sg_id" class="layui-select-dropup" id="select-roles" lay-filter="select-roles" required lay-verify="required" multiple lay-omit></select>
+                <select name="sg_id" id="select-roles" lay-filter="select-roles" required lay-verify="required" multiple></select>
             </div>
         </div>
         <div class="layui-form-item">
@@ -40,23 +46,70 @@
     </form>
 </script>
 <script>
-    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'easyAutocomplete'], function () {
 
-        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view, easyAutocomplete = layui.easyAutocomplete;
+
+        //拉取所有管理员列表
+        var adminList = [];
+        var fetchAdminList = function () {
+            optionStatus = {
+                url: '/admin/common/admins',
+                done: function (res) {
+                    adminList = res.data.admins;
+                    console.log(res);
+                    var options = {
+                        data: res.data.admins,
+                        getValue: 'account',
+                        list: {
+                            match: {
+                                enabled: true
+                            },
+                            onChooseEvent: function() {
+                                extendFiledTakeOutVerify();
+                            }
+                        }
+                    };
+                    $('#admin-add-account').easyAutocomplete(options);
+                }
+            };
+            admin.req(optionStatus);
+        }
+        fetchAdminList();
+
+        $('#admin-add-account').on('keyup', function () {
+            console.log('kkkkkkkkey upppppppp');
+            extendFiledSubjoinVerify();
+        });
+
+        var extendFiledTakeOutVerify = function () {
+            $('#extendFieldBox').hide();
+            $('[name=passwd]').removeAttr('required').removeAttr('lay-verify');
+            $('[name=mobile_phone]').removeAttr('required').removeAttr('lay-verify');
+            $('[name=username]').removeAttr('required').removeAttr('lay-verify');
+            $('[name=status]').removeAttr('required').removeAttr('lay-verify');
+        }
+        var extendFiledSubjoinVerify = function () {
+            $('#extendFieldBox').show();
+            $('[name=passwd]').attr('required', 'required').attr('lay-verify', 'required');
+            $('[name=mobile_phone]').attr('required', 'required').attr('phone');
+            $('[name=username]').attr('required', 'required').attr('lay-verify', 'required');
+            $('[name=status]').attr('required', 'required').attr('lay-verify', 'required');
+        }
 
         // 渲染管理员状态列表
         var renderStatus = function () {
             var statusHTML = '',
-                optionStatus = {
-                    url: '/admin/common/admin-stats',
-                    done: function (res) {
-                        $.each(res.data, function (i, v) {
-                            statusHTML += '<option value="' + i + '">' + v + '</option>';
-                        });
-                        $('#select-status').html(statusHTML);
-                        form.render();
-                    }
-                };
+            optionStatus = {
+                url: '/admin/common/admin-stats',
+                done: function (res) {
+                    $.each(res.data, function (i, v) {
+                        statusHTML += '<option value="' + i + '">' + v + '</option>';
+                    });
+                    $('#select-status').html(statusHTML);
+                    form.render();
+                }
+            };
             admin.req(optionStatus);
         };
 

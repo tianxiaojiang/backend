@@ -17,8 +17,6 @@ use yii\helpers\ArrayHelper;
 
 class Jwt
 {
-    const TOKEN_LIFT_CYCLE = 60 * 60 * 24 * 7;//7天
-
     public $admin;   //关联用户
 
     public $Header = [
@@ -41,7 +39,7 @@ class Jwt
     public function __construct(Admin $admin = null)
     {
         $this->Payload['iss'] = \Yii::$app->params['jwt']['iss'];
-        $this->Payload['exp'] = time() + \Yii::$app->params['jwt']['exp'];
+        $this->Payload['exp'] = \Yii::$app->params['jwt']['exp'];
         $this->Payload['sub'] = \Yii::$app->params['jwt']['sub'];
         $this->Payload['aud'] = \Yii::$app->params['jwt']['aud'];
         $this->Payload['nbf'] = \Yii::$app->params['jwt']['nbf'];
@@ -65,11 +63,7 @@ class Jwt
             throw new CustomException('jwt未关联管理员');
         }
 
-        $roles = array_flip(ArrayHelper::getColumn(ArrayHelper::toArray($this->admin->sgIds), 'sg_id'));
-        foreach ($roles as $key => $role) {
-            $roles[$key] = ArrayHelper::getColumn(SystemGroupGame::getGamesByGroupId($key), 'game_id');
-        }
-
+        $roles = $this->admin->getRoleInfo();
         $this->Payload['uid'] = $this->admin->ad_uid;
         $this->Payload['name'] = $this->admin->username;
         $this->Payload['role_info'] = json_encode($roles);
@@ -84,5 +78,12 @@ class Jwt
         $roleInfo = \Yii::$app->user->identity->jwt->Payload['role_info']->getValue();
         $roleInfo = json_decode($roleInfo, true);
         return array_merge(...$roleInfo);
+    }
+
+    public function getSystemGroupIdsByToken()
+    {
+        $roleInfo = \Yii::$app->user->identity->jwt->Payload['role_info']->getValue();
+        $roleInfo = json_decode($roleInfo, true);
+        return array_keys($roleInfo);
     }
 }

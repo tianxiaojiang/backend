@@ -12,6 +12,7 @@ use Backend\behavior\TokenExpire;
 use Backend\behavior\VerifySign;
 use Backend\behavior\Privilege;
 use Backend\helpers\Helpers;
+use Backend\modules\admin\models\System;
 use yii\data\ActiveDataProvider;
 
 /**
@@ -20,7 +21,7 @@ use yii\data\ActiveDataProvider;
  * Date: 2018/3/21
  * Time: 15:05
  */
-class BusinessController extends CommonController
+class BusinessController extends SystemController
 {
     public $query = null;
 
@@ -72,8 +73,6 @@ class BusinessController extends CommonController
 
         //验证时间的行为
         $behaviors['validateTime'] = ValidateTime::class;
-        $behaviors['ValidateSystem'] = ValidateSystem::class;
-        $behaviors['ValidateGame'] = ValidateGame::class;
         $behaviors['Privilege'] = Privilege::class;
 
         return $behaviors;
@@ -84,8 +83,6 @@ class BusinessController extends CommonController
         parent::beforeAction($action);
 
         $this->validateTime();//验证请求时间戳
-        $this->validateSystem();//验证账号有没有对应访问系统的权限
-        $this->validateGame();//验证账号有没有对应系统的游戏权限
         $this->canAccess();//验证访问权限
 
         return true;

@@ -18,11 +18,13 @@ class SystemMenuController extends JwtController
 
     public function actionShowMenus()
     {
-        $menuType = intval(Helpers::getRequestParam('menu_type'));
+        $isMaintain = intval(Helpers::getRequestParam('isMaintain'));
+        //维护后台的菜单取维护菜单
+        $menuType = $isMaintain ? SystemMenu::SM_TYPE_SETTING : SystemMenu::SM_TYPE_BUSINESS;
 
         $systemMenu = new SystemMenu();
         $menus = $systemMenu->getShowMenus($menuType);
-        if($menuType < 1) {
+        if($isMaintain < 1) {//业务后台
             $callback = Helpers::getRequestParam('callback');
             echo $callback . '(' . json_encode(['code' => 0, 'msg' => '', 'data' => $menus]) . ')';exit;
         }

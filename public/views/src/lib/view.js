@@ -42,15 +42,20 @@ layui.define(['laytpl', 'layer'], function(exports){
   };
 
   //清除 token，并跳转到登入页
-  view.exit = function(){
+  view.exit = function() {
     //清空本地记录的 token及所有数据
       localStorage.removeItem(setter.tableName);
+      if (location.hash === '#/user/login') {
+          view.error('登录失效');
+          $('#login-btn-or-username').html('<a href="javascript:void(0);" id="login-btn">登录</a>');
+          return;
+      }
     //跳转到登入页
     location.hash = '/user/login';
   };
 
   //Ajax请求
-  view.req = function(options){
+  view.req = function(options) {
 
     var that = this
     ,success = options.success

@@ -34,13 +34,18 @@ class AuthController extends JwtController
         $isMaintain = intval(Helpers::getRequestParam('is_maintain'));
         $system = System::findOne(['systems_id' => $goSid]);
         SystemService::validateSystemExist($system);
-
         Helpers::$request_params['sid'] = $goSid;
 
         //验证登录用户
         $model = \Yii::$app->user->identity;
+        if ($isMaintain) {
+            //进入维护后台，校验是否有维护权限
+            $model->validateIsMaintain();
+        }
+
         AdminService::validateModelEmpty($model);
         AdminService::validateLoginAdminStatus($model);
+        AdminService::validateResetPassword($model);
         AdminService::validateHasSystemPermission($system->systems_id, ArrayHelper::getColumn($model->systems, 'systems_id'));
 
         $access_token = $model->generateAccessToken($system);//生成token

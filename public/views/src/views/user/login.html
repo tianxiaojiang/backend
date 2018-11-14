@@ -7,7 +7,7 @@
         <div class="layui-col-xs2">
             &nbsp;
         </div>
-        <div class="layui-col-xs8 login-title"><h3 class="layui-col-xs1 layui-col-xs-offset4">统一后台</h3></div>
+        <div class="layui-col-xs8 login-title"><h3 class="layui-col-xs1 layui-col-xs-offset4">后台中心</h3></div>
         <div class="layui-col-xs2">
             <div id="login-btn-or-username">
                 <a href="javascript:void(0);" id="login-btn">登录</a>
@@ -67,7 +67,7 @@ layui.use(['admin', 'form', 'user'], function() {
     //拉取系统列表
     var renderSystemSelect = function() {
         var systemTpl = '<div class="systems-item layui-col-xs1">' +
-            '                <h3>__SYSTEMS_NAME__</h3>' +
+            '                <h3><div><img src="__URL__"></div>__SYSTEMS_NAME__</h3>' +
             '                __MAINTAIN__' +
             '                <input type="hidden" name="systems_id__SYSTEMS_ID__" value="__SYSTEMS_ID__"/>' +
             '            </div>';
@@ -82,10 +82,7 @@ layui.use(['admin', 'form', 'user'], function() {
                 $.each(res.data.systems, function (k, v) {
                     systemItemHtml = systemTpl;
                     var maintainHtml = (v.systems_id === 1) ? '' : maintainTpl;
-                    maintainHtml = maintainHtml.replace(/__SYSTEMS_ID__/g, v.systems_id);
-                    systemItemHtml = systemItemHtml.replace(/__SYSTEMS_ID__/g, v.systems_id).replace('__SYSTEMS_NAME__', v.name).replace('__MAINTAIN__', maintainHtml);
-                    console.log(systemTpl);
-                    console.log(systemItemHtml);
+                    systemItemHtml = systemItemHtml.replace('__MAINTAIN__', maintainHtml).replace(/__SYSTEMS_ID__/g, v.systems_id).replace('__SYSTEMS_NAME__', v.name).replace('__URL__', v.show_url);
                     systemOptions += systemItemHtml;
                 });
                 systemsBox.html(systemOptions);
@@ -115,7 +112,7 @@ layui.use(['admin', 'form', 'user'], function() {
     //登录成功回调
     var loginSuccessCallback = function() {
         var username = layui.data(setter.tableName)['username'];
-        var loginHtml = '<div id="loggedIn"><span>__USERNAME__</span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" id="log-out">退出</a></div>';
+        var loginHtml = '<div id="loggedIn"><a href="javascript:void(0);">__USERNAME__</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" id="modify-password">修改密码</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" id="log-out">退出</a></div>';
         loginHtml = loginHtml.replace('__USERNAME__', username);
         loginBtnBox.html(loginHtml);
         return true;
@@ -152,8 +149,9 @@ layui.use(['admin', 'form', 'user'], function() {
             method: 'get',
             data: data,
             done: function(res) {
+
                 if (res.code !== 0) {
-                    view.error(res.msg);
+                    layer.errorMsg(res.msg);
                     return false;
                 }
 
@@ -219,26 +217,26 @@ layui.use(['admin', 'form', 'user'], function() {
     });
 
     //监听退出
-    loginBtnBox.on('click', '#log-out', function (e){
+    loginBtnBox.on('click', '#log-out', function (e) {
         logOut();
+    });
+
+    //监听修改密码
+    loginBtnBox.on('click', '#modify-password', function (e) {
+       location.hash = '/user/forget/type=resetpass';
     });
 
     //监听系统点击
     systemsBox.on('click', '.systems-item h3', function (e) {
-        console.log($(this));
-        console.log($(this).siblings('input'));
-        console.log($(this).siblings('input'));
         var go_sid = $(this).siblings('input').val();
         authorization(go_sid, 0);//授权业务后台
     });
 
     //监听系统点击
     systemsBox.on('click', '.systems-item .maintain a', function (e) {
-        console.log($(this));
-        console.log($(this).siblings('input'));
-        console.log($(this).siblings('input'));
         var go_sid = $(this).siblings('input').val();
-        authorization(go_sid, 1);//授权业务后台
+        authorization(go_sid, 1);//授权中心后台
     });
+
 });
 </script>

@@ -11,7 +11,7 @@ use yii\filters\auth\HttpBearerAuth;
  * Date: 2018/3/21
  * Time: 15:05
  */
-class CommonController extends JwtController
+class CommonController extends BaseController
 {
 
     public function behaviors()

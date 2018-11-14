@@ -18,7 +18,7 @@ class SystemGroupPriv extends \yii\db\ActiveRecord
 
     public static function getPrivilegesIdsByGroupId($groupId)
     {
-        return self::find()->where(['sg_id' => $groupId])->all();
+        return self::find()->where(['sg_id' => $groupId])->indexBy('sp_id')->all();
     }
 
     //删除去掉的权限

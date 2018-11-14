@@ -39,10 +39,10 @@
     <!-- 侧边菜单 -->
     <div class="layui-side layui-side-menu">
         <div class="layui-side-scroll">
-            <!--<div class="layui-form layui-game-type" id="LAY-view-game-type" lay-filter="layadmin-game-type">-->
-                <!--<select name="game-type" lay-filter="game-type" id="LAY-game-type-list">-->
-                <!--</select>-->
-            <!--</div>-->
+            <div class="layui-form layui-game-type" id="LAY-view-game-type" lay-filter="layadmin-game-type">
+                <select name="game-type" lay-filter="game-type" id="LAY-game-type-list">
+                </select>
+            </div>
             <script type="text/html" id="LAY-temp-side-menu">
                 <div class="layui-logo" lay-href="">
                     <span><!-- <i class="ztfont ztfont-logo"></i> -->{{ layui.data(layui.setter.tableName).system_name || 'layuiAdmin' }}</span>
@@ -160,9 +160,9 @@
                     done: function (res) {
                         var storedGameId = getGameId();
                         var HTML  = '';
-                        $.each(res.data, function (k, v) {
+                        $.each(res.data.games, function (k, v) {
                             if (!storedGameId) {storedGameId = v.game_id; setGameId(storedGameId)};//没有取第一个存起来
-                            HTML += '<option value="' + v.game_id + '"'+ (v.game_id === parseInt(storedGameId) ? ' selected' : '') +'>' + v.name + '</option>';
+                            HTML += '<option value="' + v.game_id + '"'+ (parseInt(v.game_id) === parseInt(storedGameId) ? ' selected' : '') +'>' + v.name + '</option>';
                         });
                         if (!HTML) HTML = '<option value="0">请联系管理员设置产品</option>';
                         elGamelist.html(HTML);
@@ -189,7 +189,7 @@
             var tplHTML = $('#LAY-temp-side-menu')[0].innerHTML,
                 elSideMenu = $('#LAY-view-side-menu'),
                 options = {
-                    url: '/authentication/system-menu/show-menus?sid=' + layui.data('layuiAdmin').sid + '&menu_type=1',
+                    url: '/authentication/system-menu/show-menus?sid=' + layui.data('layuiAdmin').sid,
                     done: function (res) {
                         laytpl(tplHTML).render(res, function (html) {
                             elSideMenu.html(html);

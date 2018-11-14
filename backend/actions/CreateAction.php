@@ -54,15 +54,11 @@ class CreateAction extends Action
         $model->load(Yii::$app->getRequest()->getBodyParams(), '');
 
         if (isset($model->created_at)) {
-            $model->created_at = time();
+            $model->created_at = date('Y-m-d H:i:s');
         }
 
         if ($model->validate()) {
             if ($model->save()) {
-//            $response = Yii::$app->getResponse();
-//            $response->setStatusCode(201);
-//            $id = implode(',', array_values($model->getPrimaryKey(true)));
-//            $response->getHeaders()->set('Location', Url::toRoute([$this->viewAction, 'id' => $id], true));
             } elseif (!$model->hasErrors()) {
                 throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
             }

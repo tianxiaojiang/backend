@@ -8,27 +8,29 @@
             <label class="layui-form-label">账号</label>
             <div class="layui-input-block"><input type="text" class="layui-input layui-disabled" disabled name="account" required lay-verify="required" placeholder="账号" value="{{d.params.account}}" autocomplete="off" class="layui-input" /></div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">绑定手机</label>
-            <div class="layui-input-block"><input type="text" class="layui-input" name="mobile_phone" required lay-verify="required" placeholder="绑定手机" value="{{d.params.mobile_phone}}" autocomplete="off" class="layui-input" /></div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">密码</label>
-            <div class="layui-input-inline"><input type="password" name="passwd" placeholder="密码" autocomplete="off" class="layui-input" /></div>
-            <div class="layui-form-mid layui-word-aux">不修改密码，留空即可。</div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">姓名</label>
-            <div class="layui-input-block"><input type="text" name="username" required lay-verify="required" placeholder="姓名" value="{{d.params.username}}" autocomplete="off" class="layui-input" /></div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">状态</label>
-            <div class="layui-input-block"><select name="status" required lay-verify="required" id="select-status"></select></div>
+        <div class="layui-hide">
+            <div class="layui-form-item">
+                <label class="layui-form-label">绑定手机</label>
+                <div class="layui-input-block"><input type="text" class="layui-input" name="mobile_phone" required lay-verify="required" placeholder="绑定手机" value="{{d.params.mobile_phone}}" autocomplete="off" class="layui-input" /></div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-inline"><input type="password" name="passwd" placeholder="密码" autocomplete="off" class="layui-input" /></div>
+                <div class="layui-form-mid layui-word-aux">不修改密码，留空即可。</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-block"><input type="text" name="username" required lay-verify="required" placeholder="姓名" value="{{d.params.username}}" autocomplete="off" class="layui-input" /></div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-block"><select name="status" required lay-verify="required" id="select-status"></select></div>
+            </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">角色名</label>
             <div class="layui-input-block layui-form" lay-filter="select-roles">
-                <select class="layui-select-dropup" name="sg_id" id="update-select-roles" required lay-verify="required" multiple>
+                <select name="sg_id" id="update-select-roles" required lay-verify="required" multiple>
                 </select>
             </div>
         </div>
