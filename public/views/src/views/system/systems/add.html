@@ -17,6 +17,19 @@
             <div class="layui-input-block"><input type="text" name="description" placeholder="简要描述" autocomplete="off" class="layui-input" /></div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">ICON</label>
+            <div class="layui-input-block">
+                <div class="layui-upload" id="systems-update-img-box">
+                    <input type="hidden" name="img_id" class="img_id_value" value="{{d.params.img_id}}">
+                    <button type="button" class="layui-btn" id="test1" data-scenario="systems_icon">上传图片</button>
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" width="100" id="demo1" src="{{d.params.show_url}}">
+                        <p id="demoText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">状态</label>
             <div class="layui-input-block">
                 <select name="status" id="add-system-status" required lay-verify="required">
@@ -32,9 +45,9 @@
     </form>
 </script>
 <script>
-    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'ztUpload'], function () {
 
-        var $ = layui.jquery, table = layui.table, form = layui.form, admin = layui.admin, view = layui.view;
+        var $ = layui.jquery, table = layui.table, form = layui.form, admin = layui.admin, view = layui.view, ztUpload = layui.ztUpload;
 
         // 渲染管理员状态列表
         var renderStatus = function () {
@@ -51,6 +64,11 @@
                 };
             admin.req(optionStatus);
         };
+
+        ztUpload.init({
+            uploadUrl: '/admin/file/upload',
+            id: $('#systems-update-img-box')
+        });
 
         renderStatus();
 

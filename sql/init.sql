@@ -72,6 +72,7 @@ CREATE TABLE `system_admin` (
   `sa_id` int(11) NOT NULL AUTO_INCREMENT,
   `systems_id` int (11) NOT NULL DEFAULT 0 COMMENT '系统id',
   `ad_uid` int (11) NOT NULL DEFAULT 0 COMMENT '用户id',
+  `token_id` char (32) NOT NULL DEFAULT '' COMMENT '登录的有效token_id',
   `created_at` datetime,
   `updated_at` datetime,
   PRIMARY KEY (`sa_id`)

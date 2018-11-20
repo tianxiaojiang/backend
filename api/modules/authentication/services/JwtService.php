@@ -48,6 +48,10 @@ class JwtService
                 $tokenBuilder->set($key, $value);
         }
 
+        //生成jti
+        $jwtId = $this->getJwtId();
+        $tokenBuilder->setId($jwtId, true);
+
         //sign
         $signer = new Sha256();
         $tokenBuilder->sign($signer, $this->jwtObj->admin->salt);
@@ -85,6 +89,16 @@ class JwtService
         }
 
         return true;
+    }
+
+    /**
+     * 时间微妙、拼接上6为随机数后
+     * 进行一次md5
+     * @return string
+     */
+    public function getJwtId()
+    {
+        return md5(microtime(true) . rand(100000, 999999));
     }
 
 }

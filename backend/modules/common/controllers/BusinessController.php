@@ -5,14 +5,10 @@ namespace Backend\modules\common\controllers;
 use Backend\actions\CreateAction;
 use Backend\actions\DeleteAction;
 use Backend\actions\UpdateAction;
-use Backend\behavior\ValidateGame;
-use Backend\behavior\ValidateSystem;
+use Backend\behavior\ValidateIsLogin;
 use Backend\behavior\ValidateTime;
-use Backend\behavior\TokenExpire;
-use Backend\behavior\VerifySign;
 use Backend\behavior\Privilege;
 use Backend\helpers\Helpers;
-use Backend\modules\admin\models\System;
 use yii\data\ActiveDataProvider;
 
 /**
@@ -73,6 +69,7 @@ class BusinessController extends SystemController
 
         //验证时间的行为
         $behaviors['validateTime'] = ValidateTime::class;
+        $behaviors['ValidateIsLogin'] = ValidateIsLogin::class;
         $behaviors['Privilege'] = Privilege::class;
 
         return $behaviors;
@@ -83,6 +80,7 @@ class BusinessController extends SystemController
         parent::beforeAction($action);
 
         $this->validateTime();//验证请求时间戳
+        $this->validateIsLoggedIn();//验证用户的token是否在系统里还有效
         $this->canAccess();//验证访问权限
 
         return true;

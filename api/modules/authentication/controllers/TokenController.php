@@ -42,4 +42,25 @@ class TokenController extends BaseController
         //返回跳转的子系统地址
         return ['access_token' => $access_token];
     }
+
+    //执行退出操作
+    public function actionLogout()
+    {
+        $sid = Helpers::getRequestParam('sid');
+        $ad_id = \Yii::$app->user->identity->ad_uid;
+
+        Helpers::validateEmpty($sid, '系统ID');
+        Helpers::validateEmpty($ad_id, '用户ID');
+
+        AdminService::punishAdmin($ad_id, $sid);
+
+        //业务系统使用jsonp的方式返回成功
+        $isMaintain = intval(Helpers::getRequestParam('isMaintain'));
+        if (!$isMaintain) {
+            $callback = Helpers::getRequestParam('callback');
+            exit($callback . '(' . json_encode(['code' => 0, 'msg' => '', 'data' => []]) . ')');
+        }
+
+        return [];
+    }
 }

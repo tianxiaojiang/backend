@@ -30,4 +30,4 @@ $params = [
     'uploadConfig' => require_once(__DIR__ . '/upload.php'),
 ];
 
-return file_exists('./params-local.php') ? ArrayHelper::merge($params, require_once('./params-local.php')) : $params;
+return file_exists(__DIR__ . '/params-local.php') ? ArrayHelper::merge($params, require_once(__DIR__ . '/params-local.php')) : $params;

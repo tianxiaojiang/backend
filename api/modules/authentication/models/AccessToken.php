@@ -9,6 +9,7 @@ use Backend\helpers\Lang;
 use Backend\modules\admin\models\Admin;
 use Backend\modules\admin\models\System;
 use Backend\modules\admin\models\SystemPriv;
+use Backend\modules\admin\models\SystemUser;
 use Backend\modules\admin\models\SystemUserGroup;
 use yii\helpers\ArrayHelper;
 
@@ -72,7 +73,24 @@ class AccessToken extends Admin
         $jwt = new Jwt($this);
         $jwt->supplementPayloadByAdmin($system);
         $jwtService = new JwtService($jwt);
-        return $jwtService->generateTokenString();
+        $tokenString = $jwtService->generateTokenString();
+        $this->updateTokenId($jwtService->tokenObj->getHeader('jti'));//更新登录的系统的token_id
+        return $tokenString;
+    }
+
+    //更新登录的有效token_id
+    public function updateTokenId($jwtId)
+    {
+        $sid = Helpers::getRequestParam('sid');
+        if (empty($this->ad_uid) || empty($sid))
+            throw new CustomException('登录的账户或系统异常');
+        $systemAdminRelation = SystemUser::findOne(['ad_uid' => $this->ad_uid, 'systems_id' => Helpers::getRequestParam('sid')]);
+        //如果系统用户存在，则更新登录的token_id
+        if (!empty($systemAdminRelation)) {
+            $systemAdminRelation->token_id = $jwtId;
+            $systemAdminRelation->save();
+        }
+        return true;
     }
 
     public function getSgIds()

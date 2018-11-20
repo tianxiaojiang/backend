@@ -42,6 +42,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports) {
                 '/user/auth', //授权页
                 '/user/reg', //注册页
                 '/user/forget', //找回密码
+                '/user/maintain', //找回密码
                 '/template/tips/test' //独立页的一个测试 demo
             ],
 

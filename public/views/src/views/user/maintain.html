@@ -1,12 +1,14 @@
 <script type="text/html" template>
     <link rel="stylesheet" href="{{ layui.setter.base }}style/login.css?v={{ layui.admin.v }}-1" media="all">
 </script>
-
+<style type="text/css">
+    body{background-image: url("/img/maintain_bj.png");}
+</style>
 <div class="layui-box wrap twm_login_box">
     <header class="header">
         <section class="sec">
             <h1 class="top-logo">
-                <a href="/"><span class="h5bp">后台管理</span></a>
+                <a href="/"><span class="h5bp">后台维护</span></a>
             </h1>
             <div class="top-menu">
                 <ul>
@@ -129,7 +131,7 @@ layui.use(['admin', 'form', 'user'], function() {
             '                        <ul>\n' +
             '                            <li><a id="nickname" href="javascript:void(0);">__USERNAME__</a></li>\n' +
             '                            <li><a id="modify-password" href="javascript:void(0);">修改密码</a></li>\n' +
-            '                            <li><a id="maintain-btn" href="javascript:void(0);">维护后台</a></li>\n' +
+            '                            <li><a id="business-btn" href="javascript:void(0);">业务后台</a></li>\n' +
             '                            <li><a id="log-out" href="javascript:void(0);">退出</a></li>\n' +
             '                        </ul></div>\n' +
             '                    </div>\n' +
@@ -248,8 +250,8 @@ layui.use(['admin', 'form', 'user'], function() {
     });
 
     //跳转到业务登录页
-    loginBtnBox.on('click', '#maintain-btn', function (e) {
-        location.hash = '/user/maintain';
+    loginBtnBox.on('click', '#business-btn', function (e) {
+       location.hash = '/user/login';
     });
 
     //监听头像触发下拉选择框
@@ -264,9 +266,8 @@ layui.use(['admin', 'form', 'user'], function() {
     //监听系统点击
     systemsBox.on('click', '.systems-item', function (e) {
         var go_sid = $(this).find('input').val();
-        authorization(go_sid, 0);//授权业务后台
+        authorization(go_sid, 1);//授权业务后台
     });
-
 
 });
 </script>

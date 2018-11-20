@@ -116,25 +116,28 @@ layui.use(['form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqu
     var newTmpId = -1;
     //鼠标监听
     function addHoverDom(treeId, treeNode) {
-        if (!checkAllNodeHasSaved) {
-            view.error('有新节点未保存，请保存或删除后再添加！');
-        }
         //添加样式
         var sObj = $("#" + treeNode.tId + "_span");
-        //添加临时节点后，渲染新节点到表单中
         var btn = $("#addBtn_" + treeNode.tId);
-        if (treeNode.editNameFlag || btn.length>0) return;
-        var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
-            + "' title='新建菜单' onfocus='this.blur();'></span>";
-        sObj.after(addStr);
-        if (btn) btn.bind("click", function(){
-            var zTree = jqueryZtreeCore.getZTreeObj("treeDemo");
-            zTree.addNodes(treeNode, {sm_id: newTmpId, sm_parent_id: treeNode.id, sm_label:"新建菜单"});
-            var newNode = zTree.getNodesByParam('sm_id', newTmpId);
-            zTree.selectNode(newNode[0]);
-            synchronizationTreeNode2Form(newNode[0]);
-            return false;
-        });
+        if (btn.length === 0) {
+            //添加临时节点后，渲染新节点到表单中
+            var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+                + "' title='新建菜单' onfocus='this.blur();'></span>";
+            sObj.after(addStr);
+            btn = $("#addBtn_" + treeNode.tId);
+            btn.bind("click", function() {
+                if (!checkAllNodeHasSaved()) {
+                    view.error('有新节点未保存，请保存或删除后再添加！');
+                    return false;
+                }
+                var zTree = jqueryZtreeCore.getZTreeObj("treeDemo");
+                zTree.addNodes(treeNode, {sm_id: newTmpId, sm_parent_id: treeNode.id, sm_label:"新建菜单"});
+                var newNode = zTree.getNodesByParam('sm_id', newTmpId);
+                zTree.selectNode(newNode[0]);
+                synchronizationTreeNode2Form(newNode[0]);
+                return false;
+            });
+        }
     }
 
     //删除监听

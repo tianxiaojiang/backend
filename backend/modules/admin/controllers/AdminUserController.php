@@ -8,6 +8,7 @@ use Backend\modules\admin\models\Admin;
 use Backend\modules\admin\models\SystemGroupGame;
 use Backend\modules\admin\models\SystemUser;
 use Backend\modules\admin\models\SystemUserGroup;
+use Backend\modules\admin\services\AdminService;
 use Backend\modules\common\controllers\BusinessController;
 use yii\helpers\ArrayHelper;
 
@@ -52,8 +53,6 @@ class AdminUserController extends BusinessController
             }]);
         }
 
-//        var_dump($this->query->createCommand()->getRawSql());exit;
-
         $status = Helpers::getRequestParam('status');
         $account = Helpers::getRequestParam('account');
 
@@ -84,6 +83,7 @@ class AdminUserController extends BusinessController
             $item['mobile_phone'] = $model->mobile_phone;
             $item['username'] = $model->username;
             $item['created_at'] = $model->created_at;
+            $item['is_login'] = empty($model->systemRelations->token_id) ? 0 : 1;//如果对应的系统用户有token_id，则视为登录
             $result[] = $item;
         }
 
@@ -102,6 +102,18 @@ class AdminUserController extends BusinessController
             throw new CustomException('操作的管理员不存在');
 
         $systemAdmin->delete();
+
+        return [];
+    }
+
+    //踢某个管理员下线
+    public function actionPunish()
+    {
+        $ad_uid = Helpers::getRequestParam('ad_uid');
+        Helpers::validateEmpty($ad_uid, '账号ID');
+        $sid = Helpers::getRequestParam('sid');
+
+        AdminService::punishAdmin($ad_uid, $sid);
 
         return [];
     }

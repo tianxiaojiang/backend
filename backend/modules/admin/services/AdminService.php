@@ -13,9 +13,27 @@ use Api\modules\authentication\models\AccessToken;
 use Backend\Exception\CustomException;
 use Backend\helpers\Lang;
 use Backend\modules\admin\models\Admin;
+use Backend\modules\admin\models\SystemUser;
 
 class AdminService
 {
+    /**
+     * 针对某个系统的某个用户执行踢线操作
+     * @param $ad_uid
+     * @param $sid
+     * @return bool
+     */
+    public static function punishAdmin($ad_uid, $sid)
+    {
+        $adminSystemRelation = SystemUser::findOne(['systems_id' => $sid, 'ad_uid' => $ad_uid]);
+        if (empty($adminSystemRelation->token_id)) return true;
+
+        $adminSystemRelation->token_id = '';
+        $adminSystemRelation->save();
+
+        return true;
+    }
+
     /**
      * 验证要登录的账号是否存在
      * @param $model
