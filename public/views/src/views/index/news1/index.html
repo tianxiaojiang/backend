@@ -81,7 +81,7 @@
             }
         });
 
-        // 删除管理员请求
+        // 删除文章请求
         var deleteNews = function (id, obj) {
             var options = {
                 url: '/index/news1/delete?id=' + id,
@@ -95,5 +95,10 @@
             admin.req(options);
         };
 
+        var actions = ['/index/news1/index', '/index/news2/index', '/index/vvv/jjj'];
+        ztutil.getHasPrivilege(actions, function (res) {
+            console.log(res);
+            //根据结果处理后续页面显示
+        });
     });
 </script>

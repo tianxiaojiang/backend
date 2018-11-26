@@ -26,6 +26,7 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . DIRECTORY_SEPARATOR . 'db.php'),
+        'gamm3_db' => require_once(__DIR__ . DIRECTORY_SEPARATOR . 'gamm3-db.php'),
         //'cache' => require(__DIR__ . '/cache.php'),
         //'redis' => require(__DIR__ . '/redis.php'),
     ],
