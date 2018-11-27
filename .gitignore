@@ -18,7 +18,7 @@ nbproject
 Thumbs.db
 
 # composer 供应商目录
-/vendor
+# /vendor
 
 # composer 它本身是不需要的（客户端自行升级最新版）
 composer.phar
