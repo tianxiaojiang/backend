@@ -280,7 +280,7 @@ CREATE TABLE `system_admin` (
 -- ----------------------------
 -- Records of system_admin
 -- ----------------------------
-INSERT INTO `system_admin` VALUES ('1', '1', '1', '2018-11-12 11:57:03', '2019-01-02 10:30:07', '021fcc105c0a793c00dad9c84327df09');
+INSERT INTO `system_admin` VALUES ('1', '1', '1', '2018-11-12 11:57:03', '2019-01-02 10:30:07', '021fcc105c0a793c00dad9c84327df09', '');
 
 -- ----------------------------
 -- Table structure for systems
