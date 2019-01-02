@@ -54,15 +54,16 @@
             var getRoles = function () {
                 var rolesCurrent = $('#sg_id_hide_val').val().split('、');
                 var options = {
-                    url: '/admin/system-group/index',
-                    page: true,
+                    url: '/admin/system-group/index?limit=10000',
+                    page: false,
                     limit: 1000,
                     done: function (res) {
                         var rolesListHTML = '<option value="">请选择角色名</option>';
                         $.each(res.data, function (i, v) {
                             // 当前角色名是否在列表中，即是否为选中状态
-                            var isSelected = ztutil.inArray(rolesCurrent, v.sg_name) ? ' selected' : '';
-                            rolesListHTML += '\n<option value="' + v.sg_id + '"' + isSelected + '>' + v.sg_name + '</option>';
+                            var isSelected = ztutil.inArray(rolesCurrent, v.sg_name) ? ' selected="selected"' : '';
+                            var isDisabled = parseInt(v.disabled) === 1 ? ' disabled="disabled"' : '';
+                            rolesListHTML += '\n<option value="' + v.sg_id + '"' + isSelected + isDisabled +'>' + v.sg_name + '</option>';
                         });
                         $('#update-select-roles').html(rolesListHTML);
                         form.render();

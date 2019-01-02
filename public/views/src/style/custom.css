@@ -66,3 +66,5 @@ select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] i {po
 .layui-product-id {border:0 none}
 
 .layui-btn-smi {height: 38px;line-height: 38px;}
+
+.system-menu .addRootNodeBtn{font-size: 14px;margin: 5px;display:inline-block;padding:0 5px;border: 1px solid #000;}

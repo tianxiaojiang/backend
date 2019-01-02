@@ -36,6 +36,13 @@
 <div class="layadmin-user-login" id="LAY-user-login" style="display: none;">
     <div class="layadmin-user-login-main">
         <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+            <div class="layui-form-item auth_type_box">
+                <select class="" name="auth_type">
+                    <option value="0">域账号</option>
+                    <option value="1">普通账号</option>
+                    <option value="2">常州账号</option>
+                </select>
+            </div>
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
                 <input type="text" name="account" id="LAY-user-login-username" lay-verify="required" autocomplete="off" placeholder="域用户名" class="layui-input">
@@ -79,7 +86,7 @@ layui.use(['admin', 'form', 'user'], function() {
     //拉取系统列表
     var renderSystemSelect = function() {
         var systemTpl = '<a class="systems-item layui-col-xs1" href="javascript:;">' +
-            '                <div><img src="/img/testSystem.png"></div><h3>__SYSTEMS_NAME__</h3>' +
+            '                <div><img src="__URL__"></div><h3>__SYSTEMS_NAME__</h3>' +
             '                <input type="hidden" name="systems_id__SYSTEMS_ID__" value="__SYSTEMS_ID__"/>' +
             '            </a>';
         var maintainTpl = '<div class="maintain"><a href="javascript:void(0);">维护</a><input type="hidden" name="systems_id__SYSTEMS_ID__" value="__SYSTEMS_ID__"/></div>';
@@ -93,8 +100,9 @@ layui.use(['admin', 'form', 'user'], function() {
                 $.each(res.data.systems, function (k, v) {
                     systemItemHtml = systemTpl;
                     // var maintainHtml = (v.systems_id === 1) ? '' : maintainTpl;
+                    var system_icon = v.show_url ? v.show_url : '/img/testSystem.png';
                     var maintainHtml = '';
-                    systemItemHtml = systemItemHtml.replace('__MAINTAIN__', maintainHtml).replace(/__SYSTEMS_ID__/g, v.systems_id).replace('__SYSTEMS_NAME__', v.name).replace('__URL__', v.show_url);
+                    systemItemHtml = systemItemHtml.replace('__MAINTAIN__', maintainHtml).replace(/__SYSTEMS_ID__/g, v.systems_id).replace('__SYSTEMS_NAME__', v.name).replace('__URL__', system_icon);
                     systemOptions += systemItemHtml;
                 });
                 systemsBox.html(systemOptions);

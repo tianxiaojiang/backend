@@ -29,11 +29,18 @@ class ValidateIsLogin extends Behavior
         $tokenId = $admin->jwt->Payload['jti']->getValue();
         $sid = Helpers::getRequestParam('sid');
 
-        $systemAdminRelation = SystemUser::findOne([
+        $systemAdminWhere = [
             'ad_uid' => $ad_uid,
             'systems_id' => $sid,
-            'token_id' => $tokenId
-        ]);
+        ];
+        $isMaintain = Helpers::getRequestParam('isMaintain');
+        if (empty($isMaintain)) {
+            $systemAdminRelation['token_id'] = $tokenId;
+        } else {
+            $systemAdminRelation['setting_token_id'] = $tokenId;
+        }
+
+        $systemAdminRelation = SystemUser::findOne($systemAdminWhere);
 
         if (empty($systemAdminRelation))
             throw new CustomException(Lang::ERR_TOKEN_INVALID);

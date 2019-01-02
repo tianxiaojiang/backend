@@ -3,14 +3,15 @@
     //加载css
     layui.link('/css/bootstrapStyle.css');
 </script>
-<div class="layui-fluid">
+<div class="layui-fluid system-menu">
     <div class="layui-row layui-col-space15">
         <div class="layui-card">
             <div class="layui-card-body">
                 <div class="layui-row">
                     <div class="layui-col-sm4 ztree">
-                        <h3 class="layui-code-h3">菜单结构</h3>
-                        <div id="treeDemo"></div>
+                        <h3 class="layui-row layui-code-h3">菜单结构</h3>
+                        <div class="layui-row" id="treeDemo"></div>
+                        <div class="layui-row"><a class="addMenuRootNodeBtn" href="javascript:;" id="addMenuRootNodeBtn">添加根菜单</a></div>
                     </div>
                     <div class="layui-col-sm3">
                         <h3>菜单详情</h3>
@@ -26,7 +27,7 @@
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">前端对应地址</label>
-                                    <div class="layui-input-block"><input type="text" name="sm_view" required  lay-verify="required" placeholder="菜单对应地址" autocomplete="off" class="layui-input" /></div>
+                                    <div class="layui-input-block"><input type="text" name="sm_view" placeholder="菜单对应地址" autocomplete="off" class="layui-input" /></div>
                                 </div>
                                 <div class="layui-form-item">
                                     <div class="layui-input-block">
@@ -55,8 +56,6 @@ layui.use(['form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqu
         if (parseInt(data.field.sm_id) === -1) {
             delete data.field.sm_id;
         }
-        console.log(data.field);
-        console.log(action);
         var options = {
             data: data.field,
             url: '/admin/menu/' + action,
@@ -140,6 +139,21 @@ layui.use(['form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqu
         }
     }
 
+    //绑定增加根节点的事件
+    $('#addMenuRootNodeBtn').on('click', function () {
+        var treeNode = null;
+        if (!checkAllNodeHasSaved()) {
+            view.error('有新节点未保存，请保存或删除后再添加！');
+            return false;
+        }
+        var zTree = jqueryZtreeCore.getZTreeObj("treeDemo");
+        zTree.addNodes(treeNode, {sm_id: newTmpId, sm_parent_id: 0, sm_label:"新建菜单"});
+        var newNode = zTree.getNodesByParam('sm_id', newTmpId);
+        zTree.selectNode(newNode[0]);
+        synchronizationTreeNode2Form(newNode[0]);
+        return false;
+    });
+
     //删除监听
     function removeHoverDom(treeId, treeNode) {
         $("#addBtn_"+treeNode.tId).unbind().remove();
@@ -202,7 +216,7 @@ layui.use(['form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqu
         $('input[name="sm_label"]').val(treeNode.sm_label);
         $('input[name="sm_parent_name"]').val(parent_label);
         $('input[name="sm_view"]').val(treeNode.sm_view);
-        $('input[name="sm_parent_id"]').val(treeNode.sm_parent_id);
+        $('input[name="sm_parent_id"]').val(parseInt(treeNode.sm_parent_id));
         $('input[name="sm_id"]').val(treeNode.sm_id);
     }
 

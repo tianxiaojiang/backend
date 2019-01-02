@@ -12,6 +12,7 @@ use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\helpers\Lang;
 use Backend\modules\admin\models\SystemPriv;
+use Backend\modules\admin\services\SystemService;
 use yii\base\Behavior;
 
 /**
@@ -23,8 +24,10 @@ class ValidateGame extends Behavior
 {
     public function validateGame()
     {
+        $admin = \Yii::$app->user->identity;
+
         //验证游戏权限
         $gameId = Helpers::getRequestParam('game_id');
-        \Yii::$app->user->identity->validateGame($gameId, \Yii::$app->user->identity->jwt->getGameIdsByToken());
+        \Yii::$app->user->identity->validateGame($gameId, $admin->jwt->getGameIdsByToken());
     }
 }

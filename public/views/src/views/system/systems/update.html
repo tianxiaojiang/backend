@@ -1,5 +1,15 @@
 <script type="text/html" template>
     <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">管理游戏类型：</label>
+            <div class="layui-input-block">
+                <select name="game_type" id="update-system-game_type" required lay-verify="required">
+                    <option value="2"{{# if(d.params.game_type === 2){ }} selected {{#  } }}>不区分</option>
+                    <option value="0"{{# if(d.params.game_type === 0){ }} selected {{#  } }}>端游</option>
+                    <option value="1"{{# if(d.params.game_type === 1){ }} selected {{#  } }}>手游</option>
+                </select>
+            </div>
+        </div>
         <div class="layui-form-item layui-hide">
             <label class="layui-form-label">系统编号</label>
             <div class="layui-input-block"><input type="text" class="layui-input" name="id" required lay-verify="required" placeholder="角色编号" value="{{ d.params.systems_id }}" autocomplete="off" class="layui-input" /></div>
@@ -9,14 +19,26 @@
             <div class="layui-input-block"><input type="text" class="layui-input" name="name" required lay-verify="required" placeholder="系统名" value="{{d.params.name}}" autocomplete="off" class="layui-input" /></div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">URL</label>
+            <label class="layui-form-label">URL地址</label>
             <div class="layui-input-block">
                 <input type="text" class="layui-input" name="url" required lay-verify="url" placeholder="URL" value="{{d.params.url}}" autocomplete="off" class="layui-input" /></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">授权跳转地址</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="auth_url" required placeholder="授权跳转地址" value="{{d.params.auth_url}}" autocomplete="off" class="layui-input" /></div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">开发者账号</label>
             <div class="layui-input-block">
                 <input type="text" class="layui-input" name="dev_account" required placeholder="开发者账号" value="{{d.params.dev_account}}" autocomplete="off" class="layui-input" /></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">开发账号类型：</label>
+            <div class="layui-input-block">
+                <select name="auth_type" id="update-system-auth_type" lay-filter="auth_type_filter" required lay-verify="required">
+                </select>
+            </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">描述</label>
@@ -46,6 +68,7 @@
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <input type="hidden" id="system_old_status" value="{{d.params.status}}">
+                <input type="hidden" id="system_old_auth_type" value="{{d.params.dev_account_type}}">
                 <button class="layui-btn" lay-submit="" lay-filter="edit-system">提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
@@ -75,8 +98,26 @@
             };
             admin.req(options);
         };
+        // 渲染开发者账号分类列表
+        var renderAuthType = function () {
+            var typesHTML = '',
+                optionStatus = {
+                    url: '/admin/common/admin-auth-types',
+                    done: function (res) {
+                        var system_old_auth_type = $('#system_old_auth_type').val();
+                        $.each(res.data.types, function (i, v) {
+                            var selectedSource = parseInt(i) === parseInt(system_old_auth_type) ? ' selected' : '';
+                            typesHTML += '<option value="' + i + '"'+ selectedSource +'>' + v + '</option>';
+                        });
+                        $('#update-system-auth_type').html(typesHTML);
+                        form.render();
+                    }
+                };
+            admin.req(optionStatus);
+        };
         $(document).ready(function (e) {
             getStatus();
+            renderAuthType();
         });
 
         ztUpload.init({

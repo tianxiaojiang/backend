@@ -3,6 +3,7 @@
 namespace Backend\modules\admin\controllers;
 
 use Backend\helpers\Helpers;
+use Backend\modules\admin\models\Admin;
 use Backend\modules\admin\models\Game;
 use Backend\modules\admin\models\System;
 use Backend\modules\admin\services\SystemService;
@@ -45,8 +46,13 @@ class SystemController extends BusinessController
                 'img_id' => $model->img_id,
                 'show_url' => (empty($model->img) ? '' : \Yii::$app->params['uploadConfig']['imageUrlPrefix'] . $model->img->url_path),
                 'url' => $model->url,
+                'auth_url' => $model->auth_url,
                 'description' => $model->description,
-                'dev_account' => $model->dev_account,
+                'dev_account' => $model->admin->account,
+                'dev_account_type_show' => Admin::$_auth_types[$model->admin->auth_type],
+                'dev_account_type' => $model->admin->auth_type,
+                'game_type' => $model->game_type,
+                'game_type_show' => Game::$_types[$model->game_type],
                 'updated_at' => $model->updated_at,
                 'created_at' => $model->created_at,
             ];

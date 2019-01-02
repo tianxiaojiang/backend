@@ -144,7 +144,11 @@ layui.extend({
     });
     
     //独立页面
-    if(isIndPage || pathURL === '/user/login'){ //此处单独判断登入页，是为了兼容旧版（即未在 config.js 配置 indPage 的情况）
+    if (pathURL === '/') {
+        pathURL = '/user/login';
+        router.path = ['user','login'];
+    }
+    if(isIndPage || pathURL === '/user/login') { //此处单独判断登入页，是为了兼容旧版（即未在 config.js 配置 indPage 的情况）
       container.render(router.path.join('/')).done(function(){
         admin.pageType = 'alone';
       });

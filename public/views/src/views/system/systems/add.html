@@ -1,6 +1,16 @@
 <script type="text/html" template>
     <form class="layui-form" action="">
         <div class="layui-form-item">
+            <label class="layui-form-label">管理游戏类型：</label>
+            <div class="layui-input-block">
+                <select name="game_type" id="add-system-game_type" required lay-verify="required">
+                    <option value="2">不区分</option>
+                    <option value="0">端游</option>
+                    <option value="1">手游</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">系统名</label>
             <div class="layui-input-block"><input type="text" name="name" required lay-verify="required" placeholder="系统名" autocomplete="off" class="layui-input" /></div>
         </div>
@@ -9,8 +19,27 @@
             <div class="layui-input-block"> <input type="text" name="url" required lay-verify="url" placeholder="url地址" autocomplete="off" class="layui-input" /></div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">授权跳转地址</label>
+            <div class="layui-input-block"> <input type="text" name="auth_url" required placeholder="授权跳转地址" autocomplete="off" class="layui-input" /></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">开发账号类型：</label>
+            <div class="layui-input-block">
+                <select name="auth_type" id="add-system-auth_type" lay-filter="auth_type_filter" required lay-verify="required">
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item auth_type_password" style="display: none;">
             <label class="layui-form-label">开发者账号</label>
-            <div class="layui-input-block"> <input type="text" name="dev_account" required placeholder="开发者账号" autocomplete="off" class="layui-input" /></div>
+            <div class="layui-input-block"> <input type="text" name="dev_account" placeholder="开发者账号" autocomplete="off" class="layui-input" /></div>
+        </div>
+        <div class="layui-form-item auth_type_password" style="display: none;">
+            <label class="layui-form-label">开发者初始密码</label>
+            <div class="layui-input-block"> <input type="password" name="password" placeholder="开发者初始密码" autocomplete="off" class="layui-input" /></div>
+        </div>
+        <div class="layui-form-item auth_type_no_password">
+            <label class="layui-form-label">开发者工号</label>
+            <div class="layui-input-block"> <input type="number" name="staff_number" placeholder="开发者工号" autocomplete="off" class="layui-input" /></div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">简要描述</label>
@@ -49,7 +78,7 @@
 
         var $ = layui.jquery, table = layui.table, form = layui.form, admin = layui.admin, view = layui.view, ztUpload = layui.ztUpload;
 
-        // 渲染管理员状态列表
+        // 渲染系统状态列表
         var renderStatus = function () {
             var statusHTML = '',
                 optionStatus = {
@@ -65,12 +94,29 @@
             admin.req(optionStatus);
         };
 
+        // 渲染开发者账号分类列表
+        var renderAuthType = function () {
+            var typesHTML = '',
+                optionStatus = {
+                    url: '/admin/common/admin-auth-types',
+                    done: function (res) {
+                        $.each(res.data.types, function (i, v) {
+                            typesHTML += '<option value="' + i + '">' + v + '</option>';
+                        });
+                        $('#add-system-auth_type').html(typesHTML);
+                        form.render();
+                    }
+                };
+            admin.req(optionStatus);
+        };
+
+        renderStatus();
+        renderAuthType();
+
         ztUpload.init({
             uploadUrl: '/admin/file/upload',
             id: $('#systems-update-img-box')
         });
-
-        renderStatus();
 
         // 提交添加管理员按钮
         form.on('submit(add-system)', function (data) {
@@ -88,5 +134,19 @@
             return false;
         });
 
+        form.on('select(auth_type_filter)', function(data){
+            console.log(data.value); //得到被选中的值
+
+            var auth_type = parseInt(data.value);
+            if (auth_type === 1) {//普通账密
+                $(".auth_type_no_password").hide();
+                $(".auth_type_password").show();
+                console.log(1111);
+            } else {
+                $(".auth_type_no_password").show();
+                $(".auth_type_password").hide();
+                console.log(2222);
+            }
+        });
     });
 </script>

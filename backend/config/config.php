@@ -40,7 +40,7 @@ return [
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'showScriptName' => true,
             //'enableStrictParsing' =>true,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'admin/system-group'],

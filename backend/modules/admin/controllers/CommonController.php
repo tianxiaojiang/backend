@@ -30,6 +30,11 @@ class CommonController extends \Backend\modules\common\controllers\BaseControlle
         return ['stats' => Admin::$_status];
     }
 
+    public function actionAdminAuthTypes()
+    {
+        return ['types' => Admin::$_auth_types];
+    }
+
     /**
      * 拉取游戏状态列表
      * @return array
@@ -86,6 +91,10 @@ class CommonController extends \Backend\modules\common\controllers\BaseControlle
         return $result;
     }
 
+    /**
+     * 登录页展现的系统
+     * @return array
+     */
     public function actionSystems()
     {
         $systems = System::findAll(['status' => System::SYSTEM_STAT_NORMAL]);

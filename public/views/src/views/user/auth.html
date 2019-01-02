@@ -35,7 +35,6 @@
             done: function(res) {
                 var jwtObj = res.data.access_token.split('.');
                 var payload = JSON.parse(atob(jwtObj[1]));
-                console.log(payload);
                 // 请求成功后，写入 access_token
                 layui.data(setter.tableName, {
                     key: setter.request.tokenName,
@@ -64,8 +63,8 @@
                     icon: 1,
                     time: 1000
                 }, function() {
-                    location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
-                    location.search = ''
+                    location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/frame';
+                    location.search = '';
                 });
             }
         });

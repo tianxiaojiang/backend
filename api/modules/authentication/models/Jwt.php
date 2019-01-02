@@ -69,6 +69,8 @@ class Jwt
         $this->Payload['role_info'] = json_encode($roles);
         $this->Payload['sid'] = $system->systems_id;
         $this->Payload['system_name'] = $system->name;
+        $this->Payload['staff_number'] = $this->admin->staff_number;
+        $this->Payload['account'] = $this->admin->account;
 
         return $this;
     }
@@ -77,7 +79,7 @@ class Jwt
     {
         $roleInfo = \Yii::$app->user->identity->jwt->Payload['role_info']->getValue();
         $roleInfo = json_decode($roleInfo, true);
-        return array_merge(...$roleInfo);
+        return array_values($roleInfo);
     }
 
     public function getSystemGroupIdsByToken()

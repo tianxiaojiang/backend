@@ -37,7 +37,6 @@ class SystemMenu extends BaseModel
     {
         return [
             ['sm_label', 'required', 'message' => '菜单名不能为空', 'on' => ['create', 'update']],
-            ['sm_view', 'required', 'message' => '菜单对应前端地址不能为空', 'on' => ['create', 'update']],
         ];
     }
 
@@ -94,13 +93,15 @@ class SystemMenu extends BaseModel
     //将非菜单权限过滤掉
     public function filterPrivilege($list) {
         if ($this->_privilege == false) {
-            $privilege = \Yii::$app->user->identity->getPrivilege($this->menuType);
+            $gameId = Helpers::getRequestParam('game_id');
+            $privilege = \Yii::$app->user->identity->getPrivileges($gameId, $this->menuType);
             $this->_privilege = [];
             foreach ($privilege as $value) {
                 $this->_privilege[$value['sm_id']][] = $value['sp_module'] . $value['sp_controller'] . $value['sp_action'];
             }
         }
 //        \Yii::info('privilege is:'. var_export($this->_privilege, true));
+
         foreach ($list as $listKey => $listKeyval) {
             if (!isset($this->_privilege[$listKeyval['sm_id']]) || !in_array('mainmainmain', $this->_privilege[$listKeyval['sm_id']])) {
                 unset($list[$listKey]);

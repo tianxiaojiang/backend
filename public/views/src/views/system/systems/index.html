@@ -26,6 +26,7 @@
                 type: 1,
                 id: 'LAY-system-systems-add',
                 title: '添加管理员',
+                //area: ['600px', '500px'],
                 resize: false,
                 success: function () {
                     view(this.id).render('system/systems/add').done(function () {
@@ -54,6 +55,7 @@
                 },
                 { field: 'url', title: '系统url', sort: true },
                 { field: 'dev_account', title: '开发者账号', sort: true },
+                { field: 'dev_account_type_show', title: '账号类型', sort: true },
                 { field: 'description', title: '描述', sort: true },
                 { field: 'statusName', title: '状态', sort: true },
                 { field: 'created_at', title: '创建时间', sort: true },

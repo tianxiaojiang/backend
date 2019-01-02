@@ -28,6 +28,14 @@ $params = [
     ],
     //上传图片配置
     'uploadConfig' => require_once(__DIR__ . '/upload.php'),
+    'passport' => [
+        'url' => 'http://sso.ztgame.com/passport/soap/soapserver_passport.php?wsdl',
+        'source_system_code'	=>	'gamm3admin',
+        'cookie_expire'			=>	time() + 86400,
+        'cookie_path'			=>	'/',
+        'cookie_domian'			=>	'.ztgame.com',
+        'cookie_secure'			=>	0,
+    ],
 ];
 
 return file_exists(__DIR__ . '/params-local.php') ? ArrayHelper::merge($params, require_once(__DIR__ . '/params-local.php')) : $params;

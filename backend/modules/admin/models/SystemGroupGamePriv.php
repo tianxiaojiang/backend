@@ -25,7 +25,7 @@ class SystemGroupGamePriv extends BaseModel
         $sourceDdData = self::find()->select('game_id, sp_id')->where(['sg_id' => $groupId, 'game_id' => $gameId])->indexBy('sp_id')->all();
         $allPrivileges = SystemPriv::getAll();
         $groupGamePrivileges = ArrayHelper::getColumn($sourceDdData, 'privilege');
-        $selfPrivileges = \Yii::$app->user->identity->getPrivilege('*');
+        $selfPrivileges = \Yii::$app->user->identity->getPrivileges($gameId,'*');
         foreach ($allPrivileges as $sp_id => $allPrivilege) {
             if (!empty($groupGamePrivileges[$sp_id])) {
                 $allPrivileges[$sp_id]['is_checked'] = 1;

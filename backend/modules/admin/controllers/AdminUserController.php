@@ -40,18 +40,12 @@ class AdminUserController extends BusinessController
             Admin::tableName().'.mobile_phone',
             Admin::tableName().'.username',
             Admin::tableName().'.status',
+            Admin::tableName().'.auth_type',
+            Admin::tableName().'.staff_number',
             Admin::tableName().'.created_at']);
         $this->query->innerJoinWith(['systemRelations' => function($query) use($systems_id){
             $query->where([SystemUser::tableName() . '.systems_id' => $systems_id]);
         }]);
-
-        $gameId = intval(Helpers::getRequestParam('game_id'));
-        if ($gameId > 0) {//如果有游戏id，则只获取跟游戏id关联的角色
-            $sgIds = ArrayHelper::getColumn(SystemGroupGame::findAll(['game_id' => $gameId]), 'group_id');
-            $this->query->innerJoinWith(['groupRelations' => function($query) use($sgIds) {
-                $query->where(['`' . SystemUserGroup::tableName() . '`.`sg_id`' => $sgIds]);
-            }]);
-        }
 
         $status = Helpers::getRequestParam('status');
         $account = Helpers::getRequestParam('account');
@@ -83,6 +77,9 @@ class AdminUserController extends BusinessController
             $item['mobile_phone'] = $model->mobile_phone;
             $item['username'] = $model->username;
             $item['created_at'] = $model->created_at;
+            $item['auth_type'] = $model->auth_type;
+            $item['auth_type_title'] = Admin::$_auth_types[$model->auth_type];
+            $item['staff_number'] = $model->staff_number;
             $item['is_login'] = empty($model->systemRelations->token_id) ? 0 : 1;//如果对应的系统用户有token_id，则视为登录
             $result[] = $item;
         }

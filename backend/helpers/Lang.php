@@ -9,6 +9,8 @@ namespace Backend\helpers;
  */
 class Lang
 {
+    const LINKMAN = '俞然';
+
     const SUCCESS                   = 0x0000;
     const FAIL                      = 0x1001;
     const ERR_TOKEN_INVALID         = 0x1002;
@@ -17,6 +19,7 @@ class Lang
     const ERR_SIGN                  = 0x1005;
     const ERR_NO_ACCESS             = 0x1006;
     const ERR_STATUS_FORBIDDEN      = 0x1007;
+    const ERR_NOT_AUTHORIZATION     = 0x1008;
 
     static $errMsg = [
         self::SUCCESS               => '操作成功',
@@ -26,7 +29,8 @@ class Lang
         self::ERR_TIME              => '操作过期',
         self::ERR_SIGN              => '签名错误',
         self::ERR_NO_ACCESS         => '无权限访问',
-        self::ERR_STATUS_FORBIDDEN  => '账号被禁止，请联系管理员！',
+        self::ERR_STATUS_FORBIDDEN  => '账号被禁止，请联系管。',
+        self::ERR_NOT_AUTHORIZATION => '你的账号未授权任何系统，请联系'.self::LINKMAN.'。',
     ];
 
 

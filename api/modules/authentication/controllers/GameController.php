@@ -4,7 +4,10 @@ namespace Api\modules\authentication\controllers;
 
 use Backend\helpers\Helpers;
 use Backend\modules\admin\models\Game;
-use Backend\modules\common\controllers\JwtController;
+use Backend\modules\admin\models\System;
+use Backend\modules\admin\models\SystemGroup;
+use Backend\modules\admin\services\SystemService;
+use Backend\modules\common\controllers\LoginController;
 
 /**
  * Created by PhpStorm.
@@ -12,7 +15,7 @@ use Backend\modules\common\controllers\JwtController;
  * Date: 2018/4/9
  * Time: 14:21
  */
-class GameController extends JwtController
+class GameController extends LoginController
 {
     public $modelClass = 'Backend\modules\admin\models\SystemGroupGame';
 
@@ -23,18 +26,28 @@ class GameController extends JwtController
      */
     public function actionList()
     {
+        $callback = Helpers::getRequestParam('callback');
         $isMaintain = intval(Helpers::getRequestParam('isMaintain'));
-        $gameIds = \Yii::$app->user->identity->jwt->getGameIdsByToken();
 
-        //角色不区分游戏，返回不区分的特殊id
-        if(($isMaintain < 1 && implode('', $gameIds) == '*') || ($isMaintain == 1 && in_array('*', $gameIds))) {
-            $games = [['game_id' => '*', 'name' => '不区分游戏']];
-        } else {
-            $games = Game::getAllGames(['in', 'game_id', $gameIds], 'game_id, name');
+        $roleIds = \Yii::$app->user->identity->jwt->getSystemGroupIdsByToken();
+        $gameIds = [];
+        $roles = SystemGroup::findAll(['sg_id' => $roleIds]);
+        $privilegeLevel = $isMaintain ? SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN : SystemGroup::SYSTEM_PRIVILEGE_LEVEL_FRONT;
+        foreach ($roles as $role) {
+            if (($role->privilege_level & $privilegeLevel) === $privilegeLevel) {
+                array_push($gameIds, $role->on_game);
+            }
         }
 
-        if($isMaintain < 1) {//业务后台
-            $callback = Helpers::getRequestParam('callback');
+        $games = Game::getAllGames(['in', 'game_id', $gameIds], 'game_id, name');
+        //如果有所有权，则添加不区分游戏的所有游戏id
+        $currentSystem = SystemService::getCurrentSystem();
+        if (in_array(-1, $gameIds) && (!empty($isMaintain) || $currentSystem->game_type == Game::GAME_TYPE_NONE)) {
+            array_unshift($games, ['game_id' => '-1', 'name' => '不区分游戏']);
+        }
+
+
+        if(!empty($callback)) {//jsonp的方式调用
             echo $callback . '(' . json_encode(['code' => 0, 'msg' => '', 'data' => ['games' => $games]]) . ')';exit;
         }
 

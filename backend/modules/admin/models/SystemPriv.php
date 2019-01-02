@@ -15,6 +15,8 @@ class SystemPriv extends \yii\db\ActiveRecord
     const PRIVILEGE_TYPE_BUSINESS  = 0;
     const PRIVILEGE_TYPE_SETTING = 1;
 
+    public static $allPrivileges = null;
+
     static public function tableName() {
         return 's' . Helpers::getRequestParam('sid') . '_system_priv';
     }
@@ -69,6 +71,9 @@ class SystemPriv extends \yii\db\ActiveRecord
 
     public static function getAll($where = [])
     {
-        return self::find()->where($where)->indexBy('sp_id')->orderBy('sp_id asc')->asArray()->all();
+        if (empty(self::$allPrivileges)) {
+            self::$allPrivileges = self::find()->where($where)->indexBy('sp_id')->orderBy('sp_id asc')->asArray()->all();
+        }
+        return self::$allPrivileges;
     }
 }

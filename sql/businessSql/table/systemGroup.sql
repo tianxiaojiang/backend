@@ -9,7 +9,8 @@ CREATE TABLE `s{{SID}}_system_group` (
   `sg_id` int(11) NOT NULL AUTO_INCREMENT,
   `sg_desc` varchar(128) NOT NULL DEFAULT '' COMMENT '角色描述',
   `sg_name` varchar(16) NOT NULL DEFAULT '' COMMENT '角色名称',
-  `sg_limit_game` int (1) NOT NULL DEFAULT 0 COMMENT '是否限制游戏，0：不限制，1：限制',
+  `on_game` int(11) NOT NULL DEFAULT -1 COMMENT '负责的游戏，-1为不区分游戏',
+  `privilege_level` tinyint(1) not null default 2 comment '后台角色权限级别置位，一位前台权限、二位后台权限',
   `created_at` datetime,
   `updated_at` datetime,
   PRIMARY KEY (`sg_id`)

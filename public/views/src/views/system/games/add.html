@@ -2,6 +2,15 @@
     <div class="layui-fluid">
         <form class="layui-form" action="">
             <div class="layui-form-item">
+                <label class="layui-form-label">游戏类型</label>
+                <div class="layui-input-block">
+                    <select name="game_type" id="add-game-game_type" required lay-verify="required">
+                        <option value="0">端游</option>
+                        <option value="1">手游</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
                 <label class="layui-form-label">游戏ID</label>
                 <div class="layui-input-block"><input type="text" name="game_id" required  lay-verify="required" placeholder="游戏ID" autocomplete="off" class="layui-input" /></div>
             </div>

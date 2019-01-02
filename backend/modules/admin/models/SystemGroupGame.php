@@ -65,14 +65,16 @@ class SystemGroupGame extends BaseModel
             return [
                 'group_id' => $sgId,
                 'game_id' => $col,
-                'is_proprietary_priv' => $isProprietaryPrivArr[$col]
+                'is_proprietary_priv' => $isProprietaryPrivArr[$col],
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ];
         }, $addGamesIds);
         $connection = \Yii::$app->db;
         //数据批量入库
         $connection->createCommand()->batchInsert(
             self::tableName(),
-            ['group_id','game_id', 'is_proprietary_priv'],//字段
+            ['group_id','game_id', 'is_proprietary_priv', 'created_at', 'updated_at'],//字段
             $addGamesIds
         )->execute();
 

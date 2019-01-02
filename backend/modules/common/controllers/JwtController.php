@@ -4,6 +4,7 @@ namespace Backend\modules\common\controllers;
 
 use Api\modules\authentication\models\Jwt;
 use Api\modules\authentication\services\JwtService;
+use Backend\behavior\ValidateIsLogin;
 use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\helpers\Lang;

@@ -13,10 +13,13 @@ use Api\modules\authentication\models\AccessToken;
 use Backend\Exception\CustomException;
 use Backend\helpers\Lang;
 use Backend\modules\admin\models\Admin;
+use Backend\modules\admin\models\System;
+use Backend\modules\admin\models\SystemGroup;
 use Backend\modules\admin\models\SystemUser;
 
 class AdminService
 {
+
     /**
      * 针对某个系统的某个用户执行踢线操作
      * @param $ad_uid
@@ -69,7 +72,7 @@ class AdminService
      */
     public static function validateResetPassword($model)
     {
-        if ($model->reset_password == Admin::RESET_PASSWORD_NO)
+        if ($model->auth_type == Admin::AUTH_TYPE_PASSWORD && $model->reset_password == Admin::RESET_PASSWORD_NO)
             throw new CustomException('初始化密码过于简单，请先重置密码！');
     }
 
@@ -84,5 +87,26 @@ class AdminService
             throw new CustomException('您没有访问此系统的权限');
         else
             return true;
+    }
+
+    /**
+     * 验证所有角色的权限级别，跟要验证的级别做检查
+     * @param $privilege_level
+     * @param $privilege_levels
+     * @return bool
+     */
+    public static function validateHasSystemBusinessOrSetting($privilege_checked_level, $privilege_levels)
+    {
+        $total_privilege_level = 0;
+        foreach ($privilege_levels as $privilege_level) {
+            $total_privilege_level |= $privilege_level;
+        }
+
+        $tips = [
+            SystemGroup::SYSTEM_PRIVILEGE_LEVEL_FRONT => '业务',
+            SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN => '管理',
+        ];
+        if (($total_privilege_level & $privilege_checked_level) != $privilege_checked_level)
+            throw new CustomException(sprintf('你没有此系统的%s权限', $tips[$privilege_checked_level]));
     }
 }

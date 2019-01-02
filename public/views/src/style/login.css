@@ -122,3 +122,5 @@ html,body,#LAY_app{height:100%;}
   right: 0;
   display: none;
 }
+
+.layadmin-user-login-body .auth_type_box .layui-input{padding-left: 15px;}

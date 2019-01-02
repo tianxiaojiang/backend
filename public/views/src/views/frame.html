@@ -1,0 +1,78 @@
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <h2>关于</h2>
+            </div>
+            <div class="layui-card-body layui-text layadmin-text">
+                <p><strong>通用后台管理系统</strong>，是一个基于 Layui 2.2.6 前端 UI 框架和 PHP 框架 Yii 2.0 搭建的后台管理基础模板。旨在缩减开发后台管理系统的时间和成本，更好地服务于广大开发人员。Layui 遵循原生 HTML / CSS / Javascript 的书写与组织形式，门槛极低，拿来即用。其外在极简，却又不失饱满的内在，体积轻盈，组件丰盈，从核心代码到 API 的每一处细节都经过精心雕琢，非常适合界面的快速开发。Layui 首个版本发布于 2016 年金秋，她区别于那些基于 MVVM 底层的 UI 框架，却并非逆道而行，而是信奉返璞归真之道。准确地说，她更多是为服务端程序员量身定做，你无需涉足各种前端工具的复杂配置，只需面对浏览器本身，让一切你所需要的元素与交互，从这里信手拈来。Yii 是一个 高性能 的，适用于开发 Web 2.0 应用的 PHP 框架。 Yii 自带了 丰富的功能，包括 MVC，DAO / ActiveRecord，I18N / L10N，缓存，身份验证和基于角色的访问控制，脚手架，测试等，可显著缩短开发时间。</p>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <h2>基础功能</h2>
+            </div>
+            <div class="layui-card-body layui-text layadmin-text">
+                <p>目前共实现的基础功能有：</p>
+                <ul>
+                    <li>登录 / 登出</li>
+                    <li>管理员管理（添加 / 编辑 / 删除）</li>
+                    <li>角色管理（添加 / 编辑 / 删除）</li>
+                </ul>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <h2>前端用法</h2>
+            </div>
+            <div class="layui-card-body layui-text layadmin-text">
+                <p>主要包含了一些业务模块实例及用法，目前正在整理完善中。</p>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <h2>文档手册</h2>
+            </div>
+            <div class="layui-card-body layui-text layadmin-text">
+                <ul>
+                    <li>我要 <svg width="17.33333" height="16" viewBox="0 0 210 194" class="layui-svg-icon-gitlab">
+                        <path d="M105.0614,193.655 L105.0614,193.655 L143.7014,74.734 L66.4214,74.734 L105.0614,193.655 L105.0614,193.655 Z"
+                            fill="#E24329" class="logo-svg-shape logo-dark-orange-shape"></path>
+                        <path d="M105.0614,193.6548 L66.4214,74.7338 L12.2684,74.7338 L105.0614,193.6548 Z"
+                            fill="#FC6D26" class="logo-svg-shape logo-orange-shape"></path>
+                        <path d="M12.2685,74.7341 L12.2685,74.7341 L0.5265,110.8731 C-0.5445,114.1691 0.6285,117.7801 3.4325,119.8171 L105.0615,193.6551 L12.2685,74.7341 Z"
+                            fill="#FCA326" class="logo-svg-shape logo-light-orange-shape"></path>
+                        <path d="M12.2685,74.7342 L66.4215,74.7342 L43.1485,3.1092 C41.9515,-0.5768 36.7375,-0.5758 35.5405,3.1092 L12.2685,74.7342 Z"
+                            fill="#E24329" class="logo-svg-shape logo-dark-orange-shape"></path>
+                        <path d="M105.0614,193.6548 L143.7014,74.7338 L197.8544,74.7338 L105.0614,193.6548 Z" fill="#FC6D26" class="logo-svg-shape logo-orange-shape"></path>
+                        <path d="M197.8544,74.7341 L197.8544,74.7341 L209.5964,110.8731 C210.6674,114.1691 209.4944,117.7801 206.6904,119.8171 L105.0614,193.6551 L197.8544,74.7341 Z"
+                            fill="#FCA326" class="logo-svg-shape logo-light-orange-shape"></path>
+                        <path d="M197.8544,74.7342 L143.7014,74.7342 L166.9744,3.1092 C168.1714,-0.5768 173.3854,-0.5758 174.5824,3.1092 L197.8544,74.7342 Z"
+                            fill="#E24329" class="logo-svg-shape logo-dark-orange-shape"></path> </svg> <a href="http://192.168.101.234/ptzx_doc/base_backend/tree/master" target="_blank">参与编辑</a></li>
+                    <li><a href="javascript:alert('前方正在施工！');">预览</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+//加载 controller 目录下的对应模块
+/*
+
+  小贴士：
+    这里 console 模块对应 的 console.js 并不会重复加载，
+    然而该页面的视图则是重新插入到容器，那如何保证能重新来控制视图？有两种方式：
+      1): 借助 layui.factory 方法获取 console 模块的工厂（回调函数）给 layui.use
+      2): 直接在 layui.use 方法的回调中书写业务代码，即:
+          layui.use('console', function(){ 
+            //同 console.js 中的 layui.define 回调中的代码 
+          });
+          
+  这里我们采用的是方式1。其它很多视图中采用的其实都是方式2，因为更简单些，也减少了一个请求数。
+  
+*/
+layui.use('console', layui.factory('console'));
+</script>
+

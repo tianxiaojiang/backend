@@ -9,8 +9,9 @@
             <div class="layui-card-body">
                 <div class="layui-row">
                     <div class="layui-col-sm4 ztree">
-                        <h3 class="layui-code-h3">权限结构</h3>
-                        <div id="privilegeTreeBox"></div>
+                        <h3 class="layui-row layui-code-h3">权限结构</h3>
+                        <div class="layui-row" id="privilegeTreeBox"></div>
+                        <div class="layui-row"><a class="addPrivRootNodeBtn" href="javascript:;" id="addPrivRootNodeBtn">添加根权限</a></div>
                     </div>
                     <div class="layui-col-sm3">
                         <h3>权限详情</h3>
@@ -69,7 +70,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
             method: 'get',
             done: function (res) {
                 var menuList = res.data;
-                var menuSelectHtml = '';
+                var menuSelectHtml = '<option>-- 选择关联菜单 --</option>';
                 $.each(menuList, function (k, v) {
                     menuSelectHtml += '<option value="'+ v.sm_id +'">'+ v.sm_label +'</option>';
                 });
@@ -172,6 +173,21 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
         }
     }
 
+    //绑定增加根节点的事件
+    $('#addPrivRootNodeBtn').on('click', function () {
+        var treeNode = null;
+        if (!checkAllNodeHasSaved()) {
+            view.error('有新节点未保存，请保存或删除后再添加！');
+            return false;
+        }
+        var zTree = jqueryZtreeCore.getZTreeObj("privilegeTreeBox");
+        zTree.addNodes(treeNode, {sp_id: newTmpId, sp_parent_id: 0, sp_label:"新建权限"});
+        var newNode = zTree.getNodesByParam('sp_id', newTmpId);
+        zTree.selectNode(newNode[0]);
+        synchronizationTreeNode2Form(newNode[0]);
+        return false;
+    });
+
     //删除监听
     function removeHoverDom(treeId, treeNode) {
         $("#addBtn_"+treeNode.tId).unbind().remove();
@@ -227,7 +243,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
     //同步节点数据到表单
     function synchronizationTreeNode2Form(treeNode) {
         $('input[name="sp_action"]').val(treeNode.sp_action);
-        $('input[name="sp_parent_id"]').val(treeNode.sp_parent_id);
+        $('input[name="sp_parent_id"]').val(parseInt(treeNode.sp_parent_id));
         $('input[name="sp_controller"]').val(treeNode.sp_controller);
         $('input[name="sp_module"]').val(treeNode.sp_module);
         $('input[name="sp_label"]').val(treeNode.sp_label);
@@ -246,7 +262,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
         }
 
         synchronizingNode.sp_action = $('input[name="sp_action"]').val();
-        synchronizingNode.sp_parent_id = $('input[name="sp_parent_id"]').val();
+        synchronizingNode.sp_parent_id = parseInt($('input[name="sp_parent_id"]').val());
         synchronizingNode.sp_controller = $('input[name="sp_controller"]').val();
         synchronizingNode.sp_module = $('input[name="sp_module"]').val();
         synchronizingNode.sp_label = $('input[name="sp_label"]').val();

@@ -9,6 +9,7 @@
 namespace Backend\modules\admin\services;
 
 use Backend\Exception\CustomException;
+use Backend\helpers\Helpers;
 use Backend\modules\admin\models\System;
 
 /**
@@ -18,6 +19,22 @@ use Backend\modules\admin\models\System;
  */
 class SystemService
 {
+    public static $currentSystem = null;
+
+    /**
+     * 获取当前的系统对象
+     * @return Backend\modules\admin\models\System
+     */
+    public static function getCurrentSystem()
+    {
+        if (self::$currentSystem === null) {
+            //获取当前请求的所在系统
+            self::$currentSystem = System::findOne(['systems_id' => intval(Helpers::getRequestParam('sid'))]);
+        }
+
+        return self::$currentSystem;
+    }
+
     /**
      * 禁止系统
      * @param $system_id

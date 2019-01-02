@@ -20,14 +20,12 @@ use Backend\behavior\ValidateSystem;
  *
  * 验证系统和游戏、登录态
  */
-class SystemController extends LoginController
+class LoginController extends JwtController
 {
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        //验证时间的行为
-        $behaviors['ValidateSystem'] = ValidateSystem::class;
-        $behaviors['ValidateGame'] = ValidateGame::class;
+        $behaviors['ValidateIsLogin'] = ValidateIsLogin::class;
 
         return $behaviors;
     }
@@ -35,9 +33,7 @@ class SystemController extends LoginController
     public function beforeAction($action)
     {
         parent::beforeAction($action);
-
-        $this->validateSystem();//验证账号有没有对应访问系统的权限
-        $this->validateGame();//验证账号有没有对应系统的游戏权限
+        $this->validateIsLoggedIn();//验证用户的token是否在系统里还有效
 
         return true;
     }

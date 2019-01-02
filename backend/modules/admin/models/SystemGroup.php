@@ -8,18 +8,23 @@
 
 namespace Backend\modules\admin\models;
 
+use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use \Backend\modules\common\models\BaseModel;
+use yii\helpers\ArrayHelper;
 
 class SystemGroup extends BaseModel
 {
 
+    const SYSTEM_PRIVILEGE_LEVEL_FRONT = 1;
+    const SYSTEM_PRIVILEGE_LEVEL_ADMIN = 2;
+
     public function scenarios()
     {
         return [
-            'default' => ['sg_id', 'sg_name', 'sg_desc', 'sg_limit_game'],
-            'update' => ['sg_id', 'sg_name', 'sg_desc', 'sg_limit_game'],
-            'create' => ['sg_id', 'sg_name', 'sg_desc', 'sg_limit_game'],
+            'default' => ['sg_id', 'sg_name', 'sg_desc', 'on_game'],
+            'update' => ['sg_id', 'sg_name', 'sg_desc', 'on_game'],
+            'create' => ['sg_id', 'sg_name', 'sg_desc', 'on_game'],
         ];
     }
 
@@ -36,22 +41,59 @@ class SystemGroup extends BaseModel
 
     public function fields()
     {
-        return ['sg_id', 'sg_desc', 'sg_name', 'sg_limit_game'];
+        return ['sg_id', 'sg_desc', 'sg_name', 'on_game'];
+    }
+
+    //给角色设置管理游戏
+    public static function setRoleOnGame($roleId, $gameId)
+    {
+        $roleObj = static::findOne($roleId);
+
+        if (empty($roleObj))
+            throw new CustomException('角色不存在');
+        if ($roleObj->on_game == $gameId)
+            return true;
+
+        $roleObj->on_game = $gameId;
+        $roleObj->save();
+
+        return true;
+    }
+
+    //给角色设置权限级别
+    public static function setRolePrivilegeLevel($roleId, $privilegeLevel)
+    {
+        $roleObj = static::findOne($roleId);
+        if (empty($roleObj))
+            throw new CustomException('角色不存在');
+
+        if ($roleObj->privilege_level == $privilegeLevel)
+            return true;
+        $roleObj->privilege_level = $privilegeLevel;
+        $roleObj->save();
+
+        return true;
+    }
+
+    /**
+     * 根据登录游戏，获取所有角色
+     * @param $gameId
+     * @return array
+     */
+    public static function getRoleIdByGame($gameId)
+    {
+        if ($gameId !== -1) {
+            $roles = static::findAll(['on_game' => $gameId]);
+        } else {
+            $roles = static::find()->all();
+        }
+
+        return ArrayHelper::getColumn($roles, 'sg_id');
     }
 
     public function getPrivilege()
     {
         return $this->hasMany(SystemPriv::class, ['sp_id' => 'sp_id'])->viaTable(SystemGroupPriv::tableName(), ['sg_id' => 'sg_id']);
-    }
-
-    //添加完角色，再加一条默认游戏管理，不细分游戏
-    public function insert($runValidation = true, $attributes = null) {
-        $group_id = parent::insert($runValidation, $attributes);
-        $systemGroupGame = new SystemGroupGame();
-        $systemGroupGame->group_id = $group_id;
-        $systemGroupGame->game_id = '*';
-        $systemGroupGame->save();
-        return true;
     }
 
     public function getSystemGame()

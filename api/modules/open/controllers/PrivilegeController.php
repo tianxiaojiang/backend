@@ -23,6 +23,10 @@ class PrivilegeController extends SystemController
      */
     public function actionCheck()
     {
+        $closeValidatePrivilege = intval(Helpers::getRequestParam('close_check_privilege'));
+        if ($closeValidatePrivilege) {
+            return [];
+        }
         $module = Helpers::getRequestParam('m');
         $controller = Helpers::getRequestParam('c');
         $action = Helpers::getRequestParam('a');

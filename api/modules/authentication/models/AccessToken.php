@@ -11,6 +11,8 @@ use Backend\modules\admin\models\System;
 use Backend\modules\admin\models\SystemPriv;
 use Backend\modules\admin\models\SystemUser;
 use Backend\modules\admin\models\SystemUserGroup;
+use Backend\modules\admin\services\SystemService;
+use Backend\modules\admin\services\admin\NewAdminInfoFill;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -24,8 +26,8 @@ class AccessToken extends Admin
     const TOKEN_EXPIRE_DURATION = 60 * 60 * 24 * 7;//7天
 
     public $captcha;
-
     public $jwt;
+    public $thirdData;
 
     static public function tableName()
     {
@@ -40,7 +42,7 @@ class AccessToken extends Admin
     public function scenarios()
     {
         return [
-            'login' => ['captcha', 'account', 'password', 'access_token', 'access_token_expire'],
+            'login' => ['captcha', 'auth_type', 'account', 'password', 'access_token', 'access_token_expire'],
         ];
     }
 
@@ -49,9 +51,19 @@ class AccessToken extends Admin
         return [
             ['captcha', \yii\captcha\CaptchaValidator::class, 'message' => '验证码错误', 'captchaAction'=>'admin/token/captcha', 'on' => ['login']],
             ['account', 'required', 'message' => '请输入账号', 'on' => ['login']],
+            ['auth_type', 'required', 'message' => '请选择账号类型', 'on' => ['login']],
             ['password', 'required', 'message' => '请输入密码', 'on' => ['login']],
             ['password', 'validatePassword', 'message' => '账号或密码错误', 'on' => ['login']],
         ];
+    }
+
+    public static function getAdmin($account, $auth_type)
+    {
+        $admin = self::findOne(['account' => $account, 'auth_type' => $auth_type]);
+        if (empty($admin) && $auth_type != Admin::AUTH_TYPE_PASSWORD)
+            $admin = new static();
+
+        return $admin;
     }
 
     public function loginByAccount()
@@ -60,6 +72,23 @@ class AccessToken extends Admin
         $this->setAttributes(\Yii::$app->request->post());
 
         if ($this->validate()) {
+            if (in_array($this->auth_type, [Admin::AUTH_TYPE_CHANGZHOU, Admin::AUTH_TYPE_DOMAIN])) {
+                (new NewAdminInfoFill($this))->fillFieldAtCreate();
+                if ($this->isNewRecord){//新的员工，校验下员工工号
+                    $oldModel = Admin::findOne(['staff_number' => $this->staff_number]);
+                    if (!empty($oldModel)) {
+                        $oldModel->username = $this->username;
+                        $oldModel->account = $this->account;
+                        $oldModel->mobile_phone = $this->mobile_phone;
+                        $oldModel->auth_type = $this->auth_type;
+
+                        if (!empty($oldModel)) {
+                            $this->refreshInternal($oldModel);
+                        }
+                    }
+                }
+                $this->save(false);
+            }
             return $this;
         } else {
             $error = Helpers::getFirstError($this);
@@ -67,6 +96,12 @@ class AccessToken extends Admin
         }
     }
 
+    /**
+     * 生成token
+     * @param System $system
+     * @return string
+     * @throws CustomException
+     */
     public function generateAccessToken(System $system)
     {
         //生成JWT
@@ -87,7 +122,12 @@ class AccessToken extends Admin
         $systemAdminRelation = SystemUser::findOne(['ad_uid' => $this->ad_uid, 'systems_id' => Helpers::getRequestParam('sid')]);
         //如果系统用户存在，则更新登录的token_id
         if (!empty($systemAdminRelation)) {
-            $systemAdminRelation->token_id = $jwtId;
+            $isMaintain = Helpers::getRequestParam('is_maintain');
+            if (!empty($isMaintain)) {
+                $systemAdminRelation->setting_token_id = $jwtId;
+            } else {
+                $systemAdminRelation->token_id = $jwtId;
+            }
             $systemAdminRelation->save();
         }
         return true;
@@ -108,10 +148,17 @@ class AccessToken extends Admin
      */
     public static function validateAccess($module, $controller, $action, $priv_type = SystemPriv::PRIVILEGE_TYPE_BUSINESS)
     {
+        $currentSystem = SystemService::getCurrentSystem();
+        //如果是系统开发管理员，则权限直接通过
+        if (intval(\Yii::$app->user->identity->ad_uid) == intval($currentSystem->dev_account)) {
+            return true;
+        }
+
         $privilege = SystemPriv::find()->where(['sp_module' => $module, 'sp_controller' => $controller, 'sp_action' => $action])->one();
 
         //获取用户所有的权限列表
-        $systemPrivileges = \Yii::$app->user->identity->getPrivilege($priv_type);
+        $gameId = intval(Helpers::getRequestParam('game_id'));
+        $systemPrivileges = \Yii::$app->user->identity->getPrivileges($gameId, $priv_type);
 
         $systemPrivilegeIds = ArrayHelper::getColumn($systemPrivileges, 'sp_id');
 
