@@ -26,8 +26,8 @@
                 type: 1,
                 id: 'LAY-system-systems-add',
                 title: '添加管理员',
-                //area: ['600px', '500px'],
-                resize: false,
+                area: ['600px', '500px'],
+                resize: true,
                 success: function () {
                     view(this.id).render('system/systems/add').done(function () {
                         $(window).trigger('resize');
@@ -59,7 +59,7 @@
                 { field: 'description', title: '描述', sort: true },
                 { field: 'statusName', title: '状态', sort: true },
                 { field: 'created_at', title: '创建时间', sort: true },
-                { fixed: 'right', title: '操作', toolbar: '#system-option' }
+                { fixed: 'right', title: '操作', width: 150, toolbar: '#system-option' }
             ]],
             page: true
         });

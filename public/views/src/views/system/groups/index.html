@@ -54,7 +54,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element'], fun
             {field:'sg_id', title:'角色编号', sort: true},
             {field:'sg_name', title:'角色名', sort: true},
             {field:'sg_desc', title:'描述', sort: true},
-            {title:'操作', toolbar: '#group-option'}
+            {fixed: 'right', title:'操作', toolbar: '#group-option'}
         ]],
         page: true
     });
@@ -103,7 +103,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element'], fun
                 id: 'LAY-system-groups-update-privileges',
                 title: '修改权限',
                 resize: true,
-                area: ['690px', '700px'],
+                //area: ['690px', '700px'],
                 success: function () {
                     view(this.id).render('system/groups/privileges', data).done(function () {
                         layer.close(index);

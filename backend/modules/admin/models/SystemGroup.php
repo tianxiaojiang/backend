@@ -22,10 +22,24 @@ class SystemGroup extends BaseModel
     public function scenarios()
     {
         return [
-            'default' => ['sg_id', 'sg_name', 'sg_desc', 'on_game'],
-            'update' => ['sg_id', 'sg_name', 'sg_desc', 'on_game'],
-            'create' => ['sg_id', 'sg_name', 'sg_desc', 'on_game'],
+            'default' => ['sg_id', 'sg_name', 'sg_desc', 'privilege_level'],
+            'update' => ['sg_id', 'sg_name', 'sg_desc', 'privilege_level'],
+            'create' => ['sg_id', 'sg_name', 'sg_desc', 'privilege_level'],
         ];
+    }
+
+    public function insert($runValidation = true, $attributes = null)
+    {
+        $res = parent::insert($runValidation, $attributes);
+        if (!$res) throw new CustomException('新角色入库失败');
+
+        $systemGroupGame = new SystemGroupGame();
+        $systemGroupGame->game_id = intval(Helpers::getRequestParam('game_id'));
+        $systemGroupGame->sg_id = $this->sg_id;
+        $systemGroupGame->save();
+
+
+        return true;
     }
 
     public function rules()
@@ -41,14 +55,12 @@ class SystemGroup extends BaseModel
 
     public function fields()
     {
-        return ['sg_id', 'sg_desc', 'sg_name', 'on_game'];
+        return ['sg_id', 'sg_desc', 'sg_name', 'privilege_level'];
     }
 
     //给角色设置管理游戏
-    public static function setRoleOnGame($roleId, $gameId)
+    public static function setRoleOnGame(SystemGroup $roleObj, $gameId)
     {
-        $roleObj = static::findOne($roleId);
-
         if (empty($roleObj))
             throw new CustomException('角色不存在');
         if ($roleObj->on_game == $gameId)
@@ -61,9 +73,8 @@ class SystemGroup extends BaseModel
     }
 
     //给角色设置权限级别
-    public static function setRolePrivilegeLevel($roleId, $privilegeLevel)
+    public static function setRolePrivilegeLevel(SystemGroup $roleObj, $privilegeLevel)
     {
-        $roleObj = static::findOne($roleId);
         if (empty($roleObj))
             throw new CustomException('角色不存在');
 
@@ -96,8 +107,39 @@ class SystemGroup extends BaseModel
         return $this->hasMany(SystemPriv::class, ['sp_id' => 'sp_id'])->viaTable(SystemGroupPriv::tableName(), ['sg_id' => 'sg_id']);
     }
 
+    /**
+     * 角色关联的所有游戏
+     * @return \yii\db\ActiveQuery
+     */
     public function getSystemGame()
     {
+        return $this->hasMany(Game::class, ['game_id' => 'game_id'])->viaTable(SystemGroupGame::tableName(), ['sg_id' => 'sg_id']);
+    }
+
+    /**
+     * 角色关联的所有游戏id
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGameIds()
+    {
         return $this->hasMany(SystemGroupGame::class, ['sg_id' => 'sg_id']);
+    }
+
+    /**
+     * 针对角色执行更新游戏
+     * @param SystemGroup $systemGroup
+     * @param array $newGameIds
+     * @param array $myGameIds
+     * @return bool
+     */
+    public static function updateRoleGames(SystemGroup $systemGroup, array &$newGameIds, array &$myGameIds)
+    {
+        $oldGameIds = ArrayHelper::getColumn($systemGroup->gameIds, 'game_id');
+        $diffGameIds = SystemGroupGame::diffGames($oldGameIds, $newGameIds, $myGameIds);
+
+        SystemGroupGame::createAddGames($systemGroup->sg_id, $diffGameIds['addGamesIds']);
+        SystemGroupGame::deleteDeductGames($systemGroup->sg_id, $diffGameIds['delGamesIds']);
+
+        return true;
     }
 }

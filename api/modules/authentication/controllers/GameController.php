@@ -8,6 +8,7 @@ use Backend\modules\admin\models\System;
 use Backend\modules\admin\models\SystemGroup;
 use Backend\modules\admin\services\SystemService;
 use Backend\modules\common\controllers\LoginController;
+use yii\helpers\ArrayHelper;
 
 /**
  * Created by PhpStorm.
@@ -35,7 +36,7 @@ class GameController extends LoginController
         $privilegeLevel = $isMaintain ? SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN : SystemGroup::SYSTEM_PRIVILEGE_LEVEL_FRONT;
         foreach ($roles as $role) {
             if (($role->privilege_level & $privilegeLevel) === $privilegeLevel) {
-                array_push($gameIds, $role->on_game);
+                $gameIds = array_merge($gameIds, ArrayHelper::getColumn($role->gameIds, 'game_id'));
             }
         }
 

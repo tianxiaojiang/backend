@@ -13,7 +13,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择框</label>
                     <div class="layui-input-block">
-                        <select name="on_game" lay-filter="on_game" id="on_game">
+                        <select name="on_game" lay-filter="on_game" id="on_game" multiple>
                         </select>
                     </div>
                 </div>
@@ -35,7 +35,6 @@
 
             var $ = layui.jquery, form = layui.form, admin = layui.admin, jqueryZtreeCore = layui.jqueryZtreeCore;
             var privileges = d.data.privileges;
-            var gameId = d.data.game;
             var games = d.data.games;
 
             //监听保存
@@ -65,7 +64,7 @@
                 $.each(commonPrivileges, function (k, v) {
                     params['privileges_' + v.sp_id] = v.sp_id;
                 });
-
+                params.on_game = $('#on_game').val().join(',');
                 return params;
             }
 

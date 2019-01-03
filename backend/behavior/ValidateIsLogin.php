@@ -35,9 +35,9 @@ class ValidateIsLogin extends Behavior
         ];
         $isMaintain = Helpers::getRequestParam('isMaintain');
         if (empty($isMaintain)) {
-            $systemAdminRelation['token_id'] = $tokenId;
+            $systemAdminWhere['token_id'] = $tokenId;
         } else {
-            $systemAdminRelation['setting_token_id'] = $tokenId;
+            $systemAdminWhere['setting_token_id'] = $tokenId;
         }
 
         $systemAdminRelation = SystemUser::findOne($systemAdminWhere);

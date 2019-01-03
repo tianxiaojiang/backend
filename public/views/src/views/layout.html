@@ -135,7 +135,7 @@
                 value: gameId
             });
         };
-        var getGameId = function (gameId) {
+        var getGameId = function () {
             return layui.data('layuiAdmin').game_id;
         };
 
@@ -178,6 +178,8 @@
         // 首页监听游戏列表下拉，设置本地游戏id，重新加载并回到首页
         form.on('select(game-type)', function (data) {
             console.log('value: ' + data.value);
+            var currentGameId = getGameId();
+            if (parseInt(currentGameId) === parseInt(data.value)) {return true;}
             setGameId(data.value);
             window.location.reload();
         });

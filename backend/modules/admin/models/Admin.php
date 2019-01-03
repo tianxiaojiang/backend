@@ -6,7 +6,6 @@ use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\helpers\Lang;
 use Backend\modules\admin\services\admin\AuthTypeService;
-use Backend\modules\admin\services\admin\DomainAuthSoapClient;
 use Backend\modules\admin\services\admin\NewAdminInfoFill;
 use Backend\modules\admin\services\SystemService;
 use yii\helpers\ArrayHelper;
@@ -73,10 +72,10 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            ['account', 'required', 'message' => '请输入账号', 'on' => 'update'],
-            ['mobile_phone', 'required', 'message' => '手机号不能为空', 'on' => 'update'],
-            ['mobile_phone', 'checkUnifyPhone', 'message' => '手机号不能为空', 'on' => 'create'],
-            ['username', 'required', 'message' => '请输入密码', 'on' => 'update'],
+//            ['account', 'required', 'message' => '请输入账号', 'on' => 'update'],
+//            ['mobile_phone', 'required', 'message' => '手机号不能为空', 'on' => 'update'],
+//            ['mobile_phone', 'checkUnifyPhone', 'message' => '手机号不能为空', 'on' => 'create'],
+//            ['username', 'required', 'message' => '请输入密码', 'on' => 'update'],
             ['password', 'validatePassword', 'message' => '账号或密码错误', 'on' => ['login', 'changePasswd']],
             ['new_passwd', 'validateNewPasswordSame', 'message' => '新密码不能与旧密码一样', 'on' => ['changePasswd']],
             ['new_passwd', 'validateNewPassword', 'message' => '新密码输入不一致', 'on' => ['changePasswd']],
@@ -262,23 +261,20 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         if (!parent::update($runValidation, $attributes)) {
             return false;
         }
+
+        if (empty(\Yii::$app->user->identity)) {
+            return true;
+        }
+
         $sg_ids = empty($this->sg_id) ? [] : explode(',', strval($this->sg_id));
         $oldSg_id = ArrayHelper::getColumn($this->systemGroup, 'sg_id');
         $game_id = intval(Helpers::getRequestParam('game_id'));
-        $currentGameRoleIds = SystemGroup::getRoleIdByGame($game_id);
-        $sg_ids = array_intersect($sg_ids, $currentGameRoleIds);
-        if (!empty($sg_ids) && (array_diff($sg_ids, $oldSg_id) || array_diff($oldSg_id, $sg_ids))) {
-            $transaction = \Yii::$app->db->beginTransaction();
-            SystemUserGroup::deleteAll(['ad_uid' => $this->ad_uid]);
-            $systemUserGroup = new SystemUserGroup();
-            foreach ($sg_ids as $sg_id) {
-                $systemUserGroupClone = clone $systemUserGroup;
-                $systemUserGroupClone->ad_uid = $this->ad_uid;
-                $systemUserGroupClone->sg_id = $sg_id;
-                $systemUserGroupClone->save();
-            }
-            $transaction->commit();
-        }
+        $currentGameRoleIds = \Yii::$app->user->identity->getMyRoleIdsOnGame($game_id);
+        $sg_ids = array_map(function($col) {
+            return intval($col);
+        }, $sg_ids);
+        SystemUserGroup::updateAdminUserGroup($this, $sg_ids, $oldSg_id, $currentGameRoleIds);
+
         return true;
     }
 
@@ -330,61 +326,47 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     }
 
     /**
-     * get privilege
+     * 返回自己所有拥有的gameIds
+     * @param int $privilegeType
+     * @return array
      */
-    public function getPrivilege($priv_type = SystemPriv::PRIVILEGE_TYPE_BUSINESS)
+    public function getMyGameIds($privilegeType = SystemPriv::PRIVILEGE_TYPE_BUSINESS)
     {
-        $this->getAllPrivilege();
-        if ($priv_type === '*') {
-            return ArrayHelper::merge($this->privilege[SystemPriv::PRIVILEGE_TYPE_BUSINESS], $this->privilege[SystemPriv::PRIVILEGE_TYPE_SETTING]);
-        } else {
-            return $this->privilege[$priv_type];
+        $systemPrivileTypeMapRolePrivilegeLevel = [
+            '*' => 0,
+            SystemPriv::PRIVILEGE_TYPE_BUSINESS => SystemGroup::SYSTEM_PRIVILEGE_LEVEL_FRONT,
+            SystemPriv::PRIVILEGE_TYPE_SETTING => SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN,
+        ];
+
+        $roles = $this->systemGroup;
+
+        $gameIds = [];
+        foreach ($roles as $role) {
+            //如果角色对应的权限级别跟请求一致，则gameId有效
+            if (($systemPrivileTypeMapRolePrivilegeLevel[$privilegeType] & $role->privilege_level) == $systemPrivileTypeMapRolePrivilegeLevel[$privilegeType]) {
+                $gameIds = array_merge($gameIds, ArrayHelper::getColumn($role->gameIds, 'game_id'));
+            }
         }
+
+        return $gameIds;
     }
 
     /**
-     * 根据游戏id取权限，没有游戏id则取所有
+     * 当前用户在某个游戏下的所有角色id
+     * @param $gameId
      * @return array
      */
-    public function getAllPrivilege()
+    public function getMyRoleIdsOnGame($gameId)
     {
-        $gameId = intval(Helpers::getRequestParam('game_id'));
-
-        \Yii::debug('user Payload is:' . var_export(\Yii::$app->user->identity->jwt->Payload, true));
-        if (empty($this->privilege)) {
-            $privileges = [];
-
-            // 权限拉取
-            // 1. 首先过滤出游戏对应的所有角色，如果没有对应角色游戏或角色游戏对应的是普通权限就是获取通用权限，否则取专有权限
-            $privilegeIds = [];
-            foreach ($this->role_info as $roleId => $gameIds) {
-                //对应的角色是否有鉴定的游戏id，没有则取通用权限
-                if (!in_array('*', $gameIds) and !in_array($gameId, $gameIds)) {
-                    continue;
-                }
-
-                $systemGroupGame = SystemGroupGame::getOneByRoleAndGame($roleId, $gameId);
-
-                if(in_array('*', $gameIds) or $systemGroupGame->is_proprietary_priv == SystemGroupGame::GAME_TYPE_PRVI_COMMON) {
-                    //角色通用权限
-                    $groupGamePrivileges = SystemGroupPriv::find()->select('sp_id')->where(['sg_id' => $roleId])->asArray()->all();
-                } elseif ($systemGroupGame->is_proprietary_priv == SystemGroupGame::GAME_TYPE_PRVI_PROPRIETARY) {
-                    //游戏专有权限
-                    $groupGamePrivileges = SystemGroupGamePriv::find()->select('sp_id')->where([
-                        'game_id' => $gameId,
-                        'sg_id' => $roleId])->asArray()->all();
-                }
-                $groupGamePrivileges = ArrayHelper::getColumn($groupGamePrivileges, 'sp_id');
-                //合并所有的权限id
-                $privilegeIds = array_merge($privilegeIds, $groupGamePrivileges);
+        $gameId = intval($gameId);
+        $roleIds = [];
+        $roles = SystemGroup::find()->all();
+        foreach ($roles as $role) {
+            if ($gameId === -1 || in_array($gameId, ArrayHelper::getColumn($role->gameIds, 'game_id'))) {
+                array_push($roleIds, $role->sg_id);
             }
-
-            $privileges[SystemPriv::PRIVILEGE_TYPE_BUSINESS] = SystemPriv::find()->where(['sp_id' => $privilegeIds, 'sp_set_or_business' => SystemPriv::PRIVILEGE_TYPE_BUSINESS])->indexBy('sp_id')->asArray()->all();
-            $privileges[SystemPriv::PRIVILEGE_TYPE_SETTING] = SystemPriv::find()->where(['sp_id' => $privilegeIds, 'sp_set_or_business' => SystemPriv::PRIVILEGE_TYPE_SETTING])->indexBy('sp_id')->asArray()->all();
-
-            $this->privilege = $privileges;
         }
-        return $this->privilege;
+        return $roleIds;
     }
 
     /**
@@ -392,16 +374,26 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
      * @param $gameId
      * @param int $privilegeType
      */
-    public function getPrivilegeIdsOnGame($gameId)
+    public function getPrivilegeIdsOnGame($gameId, $privilegeType = SystemPriv::PRIVILEGE_TYPE_BUSINESS)
     {
+        $systemPrivileTypeMapRolePrivilegeLevel = [
+            '*' => 0,
+            SystemPriv::PRIVILEGE_TYPE_BUSINESS => SystemGroup::SYSTEM_PRIVILEGE_LEVEL_FRONT,
+            SystemPriv::PRIVILEGE_TYPE_SETTING => SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN,
+        ];
+
         $roles = $this->systemGroup;
 
         $roleIds = [];
         foreach ($roles as $role) {
-            $role->on_game == $gameId && array_push($roleIds, $role->sg_id);
+            //如果角色对应的权限级别跟请求一致，则gameId有效
+            if (($systemPrivileTypeMapRolePrivilegeLevel[$privilegeType] & $role->privilege_level) == $systemPrivileTypeMapRolePrivilegeLevel[$privilegeType] && in_array($gameId, ArrayHelper::getColumn($role->gameIds, 'game_id'))) {
+                array_push($roleIds, $role->sg_id);
+            }
         }
 
         $privilegeIds = SystemGroupPriv::find()->select(['sp_id'])->where(['sg_id' => $roleIds])->all();
+
 
         return ArrayHelper::getColumn($privilegeIds, 'sp_id');
     }
@@ -414,7 +406,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
      */
     public function getPrivilegesOnGame($gameId, $privilegeType = SystemPriv::PRIVILEGE_TYPE_BUSINESS)
     {
-        $privilegeIds = $this->getPrivilegeIdsOnGame($gameId);
+        $privilegeIds = $this->getPrivilegeIdsOnGame($gameId, $privilegeType);
         $where = $privilegeType === '*' ? ['sp_id' => $privilegeIds] : ['sp_id' => $privilegeIds, 'sp_set_or_business' => $privilegeType];
         $privileges = SystemPriv::find()->select(['sp_id', 'sm_id', 'sp_label', 'sp_module', 'sp_controller', 'sp_action', 'sp_parent_id', 'sp_set_or_business'])->where($where)->asArray()->all();
 
@@ -438,7 +430,6 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
                 $this->privilege[$privilegeType] = \Yii::$app->user->identity->getPrivilegesOnGame($gameId, $privilegeType);
             }
         }
-
 
         return $this->privilege[$privilegeType];
     }
@@ -476,7 +467,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     {
         $roles = [];
         foreach ($this->systemGroup as $systemGroup) {
-            $roles[$systemGroup->sg_id] = $systemGroup->on_game;
+            $roles[$systemGroup->sg_id] = ArrayHelper::getColumn($systemGroup->gameIds, 'game_id');
         }
         return $roles;
     }

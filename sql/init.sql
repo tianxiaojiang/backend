@@ -82,7 +82,6 @@ CREATE TABLE `s1_system_group` (
   `sg_id` int(11) NOT NULL AUTO_INCREMENT,
   `sg_desc` varchar(128) NOT NULL DEFAULT '' COMMENT '角色描述',
   `sg_name` varchar(16) NOT NULL DEFAULT '' COMMENT '角色名称',
-  `on_game` int(11) NOT NULL DEFAULT -1 COMMENT '负责的游戏，-1为不区分游戏',
   `privilege_level` tinyint(1) NOT NULL DEFAULT 1 COMMENT '后台角色权限级别置位，一位前台权限、二位后台权限',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -92,8 +91,26 @@ CREATE TABLE `s1_system_group` (
 -- ----------------------------
 -- Records of s1_system_group
 -- ----------------------------
-INSERT INTO `s1_system_group` VALUES ('1', '拥有所有权限', '系统管理员', '-1', '2', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
-INSERT INTO `s1_system_group` VALUES ('2', '哈哈哈哈', '通用角色', '0', '2', '2018-12-27 10:03:52', '2018-12-27 10:07:07');
+INSERT INTO `s1_system_group` VALUES ('1', '拥有所有权限', '系统管理员', '2', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
+INSERT INTO `s1_system_group` VALUES ('2', '哈哈哈哈', '通用角色', '2', '2018-12-27 10:03:52', '2018-12-27 10:07:07');
+
+-- ----------------------------
+-- s1_system_group_game 角色对应的游戏
+-- ----------------------------
+DROP TABLE IF EXISTS `s1_system_group_game`;
+CREATE TABLE `s1_system_group_game` (
+  `sggid` int(11) NOT NULL AUTO_INCREMENT,
+  `sg_id` int (11) NOT NULL DEFAULT 0 COMMENT '角色id',
+  `game_id` int (11) NOT NULL DEFAULT 0 COMMENT '游戏id',
+  `created_at` datetime,
+  `updated_at` datetime,
+  PRIMARY KEY (`sggid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of s1_system_group_game
+-- ----------------------------
+INSERT INTO `s1_system_group_game` VALUES ('1', '1', '-1', '2019-01-02 17:28:23', '2019-01-02 17:28:23');
 
 -- ----------------------------
 -- Table structure for s1_system_group_priv
@@ -280,7 +297,7 @@ CREATE TABLE `system_admin` (
 -- ----------------------------
 -- Records of system_admin
 -- ----------------------------
-INSERT INTO `system_admin` VALUES ('1', '1', '1', '2018-11-12 11:57:03', '2019-01-02 10:30:07', '021fcc105c0a793c00dad9c84327df09', '');
+INSERT INTO `system_admin` VALUES ('1', '1', '1', '2018-11-12 11:57:03', '2019-01-02 10:30:07', '', '021fcc105c0a793c00dad9c84327df09');
 
 -- ----------------------------
 -- Table structure for systems

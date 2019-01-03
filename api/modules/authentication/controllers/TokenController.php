@@ -32,7 +32,6 @@ class TokenController extends BaseController
         SystemService::validateSystemExist($businessSystem);
 
         //验证登录用户
-//        $model = AccessToken::findOne(['account' => Helpers::getRequestParam('account')]);
         $model = AccessToken::getAdmin(Helpers::getRequestParam('account'), Helpers::getRequestParam('auth_type'));
         AdminService::validateModelEmpty($model);
         AdminService::validateLoginAdminStatus($model);

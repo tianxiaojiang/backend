@@ -36,7 +36,8 @@ class SystemGroupController extends BusinessController
 
         $where = [];
         if (intval($gameId) > 0) {//如果有游戏id，则只获取跟游戏id关联的角色
-            $where['on_game'] = $gameId;
+            $roleIds = ArrayHelper::getColumn(SystemGroupGame::find()->select(['sg_id'])->where(['game_id' => $gameId])->all(), 'sg_id');
+            $where['sg_id'] = $roleIds;
         }
 
         $this->query->andWhere($where)->orderBy('sg_id asc');
@@ -51,7 +52,7 @@ class SystemGroupController extends BusinessController
 
         $result = [];
         foreach ($models as $model) {
-            if (intval($gameId) === -1 || intval($gameId) === $model->on_game) {//如果有游戏id，则只获取跟游戏id关联的角色
+            if (intval($gameId) === -1 || in_array($gameId, ArrayHelper::getColumn($model->gameIds, 'game_id'))) {//如果有游戏id，则只获取跟游戏id关联的角色
                 $disabled = '0';
             } else {
                 $disabled = '1';
@@ -60,6 +61,7 @@ class SystemGroupController extends BusinessController
             $result[] = [
                 'sg_id' => $model->sg_id,
                 'sg_name' => $model->sg_name,
+                'sg_desc' => $model->sg_desc,
                 'disabled' => $disabled,
             ];
         }
@@ -75,7 +77,6 @@ class SystemGroupController extends BusinessController
     {
         $result = [
             'privileges' => [],//权限列表
-            'game' => -1,//角色对应游戏
             'games' => [],//游戏列表
         ];
         $groupId = intval(Helpers::getRequestParam('group_id'));
@@ -84,7 +85,7 @@ class SystemGroupController extends BusinessController
         $roleObj = SystemGroup::findOne($groupId);
         if (empty($roleObj))
             throw new CustomException('角色不存在');
-        $result['game'] = $roleObj->on_game;
+        $roleGames = ArrayHelper::getColumn($roleObj->gameIds, 'game_id');
 
         //角色权限
         $groupPrivileges = ArrayHelper::getColumn(SystemGroupPriv::getPrivilegesIdsByGroupId($roleObj->sg_id), 'privilege');
@@ -108,7 +109,7 @@ class SystemGroupController extends BusinessController
 
         //如果系统本身不区分游戏，只返回不区分游戏的标志
         if ($currentSystem === Game::GAME_TYPE_NONE) {
-            $games = [['game_id' => '-1', 'name' => '不区分游戏', 'selected' => 1]];
+            $games = [['game_id' => '-1', 'name' => '不区分游戏', 'selected' => intval(in_array('-1', $roleGames))]];
         } else {
             $games = [];
             $gameWhere = ['status' => Game::GAME_STAT_NORMAL];
@@ -116,15 +117,13 @@ class SystemGroupController extends BusinessController
             if ($gameId != -1) {
                 $gameWhere['game_id'] = $gameId;
             } else {
-                $games = [['game_id' => '-1', 'name' => '不区分游戏', 'selected' => 1]];
+                $games = [['game_id' => '-1', 'name' => '不区分游戏', 'selected' => intval(in_array('-1', $roleGames))]];
             }
-
             $gameWhere['type'] = $currentSystem->game_type;
             $realGames = Game::find()->where($gameWhere)->asArray()->all();
             foreach ($realGames as $key => $realGame) {
-                if ($realGame['game_id'] == $gameId) {
+                if (in_array($realGame['game_id'], $roleGames)) {
                     $realGames[$key]['selected'] = 1;
-                    break;
                 }
             }
             //系统管理员，增加不区分游戏按钮
@@ -141,10 +140,10 @@ class SystemGroupController extends BusinessController
     public function actionGroupPrivilegeUpdate()
     {
         $groupId = intval(Helpers::getRequestParam('group_id'));
-        $on_game = intval(Helpers::getRequestParam('on_game'));
+        $on_game = explode(',', Helpers::getRequestParam('on_game'));
         $gameId = intval(Helpers::getRequestParam('game_id'));
-        if ($gameId != -1 && $on_game !== $gameId) {//区分游戏的只能设置当前登录的游戏
-            throw new CustomException('你只能设置角色为当前游戏');
+        if ($gameId != -1 && !in_array($gameId, $on_game)) {//区分游戏的只能设置当前登录的游戏
+            throw new CustomException('你只能设置角色关联游戏为当前游戏');
         }
         $params = Helpers::getRequestParams();
 
@@ -153,6 +152,8 @@ class SystemGroupController extends BusinessController
             //组装通用权限数据
             substr($key, 0, 11) == 'privileges_' && array_push($newPrivileges, $val);
         }
+
+        $group = SystemGroup::findOne(['sg_id' => $groupId]);
 
         //我所选游戏拥有的所有权限
         $currentSystem = SystemService::getCurrentSystem();
@@ -163,22 +164,19 @@ class SystemGroupController extends BusinessController
         }
         $myPrivilegeIds = ArrayHelper::getColumn($myPrivilege, 'sp_id');
 
-        $oldPrivileges = SystemGroupPriv::getPrivilegesIdsByGroupId($groupId);
+        $oldPrivileges = SystemGroupPriv::getPrivilegesIdsByGroupId($group->sg_id);
         $diffPrivileges = SystemGroupPriv::diffPrivList($oldPrivileges, $newPrivileges, $myPrivilegeIds);
 
         $db = \Yii::$app->getDb()->beginTransaction();
         try {
-            //设置管理的游戏
-            SystemGroup::setRoleOnGame($groupId, $on_game);
-
             //设置权限修改
             SystemGroupPriv::deleteDeductPrivileges($groupId, $diffPrivileges['delPrivilegesIds']);
             SystemGroupPriv::createAddPrivileges($groupId, $diffPrivileges['addPrivilegesIds']);
 
             //修改完毕，校验角色的权限级别
             $sp_ids = SystemGroupPriv::find()->select('sp_id')->where(['sg_id' => $groupId])->all();
-            $businessPriv = SystemPriv::findOne(['sp_set_or_business' => SystemPriv::PRIVILEGE_TYPE_BUSINESS, 'sg_id' => $sp_ids]);
-            $settingPriv = SystemPriv::findOne(['sp_set_or_business' => SystemPriv::PRIVILEGE_TYPE_SETTING, 'sg_id' => $sp_ids]);
+            $businessPriv = SystemPriv::findOne(['sp_set_or_business' => SystemPriv::PRIVILEGE_TYPE_BUSINESS, 'sp_id' => $sp_ids]);
+            $settingPriv = SystemPriv::findOne(['sp_set_or_business' => SystemPriv::PRIVILEGE_TYPE_SETTING, 'sp_id' => $sp_ids]);
             $newPrivilegeLevel = 0;
             //重置角色的业务权限
             if (!empty($businessPriv)) {
@@ -188,7 +186,15 @@ class SystemGroupController extends BusinessController
             if (!empty($settingPriv)) {
                 $newPrivilegeLevel |= SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN;
             }
-            SystemGroup::setRolePrivilegeLevel($groupId, $newPrivilegeLevel);
+            SystemGroup::setRolePrivilegeLevel($group, $newPrivilegeLevel);
+
+            //设置管理游戏
+            if ($gameId === -1) {
+                $myGames = ArrayHelper::getColumn(Game::getAllGames(['type' => $currentSystem->game_type]), 'game_id');
+            } else {
+                $myGames = [$gameId];
+            }
+            SystemGroup::updateRoleGames($group, $on_game, $myGames);
 
         } catch (\Exception $exception) {
             $db->rollBack();
