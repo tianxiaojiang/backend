@@ -321,4 +321,4 @@ CREATE TABLE `systems` (
 -- ----------------------------
 -- Records of systems
 -- ----------------------------
-INSERT INTO `systems` VALUES ('1', '中心后台', '0', 'http://integration.background.com', '1', '管理所有接入后台的角色、权限、菜单、账号等', '0', '0', '/views/start/index.html', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
+INSERT INTO `systems` VALUES ('1', '中心后台', '0', 'https://unify-admin.sdk.mobileztgame.com', '1', '管理所有接入后台的角色、权限、菜单、账号等', '0', '0', '/views/start/index.html', '2018-09-12 12:09:00', '2018-09-12 12:09:00');
