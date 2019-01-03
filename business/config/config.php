@@ -8,7 +8,7 @@
 
 $config = [
     'homeUrl' => APP_ENV === 'dev' ? 'http://integration.background.com' : 'https://unify-admin.sdk.mobileztgame.com',
-    'runtimePath' => defined('YII_ENV') && YII_ENV == 'dev' ? '/tmp/backend/runtime/' : '/tmp/backend/',
+    'runtimePath' => defined('YII_ENV') && YII_ENV == 'dev' ? '/tmp/backend/runtime/' : '/data/pt_weblog/unify_admin',
     'modules' => [
         'test' => [
             'class' => 'Business\modules\test\Module',
