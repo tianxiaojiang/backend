@@ -22,7 +22,7 @@ $params = [
     'sql_file_dir' => dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'sql' . DIRECTORY_SEPARATOR . 'businessSql' . DIRECTORY_SEPARATOR,
     //获取token以及校验权限的地址
     'integration_backend' => [
-        'url' => 'http://integration.background.com',
+        'url' => APP_ENV === 'dev' ? 'http://integration.background.com' : 'https://unify-admin.sdk.mobileztgame.com',
         'authentication' => '/open/privilege/check',
         'gain_token' => '/open/token/gain',
     ],
