@@ -117,6 +117,13 @@ class System extends BaseModel
             $adminUser->save();
 
         }
+        $adminSystem = SystemUser::findOne(['ad_uid' => $adminUser->ad_uid, 'systems_id' => $systems_id]);
+        if (empty($adminSystem)) {
+            $adminSystem = new SystemUser();
+            $adminSystem->ad_uid = $adminUser->ad_uid;
+            $adminSystem->systems_id = $systems_id;
+            $adminSystem->save();
+        }
 
         $this->dev_account = $adminUser->ad_uid;
         $this->save();

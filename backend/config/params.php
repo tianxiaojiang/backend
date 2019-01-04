@@ -29,7 +29,7 @@ $params = [
     //上传图片配置
     'uploadConfig' => require_once(__DIR__ . '/upload.php'),
     'passport' => [
-        'url' => 'http://192.168.101.242/passport/soap/soapserver_passport.php?wsdl',
+        'url' => 'http://sso.ztgame.com/passport/soap/soapserver_passport.php?wsdl',
         'source_system_code'	=>	'gamm3admin',
         'cookie_expire'			=>	time() + 86400,
         'cookie_path'			=>	'/',

@@ -48,13 +48,14 @@ class AccessToken extends Admin
 
     public function rules()
     {
-        return [
-            ['captcha', \yii\captcha\CaptchaValidator::class, 'message' => '验证码错误', 'captchaAction'=>'admin/token/captcha', 'on' => ['login']],
+        $rules = [
             ['account', 'required', 'message' => '请输入账号', 'on' => ['login']],
             ['auth_type', 'required', 'message' => '请选择账号类型', 'on' => ['login']],
             ['password', 'required', 'message' => '请输入密码', 'on' => ['login']],
             ['password', 'validatePassword', 'message' => '账号或密码错误', 'on' => ['login']],
         ];
+        if (APP_ENV != 'dev') array_unshift($rules, ['captcha', \yii\captcha\CaptchaValidator::class, 'message' => '验证码错误', 'captchaAction'=>'admin/token/captcha', 'on' => ['login']]);
+        return $rules;
     }
 
     public static function getAdmin($account, $auth_type)
