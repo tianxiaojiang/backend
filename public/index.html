@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>巨人网络 - 通用后台管理系统</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" href="views/start/layui/css/layui.css" />
+    <link rel="stylesheet" href="views/start/layui/css/modules/layui-icon-extend/iconfont.css" />
+</head>
+
+<body>
+    <div id="LAY_app"></div>
+    <script src="views/start/layui/layui.js"></script>
+    <script>
+    layui.config({
+        //指定 layuiAdmin 项目路径，本地开发用 src，线上用 dist
+        base: './views/src/',
+        // 正式环境
+        // version: '1.0.0-beta6'
+        // 开发环境
+        version: new Date().getTime()
+    }).extend({ztutil: 'lib/extend/ztutil'}).use(['index', 'ztutil']);
+    </script>
+</body>
+
+</html>

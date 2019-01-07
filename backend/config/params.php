@@ -13,7 +13,10 @@ $params = [
         'url' => 'http://integration.background.com',
         'authentication' => '/open/privilege/check',
         'gain_token' => '/open/token/gain',
-    ]
+    ],
+    'check_login_no_privilege' => [
+        '/common/'
+    ],
 ];
 
 return file_exists(__DIR__ . '/params-local.php') ? ArrayHelper::merge($params, require_once(__DIR__ . '/params-local.php')) : $params;

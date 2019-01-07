@@ -178,7 +178,11 @@
 
         // 首页监听游戏列表下拉，设置本地游戏id，重新加载并回到首页
         form.on('select(game-type)', function (data) {
-            console.log('value: ' + data.value);
+            // console.log('value: ' + data.value);
+            var currentGameId = getGameId();
+            if (currentGameId == data.value) {
+                return true;
+            }
             setGameId(data.value, function () {
                 window.location.reload();
             });
@@ -191,7 +195,7 @@
                 elSideMenu = $('#LAY-view-side-menu'),
                 options = {
                     dataType: 'jsonp',
-                    url: layui.setter.integration_url + '/authentication/system-menu/show-menus?sid=' + layui.data(layui.setter.tableName).sid + '&' + layui.setter.request.tokenName + '=' + layui.data(layui.setter.tableName)[layui.setter.request.tokenName],
+                    url: layui.setter.integration_url + '/authentication/system-menu/show-menus?sid=' + layui.data(layui.setter.tableName).sid + '&' + layui.setter.request.tokenName + '=' + layui.data(layui.setter.tableName)[layui.setter.request.tokenName] + '&game_id=' + getGameId(),
                     success: function (data) {
                         laytpl(tplHTML).render(data, function (html) {
                             elSideMenu.html(html);

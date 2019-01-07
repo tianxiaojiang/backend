@@ -39,6 +39,9 @@ class Privilege extends Behavior
             'sid' => $sid,
             'game_id' => $game_id,
             ];
+
+
+
         \Yii::info('鉴权头：'. var_export($authorization, true));
         \Yii::info('鉴权参数：'. var_export($params, true));
         $httpClient = new Client();
