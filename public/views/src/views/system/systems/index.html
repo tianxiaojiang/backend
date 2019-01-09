@@ -20,7 +20,7 @@
 
         var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
 
-        // 点击添加管理员按钮
+        // 点击添加系统按钮
         $('#btn-add-system').on('click', function () {
             view.popup({
                 type: 1,
@@ -76,6 +76,7 @@
                 console.log('edit-system-event');
                 view.popup({
                     type: 1,
+                    area: ['600px', '500px'],
                     id: 'LAY-system-systems-update',
                     title: '修改系统信息',
                     resize: false,

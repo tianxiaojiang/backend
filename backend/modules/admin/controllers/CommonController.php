@@ -98,14 +98,17 @@ class CommonController extends \Backend\modules\common\controllers\BaseControlle
     public function actionSystems()
     {
         $systems = System::findAll(['status' => System::SYSTEM_STAT_NORMAL]);
+        $LoginPageIsMaintain = intval(Helpers::getRequestParam('is_maintain'));
 
         $res = [];
         foreach ($systems as $system) {
+            if (empty($LoginPageIsMaintain) && $system->systems_id == 1) continue;
             $res[] = [
                 'description' => $system->description,
                 'name' => $system->name,
                 'systems_id' => $system->systems_id,
                 'show_url' => empty($system->img) ? '' :\Yii::$app->params['uploadConfig']['imageUrlPrefix'] . $system->img->url_path,
+                'active_url' => empty($system->activeImg) ? '' :\Yii::$app->params['uploadConfig']['imageUrlPrefix'] . $system->activeImg->url_path,
             ];
         }
 

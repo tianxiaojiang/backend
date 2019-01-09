@@ -27,7 +27,7 @@
         </section>
     </header>
     <div class="layui-row twm-body">
-        <div class="layui-col-xs8 layui-col-xs-offset2" id="systems-box">
+        <div class="layui-col-xs10 layui-col-xs-offset1" id="systems-box">
 
         </div>
     </div>
@@ -75,6 +75,8 @@
         </div>
     </div>
 </div>
+<a id="hiddenUrl" style="display: none;" href="" target="_blank"><span id="aaaaaaaaa">teste</span></a>
+
 <script>
 
 layui.use(['admin', 'form', 'user'], function() {
@@ -83,16 +85,16 @@ layui.use(['admin', 'form', 'user'], function() {
     var systemsBox = $('#systems-box'),
         loginBtnBox = $('#login-btn-or-username')
     ;
-    //拉取系统列表
+
     var renderSystemSelect = function() {
-        var systemTpl = '<a class="systems-item layui-col-xs1" href="javascript:;">' +
-            '                <div><img src="__URL__"></div><h3>__SYSTEMS_NAME__</h3>' +
+        var systemTpl = '<a class="systems-item layui-col-xs2" href="javascript:;" data-active-bg="__ACTIVE_URL__" data-bg="__URL__">' +
+            '                <div></div><h3>__SYSTEMS_NAME__</h3>' +
             '                <input type="hidden" name="systems_id__SYSTEMS_ID__" value="__SYSTEMS_ID__"/>' +
             '            </a>';
-        var maintainTpl = '<div class="maintain"><a href="javascript:void(0);">维护</a><input type="hidden" name="systems_id__SYSTEMS_ID__" value="__SYSTEMS_ID__"/></div>';
         // 拉取所有系统接口
         admin.req({
             url: '/admin/common/systems',
+            data: {"is_maintain": 1},
             method: 'get',
             done: function(res) {
                 var systemOptions = '';
@@ -101,12 +103,15 @@ layui.use(['admin', 'form', 'user'], function() {
                     systemItemHtml = systemTpl;
                     // var maintainHtml = (v.systems_id === 1) ? '' : maintainTpl;
                     var system_icon = v.show_url ? v.show_url : '/img/testSystem.png';
+                    var active_icon = v.active_url ? v.active_url : system_icon;
                     var maintainHtml = '';
-                    systemItemHtml = systemItemHtml.replace('__MAINTAIN__', maintainHtml).replace(/__SYSTEMS_ID__/g, v.systems_id).replace('__SYSTEMS_NAME__', v.name).replace('__URL__', system_icon);
+                    systemItemHtml = systemItemHtml.replace('__MAINTAIN__', maintainHtml).replace(/__SYSTEMS_ID__/g, v.systems_id).replace('__SYSTEMS_NAME__', v.name).replace('__URL__', system_icon).replace('__ACTIVE_URL__', active_icon);
                     systemOptions += systemItemHtml;
                 });
                 systemsBox.html(systemOptions);
-                form.render('select', 'login-select-filter');
+                $('#systems-box .systems-item').trigger('mouseleave');
+                //systemsBox.trigger('mouserleave');
+                form.render('select');
             }
         });
     }
@@ -179,6 +184,7 @@ layui.use(['admin', 'form', 'user'], function() {
             url: '/authentication/auth/get-token-by-token',
             method: 'get',
             data: data,
+            async:false,
             done: function(res) {
 
                 if (res.code !== 0) {
@@ -186,7 +192,9 @@ layui.use(['admin', 'form', 'user'], function() {
                     return false;
                 }
 
-                location.href = res.data.redirect_url;
+                tmpBtn = $('#hiddenUrl');
+                tmpBtn.attr('href', res.data.redirect_url);
+                tmpBtn[0].click();
             }
         });
     }
@@ -219,7 +227,7 @@ layui.use(['admin', 'form', 'user'], function() {
                 //获取到token显示姓名和存储数据
                 var jwtObj = res.data.access_token.split('.');
                 var payload = JSON.parse(atob(jwtObj[1]));
-                console.log(payload);
+                // console.log(payload);
                 // 请求成功后，写入 access_token
                 layui.data(setter.tableName, {
                     key: setter.request.tokenName,
@@ -277,5 +285,15 @@ layui.use(['admin', 'form', 'user'], function() {
         authorization(go_sid, 1);//授权业务后台
     });
 
+    systemsBox.on('mouseenter', '.systems-item', function (e) {
+        console.log('mouseenter');
+        var active_bg = $(this).attr('data-active-bg');
+        $(this).css('background-image', 'url("'+active_bg+'")');
+    });
+    systemsBox.on('mouseleave', '.systems-item', function (e) {
+        console.log('mouseleave');
+        var active_bg = $(this).attr('data-bg');
+        $(this).css('background-image', 'url("'+active_bg+'")');
+    });
 });
 </script>

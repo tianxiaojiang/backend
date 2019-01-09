@@ -29,16 +29,23 @@
                 <input type="text" class="layui-input" name="auth_url" required placeholder="授权跳转地址" value="{{d.params.auth_url}}" autocomplete="off" class="layui-input" /></div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">开发者账号</label>
-            <div class="layui-input-block">
-                <input type="text" class="layui-input" name="dev_account" required placeholder="开发者账号" value="{{d.params.dev_account}}" autocomplete="off" class="layui-input" /></div>
-        </div>
-        <div class="layui-form-item">
             <label class="layui-form-label">开发账号类型：</label>
             <div class="layui-input-block">
-                <select name="auth_type" id="update-system-auth_type" lay-filter="auth_type_filter" required lay-verify="required">
+                <select name="auth_type" id="update-system-auth_type" lay-filter="auth_type_update_filter" required lay-verify="required">
                 </select>
             </div>
+        </div>
+        <div class="layui-form-item auth_type_password" style="display: none;">
+            <label class="layui-form-label">开发者账号</label>
+            <div class="layui-input-block"> <input type="text" name="dev_account" placeholder="开发者账号" autocomplete="off" class="layui-input" value="{{d.params.dev_account}}"/></div>
+        </div>
+        <div class="layui-form-item auth_type_password" style="display: none;">
+            <label class="layui-form-label">开发者初始密码</label>
+            <div class="layui-input-block"> <input type="password" name="password" placeholder="开发者初始密码" autocomplete="off" class="layui-input"/></div>
+        </div>
+        <div class="layui-form-item auth_type_no_password">
+            <label class="layui-form-label">开发者工号</label>
+            <div class="layui-input-block"> <input type="number" name="staff_number" placeholder="开发者工号" autocomplete="off" class="layui-input" value="{{d.params.staff_number}}"/></div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">描述</label>
@@ -51,10 +58,23 @@
             <div class="layui-input-block">
                 <div class="layui-upload" id="systems-update-img-box">
                     <input type="hidden" name="img_id" class="img_id_value" value="{{d.params.img_id}}">
-                    <button type="button" class="layui-btn" id="test1" data-scenario="systems_icon">上传图片</button>
+                    <button type="button" class="layui-btn" data-scenario="systems_icon">上传图片</button>
                     <div class="layui-upload-list">
                         <img class="layui-upload-img" width="100" src="{{d.params.show_url}}">
-                        <p id="demoText"></p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">鼠标活跃ICON</label>
+            <div class="layui-input-block">
+                <div class="layui-upload" id="systems-update-active-img-box">
+                    <input type="hidden" name="active_img_id" class="img_id_value" value="{{d.params.active_img_id}}">
+                    <button type="button" class="layui-btn" data-scenario="systems_icon">上传图片</button>
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" width="100" src="{{d.params.active_url}}">
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -78,7 +98,7 @@
 <script>
     layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'ztUpload'], function () {
 
-        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view, ztUpload = layui.ztUpload;
+        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view, ztUpload = layui.ztUpload, ztUpload1 = layui.ztUpload;
 
         // 获取状态列表
         var getStatus = function () {
@@ -125,6 +145,11 @@
             id: $('#systems-update-img-box')
         });
 
+        ztUpload1.init({
+            uploadUrl: '/admin/file/upload',
+            id: $('#systems-update-active-img-box')
+        });
+
         // 编辑管理员按钮
         form.on('submit(edit-system)', function (data) {
             var options = {
@@ -139,6 +164,21 @@
             };
             admin.req(options);
             return false;
+        });
+
+        form.on('select(auth_type_update_filter)', function(data) {
+            //console.log(data.value); //得到被选中的值
+
+            var auth_type = parseInt(data.value);
+            if (auth_type === 1) {//普通账密
+                $(".auth_type_no_password").hide();
+                $(".auth_type_password").show();
+                // console.log(1111);
+            } else {
+                $(".auth_type_no_password").show();
+                $(".auth_type_password").hide();
+                // console.log(2222);
+            }
         });
     });
 </script>

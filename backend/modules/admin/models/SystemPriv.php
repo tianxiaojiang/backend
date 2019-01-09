@@ -9,8 +9,9 @@
 namespace Backend\modules\admin\models;
 
 use Backend\helpers\Helpers;
+use Backend\modules\common\models\BaseModel;
 
-class SystemPriv extends \yii\db\ActiveRecord
+class SystemPriv extends BaseModel
 {
     const PRIVILEGE_TYPE_BUSINESS  = 0;
     const PRIVILEGE_TYPE_SETTING = 1;

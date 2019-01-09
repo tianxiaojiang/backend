@@ -22,6 +22,7 @@ class SystemMenuController extends SystemController
     public function actionShowMenus()
     {
         $isMaintain = intval(Helpers::getRequestParam('isMaintain'));
+        $callback = Helpers::getRequestParam('callback');
         //维护后台的菜单取维护菜单
         $menuType = $isMaintain ? SystemMenu::SM_TYPE_SETTING : SystemMenu::SM_TYPE_BUSINESS;
 
@@ -40,6 +41,7 @@ class SystemMenuController extends SystemController
     {
         $gameId = intval(Helpers::getRequestParam('game_id'));
         $isMaintain = intval(Helpers::getRequestParam('isMaintain'));
+        $callback = intval(Helpers::getRequestParam('callback'));
         $requestActions = array_flip(explode(',', trim(Helpers::getRequestParam('actions'))));
 
         //维护后台的权限列表
@@ -54,8 +56,7 @@ class SystemMenuController extends SystemController
         }
 
         $privilegesRes = ["privileges" => $requestActions];
-        if($isMaintain < 1) {//业务后台
-            $callback = Helpers::getRequestParam('callback');
+        if(!empty($callback)) {//业务后台
             echo $callback . '(' . json_encode(['code' => 0, 'msg' => '', 'data' => $privilegesRes]) . ')';exit;
         }
 

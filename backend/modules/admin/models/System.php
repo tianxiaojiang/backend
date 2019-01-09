@@ -31,9 +31,9 @@ class System extends BaseModel
     public function scenarios()
     {
         return [
-            'default' => ['systems_id', 'name', 'img_id', 'url', 'auth_url', 'dev_account', 'game_type', 'status', 'description', 'updated_at', 'created_at'],
-            'update' => ['systems_id', 'name', 'img_id', 'url', 'auth_url', 'dev_account', 'game_type', 'status', 'description', 'updated_at', 'created_at'],
-            'create' => ['systems_id', 'developer_password', 'auth_type', 'staff_number', 'name', 'img_id', 'url', 'auth_url', 'dev_account', 'game_type', 'status', 'description', 'updated_at', 'created_at'],
+            'default' => ['systems_id', 'name', 'img_id', 'active_img_id', 'url', 'auth_url', 'dev_account', 'game_type', 'status', 'description', 'updated_at', 'created_at'],
+            'update' => ['systems_id', 'developer_password', 'auth_type', 'staff_number', 'name', 'img_id', 'active_img_id', 'url', 'auth_url', 'dev_account', 'game_type', 'status', 'description', 'updated_at', 'created_at'],
+            'create' => ['systems_id', 'developer_password', 'auth_type', 'staff_number', 'name', 'img_id', 'active_img_id', 'url', 'auth_url', 'dev_account', 'game_type', 'status', 'description', 'updated_at', 'created_at'],
         ];
     }
 
@@ -139,6 +139,7 @@ class System extends BaseModel
 
         //生成管理员账号
         $auth_type = intval($this->auth_type);
+
         if ($this->auth_type == Admin::AUTH_TYPE_PASSWORD) {
             $adminUser = Admin::findOne(['account' => $this->dev_account, 'auth_type' => $auth_type]);
         } else {
@@ -176,6 +177,17 @@ class System extends BaseModel
     {
         return $this->hasOne(Img::class, ['img_id' => 'img_id']);
     }
+
+    /**
+     * 对应图标
+     * @return \yii\db\ActiveQuery
+     */
+    public function getActiveImg()
+    {
+        return $this->hasOne(Img::class, ['img_id' => 'active_img_id']);
+    }
+
+
 
     public function getAdmin()
     {

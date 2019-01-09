@@ -39,7 +39,7 @@ class AuthController extends JwtController
 
         //验证登录用户
         $model = \Yii::$app->user->identity;
-        $model->validateCanAuth();
+        $model->validateCanAuth($isMaintain);
 
         AdminService::validateModelEmpty($model);
         AdminService::validateLoginAdminStatus($model);

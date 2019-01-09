@@ -6,7 +6,7 @@ $uploads = [
     "imageCompressEnable" => true, /* 是否压缩图片,默认是true */
     "imageCompressBorder" => 1600, /* 图片压缩最长边限制 */
     "imageInsertAlign" => "none", /* 插入的图片浮动方式 */
-    "imageUrlPrefix" => APP_ENV === 'dev' ? 'http://integration.background.com' : 'https://unify-admin.sdk.mobileztgame.com', /* 图片访问路径前缀 */
+    "imageUrlPrefix" => 'https://unify-admin.sdk.mobileztgame.com', /* 图片访问路径前缀 */
     "imagePathFormat" => "/uploads/{yyyy}{mm}{dd}/{time}{rand:6}",
     //针对场景细化限制
     "scenarios" => [
@@ -15,8 +15,8 @@ $uploads = [
                 '<' => 20
             ],
             "size" => [ //尺寸限制，没有取上面的通用设置
-                "w" => [ '=' => 91 ],
-                "h" => [ '=' => 88 ],
+                "w" => [ '=' => 195 ],
+                "h" => [ '=' => 203 ],
             ],
             "type" => ["png", "jpg", "jpeg", "gif"]
         ],

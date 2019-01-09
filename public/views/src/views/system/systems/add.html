@@ -48,12 +48,25 @@
         <div class="layui-form-item">
             <label class="layui-form-label">ICON</label>
             <div class="layui-input-block">
-                <div class="layui-upload" id="systems-update-img-box">
-                    <input type="hidden" name="img_id" class="img_id_value" value="{{d.params.img_id}}">
-                    <button type="button" class="layui-btn" id="test1" data-scenario="systems_icon">上传图片</button>
+                <div class="layui-upload" id="systems-add-img-box">
+                    <input type="hidden" name="img_id" class="img_id_value" value="">
+                    <button type="button" class="layui-btn" data-scenario="systems_icon">上传图片</button>
                     <div class="layui-upload-list">
-                        <img class="layui-upload-img" width="100" id="demo1" src="{{d.params.show_url}}">
-                        <p id="demoText"></p>
+                        <img class="layui-upload-img" width="100" src="">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">鼠标活跃ICON</label>
+            <div class="layui-input-block">
+                <div class="layui-upload" id="systems-add-active-img-box">
+                    <input type="hidden" name="active_img_id" class="img_id_value" value="">
+                    <button type="button" class="layui-btn" data-scenario="systems_icon">上传图片</button>
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" width="100" src="">
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -115,7 +128,12 @@
 
         ztUpload.init({
             uploadUrl: '/admin/file/upload',
-            id: $('#systems-update-img-box')
+            id: $('#systems-add-img-box')
+        });
+
+        ztUpload.init({
+            uploadUrl: '/admin/file/upload',
+            id: $('#systems-add-active-img-box')
         });
 
         // 提交添加管理员按钮

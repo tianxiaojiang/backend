@@ -28,7 +28,7 @@ class SystemUserGroup extends BaseModel
         return true;
     }
 
-    public static function delRoleAdmin($ad_uid, $roleIds)
+    public static function delRoleAdmin($roleIds, $ad_uid)
     {
         if (empty($roleIds)) return true;
 

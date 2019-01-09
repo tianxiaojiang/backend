@@ -26,7 +26,7 @@ class AuthTypeService
     public function __construct(Admin $adminModel)
     {
         $this->adminModel = $adminModel;
-        $this->adminModel->thirdData = new ThirdData();
+        //$this->adminModel->thirdData = new ThirdData();
     }
 
     //验证密码

@@ -73,6 +73,7 @@
         </div>
     </div>
 </div>
+<a id="hiddenUrl" style="display: none;" href="" target="_blank"><span id="aaaaaaaaa">teste</span></a>
 <script>
 
 layui.use(['admin', 'form', 'user'], function() {
@@ -83,8 +84,8 @@ layui.use(['admin', 'form', 'user'], function() {
     ;
     //拉取系统列表
     var renderSystemSelect = function() {
-        var systemTpl = '<a class="systems-item layui-col-xs1" href="javascript:;">' +
-            '                <div><img src="__URL__"></div><h3>__SYSTEMS_NAME__</h3>' +
+        var systemTpl = '<a class="systems-item layui-col-xs1" href="javascript:;" data-active-bg="__ACTIVE_URL__" data-bg="__URL__">' +
+            '                <div></div><h3>__SYSTEMS_NAME__</h3>' +
             '                <input type="hidden" name="systems_id__SYSTEMS_ID__" value="__SYSTEMS_ID__"/>' +
             '            </a>';
         var maintainTpl = '<div class="maintain"><a href="javascript:void(0);">维护</a><input type="hidden" name="systems_id__SYSTEMS_ID__" value="__SYSTEMS_ID__"/></div>';
@@ -99,12 +100,14 @@ layui.use(['admin', 'form', 'user'], function() {
                     systemItemHtml = systemTpl;
                     // var maintainHtml = (v.systems_id === 1) ? '' : maintainTpl;
                     var system_icon = v.show_url ? v.show_url : '/img/testSystem.png';
+                    var active_icon = v.active_url ? v.active_url : system_icon;
                     var maintainHtml = '';
-                    systemItemHtml = systemItemHtml.replace('__MAINTAIN__', maintainHtml).replace(/__SYSTEMS_ID__/g, v.systems_id).replace('__SYSTEMS_NAME__', v.name).replace('__URL__', system_icon);
+                    systemItemHtml = systemItemHtml.replace('__MAINTAIN__', maintainHtml).replace(/__SYSTEMS_ID__/g, v.systems_id).replace('__SYSTEMS_NAME__', v.name).replace('__URL__', system_icon).replace('__ACTIVE_URL__', active_icon);
                     systemOptions += systemItemHtml;
                 });
                 systemsBox.html(systemOptions);
-
+                $('#systems-box .systems-item').trigger('mouseleave');
+                //systemsBox.trigger('mouserleave');
                 form.render('select');
             }
         });
@@ -178,6 +181,7 @@ layui.use(['admin', 'form', 'user'], function() {
             url: '/authentication/auth/get-token-by-token',
             method: 'get',
             data: data,
+            async:false,
             done: function(res) {
 
                 if (res.code !== 0) {
@@ -185,7 +189,9 @@ layui.use(['admin', 'form', 'user'], function() {
                     return false;
                 }
 
-                location.href = res.data.redirect_url;
+                tmpBtn = $('#hiddenUrl');
+                tmpBtn.attr('href', res.data.redirect_url);
+                tmpBtn[0].click();
             }
         });
     }
@@ -276,6 +282,15 @@ layui.use(['admin', 'form', 'user'], function() {
         authorization(go_sid, 0);//授权业务后台
     });
 
-
+    systemsBox.on('mouseenter', '.systems-item', function (e) {
+        console.log('mouseenter');
+        var active_bg = $(this).attr('data-active-bg');
+        $(this).css('background-image', 'url("'+active_bg+'")');
+    });
+    systemsBox.on('mouseleave', '.systems-item', function (e) {
+        console.log('mouseleave');
+        var active_bg = $(this).attr('data-bg');
+        $(this).css('background-image', 'url("'+active_bg+'")');
+    });
 });
 </script>

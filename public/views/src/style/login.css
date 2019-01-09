@@ -55,10 +55,10 @@ html,body,#LAY_app{height:100%;}
 
 .twm_login_box .twm-body{padding-top: 153px;}
 .twm_login_box .twm-body .systems-item h3{cursor: pointer;font-weight: bold;}
-.twm_login_box .twm-body .systems-item{cursor:pointer;height: 242px;width: 211px;margin:15px 70px;background-image: url("/img/icon_border.png");background-repeat: no-repeat;padding: 0;}
-.twm_login_box .twm-body .systems-item:hover{background-image:url("/img/icon_border_active.png")}
+.twm_login_box .twm-body .systems-item{cursor:pointer;height: 203px;width: 195px;margin:15px 55px;background-repeat: no-repeat;padding: 0;background-size: 100%;display: block;}
+.twm_login_box .twm-body .systems-item>div>img{width: 65px;height:65px;}
 .twm_login_box .twm-body .systems-item div{padding-top: 51px;text-align: center;}
-.twm_login_box .twm-body .systems-item h3{padding-top: 15px;text-align: center;color: #fff;font-weight: bold;}
+.twm_login_box .twm-body .systems-item h3{margin-top: 55px;padding-top: 15px;text-align: center;color: #fff;font-weight: bold;}
 
 .sec {width:1220px;margin:0 auto;padding:0 15px}
 .sec .login-btn-or-username{float: right;padding-top: 20px;}

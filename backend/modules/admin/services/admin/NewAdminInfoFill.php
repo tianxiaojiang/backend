@@ -35,7 +35,7 @@ class NewAdminInfoFill
     //普通账密账号，加密密码
     protected function info_by_password()
     {
-        if (empty($this->adminModel->passwd))
+        if (empty($this->adminModel->password))
             throw new CustomException('新的普通账号填充信息时的密码不能为空!');
 
         if (empty($this->adminModel->salt))

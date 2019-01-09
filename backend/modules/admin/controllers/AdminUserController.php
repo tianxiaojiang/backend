@@ -8,6 +8,7 @@ use Backend\modules\admin\models\Admin;
 use Backend\modules\admin\models\SystemGroupGame;
 use Backend\modules\admin\models\SystemUser;
 use Backend\modules\admin\models\SystemUserGroup;
+use Backend\modules\admin\services\admin\DomainAuthSoapClient;
 use Backend\modules\admin\services\AdminService;
 use Backend\modules\common\controllers\BusinessController;
 use yii\helpers\ArrayHelper;
@@ -61,6 +62,9 @@ class AdminUserController extends BusinessController
         $this->query->orderBy('`'.Admin::tableName().'`.`ad_uid` asc');
 
 //        var_dump($this->query->createCommand()->getRawSql());exit;
+
+        $data = DomainAuthSoapClient::getInstance()->getDomainInfo('tianweimin');
+        \Yii::info('test auth:' . var_export($data, true));
 
         return parent::prepareDataProvider();
     }

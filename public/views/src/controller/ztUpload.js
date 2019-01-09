@@ -37,71 +37,80 @@ js：
 layui.define(['ztutil', 'upload'], function(exports) {
     var upload = layui.upload,
         ztutil = layui.ztutil,
-        ztUpload = {
-            config: {
+        ztUpload = function() {
+            this.config = {
                 uploadUrl: null,
                 imgUploadBox: null, //上传节点id
                 buttonElem: null,
                 TipsP: null,
                 showImg: null,
                 imgIdInput: null
-            },
-            mergeConfig: function(){
-                if (!ztUpload.config.imgUploadBox) {return false;}
-                ztUpload.config.buttonElem = ztUpload.config.imgUploadBox.find('button'),//上传按钮节点
-                ztUpload.config.TipsP = ztUpload.config.imgUploadBox.find('p'),//上传提示
-                ztUpload.config.showImg = ztUpload.config.imgUploadBox.find('img'),//预览图片节点
-                ztUpload.config.imgIdInput = ztUpload.config.imgUploadBox.find('.img_id_value')//上传后的图片id
+            };
+            this.mergeConfig = function(){
+                var that = this;
+                if (!that.config.imgUploadBox) {return false;}
+                that.config.buttonElem = that.config.imgUploadBox.find('button'),//上传按钮节点
+                that.config.TipsP = that.config.imgUploadBox.find('p'),//上传提示
+                that.config.showImg = that.config.imgUploadBox.find('img'),//预览图片节点
+                that.config.imgIdInput = that.config.imgUploadBox.find('.img_id_value')//上传后的图片id
 
-                ztUpload.render();
-            },
-            init: function (CustomConfig) {
+                that.render();
+            };
+            this.init = function (CustomConfig) {
+                var that = this;
                 if (!CustomConfig.uploadUrl) {console.error('初始化必须有上传地址'); return false;}
                 if (!CustomConfig.id) {console.error('初始化必须有上传地址id'); return false;}
 
-                ztUpload.config.uploadUrl = CustomConfig.uploadUrl;
-                ztUpload.config.imgUploadBox = CustomConfig.id;
+                that.config.uploadUrl = CustomConfig.uploadUrl;
+                that.config.imgUploadBox = CustomConfig.id;
 
-                ztUpload.mergeConfig();
-            },
-            uploadInst: null,
-            render: function(){
-                console.log(111);
-                ztUpload.uploadInst = upload.render({
-                    elem: ztUpload.config.buttonElem
-                    ,url: ztUpload.config.uploadUrl
-                    ,data: ztutil.createSign({Authorization: ztutil.getToken(), scenario: ztUpload.config.buttonElem.attr("data-scenario")})
+                that.mergeConfig();
+            };
+            this.uploadInst = null;
+            this.render = function() {
+                var that = this;
+                that.uploadInst = upload.render({
+                    elem: that.config.buttonElem
+                    ,url: that.config.uploadUrl
+                    ,data: ztutil.createSign({Authorization: ztutil.getToken(), scenario: that.config.buttonElem.attr("data-scenario")})
                     ,before: function(obj) {
                         //预读本地文件示例，不支持ie8
                         obj.preview(function(index, file, result){
-                            ztUpload.config.showImg.attr('src', result); //图片链接（base64）
+                            that.config.showImg.attr('src', result); //图片链接（base64）
                         });
                     }
                     ,done: function(res) {
                         //如果上传失败
                         if(res.code !== 0) {
                             //演示失败状态，并实现重传
-                            ztUpload.config.TipsP.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                            ztUpload.config.TipsP.find('.demo-reload').on('click', function() {
-                                ztUpload.uploadInst.upload();
+                            that.config.TipsP.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                            that.config.TipsP.find('.demo-reload').on('click', function() {
+                                that.uploadInst.upload();
                             });
                             return layer.msg(res.msg);
                         }
                         //上传成功
-                        ztUpload.config.imgIdInput.val(res.data.imgId);
-                        ztUpload.config.TipsP.html('<span style="color: #5FB878;">上传成功</span>');
+                        that.config.imgIdInput.val(res.data.imgId);
+                        that.config.TipsP.html('<span style="color: #5FB878;">上传成功</span>');
                     }
                     ,error: function(){
                         //演示失败状态，并实现重传
-                        ztUpload.config.TipsP.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                        ztUpload.config.TipsP.find('.demo-reload').on('click', function(){
-                            ztUpload.uploadInst.upload();
+                        that.config.TipsP.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                        that.config.TipsP.find('.demo-reload').on('click', function(){
+                            that.uploadInst.upload();
                         });
                     }
                 });
             }
         };
 
+        ztUploadFactory = {
+            init: function (config) {
+                var uploadInstance = new ztUpload();
+                uploadInstance.init(config);
+            }
+        };
+
     //对外暴露的接口
-    exports('ztUpload', ztUpload);
+    exports('ztUpload', ztUploadFactory);
 });

@@ -424,7 +424,8 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         if (empty($this->privilege[$privilegeType])) {
             //我所选游戏拥有的所有权限
             $currentSystem = SystemService::getCurrentSystem();
-            if (\Yii::$app->user->identity->ad_uid === $currentSystem->dev_account && $privilegeType == SystemPriv::PRIVILEGE_TYPE_SETTING) {//管理员取后台的所有权限
+            $isMaintain = Helpers::getRequestParam('isMaintain');
+            if (\Yii::$app->user->identity->ad_uid === $currentSystem->dev_account && !empty($isMaintain)) {//管理员取后台的所有权限
                 $this->privilege[$privilegeType] = SystemPriv::getAll();
             } else {
                 $this->privilege[$privilegeType] = \Yii::$app->user->identity->getPrivilegesOnGame($gameId, $privilegeType);
@@ -437,10 +438,9 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     /**
      * 授权时，校验是否有权限
      */
-    public function validateCanAuth()
+    public function validateCanAuth($isMaintain)
     {
         $roles = $this->systemGroup;
-        $isMaintain = intval(Helpers::getRequestParam('isMaintain'));
         $privilegeLevel = $isMaintain ? SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN : SystemGroup::SYSTEM_PRIVILEGE_LEVEL_FRONT;
         foreach ($roles as $role) {
             if (($role->privilege_level & $privilegeLevel) === $privilegeLevel) {
