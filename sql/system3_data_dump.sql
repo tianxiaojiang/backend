@@ -1,3 +1,5 @@
+use integration_background;
+set names utf8;
 
 -- ----------------------------
 -- Record of systems
