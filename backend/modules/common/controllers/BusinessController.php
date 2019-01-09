@@ -41,6 +41,9 @@ class BusinessController extends SystemController
             $this->query = call_user_func_array([$controller->modelClass, 'find'], []);
         }
 
+        $controller = \Yii::$app->controller;
+        $class = $controller->modelClass;
+
         $provider = new ActiveDataProvider([
             'query' => $this->query,
             'pagination' => [
@@ -48,7 +51,7 @@ class BusinessController extends SystemController
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'created_at' => SORT_DESC,
+                    $class::primaryKey()[0] => SORT_DESC,
                 ]
             ],
         ]);

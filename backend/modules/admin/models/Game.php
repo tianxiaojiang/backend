@@ -26,6 +26,8 @@ class Game extends BaseModel
     const GAME_TYPE_PHONE = 1;
     const GAME_TYPE_NONE = 2;
 
+    public $business_game_id;
+
     public static $_types = [
         self::GAME_TYPE_PC => '端游',
         self::GAME_TYPE_PHONE => '手游',
@@ -35,9 +37,9 @@ class Game extends BaseModel
     public function scenarios()
     {
         return [
-            'default' => ['game_id', 'name', 'alias', 'status', 'order_by', 'updated_at', 'created_at'],
-            'update' => ['game_id', 'name', 'alias', 'status', 'order_by', 'updated_at', 'created_at'],
-            'create' => ['game_id', 'name', 'alias', 'status', 'order_by', 'updated_at', 'created_at'],
+            'default' => ['game_id', 'type', 'business_game_id', 'name', 'alias', 'status', 'order_by', 'updated_at', 'created_at'],
+            'update' => ['type', 'business_game_id', 'name', 'alias', 'status', 'order_by', 'updated_at', 'created_at'],
+            'create' => ['game_id', 'type', 'business_game_id', 'name', 'alias', 'status', 'order_by', 'updated_at', 'created_at'],
         ];
     }
 
@@ -45,8 +47,24 @@ class Game extends BaseModel
     {
         return [
             ['name', 'required', 'message' => '游戏名不能为空', 'on' => ['create', 'update']],
-            ['game_id', 'required', 'message' => '游戏id不能为空', 'on' => ['create', 'update']],
+            ['business_game_id', 'required', 'message' => '游戏id不能为空', 'on' => ['create', 'update']],
         ];
+    }
+
+    public function insert($runValidation = true, $attributes = null)
+    {
+        $this->game_id = $this->business_game_id;
+        parent::insert($runValidation, $attributes);
+
+        return true;
+    }
+
+    public function update($runValidation = true, $attributes = null)
+    {
+        $this->game_id = $this->business_game_id;
+        parent::update($runValidation, $attributes);
+
+        return true;
     }
 
     static public function tableName() {
