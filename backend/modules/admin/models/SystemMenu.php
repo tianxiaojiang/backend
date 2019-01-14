@@ -27,9 +27,9 @@ class SystemMenu extends BaseModel
     public function scenarios()
     {
         return [
-            'default' => ['sm_id', 'sm_label', 'sm_parent_id', 'sm_view', 'created_at', 'updated_at'],
-            'update' => ['sm_id', 'sm_label', 'sm_parent_id', 'sm_view', 'created_at', 'updated_at'],
-            'create' => ['sm_id', 'sm_label', 'sm_parent_id', 'sm_view', 'created_at', 'updated_at'],
+            'default' => ['sm_id', 'sm_label', 'sm_icon', 'sort_by', 'sm_parent_id', 'sm_view', 'created_at', 'updated_at'],
+            'update' => ['sm_id', 'sm_label', 'sm_icon', 'sort_by', 'sm_parent_id', 'sm_view', 'created_at', 'updated_at'],
+            'create' => ['sm_id', 'sm_label', 'sm_icon', 'sort_by', 'sm_parent_id', 'sm_view', 'created_at', 'updated_at'],
         ];
     }
 
@@ -47,6 +47,8 @@ class SystemMenu extends BaseModel
             'sm_label',
             'sm_view',
             'sm_icon',
+            'sort_by',
+            'sm_icon',
             'sm_parent_id',
             'children' => function($model) {
                 return $model->getChildren();
@@ -63,12 +65,64 @@ class SystemMenu extends BaseModel
                 'sm_status'=> 0,
                 'is_show_sidebar' => 1
             ])
-            ->orderBy('sort_by asc,sm_id asc')
+            ->orderBy('sm_id asc')
             ->indexBy('sm_id')
             ->asArray()->all();
         $list = $this->filterPrivilege($list);
         //var_dump($list);
-        return $this->formatList2Tree($list);
+        $results = [];
+        foreach ($list as $item) {
+            if ($item['sort_by'] == 0) {
+                $this->setSortNum1($list, $results, $item);
+            }
+        }
+
+        $list = [];
+        foreach ($results as $key => $result) {
+            $list[$result['sm_id']] = $results[$key];
+            $list[$result['sm_id']]['sort_num'] = $key;
+        }
+        $tree = $this->formatList2Tree($list);
+
+        $ret = [];
+        foreach ($tree as $sm_id => $item) {
+            if (!empty($item['list'])) {
+                $list1 = [];
+                foreach ($item['list'] as $v1) {
+                    if (!empty($v1['list'])) {
+                        $list2 = [];
+                        foreach ($v1['list'] as $v2) {
+                            $list2[$v2['sort_num']] = $v2;
+                        }
+                        $v1['list'] = array_values($list2);
+                    }
+                    $list1[$v1['sort_num']] = $v1;
+                }
+                $item['list'] = array_values($list1);
+            }
+
+            $ret[$item['sort_num']] = $item;
+        }
+
+        return $ret;
+    }
+
+
+    protected function setSortNum1(&$menus, &$results, $menu)
+    {
+        if ($menu['sort_by'] === 0) {
+            array_unshift($results, $menu);
+        } else {
+            array_push($results, $menu);
+        }
+        unset($menus[$menu['sm_id']]);
+
+        foreach ($menus as $m) {
+            if ($m['sort_by'] === $menu['sm_id']) {
+                $this->setSortNum1($menus, $results, $m);
+                break;
+            }
+        }
     }
 
     public function formatList2Tree(&$list)

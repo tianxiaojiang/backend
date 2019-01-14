@@ -16,7 +16,7 @@ class Img extends BaseModel
         return 'img';
     }
 
-    public static function InsertFeedBackImg($dateImg, $size = [0, 0])
+    public static function InsertImg($dateImg, $size = [0, 0])
     {
         $imgModel = new self();
         $imgModel->setAttributes([

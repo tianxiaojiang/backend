@@ -66,7 +66,7 @@ class FileController extends JwtController {
 
         //图片入库
         $size = getimagesize($file_path);
-        $info['imgId'] = Img::InsertFeedBackImg($info['file_path'], $size);
+        $info['imgId'] = Img::InsertImg($info['file_path'], $size);
 
         //删除本地文件
         //unlink($file_path);

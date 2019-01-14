@@ -28,6 +28,7 @@ class SystemMenuController extends SystemController
 
         $systemMenu = new SystemMenu();
         $menus = $systemMenu->getShowMenus($menuType);
+
         if(!empty($callback)) {//业务后台
             $callback = Helpers::getRequestParam('callback');
             echo $callback . '(' . json_encode(['code' => 0, 'msg' => '', 'data' => $menus]) . ')';exit;
@@ -35,6 +36,7 @@ class SystemMenuController extends SystemController
 
         return $menus;
     }
+
 
     //获取指定操作的权限列表
     public function actionPrivileges()

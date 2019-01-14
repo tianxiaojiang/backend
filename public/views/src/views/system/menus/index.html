@@ -30,9 +30,14 @@
                                     <div class="layui-input-block"><input type="text" name="sm_view" placeholder="菜单对应地址" autocomplete="off" class="layui-input" /></div>
                                 </div>
                                 <div class="layui-form-item">
+                                    <label class="layui-form-label">icon</label>
+                                    <div class="layui-input-block"><input type="text" name="sm_icon" placeholder="icon" autocomplete="off" class="layui-input" /></div>
+                                </div>
+                                <div class="layui-form-item">
                                     <div class="layui-input-block">
                                         <input type="hidden" name="sm_parent_id">
                                         <input type="hidden" name="sm_id">
+                                        <input type="hidden" name="sort_by">
                                         <button class="layui-btn" lay-submit="" lay-filter="save-menu">修改</button>
                                     </div>
                                 </div>
@@ -93,12 +98,17 @@ layui.use(['form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqu
             }
         },
         edit: {
-            enable: true
+            enable: true,
+            drag:{
+                isCopy: false,
+                isMove: true
+            }
         },
         callback: {
             beforeEditName: zTreeBeforeEditName,
             beforeRemove: zTreeBeforeRemove,
-            onClick: zTreeOnClick
+            onClick: zTreeOnClick,
+            onDrop: zTreeOnDrop
         }
     };
 
@@ -213,11 +223,16 @@ layui.use(['form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqu
         if (parentNode) {
             parent_label = parentNode.sm_label;
         }
+        var prevNode = treeNode.getPreNode();
+        var sort_by = prevNode ? prevNode.sm_id : 0;
+
         $('input[name="sm_label"]').val(treeNode.sm_label);
         $('input[name="sm_parent_name"]').val(parent_label);
         $('input[name="sm_view"]').val(treeNode.sm_view);
         $('input[name="sm_parent_id"]').val(parseInt(treeNode.sm_parent_id));
         $('input[name="sm_id"]').val(treeNode.sm_id);
+        $('input[name="sort_by"]').val(sort_by);
+        $('input[name="sm_icon"]').val(treeNode.sm_icon);
     }
 
     //同步表单数据到对应id的节点
@@ -231,6 +246,9 @@ layui.use(['form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqu
         synchronizingNode.sm_id = sm_id_from_input;
         synchronizingNode.sm_label = $('input[name="sm_label"]').val();
         synchronizingNode.sm_view = $('input[name="sm_view"]').val();
+        synchronizingNode.sort_by = $('input[name="sort_by"]').val();
+        synchronizingNode.sm_icon = $('input[name="sm_icon"]').val();
+        synchronizingNode.sm_parent_id = $('input[name="sm_parent_id"]').val();
         jqueryZtreeCore.getZTreeObj("treeDemo").updateNode(synchronizingNode);
     }
 
@@ -238,6 +256,85 @@ layui.use(['form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqu
     function checkAllNodeHasSaved() {
         return !jqueryZtreeCore.getZTreeObj("treeDemo").getNodeByParam('sm_id', newTmpId);
     }
+
+    function zTreeOnDrop(event, treeId, treeNodes, targetNode, moveType) {
+        //共需要修改三个节点。移动前的下一个节点、移动的节点、移动后的下一个节点
+        var update_nodes = [];
+
+        /**
+         * 修改节点自身
+         */
+        var movedNodeParam = {};
+        var movedNode = treeNodes[0];
+
+        movedNodeParam.sm_parent_id = movedNode.sm_parent_id;
+        if (!movedNodeParam.sm_parent_id) movedNodeParam.sm_parent_id = 0;
+
+        //获取前一个节点的id为移动节点的前置id
+        var prevNode = movedNode.getPreNode();
+        var movedNodeNewSory = prevNode ? prevNode.sm_id : 0;
+        if (movedNodeNewSory !== parseInt(movedNode.sort_by)) {
+            movedNodeParam.sort_by = movedNodeNewSory;
+        }
+        if (Object.keys(movedNodeParam).length > 0) {
+            movedNodeParam.sm_id = movedNode.sm_id;
+            update_nodes.push(movedNodeParam);
+        }
+
+        /**
+         * 修改移动后的下一个节点
+         */
+        var nextNode = movedNode.getNextNode();
+        //获取后一个节点，重置后一个节点的前置id
+        if (nextNode && parseInt(nextNode.sort_by) !== parseInt(movedNode.sm_id)) {
+            update_nodes.push({
+                sm_id: nextNode.sm_id,
+                sort_by: movedNode.sm_id
+            });
+        }
+
+        /**
+         * 修改移动前的下一个节点
+         */
+        var moveBeforeNode = jqueryZtreeCore.getZTreeObj("treeDemo").getNodeByParam('sort_by', movedNode.sm_id);
+        if (moveBeforeNode) {
+            var moveBeforeNodePrevNode = moveBeforeNode.getPreNode();
+            var moveBeforeNewSortBy = moveBeforeNodePrevNode ? moveBeforeNodePrevNode.sm_id : 0;
+            if (moveBeforeNewSortBy !== parseInt(movedNode.sm_id)) {
+                update_nodes.push({
+                    sm_id: moveBeforeNode.sm_id,
+                    sort_by: moveBeforeNewSortBy
+                });
+            }
+        }
+
+        if (prevNode && prevNode.sm_id !== parseInt(movedNode.sort_by)) {
+            movedNode.sort_by = prevNode.sm_id;
+        }
+        if (nextNode && parseInt(nextNode.sort_by) !== parseInt(movedNode.sm_id)) {
+            nextNode.sort_by = movedNode.sm_id;
+        }
+        if (moveBeforeNode && moveBeforeNewSortBy && moveBeforeNewSortBy !== parseInt(movedNode.sm_id)) {
+            moveBeforeNode.sort_by = moveBeforeNewSortBy;
+        }
+
+        if (update_nodes.length > 0) {
+            updateMenusSort(update_nodes);
+        }
+    }
+
+    function updateMenusSort(nodes) {
+        var options = {
+            data: {nodes: nodes},
+            url: '/admin/menu/update-sort',
+            method: 'patch',
+            done: function (res) {
+                layer.msg(res.msg);
+            }
+        };
+        admin.req(options);
+    }
+
 });
 
 </script>
