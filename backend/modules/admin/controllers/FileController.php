@@ -43,15 +43,15 @@ class FileController extends JwtController {
 
         $fullName = $this->getFullName($file, \Yii::$app->params['uploadConfig']['imagePathFormat']);
 
-        $file_path = \Yii::$app->getBasePath() . '/public' . $fullName;
+//        $file_path = \Yii::$app->getBasePath() . '/public' . $fullName;
 
-        FileHelper::createDirectory(dirname($file_path));
-        if ($file->saveAs($file_path)) {
-            $info['file_path'] = $fullName;
-            $info['web_path'] = \Yii::$app->params['uploadConfig']['imageUrlPrefix'] . $fullName;
-        } else {
-            throw new CustomException($this->error);
-        }
+//        FileHelper::createDirectory(dirname($file_path));
+//        if ($file->saveAs($file_path)) {
+//            $info['file_path'] = $fullName;
+//            $info['web_path'] = \Yii::$app->params['uploadConfig']['imageUrlPrefix'] . $fullName;
+//        } else {
+//            throw new CustomException($this->error);
+//        }
 
         // 图片后期推送cdn上
 //        $scenario = \Yii::$app->request->getQueryParam('scenario');
@@ -64,12 +64,21 @@ class FileController extends JwtController {
 //        $info['file_path'] = \common\components\Ftp::getInstance($ftpPlat)->push($file_path);
 //        $info['web_path'] = $ftpPlat['accessDomain'] . $info['file_path'];
 
-        //图片入库
-        $size = getimagesize($file_path);
-        $info['imgId'] = Img::InsertImg($info['file_path'], $size);
+        //生成base64码保存
+        if($fp = fopen($file->tempName, "rb", 0)) {
+            $binary = fread($fp, filesize($file->tempName)); // 文件读取
+            fclose($fp);
+            $base64 = base64_encode($binary); // 转码
+        } else {
+            throw new CustomException('上传图片失败！');
+        }
 
-        //删除本地文件
-        //unlink($file_path);
+        $base64Cont = 'data:image/'.$file->getExtension().';base64,' . $base64; // 显示base64码
+
+        //图片入库
+        $info['imgId'] = Img::InsertImgBase64($base64Cont);
+        $info['web_path'] = $base64Cont;
+        $info['file_path'] = $base64Cont;
 
         return $info;
     }

@@ -33,13 +33,18 @@ class MenuController extends BusinessController
     {
         $sid = intval(Helpers::getRequestParam('sid'));
         $menuType = ($sid === 1) ? SystemMenu::SM_TYPE_SETTING : SystemMenu::SM_TYPE_BUSINESS;
-        $menus = SystemMenu::find()->where(['sm_set_or_business' => $menuType])->asArray()->all();
+        $menus = SystemMenu::find()->where(['sm_set_or_business' => $menuType])->indexBy('sm_id')->asArray()->all();
 
         $results = [];
-        foreach ($menus as $item) {
-            if ($item['sort_by'] == 0) {
-                $this->setSortNum1($menus, $results, $item);
+        $sortType = Helpers::getRequestParam('useSort');
+        if (empty($sortType)) {
+            foreach ($menus as $item) {
+                if ($item['sort_by'] == 0) {
+                    $this->setSortNum1($menus, $results, $item);
+                }
             }
+        } else {
+            $results = array_values($menus);
         }
 
         return $results;
@@ -58,7 +63,9 @@ class MenuController extends BusinessController
             foreach ($params as $param) {
                 $menu = SystemMenu::findOne(['sm_id' => $param['sm_id']]);
                 $menu->setScenario('update');
-                $menu->sort_by = $param['sort_by'];
+                if (isset($param['sort_by'])) {
+                    $menu->sort_by = $param['sort_by'];
+                }
                 if (isset($param['sm_parent_id'])) {
                     $menu->sm_parent_id = $param['sm_parent_id'];
                 }
@@ -86,9 +93,10 @@ class MenuController extends BusinessController
 
         foreach ($menus as $m) {
             if ($m['sort_by'] === $menu['sm_id']) {
-                $this->setSortNum1($menus, $results, $m);
+                return $this->setSortNum1($menus, $results, $m);
                 break;
             }
         }
+        return true;
     }
 }

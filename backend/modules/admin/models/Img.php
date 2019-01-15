@@ -36,4 +36,23 @@ class Img extends BaseModel
 
         return false;
     }
+
+    //²åÈëbase64Í¼Æ¬
+    public static function InsertImgBase64($cont)
+    {
+        $imgModel = new self();
+        $imgModel->setAttributes([
+            'content' => $cont,
+            'created_at' => time(),
+            'updated_at' => time()
+        ], false);
+
+        if ($imgModel->validate()) {
+            if ($imgModel->save()) {
+                return $imgModel->img_id;
+            }
+        }
+
+        return false;
+    }
 }

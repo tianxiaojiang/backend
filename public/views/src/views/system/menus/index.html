@@ -112,9 +112,11 @@ layui.use(['form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqu
         }
     };
 
+    //获取标记
+    var useNewSort = localStorage.getItem('useSort');
 
     var options = {
-        url: '/admin/menu/index',
+        url: '/admin/menu/index?useSort=' + (useNewSort ? useNewSort : ''),
         method: 'get',
         done: function (res) {
             jqueryZtreeCore.init($("#treeDemo"), setting, res.data);

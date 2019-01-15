@@ -20,7 +20,7 @@ class PasswordAlgorithmService
     public static $systemMapAlgorithm = [
         '0' => 'encryptNewest',//数据兼容
         '1' => 'encryptNewest',
-        '3' => 'encryptInRisk',
+        '5' => 'encryptInRisk',
     ];
 
     public static function encryptInIdip(Admin $adminModel)

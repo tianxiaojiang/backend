@@ -107,8 +107,8 @@ class CommonController extends \Backend\modules\common\controllers\BaseControlle
                 'description' => $system->description,
                 'name' => $system->name,
                 'systems_id' => $system->systems_id,
-                'show_url' => empty($system->img) ? '' :\Yii::$app->params['uploadConfig']['imageUrlPrefix'] . $system->img->url_path,
-                'active_url' => empty($system->activeImg) ? '' :\Yii::$app->params['uploadConfig']['imageUrlPrefix'] . $system->activeImg->url_path,
+                'show_url' => empty($system->img) ? '' : $system->img->content,
+                'active_url' => empty($system->activeImg) ? '' : $system->activeImg->content,
             ];
         }
 
