@@ -20,7 +20,7 @@ class PasswordAlgorithmService
     public static $systemMapAlgorithm = [
         '0' => 'encryptNewest',//数据兼容
         '1' => 'encryptNewest',
-        '5' => 'encryptInRisk',
+        '5' => 'encryptInIdip',
     ];
 
     public static function encryptInIdip(Admin $adminModel)
@@ -32,6 +32,6 @@ class PasswordAlgorithmService
     //统一后的最新加密算法
     public static function encryptNewest(Admin $adminModel)
     {
-        return md5(md5($adminModel->password) . $adminModel->salt);
+        return md5(md5($adminModel->password) . $adminModel->salt) == $adminModel->passwd;
     }
 }

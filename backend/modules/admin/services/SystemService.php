@@ -10,7 +10,10 @@ namespace Backend\modules\admin\services;
 
 use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
+use Backend\modules\admin\models\Admin;
 use Backend\modules\admin\models\System;
+use Backend\modules\admin\models\SystemUser;
+use Backend\modules\admin\models\SystemUserGroup;
 
 /**
  * 系统业务处理
@@ -83,6 +86,127 @@ class SystemService
     public static function validateSystemNormal($systemObj)
     {
         if ($systemObj->status !== System::SYSTEM_STAT_NORMAL)
-            throw new CustomException('系统状态异常，请联系平台管理员1');
+            throw new CustomException('系统状态异常，请联系平台管理员');
+    }
+
+    /**
+     * 导入系统用户
+     * @param $file 上传的用户json文件
+     * @return array 旧的ad_uid对应的新ad_uid
+     */
+    public static function importDevelopAdmin($users, $systems_id)
+    {
+        if (empty($users))
+            throw new CustomException('导入用户不能为空');
+
+        $uidMaps = [];
+        foreach ($users['RECORDS'] as $RECORD) {
+            //检查数据正常
+            if (!self::checkAdminData($RECORD)) continue;
+
+            //是否已存在
+            $oldAdmin = Admin::findOne(['account' => $RECORD['account'], 'auth_type' => $RECORD['auth_type']]);
+            if (!empty($oldAdmin)) {
+                $ad_uid = $oldAdmin->ad_uid;
+            } else {
+                $newAdmin = new Admin();
+                $newAdmin->staff_number = $RECORD['staff_number'];
+                $newAdmin->auth_type = $RECORD['auth_type'];
+                $newAdmin->password_algorithm_system = $RECORD['password_algorithm_system'];
+                $newAdmin->account = $RECORD['account'];
+                $newAdmin->passwd = $RECORD['passwd'];
+                $newAdmin->salt = $RECORD['salt'];
+                $newAdmin->mobile_phone = $RECORD['mobile_phone'];
+                $newAdmin->username = $RECORD['username'];
+                $newAdmin->access_token = '';
+                $newAdmin->access_token_expire = 0;
+                $newAdmin->status = $RECORD['status'];
+                $newAdmin->created_at = $RECORD['created_at'];
+                $newAdmin->updated_at = $RECORD['updated_at'];
+                $newAdmin->reset_password = $RECORD['reset_password'];
+
+                $newAdmin->save();
+                $ad_uid = $newAdmin->ad_uid;
+            }
+            $systemAdmin = SystemUser::findOne(['ad_uid' => $ad_uid, 'systems_id' => $systems_id]);
+            if (empty($systemAdmin)) {
+                $systemAdmin = new SystemUser();
+                $systemAdmin->ad_uid = $ad_uid;
+                $systemAdmin->systems_id = $systems_id;
+            }
+
+            $uidMaps[$RECORD['ad_uid']] = $ad_uid;
+        }
+
+        return $uidMaps;
+    }
+
+    /**
+     * 导入用户角色的关系
+     * @param $userRoleJsonFile
+     * @param $uidMaps
+     */
+    public static function importUserGroup($userRoles, $uidMaps, $newSid)
+    {
+
+        if (empty($newSid))
+            throw new CustomException('新系统不能为空!');
+
+        if (empty($userRoles))
+            throw new CustomException('用户角色不能为空');
+
+        //这里需要设置sid为新id
+        Helpers::$request_params['sid'] = $newSid;
+        //清空原来的数据
+        $db = \Yii::$app->db;
+        $db->createCommand('truncate table s' . $newSid . '_system_user_group;')->execute();
+        foreach ($userRoles['RECORDS'] as $item) {
+            if (empty($item['ad_uid']) || empty($item['sg_id'])) continue;
+            $userGroup = new SystemUserGroup();
+            $userGroup->ad_uid = $uidMaps[$item['ad_uid']];
+            $userGroup->sg_id = $item['sg_id'];
+            $userGroup->save();
+        }
+
+        //重置为1
+        Helpers::$request_params['sid'] = 1;
+
+        return true;
+    }
+
+    protected static function checkAdminData($adminArr)
+    {
+        //账号必须有salt
+        if (empty($adminArr['salt'])) {
+            \Yii::error('账号导入失败: 没有salt字段。数据: ' . json_encode($adminArr));
+            return false;
+        }
+
+        //账号必须有原id
+        if (empty($adminArr['ad_uid'])) {
+            \Yii::error('账号导入失败: 没有ad_uid字段。数据: ' . json_encode($adminArr));
+            return false;
+        }
+
+        //账号必须有账号
+        if (empty($adminArr['account'])) {
+            \Yii::error('账号导入失败: 没有account字段。数据: ' . json_encode($adminArr));
+            return false;
+        }
+
+        //域账户的auth_type为0或2，staff_number非空
+        if (($adminArr['auth_type'] === 0 || $adminArr['auth_type'] === 2) && $adminArr['staff_number'] > 0) {
+            return true;
+        }
+
+        //普通账密
+        if ($adminArr['auth_type'] === 1
+            && !empty($adminArr['passwd'])
+            && !empty($adminArr['password_algorithm_system'])
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }

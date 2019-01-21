@@ -1,0 +1,61 @@
+<script type="text/html" template>
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号类型：</label>
+            <div class="layui-input-block">
+                <select name="type" id="add_white_list_auth_type_filter" lay-filter="white_list_auth_type_filter" required lay-verify="required">
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号</label>
+            <div class="layui-input-block"> <input type="text" name="account" placeholder="开发者账号" autocomplete="off" class="layui-input" /></div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="add-white-list">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</script>
+<script>
+    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+
+        var $ = layui.jquery, table = layui.table, form = layui.form, admin = layui.admin, view = layui.view;
+
+        // 渲染开发者账号分类列表
+        var renderAuthType = function () {
+            var typesHTML = '',
+                optionStatus = {
+                    url: '/admin/common/admin-auth-types',
+                    done: function (res) {
+                        $.each(res.data.types, function (i, v) {
+                            typesHTML += '<option value="' + i + '">' + v + '</option>';
+                        });
+                        $('#add_white_list_auth_type_filter').html(typesHTML);
+                        form.render();
+                    }
+                };
+            admin.req(optionStatus);
+        };
+
+        renderAuthType();
+
+        // 提交添加
+        form.on('submit(add-white-list)', function (data) {
+            var options = {
+                data: data.field,
+                url: '/admin/white-list/create',
+                method: 'post',
+                done: function () {
+                    layer.closeAll();
+                    table.reload('login-white-lists-id');
+                    layer.msg('添加成功！');
+                }
+            };
+            admin.req(options);
+            return false;
+        });
+    });
+</script>

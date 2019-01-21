@@ -36,6 +36,7 @@ $params = [
         'cookie_domian'			=>	'.ztgame.com',
         'cookie_secure'			=>	0,
     ],
+    'white_list_of_no_capth' => require_once (__DIR__ . '/whiteListOfNoCapth.php'),
 ];
 
 return file_exists(__DIR__ . '/params-local.php') ? ArrayHelper::merge($params, require_once(__DIR__ . '/params-local.php')) : $params;

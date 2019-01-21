@@ -63,8 +63,8 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     {
         return [
             'changePasswd' => ['account', 'auth_type', 'staff_number', 'reset_password', 'password', 'new_passwd', 'new_passwd_repeat'],
-            'default' => ['account', 'auth_type', 'staff_number', 'reset_password', 'password', 'createtime', 'mobile_phone'],
-            'update' => ['account', 'auth_type', 'staff_number', 'reset_password', 'mobile_phone', 'username', 'access_token', 'status', 'password', 'sg_id'],
+            'default' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'password', 'createtime', 'mobile_phone'],
+            'update' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'mobile_phone', 'username', 'access_token', 'status', 'password', 'sg_id'],
             'create' => ['account', 'auth_type', 'staff_number', 'reset_password', 'mobile_phone', 'username', 'access_token', 'status', 'password', 'sg_id'],
         ];
     }
@@ -196,7 +196,8 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
 
             //如果是密码普通账号，填充密码
             if ($this->auth_type == Admin::AUTH_TYPE_PASSWORD) {
-                (new NewAdminInfoFill($this))->fillFieldAtCreate();
+                $this->password_algorithm_system = 1;
+                $this->passwd = md5(md5($this->password) . $this->salt);
             }
 
             $ad_uid = parent::insert($runValidation, $attributes);

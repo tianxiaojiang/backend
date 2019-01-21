@@ -51,6 +51,7 @@ class AuthTypeService
     //通过密码算法验证
     protected function auth_by_password() {
         $execFunc = PasswordAlgorithmService::$systemMapAlgorithm[$this->adminModel->password_algorithm_system];
+        \Yii::error('----debug:' . var_export($execFunc, true));
         if (!method_exists(PasswordAlgorithmService::class, $execFunc))
             throw new CustomException('密码认证方式错误，请联系管理员');
 

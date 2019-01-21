@@ -9,6 +9,7 @@
 namespace Backend\modules\admin\models;
 
 use Backend\helpers\Helpers;
+use Backend\modules\admin\services\SystemService;
 use Backend\modules\common\models\BaseModel;
 
 class SystemPriv extends BaseModel
@@ -76,5 +77,17 @@ class SystemPriv extends BaseModel
             self::$allPrivileges = self::find()->where($where)->indexBy('sp_id')->orderBy('sp_id asc')->asArray()->all();
         }
         return self::$allPrivileges;
+    }
+
+    public function insert($runValidation = true, $attributes = null)
+    {
+        $currentSystem = SystemService::getCurrentSystem();
+        //中心后台的菜单都设置为后台可见
+        if ($currentSystem->systems_id === 1)
+            $this->sp_set_or_business = 1;
+
+        parent::insert($runValidation = true, $attributes = null);
+
+        return true;
     }
 }

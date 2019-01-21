@@ -1,0 +1,60 @@
+<script type="text/html" template lay-done="import_system_data_callback()">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">系统编号</label>
+            <div class="layui-input-block"><input type="text" class="layui-input layui-input-inline layui-disabled" disabled id="import-data-systems-id" name="systems_id" required lay-verify="required" placeholder="系统编号" value="{{ d.params.systems_id }}" autocomplete="off" class="layui-input" /></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">json数据</label>
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="admin-data">
+                    <i class="layui-icon">&#xe67c;</i>上传文件
+                </button>
+            </div>
+            <div class="layui-input-block">
+                说明：格式如下
+                <pre class="layui-code">
+                    {"admins":{"RECORDS":[{"ad_uid":1,"staff_number":17235}]},"admin_role":{"RECORDS":[{"sug_id":2,"sg_id":2,"ad_uid":4,"created_at":"2019\/1\/7 17:26:59","updated_at":"2019\/1\/7 17:26:59"}]}}
+                </pre>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" id="import-data">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+</script>
+<script>
+    var import_system_data_callback = function(){
+
+        layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'upload', 'code'], function () {
+
+            var $ = layui.jquery, form = layui.form, upload = layui.upload, ztutil = layui.ztutil;
+
+            //layui.code(); //引用code方法
+
+            var systems_id = $('#import-data-systems-id').val();
+
+            upload.render({
+                elem: '#admin-data'
+                ,url: '/admin/system/import-dev-data' //必填项
+                ,auto: false
+                ,accept: 'file'
+                ,exts: 'json'
+                ,field: 'admin_user'
+                ,multiple: true
+                ,number: 2
+                ,bindAction: '#import-data'
+                ,data: ztutil.createSign({Authorization: ztutil.getToken(), systems_id:systems_id})
+                ,done: function (res) {
+                    console.log(res);
+                    if (parseInt(res.code) === 0) {
+                        layui.layer.msg('提交成功');
+                    }
+                }
+            });
+        });
+
+    }
+</script>

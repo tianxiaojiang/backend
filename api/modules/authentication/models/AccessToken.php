@@ -7,6 +7,7 @@ use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\helpers\Lang;
 use Backend\modules\admin\models\Admin;
+use Backend\modules\admin\models\LoginWhiteList;
 use Backend\modules\admin\models\System;
 use Backend\modules\admin\models\SystemPriv;
 use Backend\modules\admin\models\SystemUser;
@@ -42,7 +43,7 @@ class AccessToken extends Admin
     public function scenarios()
     {
         return [
-            'login' => ['captcha', 'auth_type', 'account', 'password', 'access_token', 'access_token_expire'],
+            'login' => ['captcha', 'auth_type', 'account', 'password', 'password_algorighm_system', 'access_token', 'access_token_expire'],
         ];
     }
 
@@ -54,7 +55,11 @@ class AccessToken extends Admin
             ['password', 'required', 'message' => '请输入密码', 'on' => ['login']],
             ['password', 'validatePassword', 'message' => '账号或密码错误', 'on' => ['login']],
         ];
-        if (APP_ENV != 'dev') array_unshift($rules, ['captcha', \yii\captcha\CaptchaValidator::class, 'message' => '验证码错误', 'captchaAction'=>'admin/token/captcha', 'on' => ['login']]);
+
+        $whiteListModel = LoginWhiteList::findOne(['type' => $this->auth_type, 'account' => $this->account]);
+        if (empty($whiteListModel)) {
+            array_unshift($rules, ['captcha', \yii\captcha\CaptchaValidator::class, 'message' => '验证码错误', 'captchaAction'=>'admin/token/captcha', 'on' => ['login']]);
+        }
         return $rules;
     }
 
@@ -73,6 +78,7 @@ class AccessToken extends Admin
         $this->setAttributes(\Yii::$app->request->post());
 
         if ($this->validate()) {
+            //非普通账号，同步一下内容
             if (in_array($this->auth_type, [Admin::AUTH_TYPE_CHANGZHOU, Admin::AUTH_TYPE_DOMAIN])) {
                 (new NewAdminInfoFill($this))->fillFieldAtCreate();
                 if ($this->isNewRecord){//新的员工，校验下员工工号
@@ -89,6 +95,10 @@ class AccessToken extends Admin
                     }
                 }
                 $this->save(false);
+            } elseif($this->password_algorithm_system != 1) {
+                //普通账号，其他系统的，同步密码为最新系统
+                (new NewAdminInfoFill($this))->fillFieldAtCreate();
+                $this->save();
             }
             return $this;
         } else {

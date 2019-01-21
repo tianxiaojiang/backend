@@ -1,0 +1,98 @@
+<title>免验登录列表</title>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-btn-container">
+                    <button class="layui-btn" id="btn-add-login-white-list">添加</button>
+                </div>
+                <table class="layui-table" id="login-white-lists-id" lay-size="lg" lay-filter="login-white-lists-list-filter"></table>
+                <script type="text/html" id="login-white-list-option">
+                    <a class="layui-btn layui-btn-sm" lay-event="edit-login-white-list-event">编辑</a>
+                    <a class="layui-btn layui-btn-sm layui-btn-danger" data-type="t" lay-event="del-login-white-list-event">删除</a>
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+
+        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+
+        // 点击添加名单按钮
+        $('#btn-add-login-white-list').on('click', function () {
+            view.popup({
+                type: 1,
+                id: 'LAY-system-login-white-list',
+                title: '添加白名单',
+                area: ['600px', '500px'],
+                resize: true,
+                success: function () {
+                    view(this.id).render('system/login-white/add').done(function () {
+                        $(window).trigger('resize');
+                    });
+                }
+            });
+        });
+
+        // 渲染管理员列表
+        table.render({
+            elem: '#login-white-lists-id',
+            url: '/admin/white-list/index',
+            where: ztutil.createSign(),
+            size: 'lg',
+            headers: {
+                Authorization: ztutil.getToken()
+            },
+            cols: [[
+                { field: 'login_white_list_id', title: '编号', sort: true },
+                { field: 'account', title: '账号', sort: true },
+                { field: 'show_type', title: '账号类型', sort: true },
+                { field: 'created_at', title: '创建时间', sort: true },
+                { fixed: 'right', title: '操作', width: 150, toolbar: '#login-white-list-option' }
+            ]],
+            page: true
+        });
+
+        // 监听工具条
+        table.on('tool(login-white-lists-list-filter)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'del-login-white-list-event') {
+                layer.confirm('是否要删除白名单：<strong>' + data.name + '</strong> ？', {
+                }, function (index) {
+                    deleteSystem(data.login_white_list_id, obj);
+                });
+            } else if (obj.event === 'edit-login-white-list-event') {
+                console.log('edit-login-white-list-event');
+                view.popup({
+                    type: 1,
+                    area: ['600px', '500px'],
+                    id: 'LAY-login-white-list-login-white-lists-update',
+                    title: '修改白名单',
+                    resize: false,
+                    success: function () {
+                        view(this.id).render('system/login-white/update', data).done(function() {
+                            $(window).trigger('resize');
+                        });
+                    }
+                });
+            }
+        });
+
+        // 删除系统请求，操作比较敏感，删除一律做逻辑状态删除
+        var deleteSystem = function (id, obj) {
+            var options = {
+                url: '/admin/white-list/delete?id=' + id,
+                method: 'delete',
+                done: function () {
+                    obj.del();
+                    table.reload('login-white-lists-list-id');
+                    layer.msg('删除白名单成功！');
+                }
+            };
+            admin.req(options);
+        };
+
+    });
+</script>

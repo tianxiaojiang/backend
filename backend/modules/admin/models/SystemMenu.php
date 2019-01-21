@@ -8,6 +8,7 @@
 
 namespace Backend\modules\admin\models;
 
+use Backend\modules\admin\services\SystemService;
 use Backend\modules\common\models\BaseModel;
 use Backend\helpers\Helpers;
 
@@ -204,5 +205,17 @@ class SystemMenu extends BaseModel
     
     public function getSystemPriv() {
         return $this->hasMany(SystemPriv::className(), ['sm_id' => 'sm_id']);
+    }
+
+    public function insert($runValidation = true, $attributes = null)
+    {
+        $currentSystem = SystemService::getCurrentSystem();
+        //中心后台的菜单都设置为后台可见
+        if ($currentSystem->systems_id === 1)
+            $this->sm_set_or_business = 1;
+
+        parent::insert($runValidation = true, $attributes = null);
+
+        return true;
     }
 }

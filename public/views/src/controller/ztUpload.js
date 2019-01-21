@@ -104,7 +104,7 @@ layui.define(['ztutil', 'upload'], function(exports) {
             }
         };
 
-        ztUploadFactory = {
+        var ztUploadFactory = {
             init: function (config) {
                 var uploadInstance = new ztUpload();
                 uploadInstance.init(config);

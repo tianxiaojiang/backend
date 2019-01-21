@@ -41,7 +41,10 @@ class NewAdminInfoFill
         if (empty($this->adminModel->salt))
             throw new CustomException('新增普通账号填充信息时的salt字段未设置!');
 
-        $this->adminModel->passwd = PasswordAlgorithmService::encryptNewest($this->adminModel);
+        if ($this->adminModel->password_algorithm_system != 1) {
+            $this->adminModel->password_algorithm_system = 1;
+            $this->adminModel->passwd = $this->adminModel->password;
+        }
     }
 
     //通过域账号获取
