@@ -7,8 +7,8 @@
  */
 
 $config = [
-    'homeUrl' => defined('YII_ENV') && YII_ENV == 'dev' ? 'https://dev.backend.com' : 'https://backend.com',
-    'runtimePath' => defined('YII_ENV') && YII_ENV == 'dev' ? 'E:\\project\\adminClientAttachGame\\backend\\runtime' : '/tmp/backend/',
+    'homeUrl' => defined('YII_ENV') && YII_ENV == 'dev' ? 'http://www.admin_client.com' : 'http://www.admin_client.com',
+    'runtimePath' => defined('YII_ENV') && YII_ENV == 'dev' ? '/tmp/admin_client/' : '/tmp/backend/',
     'modules' => [
         'index' => [
             'class' => 'Business\modules\index\Module',

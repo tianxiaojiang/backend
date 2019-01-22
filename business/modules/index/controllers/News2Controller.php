@@ -47,6 +47,7 @@ class News2Controller extends \Backend\modules\common\controllers\BusinessContro
                 'status_show' => News::$_status[$model->status],
                 'status' => $model->status,
                 'created_at' => $model->created_at,
+                'updated_at' => $model->updated_at,
             ];
         }
 

@@ -20,7 +20,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports) {
         MOD_NAME: 'admin', //模块事件名
         debug: true, //是否开启调试模式。如开启，接口异常时会抛出异常 URL 等信息
         interceptor: true, //是否开启未登入拦截
-        integration_url: 'http://integration.background.com',
+        integration_url: 'https://unify-admin.sdk.mobileztgame.com',
         //自定义请求字段
         request: {
             tokenName: 'Authorization' //自动携带 token 的字段名。可设置 false 不携带。

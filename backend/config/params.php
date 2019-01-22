@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 
 $params = [
     'integration_backend' => [
-        'url' => 'http://integration.background.com',
+        'url' => 'https://unify-admin.sdk.mobileztgame.com',
         'authentication' => '/open/privilege/check',
         'gain_token' => '/open/token/gain',
     ],

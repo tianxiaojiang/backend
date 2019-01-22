@@ -1,180 +1,145 @@
-<title>新闻管理2</title>
+<title>新闻管理1</title>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-card">
             <div class="layui-card-body">
-                <div class="layui-btn-container">
-                    <button class="layui-btn" id="btn-add-group">添加</button>
+                <div class="layui-container layui-col-xs12">
+                    <form class="layui-form">
+                        <div class="layui-inline">
+                            <input class="layui-input" name="start_time" id="news2_start_time" placeholder="开始时间" autocomplete="off">
+                        </div>
+                        <div class="layui-inline">
+                            <input class="layui-input" name="end_time" id="news2_end_time" placeholder="结束时间" autocomplete="off">
+                        </div>
+                        <button class="layui-btn" type="reset">重置</button>
+                        <button class="layui-btn" type="button" id="searchReload">搜索</button>
+                    </form>
                 </div>
-                <table class="layui-table" id="system-group" lay-size="lg" lay-filter="group"></table>
-                <script type="text/html" id="group-option">
-                    <a class="layui-btn layui-btn-sm layui-btn-primary" lay-event="permission">权限</a>
-                    <a class="layui-btn layui-btn-sm" lay-event="edit">修改</a>
+                <div class="layui-container layui-col-xs12" style="margin: 15px 0;">
+                        <button class="layui-btn" id="btn-add-news1">添加</button>
+                </div>
+                <table class="layui-table" id="system-newses1" lay-size="lg" lay-filter="newses-list1"></table>
+                <script type="text/html" id="news-option1">
+                    <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
                     <a class="layui-btn layui-btn-sm layui-btn-danger" data-type="t" lay-event="del">删除</a>
                 </script>
             </div>
         </div>
     </div>
 </div>
-<script type="text/html" id="temp-edit-privileges">
-    <div class="layui-fluid">
-        <form class="layui-form form-privileges" action="" lay-filter="form-privileges">
-            {{#  layui.each(d, function(index_data, data){ }}
-            <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label"><strong id="privileges-smid">{{ data.sm_label }}</strong></label>
-                <div class="layui-input-block">
-                    <ul class="layui-privileges-list">
-                        {{#  layui.each(data.privileges, function(index_labels, labels){ }}
-                        <li>
-                            <input type="checkbox" name="privileges_{{ labels.sp_id }}" value="{{ labels.sp_id }}" lay-skin="primary"  title="{{ labels.sp_label }}" {{ labels.is_checked ? 'checked' : '' }} />
-                        </li>
-                        {{#  }); }}
-                    </ul>
-                </div>
-            </div>
-            {{#  }); }}
-            <div class="layui-form-item">
-                <div class="layui-footer">
-                    <button class="layui-btn" lay-submit lay-filter="btn-privileges">提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
-            </div>
-        </form>
-    </div>   
-</script>
-<div id="edit-privileges" class="layui-hide"></div>
 <script>
-layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function() {
+    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'laydate'], function () {
 
-    var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view, laydate = layui.laydate;
 
-    // 点击添加用户按钮
-    $('#btn-add-group').on('click', function () {
-        var index = layer.load(1);
-        layer.open({
-            type: 1,
-            id: 'LAY-system-groups-add',
-            title: '添加角色',
-            resize: false,
-            success: function () {
-                view(this.id).render('/system/groups/add', data).done(function () {
-                    layer.close(index);
-                    $(window).trigger('resize');
-                });
-            }
-        });
-    });
-
-    // 渲染角色列表
-    table.render({
-        elem: '#system-group',
-        url:'/admin/system-group/index',
-        where: ztutil.createSign(),
-        size: 'lg',
-        headers: {
-            Authorization: ztutil.getToken()
-        },
-        cols: [[
-            {type: 'checkbox'},
-            {field:'sg_id', title:'角色编号', sort: true},
-            {field:'sg_name', title:'角色名', sort: true},
-            {field:'sg_desc', title:'描述', sort: true},
-            {title:'操作', toolbar: '#group-option'}
-        ]],
-        page: true
-    });
-
-    // 打开权限弹层
-    var layerOpenPrivileges = function() {
-        layer.open({
-            type: 1,
-            area: ['690px', 'auto'],
-            title: '角色权限',
-            content: $('#edit-privileges').html(),
-            success: function (){
-                form.render(null, 'form-privileges');
-            }
-        });
-    };
-
-    // 获取权限列表请求
-    var getPrivileges = function (groupID, callback) {
-        var gdata = '';
-        var options = {
-            url: '/admin/system-group/group-privilege-list?group_id=' + groupID,
-            done: function (res) {
-                gdata = res.data;
-                var getTpl = $('#temp-edit-privileges').html();
-                var view = $('#edit-privileges');
-                view.empty();
-                laytpl(getTpl).render(gdata, function (html) {
-                    view.html(html);
-                    // 记录当前行的数据 id
-                    view.attr('group-id', groupID);
-                    if (callback !== undefined) callback();
-                });
-            }
-        };
-        admin.req(options);
-    };
-
-    // 删除用户请求
-    var deleteUser = function (id, obj) {
-        var options = {
-            url: '/admin/system-group/delete?id=' + id,
-            method: 'delete',
-            done: function () {
-                obj.del();
-                table.reload('system-group');
-                layer.msg('删除用户成功！');
-            }
-        };
-        admin.req(options);
-    };
-
-    // 监听用户权限提交
-    form.on('submit(btn-privileges)', function (data) {
-        var groupID = $('#edit-privileges').attr("group-id");
-        var options = {
-            data: data.field,
-            url: '/admin/system-group/group-privilege-update?group_id=' + groupID,
-            method: 'patch',
-            done: function (res) {
-                layer.closeAll();
-                table.reload('system-group');
-                layer.msg('修改用户权限成功！');
-            }
-        };
-        admin.req(options);
-        return false;
-    });
-
-    // 监听工具条
-    table.on('tool(group)', function(obj) {
-        var data = obj.data;
-        if (obj.event === 'permission') {
-            getPrivileges(data.sg_id, layerOpenPrivileges);
-        } else if (obj.event === 'del') {
-            layer.confirm('是否要删除角色：<strong>' + data.sg_name + '</strong> ？', {
-            }, function(index) {
-                deleteUser(data.sg_id, obj);
-            });
-        } else if (obj.event === 'edit') {
-            var index = layer.load(1);
-            layer.open({
+        // 点击添加管理员按钮
+        $('#btn-add-news1').on('click', function () {
+            view.popup({
                 type: 1,
-                id: 'LAY-system-groups-update',
-                title: '修改角色',
+                id: 'LAY-system-news-add1',
+                title: '添加文章',
                 resize: false,
                 success: function () {
-                    view(this.id).render('/system/groups/update', data).done(function () {
-                        layer.close(index);
+                    view(this.id).render('index/news1/add').done(function () {
                         $(window).trigger('resize');
                     });
                 }
             });
-        }
+        });
+
+        laydate.render({
+            elem: '#news2_start_time'
+            ,type: 'datetime'
+        });
+        laydate.render({
+            elem: '#news2_end_time'
+            ,type: 'datetime'
+        });
+
+        // 渲染新闻列表
+        table.render({
+            elem: '#system-newses1',
+            url: '/index/news2/index',
+            where: ztutil.createSign(),
+            size: 'lg',
+            headers: {
+                Authorization: ztutil.getToken()
+            },
+            cols: [[
+                { type: 'checkbox' },
+                { field: 'news_id', title: '文章编号', sort: true },
+                { field: 'title', title: '标题', sort: true },
+                { field: 'description', title: '简介', sort: true },
+                { field: 'content', title: '内容', sort: true },
+                { field: 'status', title: '状态', sort: true },
+                { field: 'created_at', title: '创建时间', sort: true },
+                { field: 'updated_at', title: '最后更新时间', sort: true },
+                { fixed: 'right', title: '操作', toolbar: '#news-option1' }
+            ]],
+            page: true
+        });
+
+        //监听表单重载
+        $('#searchReload').on('click', function () {
+            var start_time = $('#news2_start_time').val();
+            var end_time = $('#news2_end_time').val();
+            //执行重载
+            table.reload('system-newses1', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                },where: {
+                    start_time: start_time,
+                    end_time: end_time
+                }
+            });
+        });
+
+        // 监听工具条
+        table.on('tool(newses-list1)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'del') {
+                layer.confirm('是否要删除文章：<strong>' + data.title + '</strong> ？', {
+                }, function (index) {
+                    deleteNews(data.news_id, obj);
+                });
+            } else if (obj.event === 'edit') {
+                view.popup({
+                    type: 1,
+                    id: 'LAY-system-newses1-update',
+                    title: '修改管理员',
+                    resize: false,
+                    success: function () {
+                        view(this.id).render('/index/news1/update', data).done(function() {
+                            $(window).trigger('resize');
+                        });
+                    }
+                });
+            }
+        });
+
+        // 删除文章请求
+        var deleteNews = function (id, obj) {
+            var options = {
+                url: '/index/news1/delete?id=' + id,
+                method: 'delete',
+                done: function () {
+                    obj.del();
+                    table.reload('system-newses1');
+                    layer.msg('删除成功！');
+                }
+            };
+            admin.req(options);
+        };
+
+        var actions = ['/index/news1/index', '/index/news2/index', '/index/vvv/jjj'];
+        ztutil.getHasPrivilege(actions, function (res) {
+            console.log(res);
+            console.log(res);
+            console.log(res);
+            console.log(res);
+            console.log(res);
+            console.log(res);
+            //根据结果处理后续页面显示
+        });
     });
-    
-});
 </script>
