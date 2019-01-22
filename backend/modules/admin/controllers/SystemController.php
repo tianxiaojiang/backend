@@ -46,6 +46,7 @@ class SystemController extends BusinessController
                 'status' => $model->status,
                 'statusName' => System::$_status[$model->status],
                 'img_id' => $model->img_id,
+                'active_img_id' => $model->active_img_id,
                 'show_url' => (empty($model->img) ? '' : $model->img->content),
                 'active_url' => (empty($model->activeImg) ? '' : $model->activeImg->content),
                 'url' => $model->url,
