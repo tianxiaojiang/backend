@@ -1,6 +1,8 @@
 # 通用后台客户端
 
-此分支是通用后台的业务客户端。使用步骤如下：
+此分支是通用后台的业务客户端。包含了统一登录和权限分配。
+
+## 安装
 
 ### 申请后台项目
 
@@ -9,20 +11,26 @@
 
 - 项目名称
 - 项目的URL
-- 项目开发人员
+- 项目开发人员域账号
+- 项目开发人员工号
 - 简要描述
 - icon(目前尺寸为91*88px)
 
 ### 部署代码
 
 将此代码下载后，部署到一个web下。
-
 nginx配置可参考根目录下的示例文件： nginx_server.conf
 
+### 安装composer类包
+
+在项目根目录下执行：
+```
+composer install
+```
 
 ### 配置数据库
 
-初始化示例数据示例sql文件：位于 sql 目录下的 init.sql
+示例的数据示例sql文件：位于 sql 目录下的 init.sql
 
 修改 /business/config/db.php 或 db-local.php 配置为自己的数据库。
 
@@ -30,11 +38,11 @@ nginx配置可参考根目录下的示例文件： nginx_server.conf
 
 统一登录后台地址：
 
-http://integration.background.com/views/start/index.html?#/user/login
+https://unify-admin.sdk.mobileztgame.com
 
-使用开发人员的账号登录，默认密码为123456。登陆后请立即修改密码。
+使用开发人员自己的域账号登录
 
-### 维护后台
+### 进入维护后台
 
 1. 鼠标移到右上角的头像，弹出下拉框。
 2. 然后点击维护后台，进入维护总页面。
