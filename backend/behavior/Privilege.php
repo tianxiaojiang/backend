@@ -29,6 +29,7 @@ class Privilege extends Behavior
         $sid = Helpers::getRequestParam('sid');
         $game_id = Helpers::getRequestParam('game_id');
         $authorization = Helpers::getHeader('Authorization');
+        empty($authorization) && $authorization = Helpers::getRequestParam('Authorization');
 
         Helpers::validateEmpty($authorization, 'token');
 
@@ -38,18 +39,22 @@ class Privilege extends Behavior
             'a' => $a,
             'sid' => $sid,
             'game_id' => $game_id,
-            ];
+        ];
 
-
+        //过滤不需要权限的操作
+        $noPrivileges = \Yii::$app->params['noPrivilegesActions'];
+        if (in_array('/' . $m . '/' . $c . '/' . $a, $noPrivileges)) {
+            $params['close_check_privilege'] = 1;
+        }
 
         \Yii::info('鉴权头：'. var_export($authorization, true));
         \Yii::info('鉴权参数：'. var_export($params, true));
         $httpClient = new Client();
         $authenticationUrl = \Yii::$app->params['integration_backend']['url'] . \Yii::$app->params['integration_backend']['authentication'];
         $response = $httpClient->get(
-                $authenticationUrl,
-                $params,
-                ['Authorization' => $authorization]
+            $authenticationUrl,
+            $params,
+            ['Authorization' => $authorization]
         )->send();
 
         if (!$response->getIsOk())
