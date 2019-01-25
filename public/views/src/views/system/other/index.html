@@ -1,0 +1,42 @@
+<title>后台其他工具</title>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-btn-container">
+                    <button class="layui-btn" id="btn-syn-system-admin">同步系统用户老的表到新的表</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
+
+        var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
+
+        // 点击同步用户按钮
+        $('#btn-syn-system-admin').on('click', function () {
+            layer.confirm('是否执行同步？', {
+            }, function (index) {
+                synAdmin();
+            });
+        });
+
+        // 删除系统请求，操作比较敏感，删除一律做逻辑状态删除
+        var synAdmin = function () {
+            var options = {
+                url: '/admin/other/syn-admin',
+                method: 'post',
+                done: function (res) {
+                    if (res.code !== 0) {
+                        layer.msg(res.msg);
+                    } else {
+                        layer.msg('同步成功！');
+                    }
+                }
+            };
+            admin.req(options);
+        };
+    });
+</script>

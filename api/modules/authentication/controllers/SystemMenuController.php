@@ -43,7 +43,7 @@ class SystemMenuController extends SystemController
     {
         $gameId = intval(Helpers::getRequestParam('game_id'));
         $isMaintain = intval(Helpers::getRequestParam('isMaintain'));
-        $callback = intval(Helpers::getRequestParam('callback'));
+        $callback = Helpers::getRequestParam('callback');
         $requestActions = array_flip(explode(',', trim(Helpers::getRequestParam('actions'))));
 
         //维护后台的权限列表
@@ -58,7 +58,7 @@ class SystemMenuController extends SystemController
         }
 
         $privilegesRes = ["privileges" => $requestActions];
-        if(!empty($callback)) {//业务后台
+        if(!empty($callback)) {//jsonp调用
             echo $callback . '(' . json_encode(['code' => 0, 'msg' => '', 'data' => $privilegesRes]) . ')';exit;
         }
 

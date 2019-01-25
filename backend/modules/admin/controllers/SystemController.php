@@ -44,6 +44,7 @@ class SystemController extends BusinessController
                 'systems_id' => $model->systems_id,
                 'name' => $model->name,
                 'status' => $model->status,
+                'allow_api_call' => $model->allow_api_call,
                 'statusName' => System::$_status[$model->status],
                 'img_id' => $model->img_id,
                 'active_img_id' => $model->active_img_id,
@@ -106,7 +107,7 @@ class SystemController extends BusinessController
         $cont = json_decode(file_get_contents($userFilePath), true);
 
         $db = \Yii::$app->getDb()->beginTransaction();
-        try{
+        try {
             $uidMaps = SystemService::importDevelopAdmin($cont['admins'], $productSystemId);
             $res = SystemService::importUserGroup($cont['admin_role'], $uidMaps, $productSystemId);
         } catch (\Exception $exception) {

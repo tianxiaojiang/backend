@@ -81,13 +81,26 @@ class SystemPriv extends BaseModel
 
     public function insert($runValidation = true, $attributes = null)
     {
-        $currentSystem = SystemService::getCurrentSystem();
-        //中心后台的菜单都设置为后台可见
-        if ($currentSystem->systems_id === 1)
-            $this->sp_set_or_business = 1;
-
+        //权限类型与菜单类型一致
+        $this->sp_set_or_business = $this->menu->sm_set_or_business;
+        
         parent::insert($runValidation = true, $attributes = null);
 
         return true;
+    }
+
+    public function update($runValidation = true, $attributes = null)
+    {
+        //权限类型与菜单类型一致
+        $this->sp_set_or_business = $this->menu->sm_set_or_business;
+
+        parent::update($runValidation = true, $attributes = null);
+
+        return true;
+    }
+
+    public function getMenu()
+    {
+        return $this->hasOne(SystemMenu::class, ['sm_id' => 'sm_id']);
     }
 }

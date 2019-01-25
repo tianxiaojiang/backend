@@ -9,6 +9,7 @@ use Backend\modules\admin\models\System;
 use Backend\modules\admin\models\SystemGroup;
 use Backend\modules\admin\models\SystemUserGroup;
 use Backend\modules\admin\services\AdminService;
+use Backend\modules\admin\services\SystemAdminService;
 use Backend\modules\admin\services\SystemService;
 use Backend\modules\common\controllers\JwtController;
 use yii\helpers\ArrayHelper;
@@ -39,19 +40,22 @@ class AuthController extends JwtController
 
         //验证登录用户
         $model = \Yii::$app->user->identity;
-        $model->validateCanAuth($isMaintain);
 
         AdminService::validateModelEmpty($model);
         AdminService::validateLoginAdminStatus($model);
         AdminService::validateResetPassword($model);
-        AdminService::validateHasSystemPermission($system->systems_id, ArrayHelper::getColumn($model->systems, 'systems_id'));
-        AdminService::validateHasSystemBusinessOrSetting(
-            $isMaintain ? SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN : SystemGroup::SYSTEM_PRIVILEGE_LEVEL_FRONT,
-            ArrayHelper::getColumn($model->systemGroup, 'privilege_level')
-        );
+        SystemAdminService::checkAdminInSystem($model->ad_uid, $goSid);
 
         //验证有没有系统对应的业务权限或管理权限
+        if (SystemAdminService::checkUseNewSystemAdminSchedule())
+            $roles = $model->systemAdmin->systemGroup;
+        else
+            $roles = $model->systemGroup;
 
+        AdminService::validateHasSystemBusinessOrSetting(
+            $isMaintain ? SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN : SystemGroup::SYSTEM_PRIVILEGE_LEVEL_FRONT,
+            ArrayHelper::getColumn($roles, 'privilege_level')
+        );
 
         $access_token = $model->generateAccessToken($system);//生成token
 

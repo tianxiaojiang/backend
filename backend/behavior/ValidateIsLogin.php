@@ -11,8 +11,10 @@ use Api\modules\authentication\models\AccessToken;
 use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\helpers\Lang;
+use Backend\modules\admin\models\SystemAdmin;
 use Backend\modules\admin\models\SystemPriv;
 use Backend\modules\admin\models\SystemUser;
+use Backend\modules\admin\services\SystemAdminService;
 use yii\base\Behavior;
 
 /**
@@ -31,7 +33,6 @@ class ValidateIsLogin extends Behavior
 
         $systemAdminWhere = [
             'ad_uid' => $ad_uid,
-            'systems_id' => $sid,
         ];
         $isMaintain = Helpers::getRequestParam('isMaintain');
         if (empty($isMaintain)) {
@@ -40,7 +41,12 @@ class ValidateIsLogin extends Behavior
             $systemAdminWhere['setting_token_id'] = $tokenId;
         }
 
-        $systemAdminRelation = SystemUser::findOne($systemAdminWhere);
+        if (SystemAdminService::checkUseNewSystemAdminSchedule()) {
+            $systemAdminRelation = SystemAdmin::findOne($systemAdminWhere);
+        } else {
+            $systemAdminWhere['systems_id'] = $sid;
+            $systemAdminRelation = SystemUser::findOne($systemAdminWhere);
+        }
 
         if (empty($systemAdminRelation))
             throw new CustomException(Lang::ERR_TOKEN_INVALID);

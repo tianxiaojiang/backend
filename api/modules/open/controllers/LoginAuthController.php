@@ -21,6 +21,10 @@ class LoginAuthController extends BaseController
 
     public function actionGain()
     {
+        $currentSystem = SystemService::getCurrentSystem();
+        if (!$currentSystem->allow_api_call)
+            throw new CustomException('该系统不允许直接通过api修改密码');
+
         $systemId = Helpers::getRequestParam('sid');
         $account = Helpers::getRequestParam('account');
         $password = Helpers::getRequestParam('password');

@@ -36,7 +36,8 @@ $params = [
         'cookie_domian'			=>	'.ztgame.com',
         'cookie_secure'			=>	0,
     ],
-    'white_list_of_no_capth' => require_once (__DIR__ . '/whiteListOfNoCapth.php'),
+    'system_admin_use_schedule' => 3,//切换用户系统的方式，按位取值，1为老的方式(使用表system_admin)，2为新方式(使用表s{{%d}}_admin)
+
 ];
 
 return file_exists(__DIR__ . '/params-local.php') ? ArrayHelper::merge($params, require_once(__DIR__ . '/params-local.php')) : $params;

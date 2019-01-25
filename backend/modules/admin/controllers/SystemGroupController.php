@@ -6,6 +6,7 @@ use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\modules\admin\models\Game;
 use Backend\modules\admin\models\System;
+use Backend\modules\admin\models\SystemGame;
 use Backend\modules\admin\models\SystemGroup;
 use Backend\modules\admin\models\SystemGroupGame;
 use Backend\modules\admin\models\SystemGroupGamePriv;
@@ -119,7 +120,10 @@ class SystemGroupController extends BusinessController
             } else {
                 $games = [['game_id' => '-1', 'name' => '不区分游戏', 'selected' => intval(in_array('-1', $roleGames))]];
             }
-            $gameWhere['type'] = $currentSystem->game_type;
+            if (empty($gameWhere['game_id'])) {
+                $ids = SystemGame::getSystemGameIds();
+                $gameWhere['game_id'] = $ids;
+            }
             $realGames = Game::find()->where($gameWhere)->asArray()->all();
             foreach ($realGames as $key => $realGame) {
                 if (in_array($realGame['game_id'], $roleGames)) {
@@ -142,11 +146,14 @@ class SystemGroupController extends BusinessController
         $groupId = intval(Helpers::getRequestParam('group_id'));
         $on_game = explode(',', Helpers::getRequestParam('on_game'));
         $gameId = intval(Helpers::getRequestParam('game_id'));
-        if ($gameId != -1 && !in_array($gameId, $on_game)) {//区分游戏的只能设置当前登录的游戏
+        if ($gameId != -1 && !empty($on_game) && $gameId != implode($on_game)) {//区分游戏的只能设置当前登录的游戏
             throw new CustomException('你只能设置角色关联游戏为当前游戏');
         }
-        $params = Helpers::getRequestParams();
 
+        //检查所选游戏是否为系统支持游戏
+//        SystemGame::checkGameInSystem($on_game);
+
+        $params = Helpers::getRequestParams();
         $newPrivileges = [];
         foreach ($params as $key => $val) {
             //组装通用权限数据
@@ -191,6 +198,7 @@ class SystemGroupController extends BusinessController
             //设置管理游戏
             if ($gameId === -1) {
                 $myGames = ArrayHelper::getColumn(Game::getAllGames(['type' => $currentSystem->game_type]), 'game_id');
+                array_push($myGames, -1);
             } else {
                 $myGames = [$gameId];
             }

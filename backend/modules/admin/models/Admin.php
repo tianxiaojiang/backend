@@ -7,6 +7,7 @@ use Backend\helpers\Helpers;
 use Backend\helpers\Lang;
 use Backend\modules\admin\services\admin\AuthTypeService;
 use Backend\modules\admin\services\admin\NewAdminInfoFill;
+use Backend\modules\admin\services\SystemAdminService;
 use Backend\modules\admin\services\SystemService;
 use yii\helpers\ArrayHelper;
 use Backend\modules\common\models\BaseModel;
@@ -65,7 +66,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
             'changePasswd' => ['account', 'auth_type', 'staff_number', 'reset_password', 'password', 'new_passwd', 'new_passwd_repeat'],
             'default' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'password', 'createtime', 'mobile_phone'],
             'update' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'mobile_phone', 'username', 'access_token', 'status', 'password', 'sg_id'],
-            'create' => ['account', 'auth_type', 'staff_number', 'reset_password', 'mobile_phone', 'username', 'access_token', 'status', 'password', 'sg_id'],
+            'create' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'mobile_phone', 'username', 'access_token', 'status', 'password', 'sg_id'],
         ];
     }
 
@@ -182,79 +183,24 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     }
 
     public function insert($runValidation = true, $attributes = null) {
-        //检查账号是否已存在
-        if ($this->auth_type == Admin::AUTH_TYPE_PASSWORD) {
-            $adminOld = Admin::findOne(['account' => $this->account, 'auth_type' => $this->auth_type]);
-        } else {
-            $adminOld = Admin::findOne(['staff_number' => $this->staff_number, 'auth_type' => $this->auth_type]);
+        //salt必须要有，后面生成jwt的签名时候依赖于salt
+        $newSalt = Helpers::getStrBylength(4);
+        $this->salt = $newSalt;
+        //如果是密码普通账号，填充密码
+        if ($this->auth_type == Admin::AUTH_TYPE_PASSWORD && !empty($this->password)) {
+            $this->password_algorithm_system = 1;
+            $this->passwd = md5(md5($this->password) . $this->salt);
         }
-
-        if (empty($adminOld)) {
-            //salt必须要有，后面生成jwt的签名时候依赖于salt
-            $newSalt = Helpers::getStrBylength(4);
-            $this->salt = $newSalt;
-
-            //如果是密码普通账号，填充密码
-            if ($this->auth_type == Admin::AUTH_TYPE_PASSWORD) {
-                $this->password_algorithm_system = 1;
-                $this->passwd = md5(md5($this->password) . $this->salt);
-            }
-
-            $ad_uid = parent::insert($runValidation, $attributes);
-            if (!$ad_uid) {
-                return false;
-            }
-            $ad_uid = $this->ad_uid;
-        } else {
-            $ad_uid = $adminOld->ad_uid;
-        }
-
-        //如果是用户首次自主登录的账号，则只添加账号，不分配系统和角色
-        if (empty(\Yii::$app->user->identity)) return true;
-
-        //未设置则取当前系统的id
-        if (empty($this->system_id)) $this->system_id = intval(Helpers::getRequestParam('sid'));
-
-        //系统id，在初始化系统的时候，必须有系统id
-        if (empty($this->system_id)) throw new CustomException('缺少账户要授权的系统');
-
-        //检查系统账号关系存在
-        $systemAdmin = SystemUser::findOne(['systems_id' => $this->system_id, 'ad_uid' => $ad_uid]);
-        if (empty($systemAdmin)) {
-            $systemAdmin = new SystemUser();
-            $systemAdmin->ad_uid = $ad_uid;
-            $systemAdmin->systems_id = $this->system_id;
-            $systemAdmin->save();
-        }
-
-        //添加角色
-        if (isset($this->sg_id)) {
-            $transaction = \Yii::$app->db->beginTransaction();
-            $sg_ids = explode(',', $this->sg_id);
-            $exitsRoles = SystemUserGroup::findAll(['ad_uid' => $ad_uid]);
-            $exitesRoleIds = ArrayHelper::getColumn($exitsRoles, 'sg_id');
-            $sg_ids = array_diff($sg_ids, $exitesRoleIds);//取没有的角色id，添加
-            $systemUserGroup = new SystemUserGroup();
-            foreach ($sg_ids as $sg_id) {
-                $systemUserGroupClone = clone $systemUserGroup;
-                $systemUserGroupClone->ad_uid = $ad_uid;
-                $systemUserGroupClone->sg_id = intval($sg_id);
-                $systemUserGroupClone->save();
-            }
-            $transaction->commit();
-        }
+        parent::insert($runValidation, $attributes);
 
         return true;
     }
 
     public function update($runValidation = true, $attributes = null) {
-        if (!empty($this->passwd) && $this->passwd != $this->getOldAttribute('passwd')) {
+        if (!empty($this->password)) {
             $newSalt = Helpers::getStrBylength(4);
             $this->salt = $newSalt;
-            $this->passwd = md5(md5($this->passwd) . $newSalt);
-            //修改了密码更新token
-            //$this->access_token = Helpers::generateAccessToken($this->account);
-            //$this->access_token_expire = time() + self::TOKEN_EXPIRE_DURATION;
+            $this->passwd = md5(md5($this->password) . $newSalt);
         } else {
             $this->salt = $this->getOldAttribute('salt');
             $this->passwd = $this->getOldAttribute('passwd');
@@ -266,15 +212,6 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         if (empty(\Yii::$app->user->identity)) {
             return true;
         }
-
-        $sg_ids = empty($this->sg_id) ? [] : explode(',', strval($this->sg_id));
-        $oldSg_id = ArrayHelper::getColumn($this->systemGroup, 'sg_id');
-        $game_id = intval(Helpers::getRequestParam('game_id'));
-        $currentGameRoleIds = \Yii::$app->user->identity->getMyRoleIdsOnGame($game_id);
-        $sg_ids = array_map(function($col) {
-            return intval($col);
-        }, $sg_ids);
-        SystemUserGroup::updateAdminUserGroup($this, $sg_ids, $oldSg_id, $currentGameRoleIds);
 
         return true;
     }
@@ -299,12 +236,9 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         $this->setScenario('changePasswd');
         $this->setAttributes(Helpers::getRequestParams());
 
-        //修改了密码也要更改token
-        //$this->access_token = Helpers::generateAccessToken($this->account);
-        //$this->access_token_expire = time() + self::TOKEN_EXPIRE_DURATION;
         if ($this->validate()) {
             $this->reset_password = self::RESET_PASSWORD_YES;
-            $this->passwd = $this->new_passwd;
+            $this->password = $this->new_passwd;
             $this->save(false);
             return true;
         } else {
@@ -339,7 +273,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
             SystemPriv::PRIVILEGE_TYPE_SETTING => SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN,
         ];
 
-        $roles = $this->systemGroup;
+        $roles = $this->getRoles();
 
         $gameIds = [];
         foreach ($roles as $role) {
@@ -383,7 +317,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
             SystemPriv::PRIVILEGE_TYPE_SETTING => SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN,
         ];
 
-        $roles = $this->systemGroup;
+        $roles = $this->getRoles();
 
         $roleIds = [];
         foreach ($roles as $role) {
@@ -436,26 +370,10 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         return $this->privilege[$privilegeType];
     }
 
-    /**
-     * 授权时，校验是否有权限
-     */
-    public function validateCanAuth($isMaintain)
-    {
-        $roles = $this->systemGroup;
-        $privilegeLevel = $isMaintain ? SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN : SystemGroup::SYSTEM_PRIVILEGE_LEVEL_FRONT;
-        foreach ($roles as $role) {
-            if (($role->privilege_level & $privilegeLevel) === $privilegeLevel) {
-                //一旦有角色符合权限级别就成功
-                return true;
-            }
-        }
-
-        throw new CustomException('对不起，您没有维护权限');
-    }
-
     public function validateGame($gameId, $gameIds)
     {
-        \Yii::debug('gameId:' . $gameId);
+        \Yii::error('gameId:' . $gameId);
+        \Yii::error('gameId:' . var_export($gameIds, true));
         if (!in_array($gameId, $gameIds))
             throw new CustomException('你没有此游戏的管理权限,请联系管理员');
     }
@@ -467,7 +385,8 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     public function getRoleInfo()
     {
         $roles = [];
-        foreach ($this->systemGroup as $systemGroup) {
+        $dataRoles = $this->getRoles();
+        foreach ($dataRoles as $systemGroup) {
             $roles[$systemGroup->sg_id] = ArrayHelper::getColumn($systemGroup->gameIds, 'game_id');
         }
         return $roles;
@@ -482,12 +401,25 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         return implode('、', $gName);
     }
 
+    public function getRoles()
+    {
+        if (SystemAdminService::checkUseNewSystemAdminSchedule()) {
+            return $this->systemAdmin->systemGroup;
+        } else {
+            return $this->systemGroup;
+        }
+    }
+
     /**
      * get groups
      */
     public function getSystemGroup() {
         $s = Helpers::getRequestParam('sid');
         return $this->hasMany(SystemGroup::class, ['sg_id' => 'sg_id'])->viaTable('s'. $s .'_system_user_group', ['ad_uid' => 'ad_uid']);
+    }
+
+    public function getSystemAdmin() {
+        return $this->hasOne(SystemAdmin::class, ['ad_uid' => 'ad_uid']);
     }
 
     public function getGroupRelations()

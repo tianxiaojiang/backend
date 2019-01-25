@@ -30,6 +30,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element'], fun
             type: 1,
             id: 'LAY-system-groups-add',
             title: '添加角色',
+            area: ['300px', '250px'],
             resize: false,
             success: function () {
                 view(this.id).render('/system/groups/add', data).done(function () {
@@ -103,7 +104,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element'], fun
                 id: 'LAY-system-groups-update-privileges',
                 title: '修改权限',
                 resize: true,
-                //area: ['690px', '700px'],
+                area: ['650px', '500px'],
                 success: function () {
                     view(this.id).render('system/groups/privileges', data).done(function () {
                         layer.close(index);

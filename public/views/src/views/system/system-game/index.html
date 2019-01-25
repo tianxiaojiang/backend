@@ -1,0 +1,91 @@
+<title>游戏列表</title>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-btn-container">
+                    <button class="layui-btn" id="btn-add-system-game">添加</button>
+                </div>
+                <table class="layui-table" id="table-system-game" lay-size="lg" lay-filter="system-game"></table>
+                <script type="text/html" id="system-game-option">
+                    <a class="layui-btn layui-btn-sm layui-btn-danger" data-type="t" lay-event="del">删除</a>
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element'], function() {
+
+    var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view, element = layui.element;
+
+    // 渲染游戏列表
+    table.render({
+        elem: '#table-system-game',
+        url:'/admin/system-game/index',
+        where: ztutil.createSign(),
+        size: 'lg',
+        headers: {
+            Authorization: ztutil.getToken()
+        },
+        cols: [[
+            {type: 'checkbox'},
+            {field:'game_id', title:'游戏ID', sort: true},
+            {field:'name', title:'游戏名称', sort: true},
+            {field:'show_game_type', title:'游戏类型', sort: true},
+            {field:'status', title:'状态', sort: true},
+            {field:'created_at', title:'添加时间', sort: true},
+            {fixed: 'right', width: 150, title:'操作', toolbar: '#system-game-option'}
+        ]],
+        page: true
+    });
+
+
+    // 点击添加用户按钮
+    $('#btn-add-system-game').on('click', function () {
+        var data = {};
+        var index = layer.load(1);
+        layer.open({
+            type: 1,
+            id: 'LAY-system-system-game-add',
+            title: '添加游戏',
+            area:['600px', '500px'],
+            resize: false,
+            success: function () {
+                view(this.id).render('/system/system-game/add', data).done(function () {
+                    layer.close(index);
+                    $(window).trigger('resize');
+                });
+            }
+        });
+    });
+
+    // 删除游戏请求
+    var deleteGame = function (id, obj) {
+        var options = {
+            url: '/admin/system-game/delete?id=' + id,
+            method: 'delete',
+            done: function () {
+                obj.del();
+                table.reload('system-game');
+                layer.msg('删除成功！');
+            }
+        };
+        admin.req(options);
+    };
+
+    // 监听工具条
+    table.on('tool(system-game)', function(obj) {
+        var data = obj.data;
+        if (obj.event === 'del') {
+            layer.confirm('是否要删除游戏：<strong>' + data.name + '</strong> ？', {
+            }, function(index) {
+                deleteGame(data.game_id, obj);
+            });
+        }
+    });
+
+
+});
+</script>

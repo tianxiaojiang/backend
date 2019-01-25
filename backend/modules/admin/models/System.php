@@ -11,6 +11,7 @@ namespace Backend\modules\admin\models;
 use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\modules\admin\services\ImportSystemSqlService;
+use Backend\modules\admin\services\SystemAdminService;
 use Backend\modules\admin\services\SystemService;
 use \Backend\modules\common\models\BaseModel;
 
@@ -31,9 +32,9 @@ class System extends BaseModel
     public function scenarios()
     {
         return [
-            'default' => ['systems_id', 'name', 'img_id', 'active_img_id', 'url', 'auth_url', 'dev_account', 'game_type', 'status', 'description', 'updated_at', 'created_at'],
-            'update' => ['systems_id', 'developer_password', 'auth_type', 'staff_number', 'name', 'img_id', 'active_img_id', 'url', 'auth_url', 'dev_account', 'game_type', 'status', 'description', 'updated_at', 'created_at'],
-            'create' => ['systems_id', 'developer_password', 'auth_type', 'staff_number', 'name', 'img_id', 'active_img_id', 'url', 'auth_url', 'dev_account', 'game_type', 'status', 'description', 'updated_at', 'created_at'],
+            'default' => ['systems_id', 'allow_api_call', 'name', 'img_id', 'active_img_id', 'url', 'auth_url', 'dev_account', 'game_type', 'status', 'description', 'updated_at', 'created_at'],
+            'update' => ['systems_id', 'allow_api_call', 'developer_password', 'auth_type', 'staff_number', 'name', 'img_id', 'active_img_id', 'url', 'auth_url', 'dev_account', 'game_type', 'status', 'description', 'updated_at', 'created_at'],
+            'create' => ['systems_id', 'allow_api_call', 'developer_password', 'auth_type', 'staff_number', 'name', 'img_id', 'active_img_id', 'url', 'auth_url', 'dev_account', 'game_type', 'status', 'description', 'updated_at', 'created_at'],
         ];
     }
 
@@ -112,25 +113,19 @@ class System extends BaseModel
                 $adminUser->password = strval($this->developer_password);
             }
             $adminUser->staff_number = $this->staff_number;
-            //$adminUser->privilege_level = SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN;
 
             $adminUser->save();
+        }
 
-        }
-        $adminSystem = SystemUser::findOne(['ad_uid' => $adminUser->ad_uid, 'systems_id' => $systems_id]);
-        if (empty($adminSystem)) {
-            $adminSystem = new SystemUser();
-            $adminSystem->ad_uid = $adminUser->ad_uid;
-            $adminSystem->systems_id = $systems_id;
-            $adminSystem->save();
-        }
+        //添加用户系统关系
+        //SystemAdminService::addSystemAdmin($adminUser->ad_uid, $systems_id);
 
         $this->dev_account = $adminUser->ad_uid;
         $this->save();
 
 
         //生成系统的数据库表格
-        ImportSystemSqlService::importSystemSql($this->systems_id, $adminUser->ad_uid);
+        ImportSystemSqlService::importSystemSql($this, $adminUser->ad_uid);
 
         return true;
     }

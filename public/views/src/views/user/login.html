@@ -68,7 +68,7 @@
             </div>
             <div class="layui-form-item">
                 <input type="hidden" name="sid" value="1">
-                <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 录</button>
+                <button class="layui-btn layui-btn-fluid" id="do-login" lay-submit lay-filter="LAY-user-login-submit">登 录</button>
             </div>
         </div>
     </div>
@@ -283,14 +283,22 @@ layui.use(['admin', 'form', 'user'], function() {
     });
 
     systemsBox.on('mouseenter', '.systems-item', function (e) {
-        console.log('mouseenter');
         var active_bg = $(this).attr('data-active-bg');
         $(this).css('background-image', 'url("'+active_bg+'")');
     });
     systemsBox.on('mouseleave', '.systems-item', function (e) {
-        console.log('mouseleave');
         var active_bg = $(this).attr('data-bg');
         $(this).css('background-image', 'url("'+active_bg+'")');
+    });
+
+    //监听回车键
+    $('body').keyup(function (e) {
+        if (parseInt(e.keyCode) === 13) {
+            //如果未登录，且登录框弹出，则提交登录
+            if (!isLogged() && !$('#LAY-user-login').is(":hidden")) {
+                $('#do-login').trigger('click');
+            }
+        }
     });
 });
 </script>

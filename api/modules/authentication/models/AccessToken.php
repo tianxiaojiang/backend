@@ -9,9 +9,11 @@ use Backend\helpers\Lang;
 use Backend\modules\admin\models\Admin;
 use Backend\modules\admin\models\LoginWhiteList;
 use Backend\modules\admin\models\System;
+use Backend\modules\admin\models\SystemAdmin;
 use Backend\modules\admin\models\SystemPriv;
 use Backend\modules\admin\models\SystemUser;
 use Backend\modules\admin\models\SystemUserGroup;
+use Backend\modules\admin\services\SystemAdminService;
 use Backend\modules\admin\services\SystemService;
 use Backend\modules\admin\services\admin\NewAdminInfoFill;
 use yii\helpers\ArrayHelper;
@@ -130,7 +132,12 @@ class AccessToken extends Admin
         $sid = Helpers::getRequestParam('sid');
         if (empty($this->ad_uid) || empty($sid))
             throw new CustomException('登录的账户或系统异常');
-        $systemAdminRelation = SystemUser::findOne(['ad_uid' => $this->ad_uid, 'systems_id' => Helpers::getRequestParam('sid')]);
+
+        if (SystemAdminService::checkUseNewSystemAdminSchedule())
+            $systemAdminRelation = SystemAdmin::findOne(['ad_uid' => $this->ad_uid]);
+        else
+            $systemAdminRelation = SystemUser::findOne(['ad_uid' => $this->ad_uid, 'systems_id' => Helpers::getRequestParam('sid')]);
+
         //如果系统用户存在，则更新登录的token_id
         if (!empty($systemAdminRelation)) {
             $isMaintain = Helpers::getRequestParam('is_maintain');

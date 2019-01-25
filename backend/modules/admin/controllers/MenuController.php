@@ -31,9 +31,10 @@ class MenuController extends BusinessController
      */
     public function actionIndex()
     {
-        $sid = intval(Helpers::getRequestParam('sid'));
-        $menuType = ($sid === 1) ? SystemMenu::SM_TYPE_SETTING : SystemMenu::SM_TYPE_BUSINESS;
-        $menus = SystemMenu::find()->where(['sm_set_or_business' => $menuType])->indexBy('sm_id')->asArray()->all();
+//        $sid = intval(Helpers::getRequestParam('sid'));
+//        $menuType = ($sid === 1) ? SystemMenu::SM_TYPE_SETTING : SystemMenu::SM_TYPE_BUSINESS;
+//        $menus = SystemMenu::find()->where(['sm_set_or_business' => $menuType])->indexBy('sm_id')->asArray()->all();
+        $menus = SystemMenu::find()->indexBy('sm_id')->asArray()->all();
 
         $results = [];
         $sortType = Helpers::getRequestParam('useSort');

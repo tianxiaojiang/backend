@@ -37,4 +37,4 @@ INSERT INTO `s{{SID}}_system_group_priv` VALUES ('30', '1', '30', '{{CREATED_AT}
 INSERT INTO `s{{SID}}_system_group_priv` VALUES ('31', '1', '31', '{{CREATED_AT}}', '{{UPDATED_AT}}');
 INSERT INTO `s{{SID}}_system_group_priv` VALUES ('32', '1', '32', '{{CREATED_AT}}', '{{UPDATED_AT}}');
 INSERT INTO `s{{SID}}_system_group_priv` VALUES ('33', '1', '33', '{{CREATED_AT}}', '{{UPDATED_AT}}');
-INSERT INTO `s{{SID}}_system_group_priv` VALUES ('34', '1', '33', '{{CREATED_AT}}', '{{UPDATED_AT}}');
+INSERT INTO `s{{SID}}_system_group_priv` VALUES ('34', '1', '34', '{{CREATED_AT}}', '{{UPDATED_AT}}');

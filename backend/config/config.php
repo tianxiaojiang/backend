@@ -43,10 +43,6 @@ return [
             'showScriptName' => true,
             //'enableStrictParsing' =>true,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'admin/system-group'],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'admin/admin-user'],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'admin/game'],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'admin/system-menu'],
             ],
         ],
         'log' => [

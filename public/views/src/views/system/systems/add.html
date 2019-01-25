@@ -79,6 +79,15 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">允许接口登录</label>
+            <div class="layui-input-block">
+                <select name="allow_api_call" required lay-verify="required">
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit="" lay-filter="add-system">提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>

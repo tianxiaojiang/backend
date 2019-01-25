@@ -86,6 +86,15 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">允许接口登录</label>
+            <div class="layui-input-block">
+                <select name="allow_api_call" required lay-verify="required">
+                    <option value="0"{{# if(d.params.allow_api_call === 0){ }} selected {{#  } }}>否</option>
+                    <option value="1"{{# if(d.params.allow_api_call === 1){ }} selected {{#  } }}>是</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <div class="layui-input-block">
                 <input type="hidden" id="system_old_status" value="{{d.params.status}}">
                 <input type="hidden" id="system_old_auth_type" value="{{d.params.dev_account_type}}">

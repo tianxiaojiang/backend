@@ -20,9 +20,6 @@ $config = [
             'showScriptName' => false,
             //'enableStrictParsing' =>true,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'admin/system-group'],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'admin/admin-user'],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'test/user'],
             ],
         ],
         'db' => require(__DIR__ . DIRECTORY_SEPARATOR . 'db.php'),

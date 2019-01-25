@@ -24,7 +24,6 @@ class UserController extends JwtController
 
     public function actionChangePassword()
     {
-
         $model = Admin::findOne(['ad_uid' => \Yii::$app->user->identity->ad_uid]);
         $model->updatePasswd();
 

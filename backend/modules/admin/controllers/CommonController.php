@@ -59,11 +59,8 @@ class CommonController extends \Backend\modules\common\controllers\BaseControlle
      */
     public function actionMenuSelect()
     {
-        $sid = intval(Helpers::getRequestParam('sid'));
-        $menuType = ($sid === 1) ? SystemMenu::SM_TYPE_SETTING : SystemMenu::SM_TYPE_BUSINESS;
         $systemMenu = new SystemMenu();
         $menus = $systemMenu::find()->where([
-                'sm_set_or_business' => $menuType,
                 'sm_status'=> 0,
                 'is_show_sidebar' => 1
             ])
@@ -89,6 +86,16 @@ class CommonController extends \Backend\modules\common\controllers\BaseControlle
         }
 
         return $result;
+    }
+
+    /**
+     * 拉取所有游戏
+     */
+    public function actionGameLists()
+    {
+        $games = Game::find()->all();
+
+        return ['list' => $games];
     }
 
     /**

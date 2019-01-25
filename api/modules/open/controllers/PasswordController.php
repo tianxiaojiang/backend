@@ -26,29 +26,14 @@ class PasswordController extends SystemController
     public function actionModify()
     {
         $currentSystem = SystemService::getCurrentSystem();
+        if (!$currentSystem->allow_api_call)
+            throw new CustomException('该系统不允许直接通过api修改密码');
 
-        if (!$currentSystem->allowApiLoginAuth)
-            throw new CustomException('该系统不允许直接通过api登录授权');
+        Helpers::$request_params['new_passwd'] = Helpers::getRequestParam('password');
+        Helpers::$request_params['password'] = Helpers::getRequestParam('oldPassword');
+        Helpers::$request_params['new_passwd_repeat'] = Helpers::getRequestParam('repeatPassword');
 
-        $oldPassword = Helpers::getRequestParam('oldPassword');
-        $password = Helpers::getRequestParam('password');
-        $repeatPassword= Helpers::getRequestParam('repeatPassword');
-
-        Helpers::validateEmpty($oldPassword, '旧密码');
-        Helpers::validateEmpty($password, '新密码');
-        Helpers::validateEmpty($repeatPassword, '重复新密码');
-
-        if ($password != $repeatPassword)
-            throw new CustomException('新密码填写不一致');
-
-        $model = \Yii::$app->user->identity;
-        //先验证老密码
-        $model->password = $oldPassword;
-        $model->validatePassword();
-
-        //再修改新密码
-        Helpers::$request_params['password'] = $oldPassword;
-        Helpers::$request_params['new_passwd'] = $password;
+        $model = Admin::findOne(['ad_uid' => \Yii::$app->user->identity->ad_uid]);
         $model->updatePasswd();
 
         return [];

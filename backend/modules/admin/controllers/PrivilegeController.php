@@ -26,11 +26,16 @@ class PrivilegeController extends BusinessController
         return $actions;
     }
 
+    /**
+     * 后台维护权限
+     * @return array
+     */
     public function actionIndex()
     {
-        $sid = intval(Helpers::getRequestParam('sid'));
-        $menuType = $sid === 1 ? SystemPriv::PRIVILEGE_TYPE_SETTING : SystemPriv::PRIVILEGE_TYPE_BUSINESS;
-        $privileges = SystemPriv::find()->where(['sp_set_or_business' => $menuType])->all();//取出所有的权限
+//        $sid = intval(Helpers::getRequestParam('sid'));
+//        $menuType = $sid === 1 ? SystemPriv::PRIVILEGE_TYPE_SETTING : SystemPriv::PRIVILEGE_TYPE_BUSINESS;
+//        $privileges = SystemPriv::find()->where(['sp_set_or_business' => $menuType])->all();//取出所有的权限
+        $privileges = SystemPriv::find()->all();//取出所有的权限
 
         $results = [];
         foreach ($privileges as $item) {
@@ -38,6 +43,7 @@ class PrivilegeController extends BusinessController
                 'sp_id' => $item->sp_id,
                 'sp_label' => $item->sp_label,
                 'sp_parent_id' => $item->sp_parent_id,
+                'sp_set_or_business' => $item->sp_set_or_business,
                 'sp_module' => $item->sp_module,
                 'sp_controller' => $item->sp_controller,
                 'sp_action' => $item->sp_action,

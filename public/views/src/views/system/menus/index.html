@@ -34,6 +34,15 @@
                                     <div class="layui-input-block"><input type="text" name="sm_icon" placeholder="icon" autocomplete="off" class="layui-input" /></div>
                                 </div>
                                 <div class="layui-form-item">
+                                    <label class="layui-form-label">菜单类型</label>
+                                    <div class="layui-input-block layui-form" lay-filter="sm_type_filter">
+                                        <select class="layui-select" name="sm_set_or_business">
+                                            <option value="0">业务后台</option>
+                                            <option value="1">维护后台</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
                                     <div class="layui-input-block">
                                         <input type="hidden" name="sm_parent_id">
                                         <input type="hidden" name="sm_id">
@@ -235,6 +244,8 @@ layui.use(['form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqu
         $('input[name="sm_id"]').val(treeNode.sm_id);
         $('input[name="sort_by"]').val(sort_by);
         $('input[name="sm_icon"]').val(treeNode.sm_icon);
+        $('select[name="sm_set_or_business"]').val(treeNode.sm_set_or_business);
+        form.render('select', 'sm_type_filter');
     }
 
     //同步表单数据到对应id的节点
@@ -251,6 +262,7 @@ layui.use(['form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqu
         synchronizingNode.sort_by = $('input[name="sort_by"]').val();
         synchronizingNode.sm_icon = $('input[name="sm_icon"]').val();
         synchronizingNode.sm_parent_id = $('input[name="sm_parent_id"]').val();
+        synchronizingNode.sm_set_or_business = $('select[name="sm_set_or_business"]').val();
         jqueryZtreeCore.getZTreeObj("treeDemo").updateNode(synchronizingNode);
     }
 

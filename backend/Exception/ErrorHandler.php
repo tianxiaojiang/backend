@@ -35,7 +35,8 @@ class ErrorHandler extends \yii\base\ErrorHandler
 
         } elseif ($exception instanceof UnauthorizedHttpException) {
 
-            echo json_encode(array('code' => Lang::ERR_TOKEN_INVALID, 'msg'  => Lang::getMsg(Lang::ERR_TOKEN_INVALID)));
+            $res = json_encode(array('code' => Lang::ERR_TOKEN_INVALID, 'msg'  => Lang::getMsg(Lang::ERR_TOKEN_INVALID)));
+            echo $res;
 
         } else {
             $info = $exception->getTraceAsString();

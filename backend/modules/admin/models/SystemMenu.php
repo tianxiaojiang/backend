@@ -28,9 +28,9 @@ class SystemMenu extends BaseModel
     public function scenarios()
     {
         return [
-            'default' => ['sm_id', 'sm_label', 'sm_icon', 'sort_by', 'sm_parent_id', 'sm_view', 'created_at', 'updated_at'],
-            'update' => ['sm_id', 'sm_label', 'sm_icon', 'sort_by', 'sm_parent_id', 'sm_view', 'created_at', 'updated_at'],
-            'create' => ['sm_id', 'sm_label', 'sm_icon', 'sort_by', 'sm_parent_id', 'sm_view', 'created_at', 'updated_at'],
+            'default' => ['sm_id', 'sm_set_or_business', 'sm_label', 'sm_icon', 'sort_by', 'sm_parent_id', 'sm_view', 'created_at', 'updated_at'],
+            'update' => ['sm_id', 'sm_set_or_business', 'sm_label', 'sm_icon', 'sort_by', 'sm_parent_id', 'sm_view', 'created_at', 'updated_at'],
+            'create' => ['sm_id', 'sm_set_or_business', 'sm_label', 'sm_icon', 'sort_by', 'sm_parent_id', 'sm_view', 'created_at', 'updated_at'],
         ];
     }
 

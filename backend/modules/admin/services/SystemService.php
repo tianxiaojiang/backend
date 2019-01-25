@@ -124,15 +124,19 @@ class SystemService
                 $newAdmin->created_at = $RECORD['created_at'];
                 $newAdmin->updated_at = $RECORD['updated_at'];
                 $newAdmin->reset_password = $RECORD['reset_password'];
+                $newAdmin->system_id = $systems_id;
 
                 $newAdmin->save();
                 $ad_uid = $newAdmin->ad_uid;
             }
-            $systemAdmin = SystemUser::findOne(['ad_uid' => $ad_uid, 'systems_id' => $systems_id]);
-            if (empty($systemAdmin)) {
-                $systemAdmin = new SystemUser();
-                $systemAdmin->ad_uid = $ad_uid;
-                $systemAdmin->systems_id = $systems_id;
+
+            //确认系统用户的存在
+            $system_admin = SystemUser::findOne(['ad_uid' => $ad_uid, 'systems_id' => $systems_id]);
+            if (empty($system_admin)) {
+                $system_admin = new SystemUser();
+                $system_admin->ad_uid = $ad_uid;
+                $system_admin->systems_id = $systems_id;
+                $system_admin->save();
             }
 
             $uidMaps[$RECORD['ad_uid']] = $ad_uid;
@@ -148,7 +152,6 @@ class SystemService
      */
     public static function importUserGroup($userRoles, $uidMaps, $newSid)
     {
-
         if (empty($newSid))
             throw new CustomException('新系统不能为空!');
 

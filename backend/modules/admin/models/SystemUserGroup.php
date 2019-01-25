@@ -17,13 +17,13 @@ class SystemUserGroup extends BaseModel
         return 's' . Helpers::getRequestParam('sid') . '_system_user_group';
     }
 
-    public static function updateAdminUserGroup(Admin $admin, $newRoleIds, $oldRoleIds, $myRoleIds)
+    public static function updateAdminUserGroup($systemAdminId, $newRoleIds, $oldRoleIds, $myRoleIds)
     {
-        if (empty($newRoleIds) || empty($admin) || empty($myRoleIds)) return true;
+        if (empty($newRoleIds) || empty($systemAdminId) || empty($myRoleIds)) return true;
 
         $diffRoleIds = self::diffRoles($oldRoleIds, $newRoleIds, $myRoleIds);
-        self::addRoleAdmin($diffRoleIds['addRoleIds'], $admin->ad_uid);
-        self::delRoleAdmin($diffRoleIds['delRoleIds'], $admin->ad_uid);
+        self::addRoleAdmin($diffRoleIds['addRoleIds'], $systemAdminId);
+        self::delRoleAdmin($diffRoleIds['delRoleIds'], $systemAdminId);
 
         return true;
     }
