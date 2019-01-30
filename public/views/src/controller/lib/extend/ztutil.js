@@ -89,7 +89,7 @@ layui.define(['layer'], function(exports) {
             param.time = time;
             return  param;
         }
-    };
+};
 
     // export module named ztutil
     exports('ztutil', obj);

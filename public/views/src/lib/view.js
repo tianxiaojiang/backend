@@ -8,7 +8,7 @@
  */
 
 /* jshint ignore:start */
-layui.define(['laytpl', 'layer'], function(exports){
+layui.define(['laytpl', 'layer', 'ztutil'], function(exports){
   var $ = layui.jquery
   ,laytpl = layui.laytpl
   ,layer = layui.layer
