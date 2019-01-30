@@ -38,7 +38,7 @@ class OtherController extends BusinessController
             $systems = System::find()->all();
             foreach ($systems as $system) {
                 //先用账号管家即 sid 为 4 做实验
-                if ($system->systems_id != 4) continue;
+//                if ($system->systems_id != 4) continue;
 
                 Helpers::$request_params['sid'] = $system->systems_id;
                 //校验系统是否是新数据

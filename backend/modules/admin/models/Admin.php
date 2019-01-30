@@ -404,7 +404,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     public function getRoles()
     {
         if (SystemAdminService::checkUseNewSystemAdminSchedule()) {
-            return $this->systemAdmin->systemGroup;
+            return empty($this->systemAdmin) ? [] : $this->systemAdmin->systemGroup;
         } else {
             return $this->systemGroup;
         }
