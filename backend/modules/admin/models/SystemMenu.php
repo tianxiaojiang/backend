@@ -45,6 +45,7 @@ class SystemMenu extends BaseModel
     {
         return [
             'sm_id',
+            'sm_set_or_business',
             'sm_label',
             'sm_view',
             'sm_icon',
@@ -215,6 +216,20 @@ class SystemMenu extends BaseModel
             $this->sm_set_or_business = 1;
 
         parent::insert($runValidation = true, $attributes = null);
+
+        return true;
+    }
+
+    public function update($runValidation = true, $attributes = null)
+    {
+        $currentSystem = SystemService::getCurrentSystem();
+        //中心后台的菜单都设置为后台可见
+        if ($currentSystem->systems_id === 1)
+            $this->sm_set_or_business = 1;
+
+        $this->sort_by = $this->getOldAttribute('sort_by');
+
+        parent::update($runValidation = true, $attributes = null);
 
         return true;
     }

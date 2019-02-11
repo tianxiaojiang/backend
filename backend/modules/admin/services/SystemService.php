@@ -12,6 +12,7 @@ use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\modules\admin\models\Admin;
 use Backend\modules\admin\models\System;
+use Backend\modules\admin\models\SystemAdmin;
 use Backend\modules\admin\models\SystemUser;
 use Backend\modules\admin\models\SystemUserGroup;
 
@@ -130,15 +131,6 @@ class SystemService
                 $ad_uid = $newAdmin->ad_uid;
             }
 
-            //确认系统用户的存在
-            $system_admin = SystemUser::findOne(['ad_uid' => $ad_uid, 'systems_id' => $systems_id]);
-            if (empty($system_admin)) {
-                $system_admin = new SystemUser();
-                $system_admin->ad_uid = $ad_uid;
-                $system_admin->systems_id = $systems_id;
-                $system_admin->save();
-            }
-
             $uidMaps[$RECORD['ad_uid']] = $ad_uid;
         }
 
@@ -146,11 +138,11 @@ class SystemService
     }
 
     /**
-     * 导入用户角色的关系
+     * 修改系统和用户的关系
      * @param $userRoleJsonFile
      * @param $uidMaps
      */
-    public static function importUserGroup($userRoles, $uidMaps, $newSid)
+    public static function importSystemAdmin($uidMaps, $newSid)
     {
         if (empty($newSid))
             throw new CustomException('新系统不能为空!');
@@ -160,15 +152,12 @@ class SystemService
 
         //这里需要设置sid为新id
         Helpers::$request_params['sid'] = $newSid;
-        //清空原来的数据
-        $db = \Yii::$app->db;
-        $db->createCommand('truncate table s' . $newSid . '_system_user_group;')->execute();
-        foreach ($userRoles['RECORDS'] as $item) {
-            if (empty($item['ad_uid']) || empty($item['sg_id'])) continue;
-            $userGroup = new SystemUserGroup();
-            $userGroup->ad_uid = $uidMaps[$item['ad_uid']];
-            $userGroup->sg_id = $item['sg_id'];
-            $userGroup->save();
+        $oldSystemAdmins = SystemAdmin::find()->all();
+        foreach ($oldSystemAdmins as $oldSystemAdmin) {
+            if (!empty($uidMaps[$oldSystemAdmin->ad_uid])) {
+                $oldSystemAdmin->ad_uid = $uidMaps[$oldSystemAdmin->ad_uid];
+                $oldSystemAdmin->save();
+            }
         }
 
         //重置为1

@@ -65,10 +65,12 @@ class MenuController extends BusinessController
                 $menu = SystemMenu::findOne(['sm_id' => $param['sm_id']]);
                 $menu->setScenario('update');
                 if (isset($param['sort_by'])) {
-                    $menu->sort_by = $param['sort_by'];
+                    $prevMenu = SystemMenu::findOne(['sm_id' => intval($param['sort_by'])]);
+                    if ($menu->sm_set_or_business === $prevMenu->sm_set_or_business) $menu->sort_by = $param['sort_by'];
                 }
                 if (isset($param['sm_parent_id'])) {
-                    $menu->sm_parent_id = $param['sm_parent_id'];
+                    if (!empty($param['sm_parent_id'])) $parentMenu = SystemMenu::findOne(['sm_id' => intval($param['sort_by'])]);
+                    if (empty($param['sm_parent_id']) || $menu->sm_set_or_business === $parentMenu->sm_set_or_business) $menu->sm_parent_id = $param['sm_parent_id'];
                 }
                 $menu->save();
             }

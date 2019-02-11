@@ -84,7 +84,7 @@ class SystemController extends BusinessController
      *     比如导出的本地系统是5，查询语句为:
      *     select a.* from `admin_user` a left join `system_admin` b on a.ad_uid=b.ad_uid where b.systems_id=5;
      *
-     * 二  再把用户角色关系导出为一个json文件，直接导出全表即可
+     * 二  再把用户角色关系导出为一个json文件，
      *
      * 三  上传两个json文件，然后读取并解析为数组
      *
@@ -108,8 +108,8 @@ class SystemController extends BusinessController
 
         $db = \Yii::$app->getDb()->beginTransaction();
         try {
-            $uidMaps = SystemService::importDevelopAdmin($cont['admins'], $productSystemId);
-            $res = SystemService::importUserGroup($cont['admin_role'], $uidMaps, $productSystemId);
+            $uidMaps = SystemService::importDevelopAdmin($cont, $productSystemId);
+            $res = SystemService::importSystemAdmin($uidMaps, $productSystemId);
         } catch (\Exception $exception) {
             $db->rollBack();
             \Yii::error('导入数据失败:' . var_export($exception->getTraceAsString(), true));
