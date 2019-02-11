@@ -72,7 +72,7 @@ class AuthTypeService
      */
     protected function auth_by_changzhou()
     {
-        $url = "http://192.168.150.203/kfpt/KfptInterface/Auth/czPassword";
+        $url = "http://kfoa.ztgame.com/SsoZtgame/Auth/czPassKfoa";
         $name = "kfccptmanager";
         $key = "d9876a7f568a8d5";
         $ip = \Yii::$app->request->getUserIP();
