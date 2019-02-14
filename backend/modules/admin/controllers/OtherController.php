@@ -32,14 +32,19 @@ class OtherController extends BusinessController
     public function actionSynAdmin()
     {
         $db = \Yii::$app->db->beginTransaction();
+        $connection = \Yii::$app->db;
 
+        $systemId = Helpers::getRequestParam('systems_id');
         try {
             //读取所有的系统
-            $systems = System::find()->all();
+            $systems = System::find()->where(["systems_id" => $systemId])->all();
             foreach ($systems as $system) {
                 //先用账号管家即 sid 为 4 做实验
-//                if ($system->systems_id != 4) continue;
+                if (!in_array($system->systems_id, [2, 4])) continue;
+                \Yii::error("mydebug:" . $system->systems_id);
 
+                //清空新用户表
+                $connection->createCommand("truncate table s" . $system->systems_id . "_admin")->execute();
                 Helpers::$request_params['sid'] = $system->systems_id;
                 //校验系统是否是新数据
                 $newUsers = SystemAdmin::find()->one();

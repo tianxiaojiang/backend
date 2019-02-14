@@ -17,18 +17,25 @@
 
         // 点击同步用户按钮
         $('#btn-syn-system-admin').on('click', function () {
-            layer.confirm('是否执行同步？', {
-            }, function (index) {
-                synAdmin();
+            // layer.confirm('是否执行同步？', {
+            // }, function (index) {
+            //     synAdmin();
+            // });
+
+            layer.prompt({title: '是否执行同步？请输入系统id', formType: 3}, function(text, index){
+                synAdmin(text);
             });
+
         });
 
         // 删除系统请求，操作比较敏感，删除一律做逻辑状态删除
-        var synAdmin = function () {
+        var synAdmin = function (systemId) {
             var options = {
                 url: '/admin/other/syn-admin',
                 method: 'post',
+                data: {systems_id: systemId},
                 done: function (res) {
+                    layer.closeAll();
                     if (res.code !== 0) {
                         layer.msg(res.msg);
                     } else {
