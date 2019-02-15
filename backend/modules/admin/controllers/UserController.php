@@ -2,15 +2,8 @@
 
 namespace Backend\modules\admin\controllers;
 
-use Backend\Exception\CustomException;
-use Backend\helpers\Helpers;
 use Backend\modules\admin\models\Admin;
-use Backend\modules\admin\models\SystemGroupGame;
-use Backend\modules\admin\models\SystemUser;
-use Backend\modules\admin\models\SystemUserGroup;
-use Backend\modules\common\controllers\BusinessController;
 use Backend\modules\common\controllers\JwtController;
-use yii\helpers\ArrayHelper;
 
 /**
  * Created by PhpStorm.
@@ -26,6 +19,24 @@ class UserController extends JwtController
     {
         $model = Admin::findOne(['ad_uid' => \Yii::$app->user->identity->ad_uid]);
         $model->updatePasswd();
+
+        return [];
+    }
+
+    public function actionProfile()
+    {
+        $model = Admin::findOne(['ad_uid' => \Yii::$app->user->identity->ad_uid]);
+
+        return [
+            "mobile_phone" => $model->mobile_phone,
+            "username" => $model->username
+            ];
+    }
+
+    public function actionChangeProfile()
+    {
+        $model = Admin::findOne(['ad_uid' => \Yii::$app->user->identity->ad_uid]);
+        $model->updateProfile();
 
         return [];
     }

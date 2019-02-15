@@ -68,60 +68,60 @@
     </div>
 </div>
 <script>
-layui.use(['admin', 'form', 'user', 'view'], function() {
-    var $ = layui.$,
-        setter = layui.setter,
-        admin = layui.admin,
-        view = layui.view,
-        form = layui.form,
-        router = layui.router();
+    layui.use(['admin', 'form', 'user', 'view'], function() {
+        var $ = layui.$,
+            setter = layui.setter,
+            admin = layui.admin,
+            view = layui.view,
+            form = layui.form,
+            router = layui.router();
 
-    form.render();
+        form.render();
 
-    //找回密码下一步
-    form.on('submit(LAY-user-forget-submit)', function(obj) {
-        var field = obj.field;
+        //找回密码下一步
+        form.on('submit(LAY-user-forget-submit)', function(obj) {
+            var field = obj.field;
 
-        //请求接口
-        admin.req({
-            url: './json/user/forget.js' //实际使用请改成服务端真实接口
+            //请求接口
+            admin.req({
+                url: './json/user/forget.js' //实际使用请改成服务端真实接口
                 ,
-            data: field,
-            done: function(res) {
-                location.hash = router.href + '/type=resetpass';
-            }
+                data: field,
+                done: function(res) {
+                    location.hash = router.href + '/type=resetpass';
+                }
+            });
+
+            return false;
         });
 
-        return false;
-    });
+        //重置密码
+        form.on('submit(LAY-user-forget-resetpass)', function(obj) {
+            var field = obj.field;
 
-    //重置密码
-    form.on('submit(LAY-user-forget-resetpass)', function(obj) {
-        var field = obj.field;
-
-        //确认密码
-        if (field.new_passwd !== field.new_passwd_repeat) {
-            return layer.msg('两次密码输入不一致');
-        }
-
-        //请求接口
-        admin.req({
-            url: '/admin/user/change-password', //实际使用请改成服务端真实接口
-            data: field,
-            done: function(res) {
-                layer.msg('密码已成功重置', {
-                    offset: '15px',
-                    icon: 1,
-                    time: 1000
-                }, function() {
-                    view.exit();
-                    //location.hash = '/user/login'; //跳转到登入页
-                });
+            //确认密码
+            if (field.new_passwd !== field.new_passwd_repeat) {
+                return layer.msg('两次密码输入不一致');
             }
+
+            //请求接口
+            admin.req({
+                url: '/admin/user/change-password', //实际使用请改成服务端真实接口
+                data: field,
+                done: function(res) {
+                    layer.msg('密码已成功重置', {
+                        offset: '15px',
+                        icon: 1,
+                        time: 1000
+                    }, function() {
+                        view.exit();
+                        //location.hash = '/user/login'; //跳转到登入页
+                    });
+                }
+            });
+
+            return false;
         });
 
-        return false;
     });
-
-});
 </script>

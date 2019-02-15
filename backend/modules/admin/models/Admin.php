@@ -64,6 +64,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     {
         return [
             'changePasswd' => ['account', 'auth_type', 'staff_number', 'reset_password', 'password', 'new_passwd', 'new_passwd_repeat'],
+            'updateProfile' => ['username', 'mobile_phone'],
             'default' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'password', 'createtime', 'mobile_phone'],
             'update' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'mobile_phone', 'username', 'access_token', 'status', 'password', 'sg_id'],
             'create' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'mobile_phone', 'username', 'access_token', 'status', 'password', 'sg_id'],
@@ -80,6 +81,9 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
             ['password', 'validatePassword', 'message' => '账号或密码错误', 'on' => ['login', 'changePasswd']],
             ['new_passwd', 'validateNewPasswordSame', 'message' => '新密码不能与旧密码一样', 'on' => ['changePasswd']],
             ['new_passwd', 'validateNewPassword', 'message' => '新密码输入不一致', 'on' => ['changePasswd']],
+            ['password', 'validateAccountType', 'message' => '只有普通账号可以修改密码', 'on' => ['changePasswd']],
+            ['username', 'required', 'message' => '姓名不能为空', 'on' => ['updateProfile']],
+            ['mobile_phone', 'match', 'pattern' => '/^1\d{10}$/', 'message' => '手机号格式错误', 'on' => ['updateProfile']],
         ];
     }
 
@@ -172,6 +176,18 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         }
     }
 
+    //校验是否普通账号
+    public function validateAccountType()
+    {
+        if ($this->hasErrors()) {
+            return false;
+        }
+
+        if ($this->auth_type != self::AUTH_TYPE_PASSWORD) {
+            $this->addError('password', '只有普通账号可以修改密码');
+        }
+    }
+
     //校验新密码是否跟老密码一样
     public function validateNewPasswordSame()
     {
@@ -239,6 +255,24 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         if ($this->validate()) {
             $this->reset_password = self::RESET_PASSWORD_YES;
             $this->password = $this->new_passwd;
+            $this->save(false);
+            return true;
+        } else {
+            $errors = $this->getErrors();
+            $error  = array_shift($errors);
+            \Yii::error(var_export($error, true));
+            throw new CustomException($error[0]);
+        }
+    }
+
+    /**
+     * update user passwd
+     */
+    public function updateProfile() {
+        $this->setScenario('updateProfile');
+        $this->setAttributes(Helpers::getRequestParams());
+
+        if ($this->validate()) {
             $this->save(false);
             return true;
         } else {

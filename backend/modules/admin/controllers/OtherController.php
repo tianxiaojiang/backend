@@ -59,7 +59,7 @@ class OtherController extends BusinessController
                     $systemAdmin->ad_uid = $systemUser->ad_uid;
                     $systemAdmin->save();
 
-                    $oldAdUidMapNewAdUid[$systemUser->ad_uid] = $systemAdmin->system_ad_uid;
+                    //$oldAdUidMapNewAdUid[$systemUser->ad_uid] = $systemAdmin->system_ad_uid;
                     //找到老用户的角色
                     $systemUserGroups = SystemUserGroup::find()->where(['ad_uid' => $systemUser->ad_uid])->all();
                     $newAdUidMapRoleId[$systemAdmin->system_ad_uid] = ArrayHelper::getColumn($systemUserGroups, 'sug_id');
