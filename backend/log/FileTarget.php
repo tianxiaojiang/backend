@@ -82,7 +82,7 @@ class FileTarget extends Target
     {
         parent::init();
         if ($this->logFile === null) {
-            $this->logFile = Yii::$app->getRuntimePath() . '/logs/app.log';
+            $this->logFile = Yii::$app->getRuntimePath() . '/app.log';
         } else {
             $this->logFile = Yii::getAlias($this->logFile);
         }
