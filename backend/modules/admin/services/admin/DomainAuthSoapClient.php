@@ -45,8 +45,6 @@ class DomainAuthSoapClient
             \Yii::$app->params['passport']['source_system_code']
         );
         \Yii::info('[sso_response] password login,username:'.$username.';password len:'.strlen($password).';return_flag:'.intval($return->return_flag));
-        \Yii::info('return_flag:' . var_export($return->return_flag, true));
-        \Yii::info('return_flag:' . var_export($return->return_remark, true));
         if($return->return_flag == true)
             return true;
         else

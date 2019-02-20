@@ -22,6 +22,15 @@ class Log extends Behavior
         $request = Helpers::getRequestParams();
         $apiPath = \Yii::$app->request->getPathInfo();
         $request['api_path'] = $apiPath;
-        \Yii::info('request:' . var_export($request, true));
+        $tokenString = Helpers::getHeader('Authorization');
+        if (empty($tokenString)) {
+            $tokenString = Helpers::getRequestParam('Authorization');
+        }
+        $userInfo = json_decode(base64_decode(explode(".", $tokenString)[1]), true);
+        $request['user'] = [
+            'uid' => $userInfo['uid'],
+            'token_sid' => $userInfo['sid'],
+        ];
+        \Yii::info('request-info:' . var_export($request, true));
     }
 }

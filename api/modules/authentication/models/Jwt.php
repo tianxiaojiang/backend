@@ -71,6 +71,7 @@ class Jwt
         $this->Payload['system_name'] = $system->name;
         $this->Payload['staff_number'] = $this->admin->staff_number;
         $this->Payload['account'] = $this->admin->account;
+        $this->Payload['auth_type'] = $this->admin->auth_type;
 
         return $this;
     }
