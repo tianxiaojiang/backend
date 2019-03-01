@@ -85,6 +85,16 @@ return [
                     'maxLogFiles'	=>	5,
                     'logVars'	=> [],
                 ],
+                [
+                    'class'		=> 'Backend\log\FileTarget',
+                    'levels'	=> ['info'],
+                    'categories' => ['yii\db\*'],
+                    'logFile'	=> '@runtime/logs/sql.log',
+                    'maxFileSize'	=>	1024*100,//100M
+                    'exportInterval' => 1,
+                    'maxLogFiles'	=>	5,
+                    'logVars'	=> [],
+                ],
             ],
         ],
         'request' => [

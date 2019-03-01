@@ -227,7 +227,7 @@ class SystemMenu extends BaseModel
         if ($currentSystem->systems_id === 1)
             $this->sm_set_or_business = 1;
 
-        $this->sort_by = $this->getOldAttribute('sort_by');
+        //$this->sort_by = $this->getOldAttribute('sort_by');
 
         parent::update($runValidation = true, $attributes = null);
 
