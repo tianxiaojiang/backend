@@ -80,6 +80,12 @@ class SystemMenu extends BaseModel
                     $this->setSortNum1($list, $results, $item);
                 }
             }
+            //如果有菜单排序非0，但前置菜单无权限，则直接跟最后
+            if (!empty($list)) {
+                foreach ($list as $menu) {
+                    array_push($results, $menu);
+                }
+            }
 
             $list = [];
             foreach ($results as $key => $result) {
