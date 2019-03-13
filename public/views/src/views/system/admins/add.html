@@ -189,13 +189,21 @@
         renderRoleList();
 
         // 提交添加管理员按钮
+        var OperationInProgress = 0;
         form.on('submit(add-admin)', function (data) {
+            if (OperationInProgress) {
+                layer.msg("不要频繁操作，请稍等后重试！");
+                return false;
+            } else {
+                OperationInProgress = 1;
+            }
             data.field.sg_id = data.field.sg_id.join(',');
             var options = {
                 data: data.field,
                 url: '/admin/admin-user/create',
                 method: 'post',
                 done: function () {
+                    OperationInProgress = 0;
                     layer.closeAll();
                     table.reload('system-admins-id');
                     layer.msg('添加用户成功！');

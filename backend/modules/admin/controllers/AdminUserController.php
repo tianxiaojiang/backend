@@ -105,6 +105,16 @@ class AdminUserController extends BusinessController
         $staff_number = Helpers::getRequestParam('staff_number');
         $sid = intval(Helpers::getRequestParam('sid'));
 
+        //添加基本锁，防止多次提交
+        $lockAccountKey = $staff_number . "_" . $auth_type;
+        $redis = \Yii::$app->redis;
+        if (!empty($redis->get($lockAccountKey))) {
+            throw new CustomException('此账号添加中，请稍后刷新重试！');
+        } else {
+            $redis->set($lockAccountKey, $sid);
+            $redis->expire($lockAccountKey, 5);
+        }
+
         if ($auth_type == Admin::AUTH_TYPE_PASSWORD) {
             $admin = Admin::findOne(['account' => $account, 'auth_type' => $auth_type]);
         } else {
@@ -139,6 +149,9 @@ class AdminUserController extends BusinessController
 
         //更新角色
         SystemUserGroup::updateAdminUserGroup($systemAdminId, $sg_ids, $oldSg_id, $currentGameRoleIds);
+
+        //操作完成，删除redis对账号的锁定
+        $redis->del($lockAccountKey);
 
         return $admin;
     }
