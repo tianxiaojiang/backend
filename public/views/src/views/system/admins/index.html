@@ -8,7 +8,7 @@
                 </div>
                 <table class="layui-table" id="system-admins-id" lay-size="lg" lay-filter="admins-list-filter"></table>
                 <script type="text/html" id="admin-option">
-                    <a class="layui-btn layui-btn-sm edit-proper-priv" lay-event="edit-admin-proper-role">专有权限</a>
+                    <a class="layui-btn layui-btn-sm edit-proper-priv" lay-event="edit-admin-proper-role" style="display: none">专有权限</a>
                     <a class="layui-btn layui-btn-sm" lay-event="edit-admin-event">编辑</a>
                     <a class="layui-btn layui-btn-sm layui-btn-danger" data-type="t" lay-event="del">删除</a>
                 </script>
@@ -56,10 +56,11 @@
                 { field: 'role', title: '角色名', sort: true },
                 { field: 'status', title: '状态', sort: true },
                 { field: 'username', title: '姓名', sort: true },
-                { fixed: 'right', title: '操作', width:150, toolbar: '#admin-option' }
+                { fixed: 'right', title: '操作', width:250, toolbar: '#admin-option' }
             ]],
             page: true
         });
+
 
         // 监听工具条
         table.on('tool(admins-list-filter)', function (obj) {
@@ -99,22 +100,23 @@
         };
 
         //是否隐藏专有权限的按钮
-        var checkHasPriv = function (privileges) {
+        var checkHasPriv = function () {
+            var privileges = ['admin/admin-user/proper-role'];
             var privilegeStr = privileges.join(",");
             var options = {
-                url: '/authentication/system-menu/privileges?id=' + id,
+                url: '/authentication/system-menu/privileges',
                 data: {
                     "actions": privilegeStr
                 },
                 method: 'get',
-                done: function () {
-                    obj.del();
-                    table.reload('system-admins');
-                    layer.msg('删除管理员成功！');
+                done: function (res) {
+                    if (res.data.privileges['admin/admin-user/proper-role']) {
+                        $(".edit-proper-priv").show();
+                    }
                 }
             };
             admin.req(options);
-
         }
+        checkHasPriv();
     });
 </script>
