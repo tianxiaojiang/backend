@@ -5,13 +5,20 @@ namespace Backend\modules\admin\controllers;
 use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\modules\admin\models\Admin;
+use Backend\modules\admin\models\Game;
 use Backend\modules\admin\models\SystemAdmin;
+use Backend\modules\admin\models\SystemGame;
+use Backend\modules\admin\models\SystemGroup;
 use Backend\modules\admin\models\SystemGroupGame;
+use Backend\modules\admin\models\SystemGroupPriv;
+use Backend\modules\admin\models\SystemMenu;
+use Backend\modules\admin\models\SystemPriv;
 use Backend\modules\admin\models\SystemUser;
 use Backend\modules\admin\models\SystemUserGroup;
 use Backend\modules\admin\services\admin\DomainAuthSoapClient;
 use Backend\modules\admin\services\AdminService;
 use Backend\modules\admin\services\SystemAdminService;
+use Backend\modules\admin\services\SystemService;
 use Backend\modules\common\controllers\BusinessController;
 use PhpOffice\PhpSpreadsheet\Exception;
 use yii\helpers\ArrayHelper;
@@ -235,5 +242,181 @@ class AdminUserController extends BusinessController
         SystemUserGroup::updateAdminUserGroup($systemAdminId, $sg_ids, $oldSg_id, $currentGameRoleIds);
 
         return $admin;
+    }
+
+    //专有角色权限
+    public function actionProperRole()
+    {
+        $id = Helpers::getRequestParam('id');
+        Helpers::validateEmpty($id, 'id');
+
+        $admin = Admin::findOne(['ad_uid' => $id]);
+        if (empty($admin))
+            throw new CustomException('用户不存在');
+
+        //先查看角色id
+        $roles = $admin->getRoles();
+        if (\Yii::$app->request->isGet) {//get则拉取专有角色的游戏和数据
+            $result = [
+                'privileges' => [],//权限列表
+                'games' => [],//游戏列表
+            ];
+
+            if (empty($roles) || $roles[0]->kind == SystemGroup::SYSTEM_ROLE_KIND_COMMON) {
+                //如果是空，或者第一个角色不是专有角色，返回空的所有可选游戏列表和可选权限列表
+                $roleGames = [];
+                $groupPrivileges = [];
+            } else {
+                //否则，拉取专有角色的游戏和权限
+                $roleGames = ArrayHelper::getColumn($roles[0]->gameIds, 'game_id');
+                //角色权限
+                $groupPrivileges = ArrayHelper::getColumn(SystemGroupPriv::getPrivilegesIdsByGroupId($roles[0]->sg_id), 'privilege');
+            }
+
+            //所有权限
+            $allPrivileges = SystemPriv::getAll();
+
+            //管理员当前操作所在游戏拥有的权限
+            $gameId = intval(Helpers::getRequestParam('game_id'));
+            $selfPrivileges = \Yii::$app->user->identity->getPrivileges($gameId, '*');
+            $selfPrivilegeIds = ArrayHelper::getColumn($selfPrivileges, 'sp_id');
+            foreach ($allPrivileges as $sp_id => $allPrivilege) {
+                if (!empty($groupPrivileges[$sp_id])) {//已有权限，默认选中
+                    $allPrivileges[$sp_id]['is_checked'] = 1;
+                }
+                if (!in_array($sp_id, $selfPrivilegeIds)) {//要禁掉的是自己没有的权限
+                    $allPrivileges[$sp_id]['chkDisabled'] = 1;
+                }
+            }
+
+            $result['privileges'] = array_values($allPrivileges);
+
+            //拉取游戏列表
+            $currentSystem = SystemService::getCurrentSystem();
+            //如果系统本身不区分游戏，只返回不区分游戏的标志
+            if ($currentSystem === Game::GAME_TYPE_NONE) {//系统本身不区分游戏
+                $games = [['game_id' => '-1', 'name' => '不区分游戏', 'selected' => intval(in_array('-1', $roleGames))]];
+            } else {//系统区分游戏
+                $games = [];
+                $gameWhere = ['status' => Game::GAME_STAT_NORMAL];
+                //区分游戏的，只能设置为当前游戏，除非是不区分游戏的管理员
+                if ($gameId != -1) {
+                    $gameWhere['game_id'] = $gameId;
+                } else {
+                    $games = [['game_id' => '-1', 'name' => '不区分游戏', 'selected' => intval(in_array('-1', $roleGames))]];
+                }
+                if (empty($gameWhere['game_id'])) {
+                    $ids = SystemGame::getSystemGameIds();
+                    $gameWhere['game_id'] = $ids;
+                }
+                $realGames = Game::find()->where($gameWhere)->asArray()->all();
+                foreach ($realGames as $key => $realGame) {
+                    if (in_array($realGame['game_id'], $roleGames)) {
+                        $realGames[$key]['selected'] = 1;
+                    }
+                }
+                //系统管理员，增加不区分游戏按钮
+                $games = array_merge($games, $realGames);
+            }
+            $result['games'] = $games;
+
+            return $result;
+
+        } elseif (\Yii::$app->request->isPost) {//post则修改专有角色的游戏和数据
+
+            $on_game = explode(',', Helpers::getRequestParam('on_game'));
+            $gameId = intval(Helpers::getRequestParam('game_id'));
+            if ($gameId != -1 && !empty($on_game) && $gameId != implode($on_game)) {//区分游戏的只能设置当前登录的游戏
+                throw new CustomException('你只能设置角色关联游戏为当前游戏');
+            }
+
+            $params = Helpers::getRequestParams();
+            $newPrivileges = [];
+            foreach ($params as $key => $val) {
+                //组装通用权限数据
+                substr($key, 0, 11) == 'privileges_' && array_push($newPrivileges, $val);
+            }
+
+            $db = \Yii::$app->getDb()->beginTransaction();
+            try {
+                //修改用户角色
+                if (empty($roles) || $roles[0]->kind == SystemGroup::SYSTEM_ROLE_KIND_COMMON) {
+                    //如果是空，则创建一个专有角色，并修改用户角色关联
+                    $group = new SystemGroup();
+                    $group->sg_name = "无角色";
+                    $group->sg_desc = "这是用户的专有角色，不可单独修改权限。且与通用角色不兼容使用";
+                    $group->kind = SystemGroup::SYSTEM_ROLE_KIND_PROPER;
+                    $group->save();
+
+                    //将角色和用户关联起来
+                    $oldSg_id = ArrayHelper::getColumn($roles, 'sg_id');
+                    //取所有的角色id
+                    $currentGameRoleIds = $oldSg_id;
+                    $sg_ids = [$group->sg_id];
+
+                    if (SystemAdminService::checkUseNewSystemAdminSchedule()) {
+                        $systemAdmin = SystemAdmin::findOne(['ad_uid' => $admin->ad_uid]);
+                        $systemAdminId = $systemAdmin->system_ad_uid;
+                    } else {
+                        $systemAdminId = $admin->ad_uid;
+                    }
+
+                    //更新专有角色时，取消所有角色，再添加新专有角色
+                    SystemUserGroup::updateAdminUserGroup($systemAdminId, $sg_ids, $oldSg_id, $currentGameRoleIds);
+                } else {
+                    //否则，直接更新角色的负责游戏和权限
+                    $group = $roles[0];
+                }
+
+                //我所选游戏拥有的所有权限
+                $currentSystem = SystemService::getCurrentSystem();
+                if (\Yii::$app->user->identity->ad_uid === $currentSystem->dev_account) {//管理员取所有权限
+                    $myPrivilege = SystemPriv::getAll();
+                } else {
+                    $myPrivilege = \Yii::$app->user->identity->getPrivilegesOnGame($gameId, '*');
+                }
+                $myPrivilegeIds = ArrayHelper::getColumn($myPrivilege, 'sp_id');
+
+                $oldPrivileges = SystemGroupPriv::getPrivilegesIdsByGroupId($group->sg_id);
+                $diffPrivileges = SystemGroupPriv::diffPrivList($oldPrivileges, $newPrivileges, $myPrivilegeIds);
+
+                //设置权限修改
+                SystemGroupPriv::deleteDeductPrivileges($group->sg_id, $diffPrivileges['delPrivilegesIds']);
+                SystemGroupPriv::createAddPrivileges($group->sg_id, $diffPrivileges['addPrivilegesIds']);
+
+                //修改完毕，校验角色的权限级别
+                $sp_ids = SystemGroupPriv::find()->select('sp_id')->where(['sg_id' => $group->sg_id])->all();
+                $businessPriv = SystemPriv::findOne(['sp_set_or_business' => SystemPriv::PRIVILEGE_TYPE_BUSINESS, 'sp_id' => $sp_ids]);
+                $settingPriv = SystemPriv::findOne(['sp_set_or_business' => SystemPriv::PRIVILEGE_TYPE_SETTING, 'sp_id' => $sp_ids]);
+                $newPrivilegeLevel = 0;
+                //重置角色的业务权限
+                if (!empty($businessPriv)) {
+                    $newPrivilegeLevel |= SystemGroup::SYSTEM_PRIVILEGE_LEVEL_FRONT;
+                }
+                //重置角色的管理权限
+                if (!empty($settingPriv)) {
+                    $newPrivilegeLevel |= SystemGroup::SYSTEM_PRIVILEGE_LEVEL_ADMIN;
+                }
+                SystemGroup::setRolePrivilegeLevel($group, $newPrivilegeLevel);
+
+                //设置管理游戏
+                if ($gameId === -1) {
+                    $myGames = ArrayHelper::getColumn(Game::getAllGames(['type' => $currentSystem->game_type]), 'game_id');
+                    array_push($myGames, -1);
+                } else {
+                    $myGames = [$gameId];
+                }
+                SystemGroup::updateRoleGames($group, $on_game, $myGames);
+
+            } catch (\Exception $exception) {
+                $db->rollBack();
+                $errMsg = $exception->getMessage();
+                throw new CustomException($errMsg);
+            }
+
+            $db->commit();
+
+            return [];
+        }
     }
 }

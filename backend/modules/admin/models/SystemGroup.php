@@ -19,27 +19,16 @@ class SystemGroup extends BaseModel
     const SYSTEM_PRIVILEGE_LEVEL_FRONT = 1;
     const SYSTEM_PRIVILEGE_LEVEL_ADMIN = 2;
 
+    const SYSTEM_ROLE_KIND_COMMON = 0;
+    const SYSTEM_ROLE_KIND_PROPER = 1;
+
     public function scenarios()
     {
         return [
-            'default' => ['sg_id', 'sg_name', 'sg_desc', 'privilege_level'],
-            'update' => ['sg_id', 'sg_name', 'sg_desc', 'privilege_level'],
-            'create' => ['sg_id', 'sg_name', 'sg_desc', 'privilege_level'],
+            'default' => ['sg_id', 'kind', 'sg_name', 'sg_desc', 'privilege_level'],
+            'update' => ['sg_id', 'kind', 'sg_name', 'sg_desc', 'privilege_level'],
+            'create' => ['sg_id', 'kind', 'sg_name', 'sg_desc', 'privilege_level'],
         ];
-    }
-
-    public function insert($runValidation = true, $attributes = null)
-    {
-        $res = parent::insert($runValidation, $attributes);
-        if (!$res) throw new CustomException('新角色入库失败');
-
-        $systemGroupGame = new SystemGroupGame();
-        $systemGroupGame->game_id = intval(Helpers::getRequestParam('game_id'));
-        $systemGroupGame->sg_id = $this->sg_id;
-        $systemGroupGame->save();
-
-
-        return true;
     }
 
     public function rules()

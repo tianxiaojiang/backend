@@ -84,7 +84,7 @@ class AccessToken extends Admin
             if (in_array($this->auth_type, [Admin::AUTH_TYPE_CHANGZHOU, Admin::AUTH_TYPE_DOMAIN])) {
                 (new NewAdminInfoFill($this))->fillFieldAtCreate();
                 if ($this->isNewRecord){//新的员工，校验下员工工号
-                    $oldModel = Admin::findOne(['staff_number' => $this->staff_number]);
+                    $oldModel = Admin::findOne(['staff_number' => $this->staff_number, 'auth_type' => $this->auth_type]);
                     if (!empty($oldModel)) {
                         $oldModel->username = $this->username;
                         $oldModel->account = $this->account;

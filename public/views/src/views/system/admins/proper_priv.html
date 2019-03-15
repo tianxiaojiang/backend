@@ -1,0 +1,113 @@
+<script>
+    //加载css
+    layui.link('/css/bootstrapStyle.css');
+</script>
+<script type="text/html" id="temp-edit-proper-privileges" template lay-url="/admin/admin-user/proper-role?id={{d.params.ad_uid}}" lay-done="layerCallback(d);">
+    <form class="layui-form form-privileges" action="" lay-filter="form-privileges">
+        <div class="layui-fluid">
+            <div class="layui-tab">
+            <div class="layui-col-xs6 layui-show ztree" lay-filter="common-privilege-item">
+                <div id="proper-privileges-box"></div>
+            </div>
+            <div class="layui-col-xs6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择框</label>
+                    <div class="layui-input-block">
+                        <select name="proper_on_game" lay-filter="proper_on_game" id="proper_on_game" multiple>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-footer">
+                    <input type="hidden" name="edit-ad-uid" id="proper-ad-uid" value="{{d.params.id}}">
+                    <button class="layui-btn" lay-submit lay-filter="btn-group-privileges">提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
+<script>
+    var layerCallback = function (d) {
+        layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'jqueryZtreeCore', 'jqueryZtreeExcheck'], function () {
+
+            var $ = layui.jquery, form = layui.form, admin = layui.admin, jqueryZtreeCore = layui.jqueryZtreeCore;
+            var privileges = d.data.privileges;
+            var games = d.data.games;
+
+            //监听保存
+            form.on('submit(btn-group-privileges)', function (data) {
+                var datas = collectUploadData();
+                var options = {
+                    data: datas,
+                    url: '/admin/admin-user/proper-role',
+                    method: 'post',
+                    done: function (res) {
+                        if (res.code === 0) {
+                            layer.msg('操作成功！');
+                        } else {
+                            view.error(res.msg);
+                        }
+                    }
+                };
+                admin.req(options);
+                return false;
+            });
+
+            var collectUploadData = function () {
+                //通用数据
+                var commonPrivileges = jqueryZtreeCore.getZTreeObj("proper-privileges-box").getNodesByParam('is_checked', true);
+                var params = {};
+                params['id'] = $('#proper-ad-uid').val();
+                $.each(commonPrivileges, function (k, v) {
+                    params['privileges_' + v.sp_id] = v.sp_id;
+                });
+                params.proper_on_game = $('#proper_on_game').val().join(',');
+                return params;
+            }
+
+            //tree配置
+            var setting = {
+                view: {
+                    selectedMulti: false
+                },
+                check: {
+                    enable: true
+                },
+                data: {
+                    key: {
+                        name: "sp_label",
+                        checked: "is_checked"
+                    },
+                    simpleData: {
+                        enable: true,
+                        idKey: "sp_id",
+                        pIdKey: "sp_parent_id"
+                    }
+                },
+                edit: {
+                    enable: false
+                }
+            };
+
+            //渲染通用权限
+            $(document).ready(function (e) {
+                jqueryZtreeCore.init($("#proper-privileges-box"), setting, privileges);
+            });
+
+            //获取当前操作游戏的id
+            var onGameObj = $('#proper_on_game');
+            var gameHtml = '';
+            var selected = '';
+            $.each(games, function (k, game) {
+                selected = game.selected === 1 ? ' selected' : '';
+                gameHtml += '<option value="'+ game.game_id +'"'+selected+'>'+ game.name +'</option>';
+                onGameObj.html(gameHtml);
+            });
+
+            form.render();
+        });
+    }
+</script>

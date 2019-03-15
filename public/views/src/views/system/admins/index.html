@@ -8,6 +8,7 @@
                 </div>
                 <table class="layui-table" id="system-admins-id" lay-size="lg" lay-filter="admins-list-filter"></table>
                 <script type="text/html" id="admin-option">
+                    <a class="layui-btn layui-btn-sm edit-proper-priv" lay-event="edit-admin-proper-role">专有权限</a>
                     <a class="layui-btn layui-btn-sm" lay-event="edit-admin-event">编辑</a>
                     <a class="layui-btn layui-btn-sm layui-btn-danger" data-type="t" lay-event="del">删除</a>
                 </script>
@@ -97,5 +98,23 @@
             admin.req(options);
         };
 
+        //是否隐藏专有权限的按钮
+        var checkHasPriv = function (privileges) {
+            var privilegeStr = privileges.join(",");
+            var options = {
+                url: '/authentication/system-menu/privileges?id=' + id,
+                data: {
+                    "actions": privilegeStr
+                },
+                method: 'get',
+                done: function () {
+                    obj.del();
+                    table.reload('system-admins');
+                    layer.msg('删除管理员成功！');
+                }
+            };
+            admin.req(options);
+
+        }
     });
 </script>

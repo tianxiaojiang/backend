@@ -41,6 +41,8 @@ class SystemGroupController extends BusinessController
             $where['sg_id'] = $roleIds;
         }
 
+        //可修改的角色，只拉取通用角色
+        $where['kind'] = SystemGroup::SYSTEM_ROLE_KIND_COMMON;
         $this->query->andWhere($where)->orderBy('sg_id asc');
 
         return parent::prepareDataProvider();
