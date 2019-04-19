@@ -65,19 +65,51 @@ class AdminUserController extends BusinessController
             }]);
         }
 
+        $game_id = Helpers::getRequestParam('game_id');
+        //如果有专项游戏id，则过滤有此游戏管理权限的角色。并且加上所有没有角色的管理员
+        if ($game_id != -1) {
+            //查找所有没有角色的管理员
+            $hasRoleAdminId = ArrayHelper::getColumn(SystemUserGroup::find()->select('ad_uid')->asArray()->all(), 'ad_uid');
+            if (SystemAdminService::checkUseNewSystemAdminSchedule()) {
+                $noRoleAdminId = ArrayHelper::getColumn(SystemAdmin::find()->select('system_ad_uid')->where(['not in', 'system_ad_uid', $hasRoleAdminId])->asArray()->all(), 'system_ad_uid');
+            } else {
+                $noRoleAdminId = ArrayHelper::getColumn(Admin::find()->select('ad_uid')->where(['not in', 'ad_uid', $hasRoleAdminId])->asArray()->all(), 'ad_uid');
+            }
+
+            //拿出游戏相关的所有角色id，再根据角色id拿出所有的ad_uid
+            $roleIds = ArrayHelper::getColumn(SystemGroupGame::find()->select('sg_id')->where(['game_id' => $game_id])->asArray()->all(), 'sg_id');
+            $adminIds =  ArrayHelper::getColumn(SystemUserGroup::find()->select('ad_uid')->distinct()->where(['in', 'sg_id', $roleIds])->asArray()->all(), 'ad_uid');
+            $adminIds = array_merge($adminIds, $noRoleAdminId);
+
+            if (SystemAdminService::checkUseNewSystemAdminSchedule()) {
+                $this->query->where(['in', SystemAdmin::tableName().'.system_ad_uid', array_values($adminIds)]);
+            } else {
+                $this->query->where(['in', Admin::tableName().'.ad_uid', array_values($adminIds)]);
+            }
+        }
+
         $status = Helpers::getRequestParam('status');
         $account = Helpers::getRequestParam('account');
+        $username = Helpers::getRequestParam('username');
+        $staff_number = Helpers::getRequestParam('staff_number');
 
         if ($status !== null) {
             $this->query->andWhere(['`'.Admin::tableName().'`.`status`' => intval($status)]);
         }
 
         if ($account !== null) {
-            $this->query->andWhere(['account' => $account]);
+            $this->query->andWhere(['`'.Admin::tableName().'`.`account`' => $account]);
+        }
+
+        if ($username !== null) {
+            $this->query->andWhere(['`'.Admin::tableName().'`.`username`' => $username]);
+        }
+
+        if ($staff_number !== null) {
+            $this->query->andWhere(['`'.Admin::tableName().'`.`staff_number`' => $staff_number]);
         }
 
         $this->query->orderBy('`'.Admin::tableName().'`.`ad_uid` asc');
-
         return parent::prepareDataProvider();
     }
 
@@ -113,7 +145,7 @@ class AdminUserController extends BusinessController
         $sid = intval(Helpers::getRequestParam('sid'));
 
         //添加基本锁，防止多次提交
-        $lockAccountKey = $staff_number . "_" . $auth_type;
+        $lockAccountKey = "create_admin_lock_" . $staff_number . "_" . $auth_type;
         $redis = \Yii::$app->redis;
         if (!empty($redis->get($lockAccountKey))) {
             throw new CustomException('此账号添加中，请稍后刷新重试！');
@@ -254,6 +286,11 @@ class AdminUserController extends BusinessController
         if (empty($admin))
             throw new CustomException('用户不存在');
 
+        //开发超管不允许设置专有角色
+        $currentSystem = SystemService::getCurrentSystem();
+        if ($currentSystem->dev_account === $admin->ad_uid)
+            throw new CustomException("开发人员管理员不允许被设置为无角色");
+
         //先查看角色id
         $roles = $admin->getRoles();
         if (\Yii::$app->request->isGet) {//get则拉取专有角色的游戏和数据
@@ -324,9 +361,22 @@ class AdminUserController extends BusinessController
 
         } elseif (\Yii::$app->request->isPost) {//post则修改专有角色的游戏和数据
 
-            $on_game = explode(',', Helpers::getRequestParam('on_game'));
+            //添加基本锁，防止多次提交
+            $lockAccountKey = "update_admin_proper_priv_" . $id;
+            $redis = \Yii::$app->redis;
+            if (!empty($redis->get($lockAccountKey))) {
+                throw new CustomException('此账号操作中，请稍后刷新重试！');
+            } else {
+                $redis->set($lockAccountKey, $id);
+                $redis->expire($lockAccountKey, 5);
+            }
+
+            $on_game = explode(',', Helpers::getRequestParam('proper_on_game'));
+            if (empty($on_game)) {
+                throw new CustomException("必须设置管理的游戏");
+            }
             $gameId = intval(Helpers::getRequestParam('game_id'));
-            if ($gameId != -1 && !empty($on_game) && $gameId != implode($on_game)) {//区分游戏的只能设置当前登录的游戏
+            if ($gameId != -1 && $gameId != implode($on_game)) {//区分游戏的只能设置当前登录的游戏
                 throw new CustomException('你只能设置角色关联游戏为当前游戏');
             }
 
@@ -351,8 +401,8 @@ class AdminUserController extends BusinessController
                     //将角色和用户关联起来
                     $oldSg_id = ArrayHelper::getColumn($roles, 'sg_id');
                     //取所有的角色id
-                    $currentGameRoleIds = $oldSg_id;
                     $sg_ids = [$group->sg_id];
+                    $currentGameRoleIds = array_merge($oldSg_id, $sg_ids);
 
                     if (SystemAdminService::checkUseNewSystemAdminSchedule()) {
                         $systemAdmin = SystemAdmin::findOne(['ad_uid' => $admin->ad_uid]);
@@ -415,6 +465,9 @@ class AdminUserController extends BusinessController
             }
 
             $db->commit();
+
+            //操作完成，删除redis对账号的锁定
+            $redis->del($lockAccountKey);
 
             return [];
         }

@@ -52,7 +52,6 @@ class SystemMenuController extends SystemController
         $privilegesValue = array_map(function ($col) {
             return $item = '/' . $col['sp_module'] . '/' . $col['sp_controller'] . '/' . $col['sp_action'];
         }, $privileges);
-
         foreach ($requestActions as $requestAction => $val) {
             $requestActions[$requestAction] = in_array($requestAction, $privilegesValue);
         }

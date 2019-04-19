@@ -3,25 +3,30 @@
     layui.link('/css/bootstrapStyle.css');
 </script>
 <script type="text/html" id="temp-edit-proper-privileges" template lay-url="/admin/admin-user/proper-role?id={{d.params.ad_uid}}" lay-done="layerCallback(d);">
+    <div class="" style="color: red;">
+        <div class="layui-col-xs12 layui-show">
+            <div class="tips_proper">提示：专有权限不属于任何角色，使用用户专有权限，不能与角色共存！！</div>
+        </div>
+    </div>
     <form class="layui-form form-privileges" action="" lay-filter="form-privileges">
         <div class="layui-fluid">
             <div class="layui-tab">
-            <div class="layui-col-xs6 layui-show ztree" lay-filter="common-privilege-item">
-                <div id="proper-privileges-box"></div>
-            </div>
-            <div class="layui-col-xs6">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">选择框</label>
-                    <div class="layui-input-block">
-                        <select name="proper_on_game" lay-filter="proper_on_game" id="proper_on_game" multiple>
-                        </select>
+                <div class="layui-col-xs6 layui-show ztree" lay-filter="common-privilege-item">
+                    <div id="proper-privileges-box"></div>
+                </div>
+                <div class="layui-col-xs6">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">选择框</label>
+                        <div class="layui-input-block">
+                            <select name="proper_on_game" lay-filter="proper_on_game" id="proper_on_game" multiple>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
             <div class="layui-form-item">
                 <div class="layui-footer">
-                    <input type="hidden" name="edit-ad-uid" id="proper-ad-uid" value="{{d.params.id}}">
+                    <input type="hidden" name="edit-ad-uid" id="proper-ad-uid" value="{{d.params.ad_uid}}">
                     <button class="layui-btn" lay-submit lay-filter="btn-group-privileges">提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
@@ -64,6 +69,9 @@
                 $.each(commonPrivileges, function (k, v) {
                     params['privileges_' + v.sp_id] = v.sp_id;
                 });
+                if ($('#proper_on_game').val() === null) {
+                    layer.msg("请选择管理游戏");
+                }
                 params.proper_on_game = $('#proper_on_game').val().join(',');
                 return params;
             }

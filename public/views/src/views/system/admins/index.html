@@ -10,7 +10,7 @@
                 <script type="text/html" id="admin-option">
                     <a class="layui-btn layui-btn-sm edit-proper-priv" lay-event="edit-admin-proper-role" style="display: none">专有权限</a>
                     <a class="layui-btn layui-btn-sm" lay-event="edit-admin-event">编辑</a>
-                    <a class="layui-btn layui-btn-sm layui-btn-danger" data-type="t" lay-event="del">删除</a>
+                    <a class="layui-btn layui-btn-sm layui-btn-danger delete-admin-btn" data-type="t" lay-event="del" style="display: none">删除</a>
                 </script>
             </div>
         </div>
@@ -58,9 +58,11 @@
                 { field: 'username', title: '姓名', sort: true },
                 { fixed: 'right', title: '操作', width:250, toolbar: '#admin-option' }
             ]],
-            page: true
+            page: true,
+            done: function(){
+                checkHasPriv();
+            }
         });
-
 
         // 监听工具条
         table.on('tool(admins-list-filter)', function (obj) {
@@ -79,6 +81,20 @@
                     success: function () {
                         view(this.id).render('system/admins/update', data).done(function() {
                             $(window).trigger('resize');
+                        });
+                    }
+                });
+            } else if (obj.event === 'edit-admin-proper-role') {
+                view.popup({
+                    type: 1,
+                    id: 'LAY-system-admins-proper-role',
+                    title: '修改权限',
+                    resize: false,
+                    success: function () {
+                        view(this.id).render('system/admins/proper_priv', data).done(function() {
+
+                            $(window).trigger('resize');
+
                         });
                     }
                 });
@@ -101,7 +117,7 @@
 
         //是否隐藏专有权限的按钮
         var checkHasPriv = function () {
-            var privileges = ['admin/admin-user/proper-role'];
+            var privileges = ['/admin/admin-user/proper-role', '/admin/admin-user/delete'];
             var privilegeStr = privileges.join(",");
             var options = {
                 url: '/authentication/system-menu/privileges',
@@ -110,13 +126,19 @@
                 },
                 method: 'get',
                 done: function (res) {
-                    if (res.data.privileges['admin/admin-user/proper-role']) {
+                    //是否有权修改专有权限
+                    if (res.data.privileges['/admin/admin-user/proper-role']) {
                         $(".edit-proper-priv").show();
+                    }
+
+                    //是否有权删除管理员
+                    if (res.data.privileges['/admin/admin-user/delete']) {
+                        $(".delete-admin-btn").show();
                     }
                 }
             };
             admin.req(options);
         }
-        checkHasPriv();
+
     });
 </script>

@@ -8,6 +8,7 @@
 
 namespace Backend\log;
 
+use Backend\helpers\Helpers;
 use Yii;
 use yii\base\Component;
 use yii\base\InvalidConfigException;
@@ -103,6 +104,13 @@ abstract class Target extends Component
      * Child classes must implement this method.
      */
     abstract public function export();
+
+    protected $connectId;
+
+    public function init()
+    {
+        $this->connectId = md5(md5(microtime(true)) . rand(1000, 9999));
+    }
 
     /**
      * Processes the given log messages.
@@ -265,12 +273,25 @@ abstract class Target extends Component
             }
         }
 
-        $prefix = $this->getMessagePrefix($message);
-        $row = [
-            'sid'   =>  $prefix['sid'],
-            'time'  =>  date('c', $timestamp),
-        ];
-        return  date('Y-m-d H:i:s') . ' ' . $text;
+        $controller = \Yii::$app->controller;
+        $path = '/'.$controller->module->id.'/' . $controller->id . '/'.$controller->action->id;
+        if ($path == '/admin/common/systems' && substr($text, 0, 10) == 'Api Output') {
+            $text = '';
+        }
+        $request = Yii::$app->getRequest();
+        $ip = $request instanceof Request ? $request->getUserIP() : '-';
+        $logArr = [
+                'timestamp' => date('Y-m-d H:i:s'),
+                'ip' => $ip,
+                'connect_id' => $this->connectId,
+                'sid' => Helpers::getRequestParam('sid'),
+                'game_id' => Helpers::getRequestParam('game_id'),
+                'ad_uid' => empty(Yii::$app->user->identity) ? '' : Yii::$app->user->identity->ad_uid,
+                'path' => $path,
+                'cont' => $text,
+            ];
+
+        return  json_encode($logArr);
     }
 
     /**

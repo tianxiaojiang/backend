@@ -452,6 +452,16 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         return $this->hasMany(SystemGroup::class, ['sg_id' => 'sg_id'])->viaTable('s'. $s .'_system_user_group', ['ad_uid' => 'ad_uid']);
     }
 
+    /**
+     * get user
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGame()
+    {
+        $s = Helpers::getRequestParam('sid');
+        return $this->hasMany(SystemGroupGame::class, ['sg_id' => 'sg_id'])->viaTable('s'. $s .'_system_user_group', ['ad_uid' => 'ad_uid']);
+    }
+
     public function getSystemAdmin() {
         return $this->hasOne(SystemAdmin::class, ['ad_uid' => 'ad_uid']);
     }

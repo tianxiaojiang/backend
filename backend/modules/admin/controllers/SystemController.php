@@ -82,7 +82,7 @@ class SystemController extends BusinessController
      *
      * 一  先在本地用navicat把admin_user里面跟对应系统相关的导出为json文件
      *     比如导出的本地系统是5，查询语句为:
-     *     select a.* from `admin_user` a left join `system_admin` b on a.ad_uid=b.ad_uid where b.systems_id=5;
+     *     select a.* from `admin_user` a INNER JOIN `s8_admin` b on a.ad_uid=b.ad_uid;
      *
      * 二  再把用户角色关系导出为一个json文件，
      *

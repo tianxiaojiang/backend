@@ -244,9 +244,15 @@ layui.use(['form', 'ztutil', 'admin', 'view', 'element', 'jqueryZtreeCore', 'jqu
         $('input[name="sm_id"]').val(treeNode.sm_id);
         $('input[name="sort_by"]').val(sort_by);
         $('input[name="sm_icon"]').val(treeNode.sm_icon);
+        if (treeNode.sm_set_or_business === undefined) {
+            treeNode.sm_set_or_business = 0;
+        }
         $('select[name="sm_set_or_business"]').val(treeNode.sm_set_or_business);
         form.render('select', 'sm_type_filter');
+
+
     }
+
 
     //同步表单数据到对应id的节点
     function synchronizationForm2TreeNode() {

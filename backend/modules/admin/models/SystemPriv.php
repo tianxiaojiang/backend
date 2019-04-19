@@ -8,6 +8,7 @@
 
 namespace Backend\modules\admin\models;
 
+use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\modules\admin\services\SystemService;
 use Backend\modules\common\models\BaseModel;
@@ -83,7 +84,21 @@ class SystemPriv extends BaseModel
     {
         //权限类型与菜单类型一致
         $this->sp_set_or_business = $this->menu->sm_set_or_business;
-        
+
+        //如果action不为main或空
+        if (empty($this->sp_module) && empty($this->sp_controller) && empty($this->sp_action)) {
+            $this->sp_module = $this->sp_controller = $this->sp_action = 'main';
+        } elseif (!empty($this->sp_module) && !empty($this->sp_controller) && !empty($this->sp_action)) {
+            if ($this->sp_module != 'main' || $this->sp_controller != 'main' || $this->sp_action != 'main') {
+                //验证是否已存在
+                $tmpPriv = static::findOne(['sp_module' => $this->sp_module, 'sp_controller' => $this->sp_controller, 'sp_action' => $this->sp_action]);
+                if (!empty($tmpPriv))
+                    throw new CustomException("路由参数已存在，请修改");
+            }
+        } else {
+            throw new CustomException("路由参数不全");
+        }
+
         parent::insert($runValidation = true, $attributes = null);
 
         return true;
@@ -93,6 +108,20 @@ class SystemPriv extends BaseModel
     {
         //权限类型与菜单类型一致
         $this->sp_set_or_business = $this->menu->sm_set_or_business;
+
+        //如果action不为main或空
+        if (empty($this->sp_module) && empty($this->sp_controller) && empty($this->sp_action)) {
+            $this->sp_module = $this->sp_controller = $this->sp_action = 'main';
+        } elseif (!empty($this->sp_module) && !empty($this->sp_controller) && !empty($this->sp_action)) {
+            if ($this->sp_module != 'main' || $this->sp_controller != 'main' || $this->sp_action != 'main') {
+                //验证是否已存在
+                $tmpPriv = static::find()->where(['sp_module' => $this->sp_module, 'sp_controller' => $this->sp_controller, 'sp_action' => $this->sp_action])->andWhere(['<>', 'sp_id', $this->sp_id])->One();
+                if (!empty($tmpPriv))
+                    throw new CustomException("路由参数已存在，请修改");
+            }
+        } else {
+            throw new CustomException("路由参数不全");
+        }
 
         parent::update($runValidation = true, $attributes = null);
 
