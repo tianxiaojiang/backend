@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 
 $redis = [
     'class' => 'yii\redis\Connection',
-    'hostname' => '10.20.9.46',
+    'hostname' => '172.28.161.206',
     'port' => 6666,
     'database' => 0,
 ];
