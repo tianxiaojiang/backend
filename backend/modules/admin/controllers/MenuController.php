@@ -21,6 +21,7 @@ class MenuController extends BusinessController
     {
         $actions = parent::actions();
         unset($actions['index']);
+        unset($actions['delete']);
 
         return $actions;
     }
@@ -115,5 +116,30 @@ class MenuController extends BusinessController
             }
         }
         return true;
+    }
+
+    /**
+     * 重写删除操作
+     * 删除一个菜单后，重置它后面的顺序id
+     */
+    public function actionDelete()
+    {
+        $id = intval(Helpers::getRequestParam("id"));
+        if ($id <= 0)
+            throw new CustomException("id 不能为空");
+
+        $deletingMenu = SystemMenu::find()->where(["sm_id" => $id])->one();
+        if (empty($deletingMenu))
+            throw new CustomException("菜单不存在");
+
+        $followMenu = SystemMenu::find()->where(["sort_by" => $id])->one();
+        if (!empty($followMenu)) {
+            $followMenu->sort_by = $deletingMenu->sort_by;
+            $followMenu->save();
+        }
+
+        $deletingMenu->delete();
+
+        return [];
     }
 }
