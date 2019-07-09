@@ -19,7 +19,7 @@ class PasswordController extends SystemController
     public $modelClass = Admin::class;
 
     /**
-     * 拉取用户所属的所有角色管理的所有游戏信息
+     * 修改密码
      * @return array
      * @throws \Backend\Exception\CustomException
      */

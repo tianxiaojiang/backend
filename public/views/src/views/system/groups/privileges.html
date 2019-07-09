@@ -40,6 +40,10 @@
             //监听保存
             form.on('submit(btn-group-privileges)', function (data) {
                 var datas = collectUploadData();
+                if (datas.on_game === "") {
+                    layer.msg('选择的游戏不能为空');
+                    return false;
+                }
                 var options = {
                     data: datas,
                     url: '/admin/system-group/group-privilege-update',
@@ -48,7 +52,7 @@
                         if (res.code === 0) {
                             layer.msg('操作成功！');
                         } else {
-                            view.error(res.msg);
+                            layer.msg(res.msg);
                         }
                     }
                 };
@@ -64,9 +68,15 @@
                 $.each(commonPrivileges, function (k, v) {
                     params['privileges_' + v.sp_id] = v.sp_id;
                 });
-                params.on_game = $('#on_game').val().join(',');
+
+                var onGame = $('#on_game').val();
+                if (onGame === null || Object.prototype.toString.call(onGame) !== '[object Array]') {
+                    params.on_game = '';
+                } else {
+                    params.on_game = onGame.join(',');
+                }
                 return params;
-            }
+            };
 
             //tree配置
             var setting = {
