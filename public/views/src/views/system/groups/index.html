@@ -3,8 +3,17 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-card">
             <div class="layui-card-body">
-                <div class="layui-btn-container">
-                    <button class="layui-btn" id="btn-add-group">添加</button>
+                <div>
+                    <form class="layui-form">
+                        <div class="layui-inline">
+                            <button class="layui-btn" id="btn-add-admin">添加</button>
+                        </div>
+                        <div class="layui-inline">
+                            <input class="layui-input" name="role_name" id="search_role_name" placeholder="角色名" autocomplete="off">
+                        </div>
+                        <button class="layui-btn" type="reset">重置</button>
+                        <button class="layui-btn" id="searchReload">搜索</button>
+                    </form>
                 </div>
                 <table class="layui-table" id="system-group" lay-size="lg" lay-filter="group"></table>
                 <script type="text/html" id="group-option">
@@ -39,6 +48,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element'], fun
                 });
             }
         });
+        return false;
     });
 
     // 渲染角色列表
@@ -58,6 +68,23 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element'], fun
             {fixed: 'right', title:'操作', toolbar: '#group-option'}
         ]],
         page: true
+    });
+
+    //条件表单搜索
+    $('#searchReload').on('click', function () {
+        var role_name = $('#search_role_name').val();
+        //执行重载
+        table.reload('system-group', {
+            page: {
+                curr: 1 //重新从第 1 页开始
+            }
+            ,headers: {
+                Authorization: ztutil.getToken()
+            },where: {
+                role_name: role_name
+            }
+        });
+        return false;
     });
 
     // 获取权限列表以及管理产品、以及附加权限

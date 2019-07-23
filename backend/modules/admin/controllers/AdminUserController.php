@@ -88,24 +88,24 @@ class AdminUserController extends BusinessController
             }
         }
 
-        $status = Helpers::getRequestParam('status');
+        $status = intval(Helpers::getRequestParam('status'));
         $account = Helpers::getRequestParam('account');
         $username = Helpers::getRequestParam('username');
         $staff_number = Helpers::getRequestParam('staff_number');
 
-        if ($status !== null) {
+        if ($status != -1) {
             $this->query->andWhere(['`'.Admin::tableName().'`.`status`' => intval($status)]);
         }
 
-        if ($account !== null) {
-            $this->query->andWhere(['`'.Admin::tableName().'`.`account`' => $account]);
+        if (!empty($account)) {
+            $this->query->andWhere(['like', '`'.Admin::tableName().'`.`account`', $account]);
         }
 
-        if ($username !== null) {
-            $this->query->andWhere(['`'.Admin::tableName().'`.`username`' => $username]);
+        if (!empty($username)) {
+            $this->query->andWhere(['like', '`'.Admin::tableName().'`.`username`', $username]);
         }
 
-        if ($staff_number !== null) {
+        if (!empty($staff_number)) {
             $this->query->andWhere(['`'.Admin::tableName().'`.`staff_number`' => $staff_number]);
         }
 
@@ -168,6 +168,8 @@ class AdminUserController extends BusinessController
                 $admin->save(false);
             }
         }
+
+        $admin->load(Helpers::getRequestParams(), '');
 
         //添加系统管理员
         $systemAdmin = SystemAdminService::addSystemAdmin($admin->ad_uid, $sid);
@@ -254,10 +256,10 @@ class AdminUserController extends BusinessController
             throw new CustomException($error[0]);
         }
 
-        $sg_ids = empty($admin->sg_id) ? [] : explode(',', strval($admin->sg_id));
-        $oldSg_id = ArrayHelper::getColumn($admin->getRoles(), 'sg_id');
+        $sg_ids = empty($admin->sg_id) ? [] : explode(',', strval($admin->sg_id));//提交上来的角色id
+        $oldSg_id = ArrayHelper::getColumn($admin->getRoles(), 'sg_id');//原来的角色id
         $game_id = intval(Helpers::getRequestParam('game_id'));
-        $currentGameRoleIds = \Yii::$app->user->identity->getMyRoleIdsOnGame($game_id);
+        $currentGameRoleIds = \Yii::$app->user->identity->getMyRoleIdsOnGame($game_id);//当前操作员的对应游戏的角色id
 
         $sg_ids = array_map(function($col) {
             return intval($col);

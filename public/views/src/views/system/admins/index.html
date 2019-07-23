@@ -3,8 +3,30 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-card">
             <div class="layui-card-body">
-                <div class="layui-btn-container">
-                    <button class="layui-btn" id="btn-add-admin">添加</button>
+                <div>
+                    <form class="layui-form">
+                        <div class="layui-inline">
+                            <button class="layui-btn" id="btn-add-admin">添加</button>
+                        </div>
+                        <div class="layui-inline">
+                            <input class="layui-input" name="staff_number" id="search_staff_number" placeholder="工号" autocomplete="off">
+                        </div>
+                        <div class="layui-inline">
+                            <input class="layui-input" name="account" id="search_account" placeholder="账号" autocomplete="off">
+                        </div>
+                        <div class="layui-inline">
+                            <input class="layui-input" name="username" id="search_username" placeholder="姓名" autocomplete="off">
+                        </div>
+                        <div class="layui-inline">
+                            <select class="layui-select" name="status" id="search_status">
+                                <option value="-1">状态</option>
+                                <option value="0">正常</option>
+                                <option value="1">禁用</option>
+                            </select>
+                        </div>
+                        <button class="layui-btn" type="reset">重置</button>
+                        <button class="layui-btn" id="searchReload">搜索</button>
+                    </form>
                 </div>
                 <table class="layui-table" id="system-admins-id" lay-size="lg" lay-filter="admins-list-filter"></table>
                 <script type="text/html" id="admin-option">
@@ -34,6 +56,7 @@
                     });
                 }
             });
+            return false;
         });
 
         // 渲染管理员列表
@@ -62,6 +85,29 @@
             done: function(){
                 checkHasPriv();
             }
+        });
+
+        //条件表单搜索
+        $('#searchReload').on('click', function () {
+            var status = $('#search_status').val();
+            var search_account = $('#search_account').val();
+            var search_staff_number = $('#search_staff_number').val();
+            var search_username = $('#search_username').val();
+            //执行重载
+            table.reload('system-admins-id', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                ,headers: {
+                    Authorization: ztutil.getToken()
+                },where: {
+                    status: status,
+                    staff_number: search_staff_number,
+                    username: search_username,
+                    account: search_account
+                }
+            });
+            return false;
         });
 
         // 监听工具条

@@ -65,7 +65,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         return [
             'changePasswd' => ['account', 'auth_type', 'staff_number', 'reset_password', 'password', 'new_passwd', 'new_passwd_repeat'],
             'updateProfile' => ['username', 'mobile_phone'],
-            'default' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'password', 'createtime', 'mobile_phone'],
+            'default' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'password', 'createtime', 'mobile_phone', 'sg_id'],
             'update' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'mobile_phone', 'username', 'access_token', 'status', 'password', 'sg_id'],
             'create' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'mobile_phone', 'username', 'access_token', 'status', 'password', 'sg_id'],
         ];
