@@ -21,6 +21,7 @@ class PasswordAlgorithmService
         '0' => 'encryptNewest',//数据兼容
         '1' => 'encryptNewest',
         '5' => 'encryptInIdip',
+        '9' => 'encryptInIdip',
     ];
 
     public static function encryptInIdip(Admin $adminModel)
