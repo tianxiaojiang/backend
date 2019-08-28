@@ -80,19 +80,18 @@ class SystemController extends BusinessController
      * 把某个系统的数据从测试环境里同步到线上
      * 思路：
      *
-     * 一  先在本地用navicat把admin_user里面跟对应系统相关的导出为json文件
+     * 一  先直接把本地系统所有数据表格导入到线上
+     *
+     * 二  先在本地用navicat把admin_user里面跟对应系统相关的导出为json文件
      *     比如导出的本地系统是5，查询语句为:
-     *     select a.* from `admin_user` a INNER JOIN `s8_admin` b on a.ad_uid=b.ad_uid;
+     *     select a.* from `admin_user` a INNER JOIN `s5_admin` b on a.ad_uid=b.ad_uid;
      *
-     * 二  再把用户角色关系导出为一个json文件，
+     * 三  上传一个json文件，里面的数据是本地ad_uid,
      *
-     * 三  上传两个json文件，然后读取并解析为数组
+     * 四  遍历本地用户，线上数据库没有则插入，并记录下来线上id和本地id的对应关系
      *
-     * 四  遍历用户，数据库没有则插入，并记录下来新id和旧id的对应关系
+     * 五  遍历线上系统用户关系，然后每一条对应的旧id替换为新id即可
      *
-     * 五  遍历角色用户，然后每一条对应的旧id替换为新id即可
-     *
-     * 六  把其他的表直接导出sql，让运维导入即可
      */
     public function actionImportDevData()
     {
@@ -108,17 +107,19 @@ class SystemController extends BusinessController
 
         $db = \Yii::$app->getDb()->beginTransaction();
         try {
-            $uidMaps = SystemService::importDevelopAdmin($cont, $productSystemId);
+            $result = SystemService::importDevelopAdmin($cont, $productSystemId);
+            $uidMaps = $result['uidMaps'];
+            $exitedAccounts = $result['exitedAccounts'];
             $res = SystemService::importSystemAdmin($uidMaps, $productSystemId);
         } catch (\Exception $exception) {
             $db->rollBack();
             \Yii::error('导入数据失败:' . var_export($exception->getTraceAsString(), true));
             throw new CustomException($exception->getMessage());
         }
-        $db->rollBack();
+        $db->commit();
 
         if ($res)
-            return [];
+            return ['exitedAccounts' => $exitedAccounts];
         else
             throw new CustomException('未知错误');
     }

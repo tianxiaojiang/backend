@@ -100,6 +100,8 @@ class SystemService
         if (empty($users))
             throw new CustomException('导入用户不能为空');
 
+        //保存一下，已经存在的账号
+        $exitedAccounts = '';
         $uidMaps = [];
         foreach ($users['RECORDS'] as $RECORD) {
             //检查数据正常
@@ -109,6 +111,8 @@ class SystemService
             $oldAdmin = Admin::findOne(['account' => $RECORD['account'], 'auth_type' => $RECORD['auth_type']]);
             if (!empty($oldAdmin)) {
                 $ad_uid = $oldAdmin->ad_uid;
+                $foo = $RECORD['ad_uid'] .'_' . $RECORD['auth_type'] . '_' . $RECORD['account'];
+                $exitedAccounts .= empty($exitedAccounts) ? $foo : ',' . $foo;
             } else {
                 $newAdmin = new Admin();
                 $newAdmin->staff_number = $RECORD['staff_number'];
@@ -134,7 +138,10 @@ class SystemService
             $uidMaps[$RECORD['ad_uid']] = $ad_uid;
         }
 
-        return $uidMaps;
+        return [
+            'uidMaps' => $uidMaps,
+            'exitedAccounts' => $exitedAccounts
+        ];
     }
 
     /**
@@ -147,15 +154,13 @@ class SystemService
         if (empty($newSid))
             throw new CustomException('新系统不能为空!');
 
-        if (empty($userRoles))
-            throw new CustomException('用户角色不能为空');
-
         //这里需要设置sid为新id
         Helpers::$request_params['sid'] = $newSid;
         $oldSystemAdmins = SystemAdmin::find()->all();
         foreach ($oldSystemAdmins as $oldSystemAdmin) {
-            if (!empty($uidMaps[$oldSystemAdmin->ad_uid])) {
-                $oldSystemAdmin->ad_uid = $uidMaps[$oldSystemAdmin->ad_uid];
+            $newUid = $uidMaps[$oldSystemAdmin->ad_uid];
+            if (!empty($newUid) && $newUid != $oldSystemAdmin->ad_uid) {
+                $oldSystemAdmin->ad_uid = $newUid;
                 $oldSystemAdmin->save();
             }
         }
