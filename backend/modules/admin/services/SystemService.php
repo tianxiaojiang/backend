@@ -108,32 +108,32 @@ class SystemService
             if (!self::checkAdminData($RECORD)) continue;
 
             //是否已存在
-            $oldAdmin = Admin::findOne(['account' => $RECORD['account'], 'auth_type' => $RECORD['auth_type']]);
-            if (!empty($oldAdmin)) {
-                $ad_uid = $oldAdmin->ad_uid;
+            $onlineAdmin = Admin::findOne(['account' => $RECORD['account'], 'auth_type' => $RECORD['auth_type']]);
+            if (!empty($onlineAdmin)) {
                 $foo = $RECORD['ad_uid'] .'_' . $RECORD['auth_type'] . '_' . $RECORD['account'];
                 $exitedAccounts .= empty($exitedAccounts) ? $foo : ',' . $foo;
             } else {
-                $newAdmin = new Admin();
-                $newAdmin->staff_number = $RECORD['staff_number'];
-                $newAdmin->auth_type = $RECORD['auth_type'];
-                $newAdmin->password_algorithm_system = $RECORD['password_algorithm_system'];
-                $newAdmin->account = $RECORD['account'];
-                $newAdmin->passwd = $RECORD['passwd'];
-                $newAdmin->salt = $RECORD['salt'];
-                $newAdmin->mobile_phone = $RECORD['mobile_phone'];
-                $newAdmin->username = $RECORD['username'];
-                $newAdmin->access_token = '';
-                $newAdmin->access_token_expire = 0;
-                $newAdmin->status = $RECORD['status'];
-                $newAdmin->created_at = $RECORD['created_at'];
-                $newAdmin->updated_at = $RECORD['updated_at'];
-                $newAdmin->reset_password = $RECORD['reset_password'];
-                $newAdmin->system_id = $systems_id;
-
-                $newAdmin->save();
-                $ad_uid = $newAdmin->ad_uid;
+                $onlineAdmin = new Admin();
             }
+
+            $onlineAdmin->staff_number = $RECORD['staff_number'];
+            $onlineAdmin->auth_type = $RECORD['auth_type'];
+            $onlineAdmin->password_algorithm_system = $RECORD['password_algorithm_system'];
+            $onlineAdmin->account = $RECORD['account'];
+            $onlineAdmin->passwd = $RECORD['passwd'];
+            $onlineAdmin->salt = $RECORD['salt'];
+            $onlineAdmin->mobile_phone = $RECORD['mobile_phone'];
+            $onlineAdmin->username = $RECORD['username'];
+            $onlineAdmin->access_token = '';
+            $onlineAdmin->access_token_expire = 0;
+            $onlineAdmin->status = $RECORD['status'];
+            $onlineAdmin->created_at = $RECORD['created_at'];
+            $onlineAdmin->updated_at = $RECORD['updated_at'];
+            $onlineAdmin->reset_password = $RECORD['reset_password'];
+            $onlineAdmin->system_id = $systems_id;
+
+            $onlineAdmin->save();
+            $ad_uid = $onlineAdmin->ad_uid;
 
             $uidMaps[$RECORD['ad_uid']] = $ad_uid;
         }
@@ -158,7 +158,7 @@ class SystemService
         Helpers::$request_params['sid'] = $newSid;
         $oldSystemAdmins = SystemAdmin::find()->all();
         foreach ($oldSystemAdmins as $oldSystemAdmin) {
-            $newUid = $uidMaps[$oldSystemAdmin->ad_uid];
+            $newUid = intval(@$uidMaps[$oldSystemAdmin->ad_uid]);
             if (!empty($newUid) && $newUid != $oldSystemAdmin->ad_uid) {
                 $oldSystemAdmin->ad_uid = $newUid;
                 $oldSystemAdmin->save();

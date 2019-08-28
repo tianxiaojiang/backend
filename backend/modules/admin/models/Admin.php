@@ -199,6 +199,15 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     }
 
     public function insert($runValidation = true, $attributes = null) {
+        //忽略导入的方式
+        $module = \Yii::$app->controller->module->id;
+        $controller = \Yii::$app->controller->id;
+        $action = \Yii::$app->controller->action->id;
+        if ($module . $controller . $action === 'adminsystemimport-dev-data') {
+            parent::insert($runValidation, $attributes);
+            return true;
+        }
+
         //salt必须要有，后面生成jwt的签名时候依赖于salt
         $newSalt = Helpers::getStrBylength(4);
         $this->salt = $newSalt;
@@ -213,6 +222,14 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     }
 
     public function update($runValidation = true, $attributes = null) {
+        //忽略导入的方式
+        $module = \Yii::$app->controller->module->id;
+        $controller = \Yii::$app->controller->id;
+        $action = \Yii::$app->controller->action->id;
+        if ($module . $controller . $action === 'adminsystemimport-dev-data') {
+            parent::update($runValidation, $attributes);
+            return true;
+        }
         if (!empty($this->password)) {
             $newSalt = Helpers::getStrBylength(4);
             $this->salt = $newSalt;
