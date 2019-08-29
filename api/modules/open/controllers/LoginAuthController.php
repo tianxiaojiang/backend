@@ -6,6 +6,7 @@ use Api\modules\authentication\models\AccessToken;
 use Api\modules\open\services\Auth2Service;
 use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
+use Backend\modules\admin\models\SystemAdmin;
 use Backend\modules\admin\models\SystemUser;
 use Backend\modules\admin\services\AdminService;
 use Backend\modules\admin\services\SystemService;
@@ -41,7 +42,7 @@ class LoginAuthController extends BaseController
         $model->loginByAccount();//账密登录验证
 
         //验证是否有系统权限
-        $systemAdmin = SystemUser::findOne(['ad_uid' => $model->ad_uid, 'systems_id' => $systemId]);
+        $systemAdmin = SystemAdmin::findOne(['ad_uid' => $model->ad_uid]);
         if (empty($systemAdmin))
             throw new CustomException('此账号没有该系统的访问权限');
 

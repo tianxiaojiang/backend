@@ -86,7 +86,9 @@ class SystemController extends BusinessController
      *     比如导出的本地系统是5，查询语句为:
      *     select a.* from `admin_user` a INNER JOIN `s5_admin` b on a.ad_uid=b.ad_uid;
      *
-     * 三  上传一个json文件，里面的数据是本地ad_uid,
+     * 三  修改json文件里的字段算法ID(password_algorithm_system)为对应的系统id
+     *
+     * 三  上传一个json文件，里面的数据是本地ad_uid
      *
      * 四  遍历本地用户，线上数据库没有则插入，并记录下来线上id和本地id的对应关系
      *
