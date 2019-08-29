@@ -47,6 +47,19 @@ class SystemGroup extends BaseModel
         return ['sg_id', 'sg_desc', 'sg_name', 'privilege_level'];
     }
 
+    public function insert($runValidation = true, $attributes = null) {
+        $gameId = Helpers::getRequestParam("game_id");
+        parent::insert($runValidation, $attributes);
+
+        $groupId = $this->sg_id;
+        $groupGame = new SystemGroupGame();
+        $groupGame->sg_id = $groupId;
+        $groupGame->game_id = $gameId;
+        $groupGame->save(false);
+
+        return true;
+    }
+
     //给角色设置管理游戏
     public static function setRoleOnGame(SystemGroup $roleObj, $gameId)
     {
