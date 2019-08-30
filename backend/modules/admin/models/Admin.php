@@ -344,14 +344,12 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
      */
     public function getMyRoleIdsOnGame($gameId)
     {
-        $gameId = intval($gameId);
-        $roleIds = [];
-        $roles = SystemGroup::find()->all();
-        foreach ($roles as $role) {
-            if ($gameId === -1 || in_array($gameId, ArrayHelper::getColumn($role->gameIds, 'game_id'))) {
-                array_push($roleIds, $role->sg_id);
-            }
+        if ($gameId > 0) {
+            $roles = SystemGroupGame::find()->select(['count(sg_id) as nu_sg', 'game_id', 'sg_id'])->groupBy("sg_id")->having(['nu_sg' => 1, 'game_id' => $gameId])->asArray()->all();
+        } else {
+            $roles = SystemGroup::find()->asArray()->all();
         }
+        $roleIds = ArrayHelper::getColumn($roles, 'sg_id');
         return $roleIds;
     }
 

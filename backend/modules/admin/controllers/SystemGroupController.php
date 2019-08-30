@@ -27,6 +27,13 @@ class SystemGroupController extends BusinessController
 {
     public $modelClass = 'Backend\modules\admin\models\SystemGroup';
 
+    public function actions()
+    {
+        $actions =  parent::actions();
+        unset($actions['delete']);
+        return $actions;
+    }
+
     public function prepareDataProvider()
     {
         //增加游戏过滤
@@ -36,7 +43,7 @@ class SystemGroupController extends BusinessController
         $this->query = SystemGroup::find();
 
         $where = [];
-        if (intval($gameId) > 0) {//如果有游戏id，则只获取跟游戏id关联的角色
+        if (intval($gameId) > 0) {//如果有游戏id，则只获取跟游戏id关联的单游戏角色
             $roleIds = ArrayHelper::getColumn(SystemGroupGame::find()->select(['sg_id'])->where(['game_id' => $gameId])->all(), 'sg_id');
             $where['sg_id'] = $roleIds;
         }
@@ -67,11 +74,13 @@ class SystemGroupController extends BusinessController
             } else {
                 $disabled = '1';
             }
+            $games = join(',', ArrayHelper::getColumn($model->systemGame, "name"));
 
             $result[] = [
                 'sg_id' => $model->sg_id,
                 'sg_name' => $model->sg_name,
                 'sg_desc' => $model->sg_desc,
+                'game_name' => $games,
                 'disabled' => $disabled,
             ];
         }
@@ -171,6 +180,13 @@ class SystemGroupController extends BusinessController
 
         $group = SystemGroup::findOne(['sg_id' => $groupId]);
 
+        /**
+         * 单独游戏环境下，不能操作符合游戏的角色
+         */
+        if ($gameId > 0 && !$group->isSingeGameRole()) {
+            throw new CustomException('您无法设置多游戏角色，如果您管理多个游戏，请切换到不区分游戏再尝试');
+        }
+
         //我所选游戏拥有的所有权限
         $currentSystem = SystemService::getCurrentSystem();
         if (\Yii::$app->user->identity->ad_uid === $currentSystem->dev_account) {//管理员取所有权限
@@ -220,6 +236,24 @@ class SystemGroupController extends BusinessController
         }
 
         $db->commit();
+
+        return [];
+    }
+
+    public function actionDelete()
+    {
+        $id = Helpers::getRequestParam("id");
+        $gameId = Helpers::getRequestParam("game_id");
+        $role = SystemGroup::findOne(['sg_id' => intval($id)]);
+        if (empty($role)) {
+            throw new CustomException('角色不存在');
+        }
+
+        if ($gameId > 0 && !$role->isSingeGameRole()) {
+            throw new CustomException('您无法设置多游戏角色，如果您管理多个游戏，请切换到不区分游戏再尝试');
+        }
+
+        $role->delete();
 
         return [];
     }

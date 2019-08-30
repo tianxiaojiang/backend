@@ -13,7 +13,7 @@
         </div>
         <div class="layui-form-item auth_type_password" style="display: none;">
             <label class="layui-form-label">账号</label>
-            <div class="layui-input-block"> <input type="text" name="account" placeholder="开发者账号" autocomplete="off" class="layui-input" /></div>
+            <div class="layui-input-block"> <input type="text" name="account" placeholder="登录账号" autocomplete="off" class="layui-input" /></div>
         </div>
         <div class="layui-form-item auth_type_password" style="display: none;">
             <label class="layui-form-label">初始密码</label>
@@ -27,33 +27,6 @@
             <label class="layui-form-label">工号</label>
             <div class="layui-input-block"> <input type="number" name="staff_number" placeholder="开发者工号" autocomplete="off" class="layui-input" /></div>
         </div>
-        <!--<div class="layui-form-item">-->
-            <!--<label class="layui-form-label">账号</label>-->
-            <!--<div class="layui-input-block"><input type="text" name="account" required lay-verify="required" placeholder="账号" autocomplete="off" class="layui-input" id="admin-add-account"/></div>-->
-        <!--</div>-->
-        <!--<div id="extendFieldBox">-->
-            <!--<div class="layui-form-item">-->
-                <!--<label class="layui-form-label">密码</label>-->
-                <!--<div class="layui-input-block"> <input type="password" name="passwd" required lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input" /></div>-->
-            <!--</div>-->
-            <!--<div class="layui-form-item">-->
-                <!--<label class="layui-form-label">绑定手机</label>-->
-                <!--<div class="layui-input-block"><input type="text" name="mobile_phone" placeholder="绑定手机" lay-verify="phone" autocomplete="off" class="layui-input" /></div>-->
-            <!--</div>-->
-            <!--<div class="layui-form-item">-->
-                <!--<label class="layui-form-label">姓名</label>-->
-                <!--<div class="layui-input-block"><input type="text" name="username" placeholder="姓名" autocomplete="off" class="layui-input" /></div>-->
-            <!--</div>-->
-            <!--<div class="layui-form-item">-->
-                <!--<label class="layui-form-label">状态</label>-->
-                <!--<div class="layui-input-block">-->
-                    <!--<select name="status" required lay-verify="required">-->
-                        <!--<option value="0">正常</option>-->
-                        <!--<option value="1">禁止</option>-->
-                    <!--</select>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
         <div class="layui-form-item">
             <label class="layui-form-label">角色名</label>
             <div class="layui-input-block">
@@ -175,20 +148,36 @@
             } else {
                 data.field.sg_id = data.field.sg_id.join(',');
             }
-            var options = {
-                data: data.field,
-                url: '/admin/admin-user/create',
-                method: 'post',
-                done: function () {
-                    OperationInProgress = 0;
-                    layer.closeAll();
-                    table.reload('system-admins-id');
-                    layer.msg('添加用户成功！');
-                }
-            };
-            admin.req(options);
+            //执行提交操作
+            addAdminOperation(data.field);
             return false;
         });
+
+        var addAdminOperation = function(data) {
+            var options = {
+                data: data,
+                url: '/admin/admin-user/create',
+                method: 'post',
+                done: function (res) {
+                    if (res.data.code === -2) {//如果是-2，则需要二次确认
+                        data.confirm = 1;
+                        //弹确认框
+                        layer.confirm(res.data.msg, function () {
+                            addAdminOperation(data);
+                        }, function () {
+                            OperationInProgress = 0;
+                        });
+                    } else {
+                        OperationInProgress = 0;
+                        layer.closeAll();
+                        table.reload('system-admins-id');
+                        layer.msg('添加用户成功！');
+                    }
+                }
+            };
+            console.log(data);
+            admin.req(options);
+        }
 
         form.render();
     });

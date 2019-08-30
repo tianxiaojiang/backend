@@ -60,6 +60,19 @@ class SystemGroup extends BaseModel
         return true;
     }
 
+    public function update($runValidation = true, $attributes = null) {
+        $gameId = Helpers::getRequestParam("game_id");
+        /**
+         * 单独游戏环境下，不能操作符合游戏的角色
+         */
+        if ($gameId > 0 && !$this->isSingeGameRole()) {
+            throw new CustomException('您无法设置多游戏角色，如果您管理多个游戏，请切换到不区分游戏再尝试');
+        } else {
+            parent::update($runValidation, $attributes);
+            return true;
+        }
+    }
+
     //给角色设置管理游戏
     public static function setRoleOnGame(SystemGroup $roleObj, $gameId)
     {
@@ -143,5 +156,17 @@ class SystemGroup extends BaseModel
         SystemGroupGame::deleteDeductGames($systemGroup->sg_id, $diffGameIds['delGamesIds']);
 
         return true;
+    }
+
+    /**
+     * 查询一个角色是否为单游戏角色
+     * 因为在区分游戏环境下，只可以操作单游戏角色
+     * 如果一个角色管理多个游戏，这个角色只有在不区分游戏时，可以操作
+     * @return bool
+     */
+    public function isSingeGameRole()
+    {
+        $ret = SystemGroupGame::find()->select(['sggid'])->where(['sg_id' => $this->sg_id])->asArray()->all();
+        return count($ret) === 1;
     }
 }

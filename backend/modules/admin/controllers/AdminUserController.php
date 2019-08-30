@@ -160,6 +160,7 @@ class AdminUserController extends BusinessController
             $admin = Admin::findOne(['staff_number' => $staff_number, 'auth_type' => $auth_type]);
         }
 
+        $confirmTag = Helpers::getRequestParam("confirm");
         if (empty($admin)) {
             $admin = new Admin();
             $admin->setScenario('create');
@@ -167,6 +168,13 @@ class AdminUserController extends BusinessController
             if ($admin->validate()) {
                 $admin->save(false);
             }
+        } else if (empty($confirmTag)) {//非空时，并且是普通账密，提示管理员确认信息
+            //操作完成，删除redis对账号的锁定
+            $redis->del($lockAccountKey);
+            return [
+                'code' => -2,
+                'msg' => "当前普通账号（{$account}）已存在<br>原姓名为: {$admin->username}<br>原手机号为：{$admin->mobile_phone}。<br>信息无误，请点确认；否则，请修改账号重新提交！",
+            ];
         }
 
         $admin->load(Helpers::getRequestParams(), '');
