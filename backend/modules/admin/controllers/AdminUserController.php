@@ -69,17 +69,17 @@ class AdminUserController extends BusinessController
         //如果有专项游戏id，则过滤有此游戏管理权限的角色。并且加上所有没有角色的管理员
         if ($game_id != -1) {
             //查找所有没有角色的管理员
-            $hasRoleAdminId = ArrayHelper::getColumn(SystemUserGroup::find()->select('ad_uid')->asArray()->all(), 'ad_uid');
-            if (SystemAdminService::checkUseNewSystemAdminSchedule()) {
-                $noRoleAdminId = ArrayHelper::getColumn(SystemAdmin::find()->select('system_ad_uid')->where(['not in', 'system_ad_uid', $hasRoleAdminId])->asArray()->all(), 'system_ad_uid');
-            } else {
-                $noRoleAdminId = ArrayHelper::getColumn(Admin::find()->select('ad_uid')->where(['not in', 'ad_uid', $hasRoleAdminId])->asArray()->all(), 'ad_uid');
-            }
+//            $hasRoleAdminId = ArrayHelper::getColumn(SystemUserGroup::find()->select('ad_uid')->asArray()->all(), 'ad_uid');
+//            if (SystemAdminService::checkUseNewSystemAdminSchedule()) {
+//                $noRoleAdminId = ArrayHelper::getColumn(SystemAdmin::find()->select('system_ad_uid')->where(['not in', 'system_ad_uid', $hasRoleAdminId])->asArray()->all(), 'system_ad_uid');
+//            } else {
+//                $noRoleAdminId = ArrayHelper::getColumn(Admin::find()->select('ad_uid')->where(['not in', 'ad_uid', $hasRoleAdminId])->asArray()->all(), 'ad_uid');
+//            }
 
             //拿出游戏相关的所有角色id，再根据角色id拿出所有的ad_uid
             $roleIds = ArrayHelper::getColumn(SystemGroupGame::find()->select('sg_id')->where(['game_id' => $game_id])->asArray()->all(), 'sg_id');
             $adminIds =  ArrayHelper::getColumn(SystemUserGroup::find()->select('ad_uid')->distinct()->where(['in', 'sg_id', $roleIds])->asArray()->all(), 'ad_uid');
-            $adminIds = array_merge($adminIds, $noRoleAdminId);
+//            $adminIds = array_merge($adminIds, $noRoleAdminId);
 
             if (SystemAdminService::checkUseNewSystemAdminSchedule()) {
                 $this->query->where(['in', SystemAdmin::tableName().'.system_ad_uid', array_values($adminIds)]);

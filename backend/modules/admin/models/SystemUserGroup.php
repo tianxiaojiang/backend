@@ -19,7 +19,7 @@ class SystemUserGroup extends BaseModel
 
     public static function updateAdminUserGroup($systemAdminId, $newRoleIds, $oldRoleIds, $myRoleIds)
     {
-        if (empty($newRoleIds) || empty($systemAdminId) || empty($myRoleIds)) return true;
+        //if (empty($newRoleIds) || empty($systemAdminId) || empty($myRoleIds)) return true;
 
         $diffRoleIds = self::diffRoles($oldRoleIds, $newRoleIds, $myRoleIds);
         self::addRoleAdmin($diffRoleIds['addRoleIds'], $systemAdminId);
