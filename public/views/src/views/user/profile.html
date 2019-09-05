@@ -76,6 +76,11 @@
                         time: 1000
                     }, function() {
                         // view.exit();
+                        //修改本地的姓名
+                        layui.data(setter.tableName, {
+                            key: 'username',
+                            value: field.username
+                        });
                         location.hash = '/'; //跳转到登入页
                     });
                 }

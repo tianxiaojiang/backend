@@ -156,6 +156,16 @@ class System extends BaseModel
 
         $this->dev_account = $adminUser->ad_uid;
 
+        //校验是否更换管理员
+        $oldAdminId = $this->getOldAttribute("dev_account");
+        if (intval($oldAdminId) != $adminUser->ad_uid) {
+            //替换了管理员，则把对应系统的角色id替换掉
+            Helpers::$request_params["sid"] = $this->systems_id;
+            SystemAdmin::updateAll(["ad_uid" => $adminUser->ad_uid], ["ad_uid" => $oldAdminId]);
+            //改回sid
+            Helpers::$request_params["sid"] = 1;
+        }
+
         //系统数据入库
         $res = parent::update($runValidation, $attributes);
         if (!$res)
