@@ -32,6 +32,7 @@
                 <script type="text/html" id="admin-option">
                     <a class="layui-btn layui-btn-sm edit-proper-priv" lay-event="edit-admin-proper-role" style="display: none">专有权限</a>
                     <a class="layui-btn layui-btn-sm" lay-event="edit-admin-event">编辑</a>
+                    <a class="layui-btn layui-btn-sm reset-password-btn" data-type="t" lay-event="reset-password" style="display: none">重置密码</a>
                     <a class="layui-btn layui-btn-sm layui-btn-danger delete-admin-btn" data-type="t" lay-event="del" style="display: none">删除</a>
                 </script>
             </div>
@@ -79,7 +80,7 @@
                 { field: 'role', title: '角色名', sort: true },
                 { field: 'status', title: '状态', sort: true },
                 { field: 'username', title: '姓名', sort: true },
-                { fixed: 'right', title: '操作', width:250, toolbar: '#admin-option' }
+                { fixed: 'right', title: '操作', width:300, toolbar: '#admin-option' }
             ]],
             page: true,
             done: function(){
@@ -144,6 +145,18 @@
                         });
                     }
                 });
+            } else if (obj.event === 'reset-password') {
+                view.popup({
+                    type: 1,
+                    id: 'LAY-system-admins-reset-password',
+                    title: '重置密码',
+                    resize: false,
+                    success: function () {
+                        view(this.id).render('system/admins/reset-password', data).done(function() {
+                            $(window).trigger('resize');
+                        });
+                    }
+                });
             }
         });
 
@@ -163,7 +176,7 @@
 
         //是否隐藏专有权限的按钮
         var checkHasPriv = function () {
-            var privileges = ['/admin/admin-user/proper-role', '/admin/admin-user/delete'];
+            var privileges = ['/admin/admin-user/proper-role', '/admin/admin-user/delete', '/admin/admin-user/reset-password'];
             var privilegeStr = privileges.join(",");
             var options = {
                 url: '/authentication/system-menu/privileges',
@@ -180,6 +193,11 @@
                     //是否有权删除管理员
                     if (res.data.privileges['/admin/admin-user/delete']) {
                         $(".delete-admin-btn").show();
+                    }
+
+                    //是否有重置密码的权限
+                    if (res.data.privileges['/admin/admin-user/reset-password']) {
+                        $(".reset-password-btn").show();
                     }
                 }
             };

@@ -482,4 +482,21 @@ class AdminUserController extends BusinessController
             return [];
         }
     }
+
+    public function actionResetPassword()
+    {
+        //重置密码，先不踢所有用户下线
+        $resetUser = Admin::find()->where(["ad_uid" => intval(Helpers::getRequestParam("ad_uid"))])->one();
+
+        if (empty($resetUser))
+            throw new CustomException('用户不存在');
+
+        //只允许普通账号
+        if ($resetUser->auth_type != Admin::AUTH_TYPE_PASSWORD)
+            throw new CustomException('只能修改普通账号的密码');
+
+        $resetUser->resetPasswd();
+
+        return [];
+    }
 }

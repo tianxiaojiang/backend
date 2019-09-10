@@ -53,6 +53,8 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     public $new_passwd_repeat;
     public $system_id = null;
 
+    public $reset_passwd;
+
     public $_user;
 
     static public function tableName()
@@ -64,6 +66,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     {
         return [
             'changePasswd' => ['account', 'auth_type', 'staff_number', 'reset_password', 'password', 'new_passwd', 'new_passwd_repeat'],
+            'resetPasswd' => ['reset_passwd'],
             'updateProfile' => ['username', 'mobile_phone'],
             'default' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'password', 'createtime', 'mobile_phone', 'sg_id'],
             'update' => ['account', 'auth_type', 'staff_number', 'password_algorithm_system', 'reset_password', 'mobile_phone', 'username', 'access_token', 'status', 'password', 'sg_id'],
@@ -84,6 +87,7 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
             ['password', 'validateAccountType', 'message' => '只有普通账号可以修改密码', 'on' => ['changePasswd']],
             ['username', 'required', 'message' => '姓名不能为空', 'on' => ['updateProfile']],
             ['mobile_phone', 'match', 'pattern' => '/^1\d{10}$/', 'message' => '手机号格式错误', 'on' => ['updateProfile']],
+            ['reset_passwd', 'validateResetPassword', 'message' => '密码必须6位以上', 'on' => ['resetPasswd']],
         ];
     }
 
@@ -142,6 +146,19 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
     public function validateAuthKey($authKey)
     {
         return $this->authKey === $authKey;
+    }
+
+
+    //校验两次输入的新密码
+    public function validateResetPassword()
+    {
+        if ($this->hasErrors()) {
+            return false;
+        }
+
+        if (strlen($this->reset_passwd) < 6) {
+            $this->addError('reset_passwd', '新密码不能少于6位');
+        }
     }
 
     public function getUser()
@@ -281,6 +298,28 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
             throw new CustomException($error[0]);
         }
     }
+
+    /**
+     * update user passwd
+     */
+    public function resetPasswd() {
+        $this->setScenario('resetPasswd');
+        $this->setAttributes(Helpers::getRequestParams());
+
+        if ($this->validate()) {
+            $this->reset_password = self::RESET_PASSWORD_YES;
+            $this->password = $this->reset_passwd;
+            $this->save(false);
+            return true;
+        } else {
+            $errors = $this->getErrors();
+            $error  = array_shift($errors);
+            \Yii::error(var_export($error, true));
+            throw new CustomException($error[0]);
+        }
+    }
+
+
 
     /**
      * update user passwd
