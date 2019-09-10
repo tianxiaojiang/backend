@@ -168,7 +168,7 @@ class AdminUserController extends BusinessController
             if ($admin->validate()) {
                 $admin->save(false);
             }
-        } else if (empty($confirmTag)) {//非空时，并且是普通账密，提示管理员确认信息
+        } else if (empty($confirmTag) && $auth_type == Admin::AUTH_TYPE_PASSWORD) {//非空时，并且是普通账密，提示管理员确认信息
             //操作完成，删除redis对账号的锁定
             $redis->del($lockAccountKey);
             return [
