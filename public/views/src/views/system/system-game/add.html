@@ -27,6 +27,9 @@ var getGameListCallback = function(d) {
             var options = {
                 url: '/admin/system-game/index',
                 method: 'get',
+                data: {
+                    limit: 10000
+                },
                 done: function (res) {
                     var sysytemGames = res.data;
                     var systemGameIds = [];
@@ -35,10 +38,9 @@ var getGameListCallback = function(d) {
                     });
 
                     var gameHtml = '';
-                    console.log(allGames);
                     $.each(allGames, function (k, v) {
                         var isChecked = (systemGameIds.indexOf(v.game_id) === -1) ? '' : ' checked';
-                        gameHtml += '<input type="checkbox" name="system_game_id['+v.game_id+']" title="'+v.name+'"' +isChecked+ '>';
+                        gameHtml += '<input type="checkbox" name="system_game_id['+v.game_id+']" title="'+v.name + '('+ v.game_id +')"' +isChecked+ '>';
                     });
 
                     $('#all_game_lists').html(gameHtml);

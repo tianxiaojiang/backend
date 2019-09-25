@@ -26,6 +26,18 @@ class SystemGameController extends BusinessController
         return $actions;
     }
 
+    public function prepareDataProvider()
+    {
+        $systemGameId = intval(Helpers::getRequestParam("system_game_id"));
+
+        $this->query = SystemGame::find();
+        if ($systemGameId > 0) {
+            $this->query->andWhere(['game_id' => $systemGameId]);
+        }
+
+        return parent::prepareDataProvider();
+    }
+
     public function formatModel($models)
     {
         $result = [];
