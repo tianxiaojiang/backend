@@ -89,25 +89,6 @@ layui.define(['layer'], function(exports) {
             param.time = time;
             return  param;
         },
-        getHasPrivilege: function (privileges, callback) {
-            if(!obj.isArray(privileges) || privileges.length < 1) {
-                view.error('查询的操作不能为空');
-                return false;
-            }
-            if (!callback) {
-                view.error('缺少回调函数!');
-                return false;
-            }
-            var privilegeStr = privileges.join(',');
-            var options = {
-                dataType: 'jsonp',
-                url: layui.setter.integration_url + '/authentication/system-menu/privileges?r=' + Math.random() + '&sid=' + layui.data(layui.setter.tableName).sid + '&' + layui.setter.request.tokenName + '=' + layui.data(layui.setter.tableName)[layui.setter.request.tokenName] + '&actions=' + privilegeStr,
-                done: function (res) {
-                    callback(res.data.privileges)
-                }
-            };
-            admin.req(options);
-        },
         isArray: function (o) {
             return Object.prototype.toString.call(o)=='[object Array]';
         }
