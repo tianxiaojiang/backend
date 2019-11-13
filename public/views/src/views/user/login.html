@@ -184,18 +184,44 @@ layui.use(['admin', 'form', 'user'], function() {
             data: data,
             async:false,
             done: function(res) {
-
                 if (res.code !== 0) {
                     layer.errorMsg(res.msg);
                     return false;
                 }
-
+                // IncreaseSystemSort(go_sid);//增加排序
                 tmpBtn = $('#hiddenUrl');
                 tmpBtn.attr('href', res.data.redirect_url);
                 tmpBtn[0].click();
             }
         });
     }
+
+    // //获取所有系统排序
+    // var SystemSort = {};
+    // var GetAllSystemSort = function () {
+    //     var SystemSortStr = localStorage.getItem("system_sort");
+    //     if (SystemSort) {
+    //         SystemSort = JSON.parse(SystemSortStr);
+    //     }
+    //     return SystemSort;
+    // };
+    // GetAllSystemSort();
+    //
+    // //获取某个系统的id
+    // var GetSystemSort = function (systemId) {
+    //     return parseInt(SystemSort[systemId]);
+    // };
+    // GetSystemSort();
+    //
+    // var IncreaseSystemSort = function (systemId) {
+    //     if (SystemSort[systemId]) {
+    //         SystemSort[systemId]++;
+    //     } else {
+    //         SystemSort[systemId] = 1;
+    //     }
+    //     var SystemSortStr = JSON.stringify(SystemSort);
+    //     localStorage.setItem("system_sort", SystemSortStr);
+    // };
 
     //初始化执行内容
     var init = function() {

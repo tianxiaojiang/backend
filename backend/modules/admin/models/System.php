@@ -117,15 +117,14 @@ class System extends BaseModel
             $adminUser->save();
         }
 
+        //生成系统的数据库表格
+        ImportSystemSqlService::importSystemSql($this, $adminUser->ad_uid);
+
         //添加用户系统关系
         //SystemAdminService::addSystemAdmin($adminUser->ad_uid, $systems_id);
 
         $this->dev_account = $adminUser->ad_uid;
         $this->save();
-
-
-        //生成系统的数据库表格
-        ImportSystemSqlService::importSystemSql($this, $adminUser->ad_uid);
 
         return true;
     }
@@ -158,7 +157,7 @@ class System extends BaseModel
 
         //校验是否更换管理员
         $oldAdminId = $this->getOldAttribute("dev_account");
-        if (intval($oldAdminId) != $adminUser->ad_uid) {
+        if (!empty($oldAdminId) && intval($oldAdminId) != $adminUser->ad_uid) {
             //替换了管理员，则把对应系统的角色id替换掉
             Helpers::$request_params["sid"] = $this->systems_id;
             SystemAdmin::updateAll(["ad_uid" => $adminUser->ad_uid], ["ad_uid" => $oldAdminId]);

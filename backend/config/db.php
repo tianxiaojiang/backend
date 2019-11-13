@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 
 $db = [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=10.20.49.195;port=3306;dbname=integration_background',
+    'dsn' => 'mysql:host=172.28.161.14;port=3336;dbname=integration_background',
     'username' => 'giant_manage',
     'password' => 'qGwQAZBR5j4DJYyI',
     'charset' => 'utf8mb4',

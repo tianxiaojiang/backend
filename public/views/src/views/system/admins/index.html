@@ -43,7 +43,7 @@
     layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view'], function () {
 
         var $ = layui.jquery, table = layui.table, form = layui.form, laytpl = layui.laytpl, ztutil = layui.ztutil, admin = layui.admin, view = layui.view;
-
+        form.render();
         // 点击添加管理员按钮
         $('#btn-add-admin').on('click', function () {
             view.popup({
