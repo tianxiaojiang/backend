@@ -21,7 +21,7 @@
 
 | 字段名 | 字段类型 | 字段说明 |
 | --- | --- | --- |
-| game_id | int | 游戏id |
+| game_id | string | 游戏id |
 | name | string | 游戏名 |
 
 结果示例：

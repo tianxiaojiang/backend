@@ -9,7 +9,7 @@
 | m | string | 是 | module |
 | c | string | 是 | controller |
 | a | string | 是 | action |
-| game_id | int | 是 | 游戏id |
+| game_id | string | 是 | 游戏id |
 
 
 ### 请求header

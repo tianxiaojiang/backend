@@ -6,7 +6,7 @@
 | 参数名 | 参数类型 | 是否必须 | 说明 |
 | --- | --- | --- | --- |
 | sid | int | 是 | 系统id |
-| game_id | int | 是 | 游戏id |
+| game_id | string | 是 | 游戏id |
 | actions | string | 是 | 要检查的操作，多个以英文逗号隔开。例如'/index/news1/index,/index/news1/create' |
 | callback | string | 否 | 如果客户端使用jsonp的方式跨域调用，需要传此js会到处理函数名 |
 | Authorization | string | 否 | 如果客户端使用jsonp的方式跨域调用，传此参数，就不需要header头里的Authorization |
