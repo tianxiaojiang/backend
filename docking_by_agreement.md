@@ -7,11 +7,11 @@
 #### 需要准备的资料
 - 系统名称（示例：IDIP）
 - 系统URL（示例：http://www.baidu.com）
-- 授权回调地址（示例：/user/auth 或者 /auth.html 等）
+- 授权回调地址（示例：/user/auth 或者 /auth.html 等，会带）
 - 管理游戏类型（端游或手游或不区分游戏）
 - 负责人工号
 - 简要描述（非必须）
-- icon两张（一张透明、一张高亮。示例：http://unify-admin.sdk.mobileztgame.com）
+- icon两张（一张透明、一张高亮：195px*203px。示例：http://unify-admin.sdk.mobileztgame.com）
 
 #### 申请方式
 
