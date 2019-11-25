@@ -11,16 +11,13 @@ use Backend\modules\admin\models\SystemGame;
 use Backend\modules\admin\models\SystemGroup;
 use Backend\modules\admin\models\SystemGroupGame;
 use Backend\modules\admin\models\SystemGroupPriv;
-use Backend\modules\admin\models\SystemMenu;
 use Backend\modules\admin\models\SystemPriv;
 use Backend\modules\admin\models\SystemUser;
 use Backend\modules\admin\models\SystemUserGroup;
-use Backend\modules\admin\services\admin\DomainAuthSoapClient;
 use Backend\modules\admin\services\AdminService;
 use Backend\modules\admin\services\SystemAdminService;
 use Backend\modules\admin\services\SystemService;
 use Backend\modules\common\controllers\BusinessController;
-use PhpOffice\PhpSpreadsheet\Exception;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -145,13 +142,12 @@ class AdminUserController extends BusinessController
         $sid = intval(Helpers::getRequestParam('sid'));
 
         //添加基本锁，防止多次提交
-        $lockAccountKey = "create_admin_lock_" . $staff_number . "_" . $auth_type;
-        $redis = \Yii::$app->redis;
-        if (!empty($redis->get($lockAccountKey))) {
+        $lockAccountKey = "create_admin_lock_" . $account . "_" . $auth_type;
+        $cache = \Yii::$app->cache;
+        if (!empty($cache->get($lockAccountKey))) {
             throw new CustomException('此账号添加中，请稍后刷新重试！');
         } else {
-            $redis->set($lockAccountKey, $sid);
-            $redis->expire($lockAccountKey, 5);
+            $cache->set($lockAccountKey, $sid, 5);
         }
 
         if ($auth_type == Admin::AUTH_TYPE_PASSWORD) {
@@ -170,7 +166,7 @@ class AdminUserController extends BusinessController
             }
         } else if (empty($confirmTag) && $auth_type == Admin::AUTH_TYPE_PASSWORD) {//非空时，并且是普通账密，提示管理员确认信息
             //操作完成，删除redis对账号的锁定
-            $redis->del($lockAccountKey);
+            $cache->delete($lockAccountKey);
             return [
                 'code' => -2,
                 'msg' => "当前普通账号（{$account}）已存在<br>原姓名为: {$admin->username}<br>原手机号为：{$admin->mobile_phone}。<br>信息无误，请点确认；否则，请修改账号重新提交！",
@@ -200,7 +196,7 @@ class AdminUserController extends BusinessController
         SystemUserGroup::updateAdminUserGroup($systemAdminId, $sg_ids, $oldSg_id, $currentGameRoleIds);
 
         //操作完成，删除redis对账号的锁定
-        $redis->del($lockAccountKey);
+        $cache->delete($lockAccountKey);
 
         return $admin;
     }
@@ -373,12 +369,11 @@ class AdminUserController extends BusinessController
 
             //添加基本锁，防止多次提交
             $lockAccountKey = "update_admin_proper_priv_" . $id;
-            $redis = \Yii::$app->redis;
-            if (!empty($redis->get($lockAccountKey))) {
+            $cache = \Yii::$app->cache;
+            if (!empty($cache->get($lockAccountKey))) {
                 throw new CustomException('此账号操作中，请稍后刷新重试！');
             } else {
-                $redis->set($lockAccountKey, $id);
-                $redis->expire($lockAccountKey, 5);
+                $cache->set($lockAccountKey, $id, 5);
             }
 
             $on_game = explode(',', Helpers::getRequestParam('proper_on_game'));
@@ -477,7 +472,7 @@ class AdminUserController extends BusinessController
             $db->commit();
 
             //操作完成，删除redis对账号的锁定
-            $redis->del($lockAccountKey);
+            $cache->delete($lockAccountKey);
 
             return [];
         }

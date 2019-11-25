@@ -189,6 +189,9 @@ layui.use(['admin', 'form', 'user'], function() {
                     return false;
                 }
                 // IncreaseSystemSort(go_sid);//增加排序
+                console.log('aaaaaaaaaaaaa');
+                console.log(res.data.redirect_url);
+                console.log('bbbbbbbbbbbbb');
                 tmpBtn = $('#hiddenUrl');
                 tmpBtn.attr('href', res.data.redirect_url);
                 tmpBtn[0].click();

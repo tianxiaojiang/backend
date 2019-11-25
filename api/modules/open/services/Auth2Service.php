@@ -23,13 +23,13 @@ class Auth2Service
     public static function saveTokenByCodeAndSystemId($systemId, $code, $token)
     {
         $key = self::getSaveKey($systemId, $code);
-        return \Yii::$app->redis->setex($key, self::AUTH_TOKEN_EXPIRE, $token);
+        return \Yii::$app->cache->set($key, $token, self::AUTH_TOKEN_EXPIRE);
     }
 
     public static function getTokenByCodeAndSystemId($systemId, $code)
     {
         $key = self::getSaveKey($systemId, $code);
-        $access_token = \Yii::$app->redis->get($key);
+        $access_token = \Yii::$app->cache->get($key);
         self::deleteTokenByCodeAndSystemId($systemId, $code);
         return $access_token;
     }
@@ -37,6 +37,6 @@ class Auth2Service
     public static function deleteTokenByCodeAndSystemId($systemId, $code)
     {
         $key = self::getSaveKey($systemId, $code);
-        return \Yii::$app->redis->del($key);
+        return \Yii::$app->cache->delete($key);
     }
 }

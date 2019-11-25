@@ -12,4 +12,4 @@ $cache = [
     
 ];
 
-return file_exists('./params-local.php') ? ArrayHelper::merge($cache, require_once('./params-local.php')) : $cache;
+return file_exists(__DIR__ . '/params-local.php') ? ArrayHelper::merge($cache, require_once(__DIR__ . '/params-local.php')) : $cache;

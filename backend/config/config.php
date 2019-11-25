@@ -115,7 +115,7 @@ return [
             },
         ],
         'db' => require(__DIR__ . '/db.php'),
-        //'cache' => require(__DIR__ . '/cache.php'),
+        'cache' => require(__DIR__ . '/cache.php'),
         'redis' => require(__DIR__ . '/redis.php'),
     ],
     'params' =>require(__DIR__ . '/params.php')
