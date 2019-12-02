@@ -233,9 +233,13 @@ class SystemMenu extends BaseModel
         if ($currentSystem->systems_id === 1)
             $this->sm_set_or_business = 1;
 
-        //$this->sort_by = $this->getOldAttribute('sort_by');
-
+        $old_sm_set_or_business = $this->getOldAttribute('sm_set_or_business');
         parent::update($runValidation = true, $attributes = null);
+
+        //菜单类型变更，则变更所有附属的权限类型
+        if ($old_sm_set_or_business != $this->sm_set_or_business) {
+            SystemPriv::updateAll(['sp_set_or_business' => $this->sm_set_or_business], ['sm_id' => $this->sm_id]);
+        }
 
         return true;
     }
