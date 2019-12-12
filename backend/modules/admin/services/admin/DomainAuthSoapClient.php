@@ -60,4 +60,14 @@ class DomainAuthSoapClient
     {
         return $this->_soapClient->QueryAdUserInfoByName($username);
     }
+
+    /**
+     * 根据工号获取域信息
+     * @param $staff_number
+     * @return mixed
+     */
+    public function getDomainInfoByStaffNumber($staff_number)
+    {
+        return $this->_soapClient->QueryAdUserPartInfoByStaffNum($staff_number);
+    }
 }

@@ -17,6 +17,7 @@ use Backend\modules\admin\models\System;
 use Backend\modules\admin\models\SystemAdmin;
 use Backend\modules\admin\models\SystemGroup;
 use Backend\modules\admin\models\SystemUser;
+use Backend\modules\admin\services\admin\DomainAuthSoapClient;
 
 class AdminService
 {
@@ -110,4 +111,5 @@ class AdminService
         if (($total_privilege_level & $privilege_checked_level) != $privilege_checked_level)
             throw new CustomException(sprintf('你没有此系统的%s权限', $tips[$privilege_checked_level]));
     }
+
 }

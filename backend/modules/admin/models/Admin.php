@@ -6,7 +6,9 @@ use Backend\Exception\CustomException;
 use Backend\helpers\Helpers;
 use Backend\helpers\Lang;
 use Backend\modules\admin\services\admin\AuthTypeService;
+use Backend\modules\admin\services\admin\DomainAuthSoapClient;
 use Backend\modules\admin\services\admin\NewAdminInfoFill;
+use Backend\modules\admin\services\AdminService;
 use Backend\modules\admin\services\SystemAdminService;
 use Backend\modules\admin\services\SystemService;
 use yii\helpers\ArrayHelper;
@@ -232,6 +234,16 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         if ($this->auth_type == Admin::AUTH_TYPE_PASSWORD && !empty($this->password)) {
             $this->password_algorithm_system = 1;
             $this->passwd = md5(md5($this->password) . $this->salt);
+        }
+        //域账号同步域信息：域账号、手机号、昵称
+        if ($this->auth_type == Admin::AUTH_TYPE_DOMAIN) {
+            $domainInfo = DomainAuthSoapClient::getInstance()->getDomainInfoByStaffNumber($this->staff_number);
+            if (empty($domainInfo)) {
+                throw new CustomException("根据工号获取域信息失败");
+            }
+            $this->account = $domainInfo->user_main_info->user_name;
+            !empty($domainInfo->user_main_info->display_name) && $this->username = $domainInfo->user_main_info->display_name;
+            !empty($domainInfo->user_main_info->mobile) && $this->mobile_phone = $domainInfo->user_main_info->mobile;
         }
         parent::insert($runValidation, $attributes);
 

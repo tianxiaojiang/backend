@@ -76,7 +76,11 @@ class MenuController extends BusinessController
                         $menu->sort_by = $param['sort_by'];
                     } else {
                         $prevMenu = SystemMenu::findOne(['sm_id' => intval($param['sort_by'])]);
-                        if ($menu->sm_set_or_business === $prevMenu->sm_set_or_business) $menu->sort_by = $param['sort_by'];
+                        if ($menu->sm_set_or_business === $prevMenu->sm_set_or_business) {
+                            $menu->sort_by = $param['sort_by'];
+                        } else {
+                            $menu->sort_by = 0;
+                        }
                     }
                 }
                 if (isset($param['sm_parent_id'])) {

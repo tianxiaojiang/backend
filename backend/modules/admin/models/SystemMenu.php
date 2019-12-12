@@ -73,7 +73,7 @@ class SystemMenu extends BaseModel
         $list = $this->filterPrivilege($list);
         //var_dump($list);
         $sortType = Helpers::getRequestParam('useSort');
-        if (empty($sortType)) {
+        if (true) {
             $results = [];
             foreach ($list as $item) {
                 if ($item['sort_by'] == 0) {
@@ -128,7 +128,7 @@ class SystemMenu extends BaseModel
         } else {
             array_push($results, $menu);
         }
-        //unset($menus[$menu['sm_id']]);
+        unset($menus[$menu['sm_id']]);
 
         foreach ($menus as $m) {
             if ($m['sort_by'] === $menu['sm_id']) {
