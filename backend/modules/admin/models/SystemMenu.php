@@ -70,7 +70,7 @@ class SystemMenu extends BaseModel
             ->orderBy('sm_id asc')
             ->indexBy('sm_id')
             ->asArray()->all();
-        $list = $this->filterPrivilege($list);
+        //$list = $this->filterPrivilege($list);
         //var_dump($list);
         $sortType = Helpers::getRequestParam('useSort');
         if (true) {
@@ -92,6 +92,7 @@ class SystemMenu extends BaseModel
                 $list[$result['sm_id']] = $results[$key];
                 $list[$result['sm_id']]['sort_num'] = $key;
             }
+            $list = $this->filterPrivilege($list);
             $tree = $this->formatList2Tree($list);
 
             $ret = [];
@@ -158,7 +159,7 @@ class SystemMenu extends BaseModel
     }
 
     //将非菜单权限过滤掉
-    public function filterPrivilege($list) {
+    public function filterPrivilege(&$list) {
         if ($this->_privilege == false) {
             $gameId = Helpers::getRequestParam('game_id');
             $privilege = \Yii::$app->user->identity->getPrivileges($gameId, $this->menuType);
@@ -169,13 +170,35 @@ class SystemMenu extends BaseModel
         }
 //        \Yii::info('privilege is:'. var_export($this->_privilege, true));
 
-        foreach ($list as $listKey => $listKeyval) {
-            if (!isset($this->_privilege[$listKeyval['sm_id']]) || !in_array('mainmainmain', $this->_privilege[$listKeyval['sm_id']])) {
-                unset($list[$listKey]);
-            }
-        }
+        //菜单最多三层
+//        foreach ($list as $listKey => &$listKeyval) {
+//            if (!isset($this->_privilege[$listKeyval['sm_id']]) || !in_array('mainmainmain', $this->_privilege[$listKeyval['sm_id']])) {
+//                unset($list[$listKey]);
+//            }
+//        }
+
+        $this->filterMenu($list, $this->_privilege);
+
         return $list;
     }
+
+    /**
+     * 三层递归过滤菜单列表
+     * @param $menus
+     * @param $privileges
+     */
+    private function filterMenu(&$menus, &$privileges) {
+        foreach ($menus as $key => &$menu) {
+            if (!isset($privileges[$menu['sm_id']]) || !in_array('mainmainmain', $privileges[$menu['sm_id']])) {
+                unset($menus[$key]);
+                continue;
+            }
+            if (!empty($menu['list'])) {
+                $this->filterMenu($menu['list'], $privileges);
+            }
+        }
+    }
+
 
     public function getChildren() {
         return self::findAll(['sm_parent_id' => $this->sm_id]);
