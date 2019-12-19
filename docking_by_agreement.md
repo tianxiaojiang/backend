@@ -74,6 +74,7 @@
 
 #### 接口列表
 - [获取token](./doc_source/getToken.md)
+- [账密登录获取token](./doc_source/getTokenByPassword.md)
 - [游戏列表](./doc_source/gameList.md)
 - [菜单列表](./doc_source/gameMenus.md)
 - [鉴定单个权限](./doc_source/verify.md)
