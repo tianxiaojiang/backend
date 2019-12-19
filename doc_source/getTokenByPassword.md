@@ -2,6 +2,16 @@
 
 接口地址： ``` /open/login-auth/gain ```
 
+请求方式：
+```
+post
+```
+
+数据类型：
+```
+application/x-www-form-urlencoded
+```
+
 | 参数名 | 参数类型 | 是否必须 | 说明 |
 | --- | --- | --- | --- |
 | account | string | 是 | 账号 |
