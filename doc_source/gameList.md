@@ -35,7 +35,7 @@ GET
   code: 0,
   msg: "",
   data: {
-    games: [
+    games: {
         "5012": {
             game_id: "5012",
             name: "测试应用"
@@ -44,7 +44,7 @@ GET
             game_id: "5055",
             name: "犬夜叉"
         }
-      ]
+      }
   }
 }
 ```
