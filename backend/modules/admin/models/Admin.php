@@ -237,7 +237,8 @@ class Admin extends BaseModel implements \yii\web\IdentityInterface
         }
         //域账号同步域信息：域账号、手机号、昵称
         if ($this->auth_type == Admin::AUTH_TYPE_DOMAIN) {
-            $domainInfo = DomainAuthSoapClient::getInstance()->getDomainInfoByStaffNumber($this->staff_number);
+            $tmpNumber = str_pad($this->staff_number, 5, '0', STR_PAD_LEFT);
+            $domainInfo = DomainAuthSoapClient::getInstance()->getDomainInfoByStaffNumber($tmpNumber);
             if (empty($domainInfo)) {
                 throw new CustomException("根据工号获取域信息失败");
             }

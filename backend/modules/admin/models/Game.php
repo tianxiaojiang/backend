@@ -78,8 +78,8 @@ class Game extends BaseModel
 
     public static function getAllGames($where = [], $fields = '*')
     {
-        $currentSystem = SystemService::getCurrentSystem();
-        $where['type'] = $currentSystem->game_type;
+        //$currentSystem = SystemService::getCurrentSystem();
+        //$where['type'] = $currentSystem->game_type;
         return self::find()->select($fields)->where($where)->indexBy('game_id')->asArray()->all();
     }
 }

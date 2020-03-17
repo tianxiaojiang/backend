@@ -222,7 +222,7 @@ class SystemGroupController extends BusinessController
 
             //设置管理游戏
             if ($gameId === -1) {
-                $myGames = ArrayHelper::getColumn(Game::getAllGames(['type' => $currentSystem->game_type]), 'game_id');
+                $myGames = ArrayHelper::getColumn(Game::getAllGames(), 'game_id');
                 array_push($myGames, -1);
             } else {
                 $myGames = [$gameId];
