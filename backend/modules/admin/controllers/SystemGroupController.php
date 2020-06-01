@@ -121,7 +121,25 @@ class SystemGroupController extends BusinessController
             }
         }
 
-        $result['privileges'] = array_values($allPrivileges);
+        $privResults = [];
+        $sortType = Helpers::getRequestParam('useSort');
+        if (empty($sortType)) {
+            foreach ($allPrivileges as $item) {
+                if ($item['sort_by'] == 0) {
+                    $this->setSortNum1($allPrivileges, $privResults, $item);
+                }
+            }
+            //如果有菜单排序非0，但前置菜单无权限，则直接跟最后
+            if (!empty($allPrivileges)) {
+                foreach ($allPrivileges as $priv) {
+                    array_push($privResults, $priv);
+                }
+            }
+        } else {
+            $privResults = array_values($allPrivileges);
+        }
+
+        $result['privileges'] = $privResults;
 
         //拉取游戏列表
         $currentSystem = SystemService::getCurrentSystem();
@@ -256,5 +274,24 @@ class SystemGroupController extends BusinessController
         $role->delete();
 
         return [];
+    }
+
+    //排序权限
+    protected function setSortNum1(&$privs, &$privResults, $priv)
+    {
+        if ($priv['sort_by'] === 0) {
+            array_unshift($privResults, $priv);
+        } else {
+            array_push($privResults, $priv);
+        }
+        unset($privs[$priv['sp_id']]);
+
+        foreach ($privs as $m) {
+            if ($m['sort_by'] === $priv['sp_id']) {
+                return $this->setSortNum1($privs, $privResults, $m);
+                break;
+            }
+        }
+        return true;
     }
 }

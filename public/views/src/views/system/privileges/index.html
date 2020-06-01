@@ -43,6 +43,7 @@
                                     <div class="layui-input-block">
                                         <input type="hidden" name="sp_id"/>
                                         <input type="hidden" name="sp_parent_id"/>
+                                        <input type="hidden" name="sort_by"/>
                                         <button class="layui-btn" lay-submit="" lay-filter="save-privilege">修改</button>
                                     </div>
                                 </div>
@@ -131,7 +132,8 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
         callback: {
             beforeEditName: zTreeBeforeEditName,
             beforeRemove: zTreeBeforeRemove,
-            onClick: zTreeOnClick
+            onClick: zTreeOnClick,
+            onDrop: zTreeOnDrop
         }
     };
  
@@ -242,6 +244,10 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
 
     //同步节点数据到表单
     function synchronizationTreeNode2Form(treeNode) {
+
+        var prevNode = treeNode.getPreNode();
+        var sort_by = prevNode ? prevNode.sm_id : 0;
+
         $('input[name="sp_action"]').val(treeNode.sp_action);
         $('input[name="sp_parent_id"]').val(parseInt(treeNode.sp_parent_id));
         $('input[name="sp_controller"]').val(treeNode.sp_controller);
@@ -249,6 +255,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
         $('input[name="sp_label"]').val(treeNode.sp_label);
         $('select[name="sm_id"]').val(treeNode.sm_id);
         $('input[name="sp_id"]').val(treeNode.sp_id);
+        $('input[name="sort_by"]').val(sort_by);
         form.render();
     }
 
@@ -268,6 +275,7 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
         synchronizingNode.sp_label = $('input[name="sp_label"]').val();
         synchronizingNode.sm_id = $('select[name="sm_id"]').val();
         synchronizingNode.sp_id = sp_id_from_input;
+        synchronizingNode.sort_by = $('input[name="sort_by"]').val();
 
         jqueryZtreeCore.getZTreeObj("privilegeTreeBox").updateNode(synchronizingNode);
     }
@@ -276,6 +284,85 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
     function checkAllNodeHasSaved() {
         return !jqueryZtreeCore.getZTreeObj("privilegeTreeBox").getNodeByParam('sp_id', newTmpId);
     }
+
+    function zTreeOnDrop(event, treeId, treeNodes, targetNode, moveType) {
+        //共需要修改三个节点。移动前的下一个节点、移动的节点、移动后的下一个节点
+        var update_nodes = [];
+
+        /**
+         * 修改节点自身
+         */
+        var movedNodeParam = {};
+        var movedNode = treeNodes[0];
+
+        movedNodeParam.sp_parent_id = movedNode.sp_parent_id;
+        if (!movedNodeParam.sp_parent_id) movedNodeParam.sp_parent_id = 0;
+
+        //获取前一个节点的id为移动节点的前置id
+        var prevNode = movedNode.getPreNode();
+        var movedNodeNewSory = prevNode ? prevNode.sp_id : 0;
+        if (movedNodeNewSory !== parseInt(movedNode.sort_by)) {
+            movedNodeParam.sort_by = movedNodeNewSory;
+        }
+        if (Object.keys(movedNodeParam).length > 0) {
+            movedNodeParam.sp_id = movedNode.sp_id;
+            update_nodes.push(movedNodeParam);
+        }
+
+        /**
+         * 修改移动后的下一个节点
+         */
+        var nextNode = movedNode.getNextNode();
+        //获取后一个节点，重置后一个节点的前置id
+        if (nextNode && parseInt(nextNode.sort_by) !== parseInt(movedNode.sp_id)) {
+            update_nodes.push({
+                sp_id: nextNode.sp_id,
+                sort_by: movedNode.sp_id
+            });
+        }
+
+        /**
+         * 修改移动前的下一个节点
+         */
+        var moveBeforeNode = jqueryZtreeCore.getZTreeObj("treeDemo").getNodeByParam('sort_by', movedNode.sp_id);
+        if (moveBeforeNode) {
+            var moveBeforeNodePrevNode = moveBeforeNode.getPreNode();
+            var moveBeforeNewSortBy = moveBeforeNodePrevNode ? moveBeforeNodePrevNode.sp_id : 0;
+            if (moveBeforeNewSortBy !== parseInt(movedNode.sp_id)) {
+                update_nodes.push({
+                    sp_id: moveBeforeNode.sp_id,
+                    sort_by: moveBeforeNewSortBy
+                });
+            }
+        }
+
+        if (prevNode && prevNode.sp_id !== parseInt(movedNode.sort_by)) {
+            movedNode.sort_by = prevNode.sp_id;
+        }
+        if (nextNode && parseInt(nextNode.sort_by) !== parseInt(movedNode.sp_id)) {
+            nextNode.sort_by = movedNode.sp_id;
+        }
+        if (moveBeforeNode && moveBeforeNewSortBy && moveBeforeNewSortBy !== parseInt(movedNode.sp_id)) {
+            moveBeforeNode.sort_by = moveBeforeNewSortBy;
+        }
+
+        if (update_nodes.length > 0) {
+            updateMenusSort(update_nodes);
+        }
+    }
+
+    function updateMenusSort(nodes) {
+        var options = {
+            data: {nodes: nodes},
+            url: '/admin/privilege/update-sort',
+            method: 'patch',
+            done: function (res) {
+                layer.msg(res.msg);
+            }
+        };
+        admin.req(options);
+    }
+
 });
 
 </script>

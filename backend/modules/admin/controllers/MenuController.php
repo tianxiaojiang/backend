@@ -136,6 +136,12 @@ class MenuController extends BusinessController
         if (empty($deletingMenu))
             throw new CustomException("菜单不存在");
 
+        // 如果子菜单，不允许删除
+        $childrenMenu = SystemMenu::find()->where(["sm_parent_id" => $id])->one();
+        if (!empty($childrenMenu)) {
+            throw new CustomException("菜单非空，请先删除子菜单");
+        }
+
         $followMenu = SystemMenu::find()->where(["sort_by" => $id])->one();
         if (!empty($followMenu)) {
             $followMenu->sort_by = $deletingMenu->sort_by;

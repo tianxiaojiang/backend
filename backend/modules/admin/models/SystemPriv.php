@@ -27,9 +27,9 @@ class SystemPriv extends BaseModel
     public function scenarios()
     {
         return [
-            'default' => ['sp_id', 'sp_label', 'sp_parent_id', 'sp_module', 'sp_controller', 'sp_action', 'sm_id', 'created_at', 'updated_at'],
-            'update' => ['sp_id', 'sp_label', 'sp_parent_id', 'sp_module', 'sp_controller', 'sp_action', 'sm_id', 'created_at', 'updated_at'],
-            'create' => ['sp_id', 'sp_label', 'sp_parent_id', 'sp_module', 'sp_controller', 'sp_action', 'sm_id', 'created_at', 'updated_at'],
+            'default' => ['sp_id', 'sp_label', 'sp_parent_id', 'sort_by', 'sp_module', 'sp_controller', 'sp_action', 'sm_id', 'created_at', 'updated_at'],
+            'update' => ['sp_id', 'sp_label', 'sp_parent_id', 'sort_by', 'sp_module', 'sp_controller', 'sp_action', 'sm_id', 'created_at', 'updated_at'],
+            'create' => ['sp_id', 'sp_label', 'sp_parent_id', 'sort_by', 'sp_module', 'sp_controller', 'sp_action', 'sm_id', 'created_at', 'updated_at'],
         ];
     }
 
