@@ -18,4 +18,3 @@ ALTER TABLE `s10_system_priv` add `sort_by` tinyint(1) unsigned NOT NULL default
 ALTER TABLE `s11_system_priv` add `sort_by` tinyint(1) unsigned NOT NULL default 0 COMMENT "排序号码" AFTER `sp_parent_id`;
 ALTER TABLE `s12_system_priv` add `sort_by` tinyint(1) unsigned NOT NULL default 0 COMMENT "排序号码" AFTER `sp_parent_id`;
 ALTER TABLE `s13_system_priv` add `sort_by` tinyint(1) unsigned NOT NULL default 0 COMMENT "排序号码" AFTER `sp_parent_id`;
-ALTER TABLE `s14_system_priv` add `sort_by` tinyint(1) unsigned NOT NULL default 0 COMMENT "排序号码" AFTER `sp_parent_id`;
