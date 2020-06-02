@@ -325,12 +325,9 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
          * 修改移动前的下一个节点
          */
         var moveBeforeNode = jqueryZtreeCore.getZTreeObj("privilegeTreeBox").getNodeByParam('sort_by', movedNode.sp_id);
-        console.log(moveBeforeNode);
         if (moveBeforeNode) {
             var moveBeforeNodePrevNode = moveBeforeNode.getPreNode();
-            console.log(moveBeforeNodePrevNode);
             var moveBeforeNewSortBy = moveBeforeNodePrevNode ? moveBeforeNodePrevNode.sp_id : 0;
-            console.log(moveBeforeNewSortBy);
             if (moveBeforeNewSortBy !== parseInt(movedNode.sp_id)) {
                 update_nodes.push({
                     sp_id: moveBeforeNode.sp_id,
@@ -338,8 +335,6 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
                 });
             }
         }
-
-        console.log(moveBeforeNode);
 
         if (update_nodes.length > 0) {
             updateMenusSort(update_nodes);
