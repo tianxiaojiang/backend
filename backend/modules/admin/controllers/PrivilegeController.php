@@ -68,6 +68,7 @@ class PrivilegeController extends BusinessController
                 'sp_controller' => $item['sp_controller'],
                 'sp_action' => $item['sp_action'],
                 'sm_id' => $item['sm_id'],
+                'sort_by' => $item['sort_by'],
             ];
         }
 

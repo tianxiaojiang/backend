@@ -324,10 +324,13 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
         /**
          * 修改移动前的下一个节点
          */
-        var moveBeforeNode = jqueryZtreeCore.getZTreeObj("treeDemo").getNodeByParam('sort_by', movedNode.sp_id);
+        var moveBeforeNode = jqueryZtreeCore.getZTreeObj("privilegeTreeBox").getNodeByParam('sort_by', movedNode.sp_id);
+        console.log(moveBeforeNode);
         if (moveBeforeNode) {
             var moveBeforeNodePrevNode = moveBeforeNode.getPreNode();
+            console.log(moveBeforeNodePrevNode);
             var moveBeforeNewSortBy = moveBeforeNodePrevNode ? moveBeforeNodePrevNode.sp_id : 0;
+            console.log(moveBeforeNewSortBy);
             if (moveBeforeNewSortBy !== parseInt(movedNode.sp_id)) {
                 update_nodes.push({
                     sp_id: moveBeforeNode.sp_id,
@@ -336,19 +339,22 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
             }
         }
 
-        if (prevNode && prevNode.sp_id !== parseInt(movedNode.sort_by)) {
-            movedNode.sort_by = prevNode.sp_id;
-        }
-        if (nextNode && parseInt(nextNode.sort_by) !== parseInt(movedNode.sp_id)) {
-            nextNode.sort_by = movedNode.sp_id;
-        }
-        if (moveBeforeNode && moveBeforeNewSortBy && moveBeforeNewSortBy !== parseInt(movedNode.sp_id)) {
-            moveBeforeNode.sort_by = moveBeforeNewSortBy;
-        }
+        console.log(moveBeforeNode);
 
         if (update_nodes.length > 0) {
             updateMenusSort(update_nodes);
         }
+
+        // 不手动改页面的数据，直接刷新当前页面
+        // if (prevNode && prevNode.sp_id !== parseInt(movedNode.sort_by)) {
+        //     movedNode.sort_by = prevNode.sp_id;
+        // }
+        // if (nextNode && parseInt(nextNode.sort_by) !== parseInt(movedNode.sp_id)) {
+        //     nextNode.sort_by = movedNode.sp_id;
+        // }
+        // if (moveBeforeNode && moveBeforeNewSortBy && moveBeforeNewSortBy !== parseInt(movedNode.sp_id)) {
+        //     moveBeforeNode.sort_by = moveBeforeNewSortBy;
+        // }
     }
 
     function updateMenusSort(nodes) {
@@ -361,8 +367,8 @@ layui.use(['table', 'laytpl', 'form', 'ztutil', 'admin', 'view', 'element', 'jqu
             }
         };
         admin.req(options);
+        window.location.reload();
     }
-
 });
 
 </script>
