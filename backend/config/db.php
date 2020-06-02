@@ -14,7 +14,7 @@ $db = [
     'username' => 'giant_manage',
     'password' => 'qGwQAZBR5j4DJYyI',
     'charset' => 'utf8mb4',
-    'enableSchemaCache' => true,
+    'enableSchemaCache' => false,
     'schemaCacheDuration' => 3600,
     'schemaCache' => 'cache',
 ];
