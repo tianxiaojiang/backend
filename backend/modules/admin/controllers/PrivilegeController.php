@@ -103,7 +103,7 @@ class PrivilegeController extends BusinessController
                 }
                 if (isset($param['sp_parent_id'])) {
                     if ($param['sp_parent_id'] == 0) {
-                        $priv->sm_parent_id = $param['sp_parent_id'];
+                        $priv->sp_parent_id = $param['sp_parent_id'];
                     } else {
                         $parentPriv = SystemPriv::findOne(['sp_id' => intval($param['sp_parent_id'])]);
                         if ($priv->sp_set_or_business === $parentPriv->sp_set_or_business) $priv->sp_parent_id = $param['sp_parent_id'];
